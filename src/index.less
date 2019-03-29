@@ -1,0 +1,88 @@
+@import '~antd/dist/antd.less';
+@font-size-base: 12px;
+@layout-header-background: #404040;
+@menu-dark-submenu-bg: #333;
+@spacer: 1rem;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.ant-layout {
+    background-color: #fff;
+}
+
+.content {
+    border: 1px solid #ebedf0;
+    .ant-spin-spinning {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.hljs {
+    display: block;
+    overflow-x: auto;
+    background: #19171c;
+    color: #8b8792;
+    padding: 0.5em;
+    border-radius: 4px;
+    .hljs-comment,
+    .hljs-quote {
+        color: #7e7887
+    }
+    .hljs-variable,
+    .hljs-template-variable,
+    .hljs-attribute,
+    .hljs-regexp,
+    .hljs-link,
+    .hljs-tag,
+    .hljs-name,
+    .hljs-selector-id,
+    .hljs-selector-class {
+        color: #be4678
+    }
+    .hljs-number,
+    .hljs-meta,
+    .hljs-built_in,
+    .hljs-builtin-name,
+    .hljs-literal,
+    .hljs-type,
+    .hljs-params {
+        color: #e5c07b;
+    }
+    .hljs-string,
+    .hljs-symbol,
+    .hljs-bullet {
+        color: #98c379;
+    }
+    .hljs-title,
+    .hljs-section {
+        color: #576ddb
+    }
+    .hljs-keyword,
+    .hljs-selector-tag {
+        color: #c678dd;
+    }
+    .hljs-deletion,
+    .hljs-addition {
+        color: #19171c;
+        display: inline-block;
+        width: 100%
+    }
+    .hljs-deletion {
+        background-color: #be4678
+    }
+    .hljs-addition {
+        background-color: #2a9292
+    }
+    .hljs-emphasis {
+        font-style: italic
+    }
+    .hljs-strong {
+        font-weight: bold
+    }
+}

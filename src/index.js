@@ -12,7 +12,6 @@ const history = createHistory()
 
 const store = configureStore()
 
-/* eslint-disable */
 ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>

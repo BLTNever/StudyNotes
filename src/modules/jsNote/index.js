@@ -2,10 +2,16 @@ import React from 'react';
 const { Component } = React;
 import { Route } from 'react-router-dom'
 
-import { 
-    Note1, Note2, Note3, Note4, Note5, Note6, Note7, Note8, 
-    Note9, Note10, Note14, Note15 } from './config';
+import Loadable from 'react-loadable';
+import { Spin } from 'antd';
+
 import './index.less';
+
+const Loading = () =>  <Spin size="large" />;
+const getComponent = (page) =>  Loadable({
+    loader: () => import(`./list/${page}`),
+    loading: Loading,
+})
 
 export default class JsNotes extends Component {
     constructor(props) {
@@ -19,18 +25,19 @@ export default class JsNotes extends Component {
     render() {
         return (
             <div className="animated ani-box notes-wrap">
-                <Route path='/js/note1' component={Note1} />
-                <Route path='/js/note2' component={Note2} />
-                <Route path='/js/note3' component={Note3} />
-                <Route path='/js/note4' component={Note4} />
-                <Route path='/js/note5' component={Note5} />
-                <Route path='/js/note6' component={Note6} />
-                <Route path='/js/note7' component={Note7} />
-                <Route path='/js/note8' component={Note8} />
-                <Route path='/js/note9' component={Note9} />
-                <Route path='/js/note10' component={Note9} />
-                <Route path='/js/note14' component={Note14} />
-                <Route path='/js/note15' component={Note15} />
+                <Route path='/js/note1' component={getComponent('note1')} />
+                <Route path='/js/note2' component={getComponent('note2')} />
+                <Route path='/js/note3' component={getComponent('note3')} />
+                <Route path='/js/note4' component={getComponent('note4')} />
+                <Route path='/js/note5' component={getComponent('note5')} />
+                <Route path='/js/note6' component={getComponent('note6')} />
+                <Route path='/js/note7' component={getComponent('note7')} />
+                <Route path='/js/note8' component={getComponent('note8')} />
+                <Route path='/js/note9' component={getComponent('note9')} />
+                <Route path='/js/note10' component={getComponent('note10')} />
+                <Route path='/js/note11' component={getComponent('note11')} />
+                <Route path='/js/note14' component={getComponent('note14')} />
+                <Route path='/js/note15' component={getComponent('note15')} />
             </div>
         )
     }

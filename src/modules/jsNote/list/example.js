@@ -383,8 +383,49 @@ async function getABC() {
 }
 `;
 
+const note11Example1 = `
+var obj = { 'a' : 1, 'b': 2 };
+var arr = [0, 1 , 2];
 
+// 等于
 
+var obj = new Object();
+obj.a = 1;
+obj.b =2;
+
+var arr = new Array();
+arr[0] = 0;
+arr[1] = 1;
+arr[2] = 2;
+`;
+
+const note11Example2 = `
+function fn(){}
+console.log(fn.prototype);
+
+{
+    constructor: ƒ fn()
+    __protp__: Object
+}`;
+const note11Example3 = `
+function fn() {};
+
+fn.prototype.name = 'Alec';
+fn.prototype.getAge = function () {
+    return 16;
+}`;
+const note11Example4 = `
+function Fn () {};
+
+Fn.prototype.name = 'Alec';
+Fn.prototype.getAge = function () {
+    return 16;
+}
+
+var fn = new Fn();
+console.log(fn.name); // Alec;
+console.log(fn.getAge); // 16
+`;
 
 
 const example1 = `
@@ -591,4 +632,8 @@ module.exports = {
     example7,
     debounce,
     throttle,
+    note11Example1,
+    note11Example2,
+    note11Example3,
+    note11Example4,
 }

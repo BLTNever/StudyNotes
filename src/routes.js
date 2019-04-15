@@ -5,6 +5,7 @@ import Container from './common/container';
 
 import Login from './modules/login';
 import Js from './modules/jsNote';
+import Exercises from './modules/exercises'
 
 const history = createHistory()
 const { location } = history
@@ -23,6 +24,8 @@ const routes = (
         <Route path="/" component={Container} />
         <Route path="/login" component={Login} />
         <Route path="/js" component={Js} />
+        <Route path='/exercises' component={Exercises}/>
+        
         {location.hash === '#/' ? <Redirect to="/home" /> : ''}
     </Switch>
 )

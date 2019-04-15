@@ -3,11 +3,11 @@ const allMenu = [
         name: 'HOME',
         url: 'home',
         icon: 'home',
-    }, 
+    },
     {
         name: 'JS',
         url: 'js',
-        icon: 'project',
+        icon: 'book',
         children: [
             { name: 'JS执行栈', url: '/js/note1' },
             { name: 'JS事件循环', url: '/js/note2' },
@@ -19,19 +19,30 @@ const allMenu = [
             { name: '异步', url: '/js/note8' },
             { name: '常见问题记录', url: '/js/note9' },
             { name: '了解HTTPS', url: '/js/note10' },
+            { name: '理解原型和闭包', url: '/js/note11' },
             // { name: '其他知识点', url: '/js/note14' },
             { name: '模块化', url: '/js/note15' },
         ],
-    }, 
-     {
+    },
+    {
+        name: 'EXERCISES',
+        url: 'exercuses',
+        icon: 'calculator',
+        children: [
+            { name: '数组', url: '/exercises/exercise1' },
+            { name: '拷贝', url: '/exercises/exercise2' },
+            { name: '继承', url: '/exercises/exercise3' },
+        ],
+    },
+    {
         name: 'NODE',
         url: 'node',
-        icon: 'code-o',
+        icon: 'code',
         children: [
             { name: 'Notes', url: 'node' },
         ],
     },
-   
+
 ]
 
 export default allMenu

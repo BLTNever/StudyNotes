@@ -555,54 +555,21 @@ const example7 = `
 wall.say();
 wall.whoIam();`;
 
-const debounce = `
-function debounce (fn, delay) {
-    let timeout = null;
-    return (e) => {
-        cleaTimeout(timeout);
+const bitNot = `~0000000000000000 => 0000000000001001
+-------取反
+~1111111111111111 => 1111111111110110
+-------符号位不变，其余取反
+~1000000000000000 => 0000000000001001
+-------加1
+~1000000000000000 => 0000000000001010`;
 
-        const _this = this;
-        const args = arguments;
-        timeout = setTimeout(() => {
-            fn.apply(_this, arg);
-        }, delay)
-    }
+const executionContext = `
+executionContext = {
+    variable object: var, function, arguments,
+    scope chain: varible scope + all parents scope,
+    thisValue: context object
 }
-const validate = debounce((e) => {
-    console.log('change', e.target.value, new Date - 0)
-}, 400)
-
-document.querySelector('input').addEventListener('input', validate)`;
-
-const throttle = `
-function throttle(fn ,threshhold = 160) {
-    let timeout = null;
-    let start = new Date();
-    return () => {
-        const _this = this;
-        const args = arguments;
-        const cur = new Date() - 0;
-
-        clearTimeout(timeout);
-
-        if(cur - start >= threshhold) {
-            console.log('now:', cur, cur - start);
-            
-            fn.apply(_this, args);
-            start = cur;
-        }else {
-            timeout = setTimeout(() => {
-                fn.apply(_this, args);
-            }, threshhold)
-        }
-    }
-}
-
-const mouseMove = throttle((e) => {
-    console.log(e.pageX, e.pageY);
-})
-
-document.querySelector('#panel').addEventListener('mousemove, mouseMove);`;
+`;
 
 module.exports = {
     note1Fn, // note1
@@ -630,10 +597,11 @@ module.exports = {
     example5, //note15
     example6, //note15
     example7,
-    debounce,
-    throttle,
+   
     note11Example1,
     note11Example2,
     note11Example3,
     note11Example4,
+    bitNot,
+    executionContext,
 }

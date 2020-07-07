@@ -1,0 +1,167 @@
+.ant-layout-sider-collapsed .anticon {
+    // 放在.github前面原因猜想是渲染。
+    font-size: 20px;
+}
+
+.containAll {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    .avatar {
+        position: absolute;
+        top: 20px;
+        left: 14px;
+        font-size: 36px;
+        animation: App-logo-spin infinite 20s linear;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+    }
+
+    .github {
+        position: absolute;
+        top: 20px;
+        left: 14px;
+        font-size: 36px;
+        animation: App-logo-spin infinite 20s linear;
+    }
+
+    .author {
+        position: absolute;
+        top: 20px;
+        left: 65px;
+        font-size: 24px;
+        font-weight: 600;
+        font-family: "Microsoft YaHei", "SimHei"
+    }
+
+    .white {
+        color: white
+    }
+
+    .menu {
+        height: 100%;
+        padding-top: 75px;
+        top: 10%;
+        overflow: scroll;
+    }
+
+    .switch {
+        position: absolute;
+        bottom: 4%;
+        right: 5%;
+    }
+}
+
+.ant-layout-sider {
+    background: #404040;
+
+    &.ant-layout-sider-has-trigger {
+        padding: 0;
+    }
+
+    .ant-menu.ant-menu-dark,
+    .ant-menu.ant-menu-dark .ant-menu-sub {
+        background: #404040;
+    }
+}
+
+.ant-layout-sider-trigger {
+    display: none;
+}
+
+.ant-layout-header {
+    margin-left: 16px;
+    background-color: #fff;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.ant-layout-sider-collapsed {
+    .nav-text {
+        display: none;
+    }
+
+    .author {
+        display: none;
+    }
+}
+
+.ant-menu-submenu-vertical {
+    &>.ant-menu-submenu-title:after {
+        // 对缩放时的menu样式进行处理
+        display: none;
+    }
+
+    .ant-menu-submenu-title span span {
+        display: none;
+    }
+}
+
+.trigger {
+    font-size: 18px;
+    line-height: 64px;
+    margin-left: -24px;
+    cursor: pointer;
+    transition: color .3s;
+
+    &:hover {
+        color: #108ee9;
+    }
+}
+
+// header
+.layout-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    height: 58px !important;
+    box-shadow: 0 2px 8px #f0f1f2;
+    margin: 0 16px;
+
+    .top-right {
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        .log-out {
+            width: 100px;
+            height: 100%;
+        }
+
+        .screen-full {
+            font-size: 14px;
+            cursor: pointer;
+            transition: color .3s;
+            padding: 10px;
+
+            &:hover {
+                color: #108ee9;
+            }
+        }
+    }
+
+
+    .ant-layout-header {}
+}
+
+.content {
+    position: relative;
+    margin: 20px;
+    padding: 24px 16px;
+    background: #fff;
+    overflow: scroll;
+}

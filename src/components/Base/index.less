@@ -1,170 +1,44 @@
-// content
-.my-item {
-    display: flex;
-    flex-direction: column;
-    // margin-bottom: 10px;
+.my-content {
+    height: 100%;
 
-    &.row {
-        flex-direction: row;
-    }
-
-    .requeired {
-        &::before {
-            display: inline-block;
-            margin-right: 4px;
-            color: #ff4d4f;
-            font-size: 14px;
-            font-family: SimSun, sans-serif;
-            line-height: 1;
-            content: '*';
-        }
-    }
-
-    .item-label {
-        color: rgba(0, 0, 0, 0.85);
-        height: 32px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .item-value {
-        max-width: 66.66666667%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        height: 32px;
-
-        .ant-radio-group {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-
-        .ant-input-affix-wrapper,
-        .ant-input,
-        .ant-select,
-        .ant-input-number {
-            width: 100%
-        }
-
-        .ant-switch-checked::after {
-            left: 100%;
-            margin-left: -1px;
-            transform: translateX(-100%);
-        }
+    .back-top {
+        color: #1890ff;
+        height: 40;
+        width: 40;
+        line-height: '40px';
+        border-radius: 4;
+        background-color: '#1088e9';
+        text-align: 'center';
+        font-size: 14;
     }
 }
 
-// mytitle
-#content-title {
-    width: 100%;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    font-size: 16px;
-    color: #474245;
-    border-bottom: 1px solid #f3f3f3;
-    margin-bottom: 20px;
+.my-wrap {
+    // box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.45);
+    border-bottom: 1px dashed #d7d7d7;
 
-    span {
-        width: 2px;
-        height: 11px;
-        background: #1890ff;
-        margin-right: 8px;
-        display: block;
+    // PageHeader
+    .ant-page-header.ant-page-header-ghost {
+        padding: 12px;
     }
-}
 
-// simple-table
-.simple-table {}
-
-
-// my-statistic
-#my-statistic {
-    background: #FFF8E2;
-    margin-bottom: 20px;
-    border: 1px solid #FFF8E2;
-    border-radius: 5px;
-    padding: 5px 20px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    .unusual {
-        color: #666;
-        display: block;
-        flex: 1;
+    // Typography
+    h4.ant-typography,
+    .ant-typography h4 {
+        font-size: 16px;
     }
-}
 
-#my-input-number {
-    width: 100%;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    color: rgba(0, 0, 0, 0.65);
-    font-size: 14px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    // collapse
+    .ant-collapse-ghost>.ant-collapse-item {
+        font-size: 16px;
+        font-weight: 600;
+    }
 
-    .addon-before.ant-input-number {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-
-        input {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
+    ul {
+        li {
+            margin-left: 20px;
+            padding-left: 4px;
+            list-style-type: circle;
         }
-
-    }
-
-    .addon-after.ant-input-number {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-
-        input {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-    }
-
-    .addon {
-        position: relative;
-        height: 32px;
-        line-height: 32px;
-        padding: 0 11px;
-        color: rgba(0, 0, 0, 0.65);
-        font-weight: normal;
-        font-size: 14px;
-        text-align: center;
-        background-color: #fafafa;
-        border: 1px solid #d9d9d9;
-        border-radius: 4px;
-        transition: all 0.3s;
-        border-right: none;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-
-    .addon2 {
-        position: relative;
-        height: 32px;
-        line-height: 32px;
-        padding: 0 11px;
-        color: rgba(0, 0, 0, 0.65);
-        font-weight: normal;
-        font-size: 14px;
-        text-align: center;
-        background-color: #fafafa;
-        border: 1px solid #d9d9d9;
-        border-radius: 4px;
-        transition: all 0.3s;
-        border-left: none;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
     }
 }

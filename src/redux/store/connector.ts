@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as reduxPage from '@views/ReduxPage/store/action'
+import * as reduxPage from '@reducer/demoReducer/action'
 
 const Connector = connect(state => ({
     ...state

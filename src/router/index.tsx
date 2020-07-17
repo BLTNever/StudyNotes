@@ -1,45 +1,41 @@
-import React from 'react'
-import { Route, Redirect, Switch } from 'react-router-dom'
+import React, { lazy } from 'react'
+import { Route, Redirect, Switch, Router } from 'react-router-dom'
 import { list } from './list'
 import { Layout } from 'antd'
 const { Content } = Layout
 
 const RouteItem = (props: any) => {
-    const { redirect, path, component, key } = props
+    const { redirect, path, component } = props
     if (redirect) {
-        return <Redirect exact key={key} from={path} to={redirect} />
+        return <Redirect key={path} from={path} to={redirect} />
     }
-    return <Route exact key={key} component={component} path={path} />
+    return <Route key={path} component={component} path={path} />
 }
-// eslint-disable-next-line no-array-constructor
-let Routes: any = new Array()
+let Routes: any = []
 
 // 获取子路由
 
-const loopRoute = (route: any, i: any, pre_path?: string) => {
+const loopRoute = (route: any, i: any) => {
     return route.children.forEach((routeChild: any, idx: number) => {
-        let __path = pre_path + routeChild.path
-        const { redirect, component, children } = routeChild
+        const { redirect, component, children, path } = routeChild
         if (children && children.length) {
             // 递归获取子路径
             if (component) {
                 Routes = Routes.flat()
                 Routes.push(
                     RouteItem({
-                        key: `${i}-${idx}`,
                         redirect,
-                        path: __path,
+                        path,
                         component: component
                     })
                 )
             }
-            loopRoute(routeChild, idx, __path)
+            loopRoute(routeChild, idx)
         } else {
             Routes.push(
                 RouteItem({
-                    key: `${i}-${idx}`,
                     redirect,
-                    path: __path,
+                    path,
                     component: component
                 })
             )
@@ -47,16 +43,20 @@ const loopRoute = (route: any, i: any, pre_path?: string) => {
     })
 }
 
-
 list.forEach((route: any, key) => {
-    return Array.isArray(route.children) && route.children.length
-        ? loopRoute(route, key, route.path)
-        : Routes.push(RouteItem({ key, ...route }))
+    if (route?.children?.length) {
+        loopRoute(route, key)
+    } else {
+        Routes.push(RouteItem({ key, ...route }))
+    }
 })
 
+console.log(Routes)
 const convertedRoutes = () => {
     return (
-        <Switch>{Routes}</Switch>
+        <Switch>
+            {Routes}
+        </Switch>
     )
 }
 

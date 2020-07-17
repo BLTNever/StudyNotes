@@ -35,6 +35,9 @@
             ],
             "@common/*": [
                 "common/*"
+            ],
+            "@reducer/*": [
+                "reducer/*"
             ]
         }
     }

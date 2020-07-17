@@ -6,12 +6,12 @@ import { Card, Col, Row, Divider } from 'antd';
 import { createNew, } from './example'
 import PreviewImg from '../../../components/previewImg';
 
-import equation from '../../../images/equation.jpg';
-import equation2 from '../../../images/equation2.jpg';
-import equation3 from '../../../images/equation3.jpg';
-import equation4 from '../../../images/equation4.jpg';
-import equation5 from '../../../images/equation5.jpg';
-import equation6 from '../../../images/equation6.jpg';
+import equation from '@images/equation.jpg';
+import equation2 from '@images/equation2.jpg';
+import equation3 from '@images/equation3.jpg';
+import equation4 from '@images/equation4.jpg';
+import equation5 from '@images/equation5.jpg';
+import equation6 from '@images/equation6.jpg';
 
 const Exercise4 = () => (
     <div>

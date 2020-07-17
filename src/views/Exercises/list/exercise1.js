@@ -109,13 +109,13 @@ const Exercise1 = () => (
             <Row gutter={16}>
                 <Col span={12}>
                     <Card title="将具有length属性的对象转成数组">
-                        <Highlight language="javascript">{`Array.protoype.slice.call(arguments, 0)`}</Highlight>
+                        <Highlight language="javascript">`Array.protoype.slice.call(arguments, 0)`</Highlight>
                         <p>或</p>
-                        <Highlight language="javascript">{`[].protoype.slice.call(arguments, 0)`}</Highlight>
+                        <Highlight language="javascript">`[].protoype.slice.call(arguments, 0)`</Highlight>
                         <p>或</p>
                         <Highlight language="javascript">{arrFn11}</Highlight>
                         <p>或</p>
-                        <Highlight language="javascript">{`Array.from(arguments)`}</Highlight>
+                        <Highlight language="javascript">`Array.from(arguments)`</Highlight>
                     </Card>
                 </Col>
                 <Col span={12}>

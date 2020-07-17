@@ -2,7 +2,9 @@
     // 放在.github前面原因猜想是渲染。
     font-size: 20px;
 }
-
+.ant-layout {
+    background-color: #f0f1f2;
+}
 .containAll {
     position: absolute;
     top: 0;
@@ -64,9 +66,13 @@
         padding: 0;
     }
 
-    .ant-menu.ant-menu-dark,
-    .ant-menu.ant-menu-dark .ant-menu-sub {
+    .ant-menu.ant-menu-dark {
         background: #404040;
+
+        .ant-menu-sub {
+            background: #333;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45) inset;
+        }
     }
 }
 

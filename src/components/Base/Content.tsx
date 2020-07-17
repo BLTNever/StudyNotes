@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useCallback, ReactNode } from 'react'
-import { Spin } from 'antd'
-interface IPorps {
-    loading: boolean
-    children?: ReactNode
-}
-export default function Content(props: IPorps) {
+
+import { BackTop } from 'antd'
+import { UpCircleFilled } from '@ant-design/icons'
+
+export default function Content(props: any) {
     return (
-        <Spin spinning={props.loading}>
+        <div className="my-content">
             {props.children}
-        </Spin>
+            <BackTop visibilityHeight={400}>
+                <div className="back-top"><UpCircleFilled /></div>
+            </BackTop>
+        </div>
     )
 }

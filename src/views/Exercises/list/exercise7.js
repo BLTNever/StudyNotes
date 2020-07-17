@@ -14,9 +14,9 @@ const Exercise7 = () => (
             <Row gutter={16}>
                 <Col span={12}>
                     <Card title="语法">
-                        <Highlight language="javascript">{`var patt=new RegExp(pattern,modifiers);`}</Highlight>
+                        <Highlight language="javascript">`var patt=new RegExp(pattern,modifiers);`</Highlight>
                         <p>或</p>
-                        <Highlight language="javascript">{`var patt=/pattern/modifiers;`}</Highlight>
+                        <Highlight language="javascript">`var patt=/pattern/modifiers;`</Highlight>
                         <ul>
                             <li>pattern（模式） 描述了表达式的模式</li>
                             <li>modifiers(修饰符) 用于指定全局匹配、区分大小写的匹配和多行匹配</li>

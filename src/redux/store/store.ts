@@ -11,7 +11,7 @@ const middlewares = [
 const composeEnhancers = (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
-    reducers, /* preloadedState, */
+    reducers,
     composeEnhancers(
         applyMiddleware(...middlewares)
     ));

@@ -13,29 +13,16 @@ const customPanelStyle = {
     overflow: 'hidden',
 };
 
-export default class Notes extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
+const Node = () => {
 
-        }
-    }
 
-    componentDidMount() {
-    }
-
-    componentWillUnmount() {
-
-    }
-
-    closeGallery() {
+    const closeGallery = () => {
         document.querySelector('#show-picture').style.display = 'none';
     }
-    render() {
-        return (
-            <div className="animated ani-box notes-wrap">
-                <Collapse bordered={false} defaultActiveKey={['6']}>
-                    {/* <Panel header="JS执行栈" key="1" style={customPanelStyle}>
+    return (
+        <div className="animated ani-box notes-wrap">
+            <Collapse bordered={false} defaultActiveKey={['6']}>
+                {/* <Panel header="JS执行栈" key="1" style={customPanelStyle}>
                         <Note1 />
                     </Panel>
                     <Panel header="JS事件循环" key="2" style={customPanelStyle}>
@@ -58,13 +45,14 @@ export default class Notes extends React.Component {
                     <Panel header="CommonJs、ES2015、AMD、CMD模块" key="15" style={customPanelStyle}>
                         <Note15 />
                     </Panel> */}
-                </Collapse>
+            </Collapse>
 
-                <div id="show-picture" onClick={() => this.closeGallery()}>
-                    {/* <img src="" alt="" onClick={(e) => (e.stopPropagation())} /> */}
-                    <img src="" alt="" />
-                </div>
+            <div id="show-picture" onClick={() => closeGallery()}>
+                {/* <img src="" alt="" onClick={(e) => (e.stopPropagation())} /> */}
+                <img src="" alt="" />
             </div>
-        )
-    }
+        </div>
+    )
 }
+
+export default Node

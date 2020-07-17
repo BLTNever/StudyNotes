@@ -1,65 +1,20 @@
 import React, { memo, useState, useEffect } from 'react'
-import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
-import { Layout, ConfigProvider, Button, Menu, Switch } from 'antd'
-import zhCN from 'antd/es/locale/zh_CN'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
+import { Layout, Switch } from 'antd'
 import moment from 'moment'
 import 'moment/locale/zh-cn'
 import './index.less'
-import menuList from '../../config/menu'
-const { SubMenu } = Menu
-const { Header, Footer, Sider, Content } = Layout
 import Top from './Top'
 import avatar from '../../assets/images/avatar.jpeg'
+import MyMenu from './MyMenu'
+
 moment.locale('en')
+
+const { Sider, Content } = Layout
 
 interface IProps {
     children: any
     location?: any
-}
-
-const MyMenu = (props: any) => {
-    const [defaultSelectedKeys, setDefaultSelectedKeys] = useState<Array<string>>([])
-    const [defaultOpenKeys, setDefaultOpenKeys] = useState<Array<string>>([])
-    const { mode, theme } = props
-    useEffect(() => {
-        // const path = window.location.hash.slice(1);
-        if (menuList && menuList.length > 0) {
-            const firstMenu = menuList[0]
-            if (firstMenu.children && firstMenu.children.length > 0) {
-                setDefaultOpenKeys([firstMenu.id])
-                setDefaultSelectedKeys([firstMenu.children[0].id])
-            }
-        }
-    }, [])
-
-    const renderMenu = (list: any[]) => {
-        return list.map((item) => {
-            if (item.children && item.children.length > 0) {
-                return (
-                    <SubMenu title={item.name} key={item.id}>
-                        {renderMenu(item.children)}
-                    </SubMenu>
-                )
-            }
-            return (
-                <Menu.Item title={item.title} key={item.id}>
-                    <Link to={item.route}>{item.name}</Link>
-                </Menu.Item>
-            )
-        })
-    }
-
-    return (
-        <Menu
-            className='menu'
-            defaultSelectedKeys={defaultSelectedKeys}
-            defaultOpenKeys={defaultOpenKeys}
-            mode={mode}
-            theme={theme}
-        >
-            {renderMenu(menuList)}
-        </Menu>
-    )
 }
 
 const Main = memo((props: IProps & RouteComponentProps) => {
@@ -72,7 +27,6 @@ const Main = memo((props: IProps & RouteComponentProps) => {
         console.log('loginOut')
     }
 
-
     const toggle = () => {
         setCollapsed(!collapsed)
         setMode(collapsed ? 'inline' : 'vertical')
@@ -80,6 +34,7 @@ const Main = memo((props: IProps & RouteComponentProps) => {
     const changeTheme = (value: boolean) => {
         setTheme(value ? 'dark' : 'light')
     }
+
     return (
         <Layout style={{ minHeight: '100%' }} className="containAll">
             <Sider collapsible collapsed={collapsed} onCollapse={() => setCollapsed(!collapsed)} >
@@ -90,7 +45,7 @@ const Main = memo((props: IProps & RouteComponentProps) => {
                         ? <span className="author">Alec</span>
                         : <span className="author white">Alec</span>
                 }
-                <MyMenu mode={mode} theme={theme} />
+                <MyMenu mode={mode} theme={theme} pathname={location.pathname} />
                 <div className="switch">
                     <Switch checked={theme === 'dark'}
                         onChange={changeTheme}

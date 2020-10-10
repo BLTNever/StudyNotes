@@ -15,6 +15,15 @@ const Async = lazy(() => import(/* webpackChunkName: "Async" */'@views/Js/list/A
 const Prototype = lazy(() => import(/* webpackChunkName: "Prototype" */'@views/Js/list/Prototype'))
 const Moudles = lazy(() => import(/* webpackChunkName: "Moudles" */'@views/Js/list/Moudles'))
 
+
+// React 
+const ReactEvent = lazy(() => import(/* webpackChunkName: "ReactEvent" */'@views/React/list/ReactEvent'))
+const VirtualDom = lazy(() => import(/* webpackChunkName: "VirtualDom" */'@views/React/list/VirtualDom'))
+
+
+// Interview
+const Interview1 = lazy(() => import(/* webpackChunkName: "VirtualDom" */'@views/Interview/list/Interview1'))
+
 export default {
     Home,
     Login,
@@ -27,5 +36,11 @@ export default {
     Closure,
     Async,
     Prototype,
-    Moudles
+    Moudles,
+    // React,
+    ReactEvent,
+    VirtualDom,
+
+    // Interview
+    Interview1,
 }

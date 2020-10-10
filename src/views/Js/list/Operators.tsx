@@ -7,8 +7,10 @@ import { Card, Col, Row, Tag, Popover, Table, Divider } from 'antd';
 import coercion from '@images/coercion.jpg';
 import stateTransition from '@images/state-transition.jpg'
 
-import { note4Subject, compareTable, bitNot } from './example'
+import { note4Subject, bitNot } from './example'
 import PreviewImg from '@components/previewImg'
+import { compareTable } from '../config'
+
 const { Column } = Table
 
 const booleanFn = (

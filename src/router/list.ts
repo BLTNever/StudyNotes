@@ -58,7 +58,38 @@ export const list = [
             },
         ]
     },
- 
+    {
+        path: '/react',
+        // component: RouteBase.Js,
+        children: [
+            {
+                path: '/react/Event',
+                component: RouteBase.ReactEvent,
+            },
+            {
+                path: '/react/VirtualDom',
+                component: RouteBase.VirtualDom,
+            },
+            {
+                path: '/react',
+                redirect: '/react/Event',
+            },
+        ]
+    },
+    {
+        path: '/interview',
+        // component: RouteBase.Js,
+        children: [
+            {
+                path: '/interview/1',
+                component: RouteBase.Interview1,
+            },
+            {
+                path: '/interview',
+                redirect: '/interview/1',
+            },
+        ]
+    },
     {
         path: '/',
         redirect: '/home',

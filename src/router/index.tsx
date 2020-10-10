@@ -51,7 +51,6 @@ list.forEach((route: any, key) => {
     }
 })
 
-console.log(Routes)
 const convertedRoutes = () => {
     return (
         <Switch>

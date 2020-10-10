@@ -1,5 +1,7 @@
 import React from 'react'
-import { HomeOutlined, createFromIconfontCN } from '@ant-design/icons'
+import {
+    HomeOutlined, createFromIconfontCN, SolutionOutlined
+} from '@ant-design/icons'
 
 
 const IconFont = createFromIconfontCN({
@@ -34,6 +36,26 @@ const menu = [
             // { id: '21100', name: '网络', route: '/js/Network' },
             { id: '21200', name: '原型', route: '/js/Prototype' },
             { id: '21400', name: '模块化', route: '/js/Moudles' },
+        ]
+    },
+    {
+        id: '30000',
+        name: 'React',
+        icon: <SolutionOutlined />,
+        route: 'react',
+        children: [
+            { id: '31000', name: 'react事件机制', route: '/react/Event' },
+            { id: '32000', name: 'react虚拟DOM', route: '/react/VirtualDom' },
+        ]
+    },
+
+    {
+        id: '40000',
+        name: 'Interview',
+        icon: <SolutionOutlined />,
+        route: 'interview',
+        children: [
+            { id: '41000', name: '一、', route: '/interview/1' },
         ]
     },
     // {

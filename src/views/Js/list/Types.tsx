@@ -1,13 +1,18 @@
 
-import React from 'react';
-import Highlight from 'react-highlight';
+import React from 'react'
+import Highlight from 'react-highlight'
+import { Card, Col, Row, Popover, Collapse, Typography, PageHeader, Space, Tag } from 'antd'
 
-import { Card, Col, Row, Tag, Popover } from 'antd';
-// import type from '@images/type.jpg';
-import refCopy from '@images/refCopy.jpg';
+import { Wrap } from '@components/Base'
+import PreviewImg from '@components/previewImg'
 
-import { note3Subject, valueType } from './example';
-import PreviewImg  from '../../../components/previewImg';
+// import type from '@images/type.jpg'
+import refCopy from '@images/refCopy.jpg'
+
+import { note3Subject, valueType } from './example'
+
+const { Panel } = Collapse
+const { Paragraph, Title, Text, Link } = Typography
 
 const pureFn = (
     <div>
@@ -17,22 +22,48 @@ const pureFn = (
     </div>
 )
 
-const Note3 = () => (
-    <div>
-         <h2>值类型</h2>
-        <div className="note-wrap">
-           
+const Types = () => (
+
+    <>
+        <PageHeader title="值类型" />
+
+        <Wrap>
+            <Collapse defaultActiveKey={['1']} ghost>
+                <Panel header="基本类型" key="1">
+                    <Space direction="vertical">
+                        <Text>基本类型将内容直接存储在<Text mark>栈</Text>中(大小固定位置连续的存储空间)，记录的是该数据类型的值，即直接访问，基本类型赋值是<Text mark>复制(copy)</Text></Text>
+                        <Text>基本类型在赋值的时候是通过值传递的方式。</Text>
+                        <ul>
+                            <li><Tag>String</Tag>为字符串基本类型。</li>
+                            <li><Tag>Number</Tag>为数值基本类型。</li>
+                            <li><Tag>Boolean</Tag>为布尔基本类型。</li>
+                            <li><Tag>Symbol</Tag>(ECMAScript2015)为字面量基本类型。</li>
+                            <li><Tag>null</Tag>(特殊类型)</li>
+                            <li><Tag>undefined</Tag>(特殊类型)</li>
+                        </ul>
+                    </Space>
+                </Panel>
+
+                <Panel header="同步、异步任务" key="2">
+
+                </Panel>
+
+                <Panel header="执行栈与任务队列" key="3">
+
+                </Panel>
+
+                <Panel header="Macrotask 和 Microtask" key="4">
+
+                </Panel>
+            </Collapse>
+        </Wrap>
+
+        <div>
+
             <Row gutter={16}>
                 <Col span={12}>
                     <Card title="基本类型">
-                        <p>基础类型将内容直接存储在<b>栈</b>中(大小固定位置连续的存储空间)，记录的是该数据类型的值，即直接访问，基础类型赋值是<b>复制(copy)</b></p>
-                        <p>基本类型在赋值的时候是通过值传递的方式。</p>
-                        <div><Tag>String</Tag>为字符串基本类型。</div>
-                        <div><Tag>Number</Tag>为数值基本类型。</div>
-                        <div><Tag>Boolean</Tag>为布尔基本类型。</div>
-                        <div><Tag>Symbol</Tag>(ECMAScript2015)为字面量基本类型。</div>
-                        <div><Tag>null</Tag>(特殊类型)</div>
-                        <div><Tag>undefined</Tag>(特殊类型)</div>
+
                     </Card>
                 </Col>
                 <Col span={12}>
@@ -119,8 +150,7 @@ const Note3 = () => (
                 <Highlight language="javascript">{note3Subject}</Highlight>
             </Card>
         </div>
-
-    </div >
+    </>
 )
 
-export default Note3;
+export default Types

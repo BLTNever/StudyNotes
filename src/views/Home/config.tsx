@@ -1,7 +1,7 @@
 export const list = [
     {
         title: 'JS基础',
-        subTitle: '继承、作用域、闭包、模块融汇贯通，设计模式',
+        subTitle: '继承、作用域、闭包、模块、设计模式',
         enter: 2,
         done: false,
         color: 'magenta',

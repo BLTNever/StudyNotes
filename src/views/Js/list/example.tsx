@@ -25,6 +25,28 @@ new Promise(function(resolve) {
 console.log('console');
 `;
 
+const note3Fn = `
+setImmediate(function(){
+    console.log(1);
+},0);
+setTimeout(function(){
+    console.log(2);
+},0);   
+new Promise(function(resolve){
+    console.log(3);
+    resolve();
+    console.log(4);
+}).then(function(){
+    console.log(5);
+});
+console.log(6);
+process.nextTick(function(){
+    console.log(7);
+});
+console.log(8);
+结果是：3 4 6 8 7 5 2 1
+`
+
 const note2Subject = `
 console.log('1');
 
@@ -155,61 +177,8 @@ a + []
 [2] - 1
 [2,3] - 1 
 {} - 1 
-`;
+`
 
-const compareTable = [
-    {
-        key: '1',
-        data: '"foo"',
-        toString: 'String',
-        typeof: 'string',
-    }, {
-        key: '2',
-        data: 'new String(“foo”)',
-        toString: 'String',
-        typeof: 'object',
-    }, {
-        key: '3',
-        data: 'new Number(1.2)',
-        toString: 'Number',
-        typeof: 'object',
-    }, {
-        key: '4',
-        data: 'true',
-        toString: 'Boolean',
-        typeof: 'boolean',
-    }, {
-        key: '5',
-        data: 'new Boolean(true)',
-        toString: 'Boolean',
-        typeof: 'object',
-    }, {
-        key: '6',
-        data: 'new Date()',
-        toString: 'Date',
-        typeof: 'object',
-    }, {
-        key: '7',
-        data: 'new Error()',
-        toString: 'Error',
-        typeof: 'object',
-    }, {
-        key: '8',
-        data: 'new Array(1, 2, 3)',
-        toString: 'Array',
-        typeof: 'object',
-    }, {
-        key: '9',
-        data: '/abc/g',
-        toString: 'RegExp',
-        typeof: 'object',
-    }, {
-        key: '10',
-        data: 'new RegExp(“meow”)',
-        toString: 'RegExp',
-        typeof: 'object',
-    }
-];
 
 const objectThis1 = `
 var point = {
@@ -221,7 +190,7 @@ var point = {
     }
 }
 point.moveTo(1, 2) // this绑定到当前对象，point上
-`;
+`
 
 const objectThis2 = `
 var a = {
@@ -248,7 +217,7 @@ console.log(b.fn()); // 0, this指向对象本身
     var c = aa();
     console.log(c); // 1, 由于fn在该处执行，导致this不再指向对象本身，而是指向window
 })(b.fn);
-`;
+`
 
 const fnThis = `
 var point = {
@@ -269,7 +238,7 @@ var point = {
 point.moveTo(1, 2);
 point.x; // 1
 point.y; // 2
-`;
+`
 
 const constructedFnThis = `
 var x = 1;
@@ -280,7 +249,7 @@ var fn = new Fn();
 
 console.log(fn.x) // 2
 console.log(x) // 1
-`;
+`
 
 const arrowFn = `
 var obj = {
@@ -296,7 +265,9 @@ var obj = {
 };
 
 obj.arrowFn();
-`;
+`
+
+
 const arrowFn2 = `
 var x = 1;
 var obj =  {
@@ -305,7 +276,7 @@ var obj =  {
 }
 obj.fn(); // 1
 obj.fn.call(obj) // 1
-`;
+`
 
 const lexicalScope = `
 var a = 2;
@@ -321,7 +292,7 @@ function foo2 () {
 }
 
 foo2();
-`;
+`
 
 const dynamicScope = `
 value=1
@@ -333,7 +304,7 @@ function bar() {
     foo;
 }
 bar
-`;
+`
 
 const async1 = `
 
@@ -366,7 +337,9 @@ async function getABC() {
 
     return A * B * C;
 }
-`;
+`
+
+
 
 const async2 = `
 async function getABC() {
@@ -381,7 +354,7 @@ async function getABC() {
 
     return results.reduce((total,value) => total * value);
 }
-`;
+`
 
 const note11Example1 = `
 var obj = { 'a' : 1, 'b': 2 };
@@ -397,7 +370,8 @@ var arr = new Array();
 arr[0] = 0;
 arr[1] = 1;
 arr[2] = 2;
-`;
+`
+
 
 const note11Example2 = `
 function fn(){}
@@ -406,14 +380,18 @@ console.log(fn.prototype);
 {
     constructor: ƒ fn()
     __protp__: Object
-}`;
+}`
+
+
 const note11Example3 = `
 function fn() {};
 
 fn.prototype.name = 'Alec';
 fn.prototype.getAge = function () {
     return 16;
-}`;
+}`
+
+
 const note11Example4 = `
 function Fn () {};
 
@@ -425,7 +403,7 @@ Fn.prototype.getAge = function () {
 var fn = new Fn();
 console.log(fn.name); // Alec;
 console.log(fn.getAge); // 16
-`;
+`
 
 
 const example1 = `
@@ -437,7 +415,8 @@ exports.say = function() {
 (2) 引入并调用
 var hello = require('./Hello');
 hello.say();
-`;
+`
+
 const example2 = `
 (1) 把对象封装到模块中，文件名为： Say.js
 //私有变量
@@ -461,7 +440,7 @@ var Say = require('./Say);
 var say = new Say();
 say.setName('Alec');
 say.hello();
-`;
+`
 
 const example3 = `
 (1) 创建一个文件compute.js
@@ -484,7 +463,7 @@ console.log('圆周长：' + circumference(11));
 import * as circle from './compute';
 console.log('圆面积：' + circle.area(10));
 console.log('圆周长：' + circle.circumference(11));
-`;
+`
 
 const example4 = `
 (1) 使用 export default 命令用于指定模块的默认输出。 模块文件：compute.js
@@ -502,7 +481,8 @@ export function circumference(radius) {
 import area, { circumference } from './compute';
 console.log('圆面积：' + area(10));
 console.log('圆周长：' + circumference(11));
-`;
+`
+
 const example5 = `
 // congfig.js 内使用module.exports导出
 
@@ -520,7 +500,8 @@ module.exports = {
 
 //main.js中 import 引入使用
 import { getA, getB } from './config.js'
-`;
+`
+
 const example6 = `
 var module1 = (function() {
     count: 1;
@@ -535,7 +516,8 @@ var module1 = (function() {
         f2: f2
     }
 })()
-`;
+`
+
 const example7 = `
 ;(function(window, WALL, undefined) {
    // 给wall命名空间绑定方法say
@@ -553,7 +535,8 @@ const example7 = `
 
 // 调用
 wall.say();
-wall.whoIam();`;
+wall.whoIam();
+`
 
 const bitNot = `~0000000000000000 => 0000000000001001
 -------取反
@@ -569,17 +552,17 @@ executionContext = {
     scope chain: varible scope + all parents scope,
     thisValue: context object
 }
-`;
+`
 
 export {
     note1Fn, // note1
     note2Fn, // note2
+    note3Fn,
     note2Subject, // note2
     toStringfly, // note3
     valueType,
     note3Subject, // note3
     note4Subject, // note4
-    compareTable, // note5
     objectThis1, // note6
     objectThis2, // note6
     fnThis, // note6

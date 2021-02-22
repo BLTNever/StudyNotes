@@ -22,7 +22,9 @@ const VirtualDom = lazy(() => import(/* webpackChunkName: "VirtualDom" */'@views
 
 
 // Interview
-const Interview1 = lazy(() => import(/* webpackChunkName: "VirtualDom" */'@views/Interview/list/Interview1'))
+const Interview1 = lazy(() => import(/* webpackChunkName: "Interview1" */'@views/Interview/list/Interview1'))
+const Interview2 = lazy(() => import(/* webpackChunkName: "Interview2" */'@views/Interview/list/Interview2'))
+const Interview3 = lazy(() => import(/* webpackChunkName: "Interview3" */'@views/Interview/list/Interview3'))
 
 export default {
     Home,
@@ -43,4 +45,6 @@ export default {
 
     // Interview
     Interview1,
+    Interview2,
+    Interview3,
 }

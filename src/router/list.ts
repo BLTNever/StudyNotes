@@ -85,6 +85,14 @@ export const list = [
                 component: RouteBase.Interview1,
             },
             {
+                path: '/interview/2',
+                component: RouteBase.Interview2,
+            },
+            {
+                path: '/interview/3',
+                component: RouteBase.Interview3,
+            },
+            {
                 path: '/interview',
                 redirect: '/interview/1',
             },

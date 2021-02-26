@@ -66,6 +66,7 @@ fn.prototype = new Fn()
 fn.prototype.constructor = fn // 修复构造函数指向问题
 
 const f = new fn('alec')
+// fn.prototype = new Fn()每次实例化子类的时候都要调用一次父类构造函数
 `
 
 export const extend2 = `
@@ -92,6 +93,109 @@ fn.prototype = new Fn()
 fn.proptotype.constructor = fn
 
 const f = new fn('Alec')
+`
+
+export const extend3 = `
+// 构造函数继承
+
+function Parent(name) {
+    this.name = name
+}
+Parent.prototype.say = function() {
+    console.log('hello ' + this.name)
+}
+
+function Son(name) {
+    Parent.call(this, name)
+}
+var son1 = new Son('111')
+var son2 = new Son('222')
+// 所有基本属性独立，子实例拷贝了父类的内容，没办法通过修改父类来达到所有子实例同时更新
+`
+export const extend4 = `
+// 原型链继承
+
+function Parent(name) {
+    this.name = name
+}
+Parent.prototype.say = function() {
+    console.log('hello ' + this.name)
+}
+
+function Son() {}
+
+Son.prototype = new Parent()
+Son.prototype.constructor = Son 
+
+var son1 = new Son()
+
+// 实现了方法共享，但是只要某一个实例进行了修改，所有属性都会变化
+`
+
+export const extend5 = `
+// 原型链构函函数组合继承
+function Parent(name) {
+    this.name = name
+}
+Parent.prototype.say = function() {
+    console.log('hello ' + this.name)
+}
+
+function Son(name) {
+    Parent.call(this, name)
+}
+
+Son.prototype = new Parent()
+Son.prototype.constructor = Son 
+
+var son1 = new Son()
+
+// 通过调用Parent.call和new Parent单独拷贝了一份父类构造函数里定义的属性和方法
+// 通过把父类的实例赋值给子类prototype，子类的实例对象就可以共享父类原型上定义的属性和方法
+`
+
+export const extend6 = `
+// 寄生式继承
+
+var Obj = {
+    name: 'AAA',
+    print: function() {
+        console.log(this.name)
+    }
+}
+
+var son1 = Object.create(Obj)
+var son2 = Object.create(Obj)
+
+
+// 通过Object.create(Obj),以Obj为原型构造对象，寄生式继承不需要构造函数，通过原型链继承共享了属性跟方法
+`
+
+
+export const extend7 = `
+// 继承组合式继承
+// es6的class语法实现原理
+function Parent(name) {
+    this.name = name
+}
+
+Parent.prototype.say = function () {
+    console.log(this.name)
+}
+
+function Son(name) {
+    Parent.call(this, name)
+}
+
+Son.prototype = Object.create(Parent.prototype)
+Son.prototype.constructor = Son
+
+var son1 = new Son('1111')
+var son2 = new Son('2222')
+
+
+// 使用Son.prototype = Object.create(Parent.prototype)代替 new Parent()
+// 通过创建一个新对象，然后赋值给Son.prototype，所以Son的原型最终指向就是父类的原型对象
 `
 
 export const createNew = `
@@ -319,3 +423,32 @@ class BSTree {
 }
 `
 
+export const clone1 = `
+fucntion deepClone (target){
+    let obj = {}
+
+    if(typeof target !== 'object') {
+        return target
+    }
+
+    for(const key in target) {
+        if(typeof target[key] === 'object) {
+            if(Array.isArray(target[key]) {
+                // 数组元素 通过map返回新书组，讲数组中的元素递归
+                obj[key] = target[key].map(item => deepClone(item))
+            }else {
+                // 对象 递归返回对象
+                obb[key] = deepClone(target[key])
+            }
+        } else if(typeof target[key] === 'function') {
+            // 函数对象 返回新函数
+            obj[key] = target[key].call(obj)
+        }else {
+            // 基本类型直接返回
+            obj[key] = target[key]
+        }
+    }
+
+    return obj
+}
+`

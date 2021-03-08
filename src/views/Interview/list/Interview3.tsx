@@ -5,7 +5,7 @@ import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert
 import { Wrap } from '@components/Base'
 import PreviewImg from '@components/previewImg'
 
-import { radix, radix2, ajax, traversal1, traversal2, traversal3, traversal4 } from './example'
+import { radix, radix2, extend8, call, apply, bind, myPromise, parseInt } from './example'
 
 
 const { Panel } = Collapse
@@ -57,6 +57,43 @@ const Interview3 = () => {
                                 <Col><Card><Highlight language="javascript">{radix}</Highlight></Card></Col>
                                 <Col><Card><Highlight language="javascript">{radix2}</Highlight></Card></Col>
                             </Row>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+
+            <Wrap>
+                <Title level={3}>4. 手写extend、promise、call、apply、bind</Title>
+                <Collapse ghost>
+                    <Panel header="extend" key="1">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{extend8}</Highlight></Card>
+                        </Space>
+                    </Panel>
+                    <Panel header="promise" key="2">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{myPromise}</Highlight></Card>
+                        </Space>
+                    </Panel>
+                    <Panel header="call" key="3">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{call}</Highlight></Card>
+                        </Space>
+                    </Panel>
+                    <Panel header="apply" key="4">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{apply}</Highlight></Card>
+                        </Space>
+                    </Panel>
+                    <Panel header="bind" key="5">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{bind}</Highlight></Card>
+                        </Space>
+                    </Panel>
+                    <Panel header="parseInt" key="6">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{parseInt}</Highlight></Card>
                         </Space>
                     </Panel>
                 </Collapse>

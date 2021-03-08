@@ -1,4 +1,8 @@
 module.exports = {
+    '@typescript-eslint/no-duplicate-imports': 'off',
+    '@typescript-eslint/no-loss-of-precision': 'off',
+    'no-promise-executor-return': 'off',
+    'no-unreachable-loop': 'off',
     'no-useless-backreference': 'off',
     'default-case-last': 'off',
     'no-loss-of-precision': 'off',

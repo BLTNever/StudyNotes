@@ -426,29 +426,23 @@ class BSTree {
 export const clone1 = `
 fucntion deepClone (target){
     let obj = {}
-
     if(typeof target !== 'object') {
         return target
     }
 
     for(const key in target) {
-        if(typeof target[key] === 'object) {
-            if(Array.isArray(target[key]) {
-                // 数组元素 通过map返回新书组，讲数组中的元素递归
+        if(typeof target[key] === 'object') {
+            if(Array.isArray(target[key])) {
                 obj[key] = target[key].map(item => deepClone(item))
             }else {
-                // 对象 递归返回对象
-                obb[key] = deepClone(target[key])
+                obj[key] = deepClone(target[key])
             }
-        } else if(typeof target[key] === 'function') {
-            // 函数对象 返回新函数
+        }else if(typeof target[key] === 'function') {
             obj[key] = target[key].call(obj)
         }else {
-            // 基本类型直接返回
             obj[key] = target[key]
         }
     }
-
     return obj
 }
 `

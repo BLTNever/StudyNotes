@@ -58,6 +58,7 @@ const menu = [
             { id: '41000', name: '一、', route: '/interview/1' },
             { id: '42000', name: '二、', route: '/interview/2' },
             { id: '43000', name: '三、', route: '/interview/3' },
+            { id: '44000', name: '四、', route: '/interview/4' },
         ]
     },
     // {

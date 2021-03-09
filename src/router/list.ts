@@ -93,6 +93,10 @@ export const list = [
                 component: RouteBase.Interview3,
             },
             {
+                path: '/interview/4',
+                component: RouteBase.Interview4,
+            },
+            {
                 path: '/interview',
                 redirect: '/interview/1',
             },

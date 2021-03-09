@@ -13,6 +13,18 @@ const { Paragraph, Title, Text } = Typography
 
 const ExecuteStack = () => (
     <>
+        <Wrap>
+            <Title level={3}>JS代码执行过程</Title>
+            <Collapse ghost>
+                <Panel header="" key="1">
+                    <Space direction="vertical">
+                        <Text mark>1. JS执行过程分为代码编译阶段、代码执行阶段</Text>
+                        <Text>2. 编译阶段：由编译器完成，将代码翻译成可执行代码，这个阶段确定<b>作用域规则</b></Text>
+                        <Text>3. 执行阶段：由引擎完成，执行可执行代码，<b>执行上下文</b>在这个阶段创建</Text>
+                    </Space>
+                </Panel>
+            </Collapse>
+        </Wrap>
         <PageHeader title="JS执行上下文" />
         <Wrap>
             <Collapse defaultActiveKey={['1']} ghost>

@@ -5,7 +5,7 @@ import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert
 import { Wrap } from '@components/Base'
 import PreviewImg from '@components/previewImg'
 
-import { radix, radix2, ajax, traversal1, traversal2, traversal3, traversal4 } from './example'
+import { radix, radix2, createNew} from './example'
 
 
 const { Panel } = Collapse
@@ -57,6 +57,21 @@ const Interview3 = () => {
                                 <Col><Card><Highlight language="javascript">{radix}</Highlight></Card></Col>
                                 <Col><Card><Highlight language="javascript">{radix2}</Highlight></Card></Col>
                             </Row>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>4. new 函数实现</Title>
+                <Collapse ghost>
+                    <Panel header="" key="1">
+                        <Space direction="vertical">
+                            <Text>创建一个全新的对象</Text>
+                            <Text>对象执行[[prototype]]链接，将这个新对象的[[prototype]]链接到这个构造函数.prototype所指的对象</Text>
+                            <Text>这个新对象会绑定到函数调用的this</Text>
+                            <Text>函数如果没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象</Text>
+                            <Card><Highlight language="javascript">{createNew}</Highlight></Card>
                         </Space>
                     </Panel>
                 </Collapse>

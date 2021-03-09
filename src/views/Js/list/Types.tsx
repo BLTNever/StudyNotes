@@ -44,30 +44,8 @@ const Types = () => (
                     </Space>
                 </Panel>
 
-                <Panel header="同步、异步任务" key="2">
-
-                </Panel>
-
-                <Panel header="执行栈与任务队列" key="3">
-
-                </Panel>
-
-                <Panel header="Macrotask 和 Microtask" key="4">
-
-                </Panel>
-            </Collapse>
-        </Wrap>
-
-        <div>
-
-            <Row gutter={16}>
-                <Col span={12}>
-                    <Card title="基本类型">
-
-                    </Card>
-                </Col>
-                <Col span={12}>
-                    <Card title="复杂类型">
+                <Panel header="复杂类型" key="2">
+                    <Space direction="vertical">
                         <p>复杂类型将内容存储在<b>堆</b>中，堆所对应的栈中记录的是<b>指针(堆的地址)</b>,外部访问时先引出地址，再通过地址去找到值所存放的位置。复杂类型赋值是<b>地址引用</b>。</p>
                         <p>复杂类型通过引用来传递</p>
                         <div>
@@ -75,10 +53,10 @@ const Types = () => (
                                 <Tag>Array</Tag>、<Tag>Object</Tag>、<Tag>Regx</Tag>
                             等
                             </div>
-                    </Card>
-                </Col>
-            </Row>
-        </div>
+                    </Space>
+                </Panel>
+            </Collapse>
+        </Wrap>
 
         <div className="note-wrap">
             <h3>JS值类型和引用类型的区别</h3>

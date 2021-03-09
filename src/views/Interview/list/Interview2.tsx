@@ -32,7 +32,7 @@ const Interview2 = () => {
     return (
         <>
             <Wrap>
-                <Title level={3}>1. 算法：实现36进制转换</Title>
+                <Title level={3}>算法：实现36进制转换</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
@@ -46,7 +46,7 @@ const Interview2 = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2. HTTPS的原理、和HTTP的区别</Title>
+                <Title level={3}>HTTPS的原理、和HTTP的区别、HTTPS2.0</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
@@ -56,14 +56,18 @@ const Interview2 = () => {
                                 <li>使用HTTPS协议需要用到CA（Certificate Authority）证书</li>
                                 <li>HTTPS在HTTP使用TCP三次握手建立连接的基础上，要在加上SSL握手需要的9个包，一共12个包</li>
                                 <li>HTTP使用80端口，HTTPS使用443端口</li>
+                                <li>HTTPS在传输过程中使用对称加密加密传输数据</li>
+                                <li>CA证书校验是非对称加密</li>
                             </ul>
+
+                            <Text mark>HTTP2.0相比HTTP1.x做了哪些升级？多路复用；二进制分帧；服务端推送；数据流优先级；头部压缩</Text>
                         </Space>
                     </Panel>
                 </Collapse>
             </Wrap>
 
             <Wrap>
-                <Title level={3}>3. 操作系统中进程和线程如何通信</Title>
+                <Title level={3}>操作系统中进程和线程如何通信</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
@@ -101,7 +105,7 @@ const Interview2 = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>4. RN、Flutter、Hybird通信</Title>
+                <Title level={3}>RN、Flutter、Hybird通信</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
@@ -163,7 +167,7 @@ const Interview2 = () => {
 
 
             <Wrap>
-                <Title level={3}>5. 原生ajax</Title>
+                <Title level={3}>原生ajax</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
@@ -174,7 +178,7 @@ const Interview2 = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>6. 算法：树的遍历有几种方式，实现层次遍历</Title>
+                <Title level={3}>算法：树的遍历有几种方式，实现层次遍历</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
@@ -199,7 +203,7 @@ const Interview2 = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>6. var let const的区别</Title>
+                <Title level={3}>var let const的区别</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
@@ -233,67 +237,6 @@ const Interview2 = () => {
                                 <li>4. const声明创建一个值的只读引用。只有变量标示不能重新分配（对象的引用内容是地址，内容是可以修改的）</li>
                                 <li>5. 全局作用域中使用var或者不是用var声明的变量会挂载到Windows上，let跟const不会</li>
                             </ul>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
-            <Wrap>
-                <Title level={3}>7. 节流和防抖</Title>
-                <Collapse ghost>
-                    <Panel header="" key="1">
-                        <Space direction="vertical">
-                            <Text mark>tips: 函数节流和防抖也是一种闭包的实现</Text>
-                            <Row>
-                            </Row>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
-            <Wrap>
-                <Title level={3}>8. 原型、继承、ES6 extend翻译成ES5</Title>
-                <Collapse ghost>
-                    <Panel header="" key="1">
-                        <Space direction="vertical">
-                            <Text mark>在 Javascript 中创建对象有两种方式：对象字面量(const obj = {'{}'})和使用new表达式(const obj = new Object())</Text>
-                            <Text mark>在 JS 中，每当创建一个函数对象 fn 时，该对象中都会内置一些属性，其中包括 <Text code>prototype</Text>和<Text code>__proto__</Text>， prototype 即原型对象，它记录着 fn 的一些属性和方法</Text>
-                        </Space>
-
-                        <Row>
-                        </Row>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
-            <Wrap>
-                <Title level={3}>9. React、Redux</Title>
-                <Collapse ghost>
-                    <Panel header="" key="1">
-                        <Space direction="vertical">
-                            <Text>React：<Text code>UI = f(state)</Text></Text>
-                            <Text>Redux：store、reduce、action、actionCreater、dispatch</Text>
-                            <Text>hooks生命周期：函数组件不存在声明周期， 通过useEffect进行操作，生命周期所做的都是副作用，放在useEffect里最合适</Text>
-                            <Text>React16生命周期的变化：</Text>
-                            <ul>
-                                <li>废除掉了<Text code>componentWillMount</Text>、<Text code>componentWillReceiveProps</Text>、<Text code>componentWillUpdate</Text></li>
-                                <li>新增了<Text code>getDrivedStateFromProps</Text>、<Text code>getSnapshotBeforeUpdate</Text></li>
-                                <li><Text mark>reconciliation</Text>阶段是可中断的，所以废掉了那三个周期</li>
-                                <li>getDrivedStateFromProps：static方法，将传入的props映射到state上，在<Text mark>每次re-rendering之前调用</Text></li>
-                            </ul>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
-            <Wrap>
-                <Title level={3}>10. 笔试</Title>
-                <Collapse ghost>
-                    <Panel header="" key="1">
-                        <Space direction="vertical">
-                            <Text>React：<Text code>UI = f(state)</Text></Text>
-                            <Text>Redux：store、reduce、action、actionCreater、dispatch</Text>
-                            <Text>hooks生命周期：函数组件不存在声明周期， 通过useEffect进行操作，生命周期所做的都是副作用，放在useEffect里最合适</Text>
                         </Space>
                     </Panel>
                 </Collapse>

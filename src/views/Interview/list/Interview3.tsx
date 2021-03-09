@@ -5,7 +5,7 @@ import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert
 import { Wrap } from '@components/Base'
 import PreviewImg from '@components/previewImg'
 
-import { radix, radix2, createNew, extend8, call, apply, bind, myPromise, parseInt } from './example'
+import { radix, radix2, createNew, extend8, call, apply, bind, myPromise, parseInt, debounce, throttle } from './example'
 
 
 const { Panel } = Collapse
@@ -108,6 +108,21 @@ const Interview3 = () => {
                     <Panel header="parseInt" key="6">
                         <Space direction="vertical">
                             <Card><Highlight language="javascript">{parseInt}</Highlight></Card>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>节流和防抖</Title>
+                <Collapse ghost>
+                    <Panel header="" key="1">
+                        <Space direction="vertical">
+                            <Text mark>tips: 函数节流和防抖也是一种闭包的实现</Text>
+                            <Row>
+                                <Col><Card><Highlight language="javascript">{debounce}</Highlight></Card></Col>
+                                <Col><Card><Highlight language="javascript">{throttle}</Highlight></Card></Col>
+                            </Row>
                         </Space>
                     </Panel>
                 </Collapse>

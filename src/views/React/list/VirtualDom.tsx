@@ -27,11 +27,13 @@ const VirtualDom = () => (
                         </ul>
 
                         <Card title="性能">
-                            <Text>虚拟DOM和diff 算法是为了解决由命令式编程变成转变为声明式编程、数据驱动带来的性能问题</Text>
-                            <Text mark>直接操作DOM的性能不会低于虚拟DOM和diff算法，甚至还会优于</Text>
-                            <Text>diff算法比较过程也会消耗性能。直接操作DOM 不需要比较过程</Text>
-                            <Text>虚拟DOM和diff算法的强处，是在数据不论怎么变化，都以最小的代价更新DOM。在内存中用心的数据刷新一个虚拟DOM，然后新旧虚拟DOM对比，更新到DOM树上</Text>
-                            <Text>意义在于覆盖底层DOM操作，以声明式的方法描述目的。代码维护性高。</Text>
+                            <ul>
+                                <li><Text>虚拟DOM和diff 算法是为了解决由命令式编程变成转变为声明式编程、数据驱动带来的性能问题</Text></li>
+                                <li><Text mark>直接操作DOM的性能不会低于虚拟DOM和diff算法，甚至还会优于</Text></li>
+                                <li><Text>diff算法比较过程也会消耗性能。直接操作DOM 不需要比较过程</Text></li>
+                                <li><Text>虚拟DOM和diff算法的强处，是在数据不论怎么变化，都以最小的代价更新DOM。在内存中用心的数据刷新一个虚拟DOM，然后新旧虚拟DOM对比，更新到DOM树上</Text></li>
+                                <li><Text>意义在于覆盖底层DOM操作，以声明式的方法描述目的。代码维护性高。</Text></li>
+                            </ul>
                         </Card>
 
                         <Card title="虚拟DOM的作用">

@@ -474,14 +474,14 @@ fucntion deepClone (target){
 `
 
 export const call = `
-Function.prototype._call = function(context = window) {
+Function.prototype._call = function(context = window, ...args) {
     if(typeof !== 'function'){
         throw new Error('not a function')
     }
     var obj = context | window
     obj.fn = this
 
-    var args = [...arguments].slice(1)
+    // var args = [...arguments].slice(1)
 
     var res = obj.fn(...args)
 

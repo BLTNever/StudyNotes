@@ -198,6 +198,21 @@ var son2 = new Son('2222')
 // 通过创建一个新对象，然后赋值给Son.prototype，所以Son的原型最终指向就是父类的原型对象
 `
 
+export const extend8 = `
+function _extend(subClass, superClass) {
+    var Fn = function(){}
+    Fn.prototype = superClass.prototype
+
+    subClass.prototype = new Fn()
+    subClass.prototype.constructor = subClass
+
+    subClass.superclass = superClass.prototype //？？
+    if(!superClass.prototype.constructor === Object.prototype.constructor) {
+        superClass.prototype.constructor = superClass
+    }
+}
+`
+
 export const createNew = `
 // new操作符的实现
 function createNew(constructor, ...args) {
@@ -207,6 +222,17 @@ function createNew(constructor, ...args) {
     const ret = constructor.call(obj, ..args) // 将构造函数的作用域指向这个新对象
 
     return ret instanceof Object ? ret : obj // 无返回值或者非对象值，将obj作为新对象返回
+}
+
+function createNew2() {
+    const obj = {}
+
+    const fn = [].shift.call(arguments)
+    obj.__proto__ = fn.prototype
+
+    const res = fn.apply(obj, arguments)
+
+    return typeof res === 'object' ? res : obj
 }
 `
 
@@ -444,5 +470,109 @@ fucntion deepClone (target){
         }
     }
     return obj
+}
+`
+
+export const call = `
+Function.prototype._call = function(context = window) {
+    if(typeof !== 'function'){
+        throw new Error('not a function')
+    }
+    var obj = context | window
+    obj.fn = this
+
+    var args = [...arguments].slice(1)
+
+    var res = obj.fn(...args)
+
+    delete obj.fn
+
+    return res
+}
+`
+
+export const apply = `
+Function.prototyoe._apply = function(context = winodw) {
+    //...边界值
+    var obj = context || window
+    obj.fn = this
+    var arg = [...arguments][1] | []
+    var res = obj.fn(...arg)
+    delete obj.fn
+    return res
+}
+`
+
+export const bind = `
+Function.prototype._bind = function(context = window, ...outerArgs) {
+    var fn = this
+    return function (...innerArgs) {
+        return fn.apply(context, [...outArgs, ...innerArgs])
+    }
+
+}
+`
+
+export const myPromise = `
+class _Promise1 {
+    callback = []
+
+    constructor(fn) {
+        fn(this._resolve.bind(this))
+    }
+
+    then(onFulfilled) {
+        this.callback.push(onFulfilled)
+    }
+
+    _resolve(value) {
+        this.callback.forEach(fn => fn(value))
+    }
+}
+
+
+class _Promise1 {
+    callback = []
+    state = 'pendding'
+    value = null
+
+    constructor(fn) {
+        fn(this._resolve.bind(this))
+    }
+
+    then(onFulfilled) {
+        if(this.state === 'pendding') { // resolve之前 添加到callback队列中
+            this.callback.push(onFulfilled)
+        }else { // resolve 之后直接执行会调
+            onFulfilled(this.value)
+        }
+        return this
+    }
+
+    _resolve(value) {
+        this.state = 'fulfilled' // 改变状态
+        this.value = value // 保存结果
+        this.callback.forEach(fn => fn(value))
+    }
+}
+`
+
+export const parseInt = `
+function _parseInt(str, radix = 10) {
+    var res = 0
+    var strType = typeof str
+    var len = str.length
+
+    if(strType !== 'string' || strType !== 'number') return NaN
+    if(radix < 2 || radix > 36) return NaN
+    if(!len) return NaN
+
+    str = String(str).trim().split('.')[0]
+    for(var i = 0; i < len; i++) {
+        var arr = str.split('').reverse().join('')
+        res += Math.floor(arr[i]) * Math.pow(radix, i)
+    }
+
+    return res
 }
 `

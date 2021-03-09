@@ -5,7 +5,7 @@ import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert
 import { Wrap } from '@components/Base'
 import PreviewImg from '@components/previewImg'
 
-import { radix, radix2, createNew} from './example'
+import { radix, radix2, createNew, extend8, call, apply, bind, myPromise, parseInt } from './example'
 
 
 const { Panel } = Collapse
@@ -72,6 +72,42 @@ const Interview3 = () => {
                             <Text>这个新对象会绑定到函数调用的this</Text>
                             <Text>函数如果没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象</Text>
                             <Card><Highlight language="javascript">{createNew}</Highlight></Card>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>5. 手写extend、promise、call、apply、bind</Title>
+                <Collapse ghost>
+                    <Panel header="extend" key="1">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{extend8}</Highlight></Card>
+                        </Space>
+                    </Panel>
+                    <Panel header="promise" key="2">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{myPromise}</Highlight></Card>
+                        </Space>
+                    </Panel>
+                    <Panel header="call" key="3">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{call}</Highlight></Card>
+                        </Space>
+                    </Panel>
+                    <Panel header="apply" key="4">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{apply}</Highlight></Card>
+                        </Space>
+                    </Panel>
+                    <Panel header="bind" key="5">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{bind}</Highlight></Card>
+                        </Space>
+                    </Panel>
+                    <Panel header="parseInt" key="6">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{parseInt}</Highlight></Card>
                         </Space>
                     </Panel>
                 </Collapse>

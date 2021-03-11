@@ -1,4 +1,4 @@
-import RouteBase from './routeBase'
+import * as RouteBase from './routeBase'
 
 export const list = [
 
@@ -99,6 +99,44 @@ export const list = [
             {
                 path: '/interview',
                 redirect: '/interview/1',
+            },
+        ]
+    },
+    {
+        path: '/exercise',
+        // component: RouteBase.Js,
+        children: [
+            {
+                path: '/exercise/1',
+                component: RouteBase.Exercise1,
+            },
+            {
+                path: '/exercise/2',
+                component: RouteBase.Exercise2,
+            },
+            {
+                path: '/exercise/3',
+                component: RouteBase.Exercise3,
+            },
+            {
+                path: '/exercise/4',
+                component: RouteBase.Exercise4,
+            },
+            {
+                path: '/exercise/5',
+                component: RouteBase.Exercise5,
+            },
+            {
+                path: '/exercise/6',
+                component: RouteBase.Exercise6,
+            },
+            {
+                path: '/exercise/7',
+                component: RouteBase.Exercise7,
+            },
+            {
+                path: '/exercise',
+                redirect: '/exercise/1',
             },
         ]
     },

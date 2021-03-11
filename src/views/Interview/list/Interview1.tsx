@@ -22,7 +22,6 @@ const Interview1 = () => (
             <Collapse ghost>
                 <Panel header="" key="1">
                     <Space direction="vertical">
-                       
                         <Text mark>*浏览器渲染流程的优化*</Text>
 
                         <Title level={4}>加载优化</Title>
@@ -68,7 +67,7 @@ const Interview1 = () => (
         </Wrap>
 
         <Wrap>
-            <Title level={3}> TS</Title>
+            <Title level={3}>TS</Title>
             <Collapse ghost>
                 <Panel header="" key="1">
                     <Space direction="vertical">
@@ -106,7 +105,7 @@ const Interview1 = () => (
         </Wrap>
 
         <Wrap>
-            <Title level={3}> React事件机制</Title>
+            <Title level={3}>React事件机制</Title>
             <Collapse ghost>
                 <Panel header="" key="1">
                     <Space direction="vertical">
@@ -117,7 +116,7 @@ const Interview1 = () => (
         </Wrap>
 
         <Wrap>
-            <Title level={3}>4. React diff机制</Title>
+            <Title level={3}>React diff机制</Title>
             <Collapse ghost>
                 <Panel header="" key="1">
                     <Space direction="vertical">
@@ -172,10 +171,10 @@ const Interview1 = () => (
             </Collapse>
         </Wrap>
 
-        
+
 
         <Wrap>
-            <Title level={3}>8. 原型、继承、ES6 extend翻译成ES5</Title>
+            <Title level={3}>原型、继承、ES6 extend翻译成ES5</Title>
             <Collapse ghost>
                 <Panel header="" key="1">
                     <Space direction="vertical">

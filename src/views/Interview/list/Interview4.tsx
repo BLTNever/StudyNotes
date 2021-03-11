@@ -17,7 +17,7 @@ const Interview4 = () => {
     return (
         <>
             <Wrap>
-                <Title level={3}>1. css/html</Title>
+                <Title level={3}>css/html</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
@@ -81,7 +81,7 @@ const Interview4 = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>3. oop编程和原型链</Title>
+                <Title level={3}>oop编程和原型链</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
@@ -133,7 +133,7 @@ const Interview4 = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>4. 深拷贝</Title>
+                <Title level={3}>深拷贝</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
@@ -147,7 +147,7 @@ const Interview4 = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>5. webpack构建、优化</Title>
+                <Title level={3}>webpack构建、优化</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Divider orientation="left"><Title level={4}>webpack核心概念：</Title></Divider>
@@ -248,7 +248,7 @@ const Interview4 = () => {
 
 
             <Wrap>
-                <Title level={3}>6. webpack热更新</Title>
+                <Title level={3}>webpack热更新</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">

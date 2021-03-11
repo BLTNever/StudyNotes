@@ -62,18 +62,18 @@ const menu = [
         ]
     },
     // {
-    //     id: '20000',
+    //     id: '50000',
     //     name: 'EXERCISES',
-    //     url: 'exercuses',
-    //     icon: 'calculator',
+    //     icon: <SolutionOutlined />,
+    //     route: 'exercise',
     //     children: [
-    //         { name: '数组', url: '/exercises/exercise1' },
-    //         { name: '拷贝', url: '/exercises/exercise2' },
-    //         { name: '继承', url: '/exercises/exercise3' },
-    //         { name: '对象', url: '/exercises/exercise4' },
-    //         { name: '进制', url: '/exercises/exercise5' },
-    //         { name: '题笔记', url: '/exercises/exercise6' },
-    //         { name: '正则', url: '/exercises/exercise7' },
+    //         { id: '51000', name: '数组', route: '/exercise/1' },
+    //         { id: '52000', name: '拷贝', route: '/exercise/2' },
+    //         { id: '53000', name: '继承', route: '/exercise/3' },
+    //         { id: '54000', name: '对象', route: '/exercise/4' },
+    //         { id: '55000', name: '进制', route: '/exercise/5' },
+    //         { id: '56000', name: '题笔记', route: '/exercise/6' },
+    //         { id: '57000', name: '正则', route: '/exercise/7' },
     //     ],
     // },
     // {

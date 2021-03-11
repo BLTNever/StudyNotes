@@ -1,4 +1,4 @@
-const arrFn1 = `
+export const arrFn1 = `
 Array.from(new Set(arr))
 
 ***** or *****
@@ -6,7 +6,7 @@ Array.from(new Set(arr))
 [...new Set(arr)]
 `;
 
-const arrFn2 = `
+export const arrFn2 = `
 for(var i = 0; i < arr.length; i++) {
     for(var j = i + 1; j < arr.length - 1; j++) {
         if(arr[i] === arr[j]) {
@@ -16,7 +16,7 @@ for(var i = 0; i < arr.length; i++) {
 }
 `;
 
-const arrFn3 = `
+export const arrFn3 = `
 for(var i = 0; i < arr.length; i++) {
     var array = [];
     if(array.indexOf(arr[i]) === -1) {
@@ -25,7 +25,7 @@ for(var i = 0; i < arr.length; i++) {
 }
 `;
 
-const arrFn4 = `
+export const arrFn4 = `
 var array = [];
 var obj = {}
 for(var i = 0; i < arr.length; i++) {
@@ -37,7 +37,7 @@ for(var i = 0; i < arr.length; i++) {
     }
 }
 `;
-const arrFn5 = `
+export const arrFn5 = `
 let arr = [1, 2, [3, 4, 5, [6, 7], 8], 9, 10, [11, [12, 13]]];
 
 function flatten(arr) {
@@ -48,7 +48,7 @@ function flatten(arr) {
 }
 console.log(flatten(arr));
 `;
-const arrFn6 = `
+export const arrFn6 = `
 let arr = [1, 2, [3, 4, 5, [6, 7], 8], 9, 10, [11, [12, 13]]];
 
 const flatten = arr => arr.reduce((acc, cur) => {
@@ -57,7 +57,7 @@ const flatten = arr => arr.reduce((acc, cur) => {
 console.log(flatten(arr));
 `;
 
-const arrFn7 = `
+export const arrFn7 = `
 let arr = [1, 2, [3, 4, 5, [6, 7], 8], 9, 10, [11, [12, 13]]];
 
 const flatten = arr => {
@@ -67,7 +67,7 @@ console.log(flatten(arr));
 `;
 
 
-const deepCopy1 = `
+export const deepCopy1 = `
 // 检测类型
 function typeIs(obj) {
     if(!obj) return false;
@@ -93,12 +93,12 @@ function deepCopy(source) {
     return output;
 }
 `;
-const deepCopy2 = `
+export const deepCopy2 = `
 // 序列化(不能拷贝函数以及解决循环引用的问题)
 const output = JSON.parse(JSON.stringify(source));
 `;
 
-const shallowClone = `
+export const shallowClone = `
 // 检测类型
 function typeIs(obj) {
     if(Object.prototype.toString.call(obj) === '[object Array]')  {
@@ -131,7 +131,7 @@ const output = Object.create({}, source) // Object.create
 `;
 
 
-const inherit1 = `
+export const inherit1 = `
 // 定义父类
 function Fn(name) {
     this.name = name;
@@ -154,7 +154,7 @@ const f = new fn(); // f.constructor === fn.prototype.constructor = Fn
 f.age // 24
 f.getName() // Alec
 `;
-const inherit2 = `
+export const inherit2 = `
 // 定义父类
 function Fn (value) {
     this.language = ['javascript', 'react', 'node'];
@@ -170,7 +170,7 @@ const f = new fn('666');
 f.language; // ['javascript', 'react', 'node']
 f.value; // 666
 `;
-const inherit3 = `
+export const inherit3 = `
 function Fn(num) {
     this.num = num;
 }
@@ -182,7 +182,7 @@ function fn(num) {
 
 let f = new fn(66);
 `;
-const inherit4 = `
+export const inherit4 = `
 function Fn(name, age) {
     this.name = name;
     this.age = age;
@@ -198,7 +198,7 @@ fn.prototype.constructor = fn;
 
 let f = new fn('Alec', '28');
 `;
-const inherit5 = `
+export const inherit5 = `
 function Fn(name, age){
     this.name = name;
     this.age = age;
@@ -220,7 +220,7 @@ fn.prototype.constructort = fn; //修复构造函数指向问题
 
 let f = new Fn();
 `;
-const inherit6 = `
+export const inherit6 = `
 // 定义父类
 class Parent {
     constructor(name, age) {
@@ -241,7 +241,7 @@ const child = new Children('Alec', 29);
 child.show();
 `;
 
-const createNew = `
+export const createNew = `
 function Fn() {};
 var fn = new Fn();
 
@@ -260,7 +260,7 @@ fn = function () {
 }();
 `;
 
-const recursion1 = `
+export const recursion1 = `
     function sum(n) {
         if(!n) return n;
         if(n == 1) {
@@ -271,7 +271,7 @@ const recursion1 = `
     }
 `;
 
-const recursion2 = `
+export const recursion2 = `
     function sum(n) {
         if(!n) return n;
         if(n == 1) {
@@ -282,7 +282,7 @@ const recursion2 = `
     }
 `;
 
-const arrFn8 = `
+export const arrFn8 = `
 Array.prototype.reduce = Array.prototype.reduce || function(fn, initialValue) {
     const arr = this;
     const base = typeof initialValue === 'undefined' 
@@ -299,7 +299,7 @@ Array.prototype.reduce = Array.prototype.reduce || function(fn, initialValue) {
 }
 `;
 
-const arrFn9 = `
+export const arrFn9 = `
 const compose = function(...args) {
     const length = args.length;
     let count = length -1;
@@ -318,7 +318,7 @@ const compose = function(...args) {
 }
 `;
 
-const arrFn10 = `
+export const arrFn10 = `
 function compose(...fns) {
     if(fns.length === 0) {
         return arg => arg;
@@ -333,14 +333,14 @@ function compose(...fns) {
 }
 `;
 
-const arrFn11 = `
+export const arrFn11 = `
 var arr = []
 for(var i = 0; i < arguments.length; i++){
     arr.push(arguments[i])
 }
 `;
 
-const arrFn12 = `
+export const arrFn12 = `
 function toArray(data) {
     try(
         return Array.protoype.slice.call(data, 0);
@@ -354,7 +354,7 @@ function toArray(data) {
 }
 `;
 
-const bind1 = `
+export const bind1 = `
 Function.prototype.bind = Function.prototype.bind || function(context) {
     const _this = this;
     const argsArray = Array.prototype.slice.call(arguments, 1);
@@ -365,7 +365,7 @@ Function.prototype.bind = Function.prototype.bind || function(context) {
 }
 `;
 
-const bind2 = `
+export const bind2 = `
 Function.prototype.bind = Function.prototype.bind || function(context) {
     const _this = this;
     const args = Array.protoype.slice.call(arguments, 1);
@@ -379,11 +379,11 @@ Function.prototype.bind = Function.prototype.bind || function(context) {
 }
 `;
 
-const bind3 = `
+export const bind3 = `
 
 `;
 
-const publisher = `
+export const publisher = `
 const Publish = {
     // 订阅者类型及其订阅者
     subscribers: {
@@ -427,7 +427,7 @@ const Publish = {
 }
 `;
 
-const subscriber = `
+export const subscriber = `
 const alexSubscriber = {
     subcribeFn(value) {
         console.log('我在读' + value)
@@ -455,7 +455,7 @@ PaperPublisher.publishDaily();
 PaperPublisher.publishMonthly();
 `;
 
-const eventPublish = `
+export const eventPublish = `
 class EventPublish {
     constructor () {
         // 储存事件的数据结构
@@ -506,7 +506,7 @@ class EventPublish {
     }
 }
 `;
-const debounce = `
+export const debounce = `
 function debounce (fn, delay) {
     let timeout = null;
     return (e) => {
@@ -525,7 +525,7 @@ const validate = debounce((e) => {
 
 document.querySelector('input').addEventListener('input', validate)`;
 
-const throttle = `
+export const throttle = `
 function throttle(fn ,threshhold = 160) {
     let timeout = null;
     let start = new Date();
@@ -557,13 +557,13 @@ document.querySelector('#panel').addEventListener('mousemove, mouseMove);
 `;
 
 
-const arrFn13 = `
+export const arrFn13 = `
 function flat(arr) {
     return Array.form(new Set(arr.flat(Infinity))).sort((a, b) => a - b);
 }
 `;
 
-const arrFn14 = `
+export const arrFn14 = `
 const arr = [1,[1,2,3],1,[6,2],3,4,5,[6],[6,7,9]]
 function flat(arr) {
     arr.forEach((item, key) => {
@@ -579,7 +579,7 @@ function flat(arr) {
 }
 `;
 
-const createNew2 = `
+export const createNew2 = `
 function _new (fn, ...args) {
     const obj = Object.create(fn.protoype);
     const result = fn.apply(obj, ...args);
@@ -589,41 +589,3 @@ function _new (fn, ...args) {
                 : obj
 }
 `;
-
-module.exports = {
-    arrFn1,
-    arrFn2,
-    arrFn3,
-    arrFn4,
-    arrFn5,
-    arrFn6,
-    arrFn7,
-    arrFn8,
-    arrFn9,
-    arrFn10,
-    arrFn11,
-    arrFn12,
-    arrFn13,
-    arrFn14,
-    deepCopy1,
-    deepCopy2,
-    shallowClone,
-    inherit1,
-    inherit2,
-    inherit3,
-    inherit4,
-    inherit5,
-    inherit6,
-    recursion1,
-    recursion2,
-    createNew,
-    createNew2,
-    bind1,
-    bind2,
-    bind3,
-    publisher,
-    subscriber,
-    eventPublish,
-    debounce,
-    throttle,
-}

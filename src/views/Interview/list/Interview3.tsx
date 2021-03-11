@@ -17,53 +17,24 @@ const Interview3 = () => {
     return (
         <>
             <Wrap>
-                <Title level={3}>1. 浏览器缓存</Title>
+                <Title level={3}>浏览器、服务器缓存</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
                             <Text>在浏览器向服务器第一次发起请求拿到请求结果之后，根据响应报头（response）中的http头（response headers）的缓存标志，决定是否缓存结果</Text>
 
                             <Text mark>浏览器缓存分为两种：1. 强制缓存 2. 协商缓存</Text>
-                            <Text>强制缓存：</Text>
-                            <Text>强制缓存就是向浏览器缓存查找结果</Text>
-                            <ul>
-                                <li></li>
-                            </ul>
+                            <Text>强制缓存：根据服务器返回的字段（cacheControl中设置）控制缓存时间、缓存内容等</Text>
+                            <Text>协商缓存：强制缓存时间到期后，浏览器携带缓存标志请求服务端， 由服务端决定是否使用缓存</Text>
+                        
+                            <Text mark>服务器缓存：服务器缓存是把网页解析在内存中做一个映射，把网页存到硬盘中，当其他用户访问时根据内存中的映射返回缓存的网页</Text>
                         </Space>
                     </Panel>
                 </Collapse>
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2. https2.0</Title>
-                <Collapse ghost>
-                    <Panel header="" key="1">
-                        <Space direction="vertical">
-                            <Row>
-                                <Col><Card><Highlight language="javascript">{radix}</Highlight></Card></Col>
-                                <Col><Card><Highlight language="javascript">{radix2}</Highlight></Card></Col>
-                            </Row>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
-            <Wrap>
-                <Title level={3}>3. 性能优化</Title>
-                <Collapse ghost>
-                    <Panel header="" key="1">
-                        <Space direction="vertical">
-                            <Row>
-                                <Col><Card><Highlight language="javascript">{radix}</Highlight></Card></Col>
-                                <Col><Card><Highlight language="javascript">{radix2}</Highlight></Card></Col>
-                            </Row>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
-            <Wrap>
-                <Title level={3}>4. new 函数实现</Title>
+                <Title level={3}>new 函数实现</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
@@ -78,7 +49,7 @@ const Interview3 = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>5. 手写extend、promise、call、apply、bind</Title>
+                <Title level={3}>手写extend、promise、call、apply、bind</Title>
                 <Collapse ghost>
                     <Panel header="extend" key="1">
                         <Space direction="vertical">

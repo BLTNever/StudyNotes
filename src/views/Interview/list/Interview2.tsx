@@ -105,6 +105,34 @@ const Interview2 = () => {
             </Wrap>
 
             <Wrap>
+                <Title level={3}>RN、Flutter底层实现</Title>
+                <Collapse ghost>
+                    <Panel header="RN" key="1">
+                        <Space direction="vertical">
+                            <ul>
+                                <li><Text mark>C/C++实现UI逻辑与统一的组件组成控制中心</Text></li>
+                                <li><Text mark>通过NativeModule和C++Bridge作为中间系统跨语言调用各个平台相关组件</Text></li>
+                                <li><Text mark>然后由各个系统的UI系统进行渲染</Text></li>
+                                <li><Text mark>JavaScript层负责<b>控制</b>渲染，不负责渲染</Text></li>
+                                <li><Text mark>RN里编译并集成了一个JS引擎（JavaScriptCore）</Text></li>
+                                <li><Text mark>数据传递：利用C++实现一个桥，RN与原生端通过C++Bridge双向通讯</Text></li>
+                            </ul>
+                        </Space>
+                    </Panel>
+                    <Panel header="Flutter" key="2">
+                        <Space direction="vertical">
+                            <ul>
+                                <li><Text mark>Flutter自身实现一个跨平台的UI系统，自建渲染框架</Text></li>
+                                {/* <li><Text mark>通过OpenGL 驱动绘制UI界面？</Text></li> */}
+                                <li><Text mark>底层skia绘制渲染引擎</Text></li>
+                                <li><Text mark>数据通信：通过MethodChannel钩子函数</Text></li>
+                            </ul>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
                 <Title level={3}>RN、Flutter、Hybird通信</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
@@ -164,7 +192,6 @@ const Interview2 = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
-
 
             <Wrap>
                 <Title level={3}>原生ajax</Title>

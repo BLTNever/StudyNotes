@@ -6,10 +6,10 @@ import { Wrap } from '@components/Base'
 import PreviewImg from '@components/previewImg'
 
 import nativetojs from '@images/rnnativetojs.png'
+import lifeCircle from '@images/lifeCircle.jpg'
 
 import { radix, radix2, ajax, traversal1, traversal2, traversal3, traversal4 } from './example'
-import { orderBy } from 'lodash'
-import { BSTree, nodes } from './fn'
+
 
 
 const { Panel } = Collapse
@@ -17,88 +17,181 @@ const { Paragraph, Title, Text, Link } = Typography
 
 
 const Interview2 = () => {
-    const orderFn = () => {
-        console.group("%c 二叉树遍历", "background: #333; color: yellow")
-        console.log('data>>>', nodes)
-        console.log('前序递归>>>', BSTree.preOrderRec1(nodes))
-        console.log('前序非递归>>>', BSTree.preOrderRec2(nodes))
-        console.log('中序递归>>>', BSTree.inOrderRec1(nodes))
-        console.log('中序非递归>>>', BSTree.inOrderRec2(nodes))
-        console.log('后序递归>>>', BSTree.postOrderRec1(nodes))
-        console.log('后序非递归>>>', BSTree.postOrderRec2(nodes))
-        console.log('层次遍历>>>', BSTree.levelOrder(nodes))
-        console.groupEnd()
-    }
+    const [temp, setTemp] = React.useState(5);
+
+
+
     return (
         <>
             <Wrap>
-                <Title level={3}>算法：实现36进制转换</Title>
+                <Title level={3}>React事件机制</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
-                            <Row>
-                                <Col><Card><Highlight language="javascript">{radix}</Highlight></Card></Col>
-                                <Col><Card><Highlight language="javascript">{radix2}</Highlight></Card></Col>
-                            </Row>
+                            <Link href="/react/Event?callback='/interview/2'">查看</Link>
                         </Space>
                     </Panel>
                 </Collapse>
             </Wrap>
 
             <Wrap>
-                <Title level={3}>HTTPS的原理、和HTTP的区别、HTTPS2.0</Title>
+                <Title level={3}>React diff机制</Title>
                 <Collapse ghost>
-                    <Panel header="" key="1">
+                    <Panel header="react16之前" key="1">
                         <Space direction="vertical">
-                            <Text mark>HTTPS经由HTTP进行通信，但利用了SSL/TLS来加密数据包</Text>
                             <ul>
-                                <li>HTTPS传输过程是加密的</li>
-                                <li>使用HTTPS协议需要用到CA（Certificate Authority）证书</li>
-                                <li>HTTPS在HTTP使用TCP三次握手建立连接的基础上，要在加上SSL握手需要的9个包，一共12个包</li>
-                                <li>HTTP使用80端口，HTTPS使用443端口</li>
-                                <li>HTTPS在传输过程中使用对称加密加密传输数据</li>
-                                <li>CA证书校验是非对称加密</li>
+                                <li>1. web UI中DOM节点跨层级移动的操作少，可以忽略不计</li>
+                                <li>2. 只会对相同层级的节点进行比较</li>
+                                <li>3. 只有删除、创建操作</li>
+                                <li>4. 官方不建议做跨节点操作</li>
+                                <li>5. 拥有相同类的两个组件将会生成相似树状结构，拥有不同类的两个组件将会生成不同的树状结构</li>
+                                <li>6. 对于统一曾记得一组子节点，通过唯一的id 进行区分</li>
                             </ul>
+                            <Text>基于以上三个前提策略，React 分别对tree diff、component diff、 element diff 进行优化</Text>
+                        </Space>
+                    </Panel>
+                    <Panel header="react16的diff算法策略" key="2">
+                        <Space direction="vertical">
+                            <Text mark>更新React.16 Fiber 之后，react的数据结构从树改成了链表结构，diff算法随之修改</Text>
+                            <Text>react16的diff策略采用从链表头部开始比较的算法，是层次遍历，算法是建立在一个节点的插入、删除、移动等操作都是在节点数的统一层级进行</Text>
+                            <Text>对于diff TextNode有两种情况，currentFirstNode是否是Text Node。区分两种情况是为了复用节点</Text>
+                            <Text mark>判断是否复用节点的点是: 1. key相同 2. 节点类型相同。</Text>
+                            <Card title="diff的过程">
+                                <ul>
+                                    <li>1. 第一遍历新数组，新老数组以相同index进行对比，通过<Text code>updateSlot</Text>方法找到可以复用的节点，直到找到不可以复用的节点就推出循环</li>
+                                    <li>2. 第一遍历完后，删除剩下的老节点，追加剩余的新节点。如果新节点已经遍历完成，将剩余的老节点批量删除。如果老节点遍历完仍有新节点剩余，将新节点插入</li>
+                                    <li>3. 把所有的老数组元素按key 或index 放到Map里，遍历新数组，插入老数组的元素，这是移动的情况</li>
+                                </ul>
+                            </Card>
 
-                            <Text mark>HTTP2.0相比HTTP1.x做了哪些升级？多路复用；二进制分帧；服务端推送；数据流优先级；头部压缩</Text>
+
+                            <Text>reconcileChildren</Text>
+                            <ul>
+                                <li><Text code>reconcileChildren</Text>只是一个入口函数</li>
+                                <li>如果首次渲染，current 空 null，通过<Text code>mountChildFibers</Text>创建子节点的Fiber 实例</li>
+                                <li>如果不是首次渲染，调用<Text code>reconcileChildFibers</Text>去做diff, 然后得处effect list</li>
+                                <li>reconcileChildren和reconcileChildFibers通过<Text code>ChildReconciler</Text>函数去处理</li>
+                            </ul>
                         </Space>
                     </Panel>
                 </Collapse>
             </Wrap>
 
             <Wrap>
-                <Title level={3}>操作系统中进程和线程如何通信</Title>
+                <Title level={3}>React相关</Title>
+                <Collapse ghost>
+                    <Panel header="React性能" key="1">
+                        <Space direction="vertical">
+                            <ul>
+                                <li><Text mark>性能：操作一次DOM，原生更快，整个项目操作react更好</Text></li>
+                                <li><Text mark>安全性：react不需要考虑xss</Text></li>
+                                <li><Text mark>事件委托：react合成事件对原生事件的封装以及兼容性问题</Text></li>
+                                <li><Text mark>维护性：react制定了团队规范。掩盖了底层DOM操作，用声明式的方式来描述目的，让代码更容易维护</Text></li>
+                                <li><Text mark>react实现了batchupdate，更规范的DOM操作</Text></li>
+                            </ul>
+                        </Space>
+                    </Panel>
+
+                    <Panel header="setState" key="2">
+                        <Space direction="vertical">
+                            <ul>
+                                <li><Text>1. setState只在合成事件和钩子函数中是“异步”的，在原生事件（addEventListener）和setTimeout中都是“同步”的</Text></li>
+                                <li>
+                                    <Text>2. setState的异步不是在内部实现的，代码执行的过程和结都是同步的，只是在合成事件和钩子函数中的调用顺序在更新之前，导致无法拿到更新后的结果，形成所谓的异步，可以通过setState(partialState, callback)在callback中拿到结果</Text>
+                                </li>
+                                <li>
+                                    <Text>
+                                        3. setState的批量更新也是建立在异步（合成事件、钩子函数）之上，在原生事件和setTimeout中是无法批量更新的
+                                    </Text>
+                                </li>
+                                <li>
+                                    <Text>react更新是通过“事务”（Transacation）的，通过isBatchingUpdates: boolean控制，setTimout中事务无法管控</Text>
+                                </li>
+                            </ul>
+                        </Space>
+                    </Panel>
+
+                    <Panel header="useEffect" key="3">
+                        <Space direction="vertical">
+                            <ul>
+                                <li>
+                                    <Text>每次Render的内容都会形成一个快照保存下来，当状态改变Rerender的时候，形成了N个Render状态，每个状态都拥有自己固定不变的Props和State，函数在每次渲染时也是独立的。这就是 Capture Value 特性</Text>
+                                </li>
+                                <li> <Text>useEffect 也一样具有Capture Value的特性</Text></li>
+                                <li> <Text>利用useRef可以绕过Capture Value特性，ref在render中保持了唯一的引用，对ref的取值和赋值拿到的都是最终状态</Text> </li>
+                                <li>
+                                    <Text>回收机制：组件被销毁时，通过useEffect注册的监听事件也要被销毁，通过useEffect的return返回值做到</Text>
+                                </li>
+                                <li><Text>优化：通过useEffect的第二个参数告诉React用到哪些外部变量，制定变量更新是才会再次执行useEffect</Text></li>
+                                <li><Text>通过useReducer节耦useEffect的更新与操作，但是是绕过了diff算法</Text></li>
+                                <li><Text mark>性能：useEffect在渲染结束时执行，所以不会阻塞浏览器渲染进程</Text></li>
+                                <li><Text mark>符合React fiber的特性，Fiber会根据情况暂停或插入执行不同组件的Render，如果代码遵循Capture Value的特性，在Fiber环境下能保证值的安全访问，弱化生命周期也能解决执行中断的问题</Text></li>
+                            </ul>
+                        </Space>
+                    </Panel>
+
+                    <Panel header="fiber" key="4">
+                        <Space direction="vertical">
+                            <Text mark> React16之前的版本有一个主要的问题 —— 虚拟 dom 的 diff 操作是同步完成的。</Text>
+                            <Text>js在单线程环境里运行，操作很多时，便会造成阻塞</Text>
+                            <Text>fiber将diff操作变成可中断的，只有当浏览器空闲时再做diff。避免diff更新长时间占据浏览器线程。fiber就是用的这个思路</Text>
+                            <Text>fiber解决的是调度问题</Text>
+                            <Text mark>用户交互属于高优先级，尽快响应，diff操作优先级低</Text>
+                            <Text mark>fiber将diff递归操作变成遍历操作，类似链表操作，返回子节点</Text>
+                            <Text>浏览器API：requestIdleCallback方法将在浏览器的空闲时段内调用函数做异步diff。这使开发者能够在主事件循环上执行后台和低优先级工作，而不会影响延迟关键事件，如动画和输入响应。</Text>
+                            <ul>
+                                <li><Text>每一个fiber都分配一个expirationTime属性</Text></li>
+                                <li><Text>使用lane取代expirationTime？？？</Text></li>
+                            </ul>
+                        </Space>
+                    </Panel>
+                </Collapse >
+            </Wrap >
+
+            <Wrap>
+                <Title level={3}>React 优化</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
-                            <Text mark>进程是资源分配的基本单位；线程是程序执行的基本单位</Text>
-                            <Text mark>进程拥有自己的资源空间，每启动一个进程，系统就为它分配地址空间</Text>
-                            <Text mark>线程与CPU资源分配无关，多个线程共享同一进程的资源，使用相同地址空间</Text>
-                            <Text mark>一个进程可以包含若干线程</Text>
-
-                            <Title level={4}>系统通信：</Title>
+                            <Text mark>react hooks 优化思路</Text>
                             <ul>
-                                <li>进程通信：通过管道、套接字、信号交互、共享内存、消息队列进行通信</li>
-                                <li>线程通信：线程本身共享内存，指针指向同一个内容</li>
+                                <li>1. 减少render次数：在React中最小号事件的就是reconction（diff），如果不render，就不会reconction</li>
+                                <li>2. 减少计算的量：减少重复计算，对于函数组件来说，每次render都会重新开始执行函数调用</li>
                             </ul>
 
-                            <Title level={4}>node通信：</Title>
+                            <Text code>具体方法：</Text>
                             <ul>
-                                <li>node中提供child_process模块来创建子进程（child_process.fork()）</li>
-                                <li>cluster.fork()是child_process.fork()的上层实现，cluster的好处是可以监听共享端口</li>
-                                <li>node进程的通信主要是通在主从（子）进程之间进行通信，子进程之间无法直接通信，只能通过主进程转发</li>
-                                <li>主进程与子进程的通信是通过IPC（Inter Process Communication）进行通信，IPC基于底层libuv根据不同操作系统实现（Windows：命名管道name pie, linux: Unix Domain Socket）</li>
+                                <li>memo：在props不变的情况，通过记忆渲染结果的方法，提高组件的性能，可以传入第二个参数，做自定义比较函数</li>
+                                <li>useCallback：在依赖项发生变化才会更新（useCallback返回的是函数，缓存函数）</li>
+                                <li>usememo：在依赖项发生变化才会更新（usememo返回的是函数运行的结果，缓存计算的值）</li>
+                                <li>合理拆分组件：控制更小粒度的更新</li>
                             </ul>
 
-                            <Title level={4}>node中cluster是怎样开启多进程的，并且一个端口可以被多个进程监听吗</Title>
+                            <Text mark>react class Components 优化思路</Text>
                             <ul>
-                                <li>通过require(&apos;os&apos;).cpus().length获取当前机器上CPU的核数，然后根据CPU核数cluster.fork()创建相应数量的子进程</li>
-                                <li>操作系统中，不同的进程去共享相同端口是不允许的</li>
-                                <li><Text mark>cluster模块中通过主进程自身TCP Server绑定端口，并将TCP Server的具柄通过IPC通道传递给子进程，相当于子进程接管了TCP Server</Text></li>
+                                <li>减少render次数：使用<Text code>shouldComponentUpdate</Text>和<Text code>PureComponent</Text>，减少父组件更新引起子组件更新的情况</li>
                             </ul>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
 
-
-
+            <Wrap>
+                <Title level={3}>React、Redux</Title>
+                <Collapse ghost>
+                    <Panel header="" key="1">
+                        <Space direction="vertical">
+                            <Text>React：<Text code>UI = f(state)</Text></Text>
+                            <Text>Redux：store、reduce、action、actionCreater、dispatch</Text>
+                            <Text>hooks生命周期：函数组件不存在声明周期， 通过useEffect进行操作，生命周期所做的都是副作用，放在useEffect里最合适</Text>
+                            <Text>React16生命周期的变化：</Text>
+                            <ul>
+                                <li>废除掉了<Text code>componentWillMount</Text>、<Text code>componentWillReceiveProps</Text>、<Text code>componentWillUpdate</Text></li>
+                                <li>新增了<Text code>getDrivedStateFromProps</Text>、<Text code>getSnapshotBeforeUpdate</Text></li>
+                                <li><Text mark>reconciliation</Text>阶段是可中断的，所以废掉了那三个周期</li>
+                                <li>getDrivedStateFromProps：static方法，将传入的props映射到state上，在<Text mark>每次re-rendering之前调用</Text></li>
+                            </ul>
+                            <Card><PreviewImg src={lifeCircle} /></Card>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -123,8 +216,7 @@ const Interview2 = () => {
                         <Space direction="vertical">
                             <ul>
                                 <li><Text mark>Flutter自身实现一个跨平台的UI系统，自建渲染框架</Text></li>
-                                {/* <li><Text mark>通过OpenGL 驱动绘制UI界面？</Text></li> */}
-                                <li><Text mark>底层skia绘制渲染引擎</Text></li>
+                                <li><Text mark>底层skia引擎绘制渲染引擎</Text></li>
                                 <li><Text mark>数据通信：通过MethodChannel钩子函数</Text></li>
                             </ul>
                         </Space>
@@ -193,81 +285,10 @@ const Interview2 = () => {
                 </Collapse>
             </Wrap>
 
-            <Wrap>
-                <Title level={3}>原生ajax</Title>
-                <Collapse ghost>
-                    <Panel header="" key="1">
-                        <Space direction="vertical">
-                            <Card><Highlight language="javascript">{ajax}</Highlight></Card>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
 
-            <Wrap>
-                <Title level={3}>算法：树的遍历有几种方式，实现层次遍历</Title>
-                <Collapse ghost>
-                    <Panel header="" key="1">
-                        <Space direction="vertical">
-                            <Text mark>遍历方式：1.前序遍历、2.中序遍历、3.后序遍历、4.层次遍历</Text>
-                            <ul>
-                                <li>前序：根 -&gt; 左 -&gt; 右</li>
-                                <li>中序：左 -&gt; 根 -&gt; 右</li>
-                                <li>后序：左 -&gt; 右 -&gt; 根</li>
-                            </ul>
-                            <Row>
-                                <Col span={12}><Card><Highlight language="javascript">{traversal1}</Highlight></Card></Col>
-                                <Col span={12}><Card><Highlight language="javascript">{traversal2}</Highlight></Card></Col>
-                            </Row>
-                            <Row>
-                                <Col span={12}><Card><Highlight language="javascript">{traversal3}</Highlight></Card></Col>
-                                <Col span={12}><Card><Highlight language="javascript">{traversal4}</Highlight></Card></Col>
-                            </Row>
-                        </Space>
-                        {orderFn()}
-                    </Panel>
-                </Collapse>
-            </Wrap>
 
-            <Wrap>
-                <Title level={3}>var let const的区别</Title>
-                <Collapse ghost>
-                    <Panel header="" key="1">
-                        <Space direction="vertical">
-                            <Row>
-                                <Col span={8}>
-                                    <Card title="var">
-                                        <ul>
-                                            <li>过程：var变量声明创建、初始化提升到顶部 -&gt; 执行代码 -&gt; 赋值</li>
-                                        </ul>
-                                    </Card>
-                                </Col>
-                                <Col span={8}>
-                                    <Card title="let">
-                                        <ul>
-                                            <li>过程：let声明变量创建时提升到顶部 -&gt; 初始化 -&gt; 执行代码 -&gt; 赋值</li>
-                                        </ul>
-                                    </Card>
-                                </Col>
-                                <Col span={8}>
-                                    <Card title="const">
-                                        <ul>
-                                            <li>过程：创建 -&gt; 执行代码 -&gt; 初始化</li>
-                                        </ul>
-                                    </Card>
-                                </Col>
-                            </Row>
-                            <ul>
-                                <li>1. var声明的变量会提升，let const不会</li>
-                                <li>2. const和let具有块级作用域</li>
-                                <li>3. const创建后不可修改，var、let允许 重复声明</li>
-                                <li>4. const声明创建一个值的只读引用。只有变量标示不能重新分配（对象的引用内容是地址，内容是可以修改的）</li>
-                                <li>5. 全局作用域中使用var或者不是用var声明的变量会挂载到Windows上，let跟const不会</li>
-                            </ul>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
+
+
         </>
     )
 }

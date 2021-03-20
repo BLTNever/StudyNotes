@@ -17,8 +17,9 @@ for(var i = 0; i < arr.length; i++) {
 `;
 
 export const arrFn3 = `
+var array = [];
+
 for(var i = 0; i < arr.length; i++) {
-    var array = [];
     if(array.indexOf(arr[i]) === -1) {
         array.push(arr[i]);
     }

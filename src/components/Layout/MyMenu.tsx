@@ -39,7 +39,7 @@ const MyMenu = (props: any) => {
     }
     const onSelect = (val: any) => {
         const { key, selectedKeys } = val
-        console.log(selectedKeys)
+        // console.log(selectedKeys)
         setSelectedKeys(selectedKeys)
     }
     return (

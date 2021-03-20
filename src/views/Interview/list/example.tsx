@@ -555,6 +555,113 @@ class _Promise1 {
         this.callback.forEach(fn => fn(value))
     }
 }
+
+
+// promise 三个状态
+const PENDING = "pending"
+const FULFILLED = "fulfilled"
+const REJECTED = "rejected"
+function Promise(executor) {
+    let _this = this // 当前promise实例对象
+    _this.status = PENDING // 初始状态
+    _this.value = undefined // fulfilled状态时 返回的信息
+    _this.reason = undefined // rejected状态时 拒绝的原因
+    _this.onFulfilledCallbacks = [] // 存储fulfilled状态对应的onFulfilled函数
+    _this.onRejectedCallbacks = [] // 存储rejected状态对应的onRejected函数
+    
+    function resolve(value) { // value成功态时接收的终值
+        if(value instanceof Promise) {
+            return value.then(resolve, reject)
+        }
+        /** 为什么resolve加setTimeout?
+         * 2.2.4规范 onFulfilled 和 onRejected 只允许在 execution context 栈仅包含平台代码时运行。
+         * 这里的平台代码指的是引擎、环境以及 promise 的实施代码。
+         * 实践中要确保 onFulfilled 和 onRejected 方法异步执行，且应该在 then 方法被调用的那一轮事件循环之后的新执行栈中执行。
+         */
+        setTimeout(() => {
+            // 由pending状态 => fulfilled状态 (避免调用多次resolve reject)
+            if (_this.status === PENDING) {
+                _this.status = FULFILLED
+                _this.value = value
+                _this.onFulfilledCallbacks.forEach(cb => cb(_this.value))
+            }
+        })
+    }
+    
+    function reject(reason) {
+        setTimeout(() => {
+            // 由pending状态 => rejected状态 (避免调用多次resolve reject)
+            if (_this.status === PENDING) {
+                _this.status = REJECTED
+                _this.reason = reason
+                _this.onRejectedCallbacks.forEach(cb => cb(_this.reason))
+            }
+        })
+    }
+
+    function then(onFulfilled, onRejected) {
+        let newPromise
+        // 处理参数默认值 保证参数后续能够继续执行
+        onFulfilled = typeof onFulfilled === "function" ? onFulfilled : value => value
+        onRejected = typeof onRejected === "function" ? onRejected : reason => {
+                throw reason
+            }
+
+        if (_this.status === FULFILLED) {
+            return newPromise = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    try{
+                        let x = onFulfilled(_this.value)
+                        resolvePromise(newPromise, x, resolve, reject)
+                    } catch(e) {
+                        reject(e)
+                    }
+                })
+            })
+        }
+
+        if (_this.status === REJECTED) {
+            return newPromise = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    try {
+                        let x = onRejected(_this.reason)
+                        resolvePromise(newPromise, x, resolve, reject)
+                    } catch(e) {
+                        reject(e)
+                    }
+                })
+            })
+        }
+        
+        if (_this.status === PENDING) {
+            // 当异步调用resolve/rejected时 将onFulfilled/onRejected收集暂存到集合中
+            return newPromise = new Promise((resolve, reject) => {
+                _this.onFulfilledCallbacks.push((value) => {
+                    try {
+                        let x = onFulfilled(value)
+                        resolvePromise(newPromise, x, resolve, reject)
+                    } catch(e) {
+                        reject(e)
+                    }
+                })
+                _this.onRejectedCallbacks.push((reason) => {
+                    try {
+                        let x = onRejected(reason)
+                        resolvePromise(newPromise, x, resolve, reject)
+                    } catch(e) {
+                        reject(e)
+                    }
+                })
+            })
+        }
+    }
+
+    try {
+        executor(resolve, reject)
+    } catch (e) {
+        reject(e)
+    }
+}
 `
 
 export const parseInt = `
@@ -575,4 +682,112 @@ function _parseInt(str, radix = 10) {
 
     return res
 }
+`
+
+export const queryUrlParams = `
+/**
+ * 解析链接 
+ * "https://www.baidu.com?name=coder&age=20&callback=https%3A%2F%2Fbaidu.com%3Fname%3Dtest&list[]=a&list[]=b&json=%7B%22str%22%3A%22abc%22,%22num%22%3A123%7D"
+ * 返回 {
+ *    list: [...],
+ *    json: {...},
+ *    callback: https://baidu.com?name=...,
+ *    name: code,
+ *    age: 20
+ * }
+ * /
+const queryURLParams = (url) => {
+    if (!url?.length) return {}
+    let askIndex = url.indexOf('?')
+    let polIndex = url.indexOf('#') > 0 ? url.indexOf('#') : url.length
+    let host = askIndex > 0 ? url.slice(0, askIndex) : url
+    let askText = askIndex > 0 ? url.slice(askIndex + 1, polIndex) : ''
+    let polText = polIndex > 0 ? url.slice(polIndex) : ''
+
+    if (!askText?.length) return {}
+    askText = decodeURIComponent(askText)
+
+    let obj = {}
+    if(host?.length) obj['host'] = host
+    if (polText?.length) obj['hash'] = polText
+    askText.split('&').forEach((i: string) => {
+        let [key, value] = i.split('=')
+        const arrIndex = key.indexOf('[]')
+        if (arrIndex > 0) {
+            key = key.slice(0, arrIndex)
+            if (key in obj) {
+                obj[key].push(value)
+            } else {
+                obj[key] = [value]
+            }
+        } else if (key === 'json') {
+            obj['json'] = value?.length ? JSON.parse(value) : {}
+        } else {
+            obj[key] = decodeURIComponent(value)
+        }
+    })
+    return obj
+}
+`
+
+export const queryUrlParams2 = `
+/**
+ * 通过new URL 去解析链接
+ * 
+ * /
+const queryURLParams = (url) => {
+    if(!url?.length) return ''
+    const { hash, host, search,searchParams } = new URL(url)
+    const keys = searchParams.keys()
+
+    let obj = {}
+    for(key of keys) {
+        const value = searchParams.get(key)
+        obj[key] = value
+    }
+    return obj
+}
+`
+
+export const observer = `
+function Subject() {
+    this.observers = []
+}
+Subject.prototype = {
+    subscribe: function (observer) {
+        if (this.observers.indexOf(observer) < 0) {
+            this.observers.push(observer)
+        }
+    },
+    unsubscribe: function (removeObserver) {
+        this.observers = this.observers.filter(observer => observer !== removeObserver)
+    },
+    fire: function () {
+        this.observers.forEach(observer => {
+            observer.call()
+        })
+    }
+}
+
+const subject = new Subject()
+
+function observer1() {
+    console.log(11111)
+}
+function observer2() {
+    console.log(22222)
+}
+
+subject.subscribe(observer1)
+subject.subscribe(observer2)
+subject.fire()
+
+subject.unsubscribe(observer2)
+subject.fire()
+`
+
+
+export const publish = `
+const Pu
+
 `

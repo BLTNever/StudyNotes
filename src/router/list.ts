@@ -97,6 +97,22 @@ export const list = [
                 component: RouteBase.Interview4,
             },
             {
+                path: '/interview/5',
+                component: RouteBase.Interview5,
+            },
+            {
+                path: '/interview/6',
+                component: RouteBase.Interview6,
+            },
+            {
+                path: '/interview/7',
+                component: RouteBase.Interview7,
+            },
+            {
+                path: '/interview/8',
+                component: RouteBase.Interview8,
+            },
+            {
                 path: '/interview',
                 redirect: '/interview/1',
             },

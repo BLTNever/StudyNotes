@@ -27,7 +27,10 @@ export const Interview1 = lazy(() => import(/* webpackChunkName: "Interview1" */
 export const Interview2 = lazy(() => import(/* webpackChunkName: "Interview2" */'@views/Interview/list/Interview2'))
 export const Interview3 = lazy(() => import(/* webpackChunkName: "Interview3" */'@views/Interview/list/Interview3'))
 export const Interview4 = lazy(() => import(/* webpackChunkName: "Interview4" */'@views/Interview/list/Interview4'))
-
+export const Interview5 = lazy(() => import(/* webpackChunkName: "Interview5" */'@views/Interview/list/Interview5'))
+export const Interview6 = lazy(() => import(/* webpackChunkName: "Interview6" */'@views/Interview/list/Interview6'))
+export const Interview7 = lazy(() => import(/* webpackChunkName: "Interview7" */'@views/Interview/list/Interview7'))
+export const Interview8 = lazy(() => import(/* webpackChunkName: "Interview8" */'@views/Interview/list/Interview8'))
 
 // Exercises
 export const Exercise1 = lazy(() => import(/* webpackChunkName: "Exercises1" */'@views/Exercises/list/Exercise1'))

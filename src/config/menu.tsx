@@ -55,10 +55,15 @@ const menu = [
         icon: <SolutionOutlined />,
         route: 'interview',
         children: [
-            { id: '41000', name: '一、', route: '/interview/1' },
-            { id: '42000', name: '二、', route: '/interview/2' },
-            { id: '43000', name: '三、', route: '/interview/3' },
-            { id: '44000', name: '四、', route: '/interview/4' },
+            { id: '47000', name: '前端相关', route: '/interview/7' },
+            { id: '41000', name: 'javascript基础', route: '/interview/1' },
+            { id: '48000', name: 'ts', route: '/interview/8' },
+            { id: '42000', name: '框架', route: '/interview/2' },
+            { id: '43000', name: '手写', route: '/interview/3' },
+            { id: '44000', name: 'webpack', route: '/interview/4' },
+            { id: '45000', name: '算法', route: '/interview/5' },
+            { id: '46000', name: 'html/css/移动端适配', route: '/interview/6' },
+
         ]
     },
     // {

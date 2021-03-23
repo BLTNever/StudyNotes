@@ -81,6 +81,95 @@ const Interview1 = () => (
         </Wrap>
 
         <Wrap>
+            <Title level={3}>模块化</Title>
+            <Link href="/js/Moudles">详解...</Link>
+            <Collapse ghost>
+                <Panel header="模块化方案" key="1">
+                    <Space direction="vertical">
+                        <ul>
+                            <li> <Text>1. 匿名闭包：IIFE模式（立即执行函数）</Text></li>
+                            <li><Text>2. CommonJs：浏览器中使用需要Browserify。CommonJs是同步的，CommonJs的加载机制是，输入的是被输出的值的拷贝。也就是说，一旦输出一个值，模块内部的变化就影响不到这个值</Text></li>
+                            <li><Text>3. AMD：采用非同步加载，推崇前置依赖：定义模块时候就需要声明其依赖的模块。提前加载</Text></li>
+                            <li><Text>4. CMD：采用非同步加载，崇就近依赖：只有在用到某个模块的时候再去require。按需加载</Text></li>
+                            <li><Text>5. EsModule：输出值的引用，模块的设计思想是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。</Text></li>
+                        </ul>
+                    </Space>
+                </Panel>
+
+                <Panel header="CommonJs和EsModule的区别" key="">
+                    <Space direction="vertical">
+                        <ul>
+                            <li><Text>1. CommonJs模块输出的值的拷贝，EsModule模块输出的是值得引用</Text></li>
+                            <li><Text>2. CommonJs模块是运行时加载，EsModule是编译时输出</Text></li>
+                            <li><Text>3.循环引用：CommonJs的循环引用是通过传递未完成的export对象解决的。esModule传递的是引用</Text></li>
+                        </ul>
+                    </Space>
+                </Panel>
+            </Collapse>
+        </Wrap>
+
+        <Wrap>
+            <Title level={3}>xss和csrf攻击</Title>
+            <Collapse ghost>
+                <Panel header="xss跨站脚本攻击" key="1">
+                    <Space direction="vertical">
+                        <Text mark>攻击者想办法将可执行的代码注入页面</Text>
+                        <Text>XSS利用的是用户对指定网站的信任</Text>
+                        <ul>
+                            <li><Text>1. 转义字符</Text></li>
+                            <li><Text>2. js-xss</Text></li>
+                            <li><Text>3. CSP : 建立白名单，允许哪些外部资源可以加载和执行</Text></li>
+                        </ul>
+                        <Text>
+                            CSP（Content Security Policy即内容安全策略）如何开启：
+                            <ul>
+                                <li>设置 HTTP Header 中的 Content-Security-Policy</li>
+                                <li>设置 meta 标签的方式{`< meta http-equiv=“Content-Security-Policy”>`}</li>
+                            </ul>
+                        </Text>
+                    </Space>
+                </Panel>
+                <Panel header="CSRF跨站请求伪造" key="2">
+                    <Space direction="vertical">
+                        <Text mark>攻击者构造出一个后端请求地址，诱导用户点击或者通过某些途径自动发起请求。如果用户是在登录状态下的话，后端就以为是用户在操作，从而进行相应的逻辑</Text>
+                        <Text>CSRF利用的是网站对用户网页浏览器的信任</Text>
+
+                        <Title>如何防御：</Title>
+                        <ul>
+                            <li><Text>1. Get 请求不对数据进行修改</Text></li>
+                            <li><Text>2. 不让第三方网站访问到用户 Cookie</Text></li>
+                            <li><Text>3. 阻止第三方网站请求接口</Text></li>
+                            <li><Text>4. 请求时附带验证信息，比如验证码或者 Token</Text></li>
+                        </ul>
+
+                        <Title>如何攻击：</Title>
+                        <ul>
+                            <li><Text>1. 用户访问正常网站，浏览器中保留cookie</Text></li>
+                            <li><Text>2. 用户被诱使访问危险网站</Text></li>
+                            <li><Text>3. 在危险网站上放的图片src指向正常访问的链接</Text></li>
+                            <li><Text>进阶：危险网站可以伪造一个表单并隐藏，并在自己网站的onload事件中，触发这个表单的提交事件，就可以改GET攻击为POST攻击</Text></li>
+                        </ul>
+                    </Space>
+                </Panel>
+            </Collapse>
+        </Wrap>
+
+        <Wrap>
+            <Title level={3}>OOP和FP</Title>
+            <Collapse ghost>
+                <Panel header="OOP：" key="1">
+                    <Space direction="vertical">
+                        <ul>
+                            <li><Text>1. 封装：定义一个类</Text></li>
+                            <li><Text>2. 继承：一个类继承另一个类，代码复用</Text></li>
+                            <li><Text>3. 多态：通过传递父类对象引用不同的子类对象从而表现出不同的行为，扩展性。JS属于弱类型不能实现多态</Text></li>
+                        </ul>
+                    </Space>
+                </Panel>
+            </Collapse>
+        </Wrap>
+
+        <Wrap>
             <Title level={3}>var let const的区别</Title>
             <Collapse ghost>
                 <Panel header="" key="1">
@@ -114,22 +203,6 @@ const Interview1 = () => (
                             <li>3. const创建后不可修改，var、let允许 重复声明</li>
                             <li>4. const声明创建一个值的只读引用。只有变量标示不能重新分配（对象的引用内容是地址，内容是可以修改的）</li>
                             <li>5. 全局作用域中使用var或者不是用var声明的变量会挂载到Windows上，let跟const不会</li>
-                        </ul>
-                    </Space>
-                </Panel>
-            </Collapse>
-        </Wrap>
-
-
-        <Wrap>
-            <Title level={3}>OOP和FP</Title>
-            <Collapse ghost>
-                <Panel header="OOP：" key="1">
-                    <Space direction="vertical">
-                        <ul>
-                            <li><Text>1. 封装：定义一个类</Text></li>
-                            <li><Text>2. 继承：一个类继承另一个类，代码复用</Text></li>
-                            <li><Text>3. 多态：通过传递父类对象引用不同的子类对象从而表现出不同的行为，扩展性。JS属于弱类型不能实现多态</Text></li>
                         </ul>
                     </Space>
                 </Panel>

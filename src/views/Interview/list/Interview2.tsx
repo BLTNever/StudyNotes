@@ -64,7 +64,6 @@ const Interview2 = () => {
                                 </ul>
                             </Card>
 
-
                             <Text>reconcileChildren</Text>
                             <ul>
                                 <li><Text code>reconcileChildren</Text>只是一个入口函数</li>
@@ -111,7 +110,26 @@ const Interview2 = () => {
                         </Space>
                     </Panel>
 
-                    <Panel header="useEffect" key="3">
+                    <Panel header="useState" key="3">
+                        <Space direction="vertical">
+                            <ul>
+                                <li><Text>1. setState只在合成事件和钩子函数中是“异步”的，在原生事件（addEventListener）和setTimeout中都是“同步”的</Text></li>
+                                <li>
+                                    <Text>2. setState的异步不是在内部实现的，代码执行的过程和结都是同步的，只是在合成事件和钩子函数中的调用顺序在更新之前，导致无法拿到更新后的结果，形成所谓的异步，可以通过setState(partialState, callback)在callback中拿到结果</Text>
+                                </li>
+                                <li>
+                                    <Text>
+                                        3. setState的批量更新也是建立在异步（合成事件、钩子函数）之上，在原生事件和setTimeout中是无法批量更新的
+                                    </Text>
+                                </li>
+                                <li>
+                                    <Text>react更新是通过“事务”（Transacation）的，通过isBatchingUpdates: boolean控制，setTimout中事务无法管控</Text>
+                                </li>
+                            </ul>
+                        </Space>
+                    </Panel>
+
+                    <Panel header="useEffect" key="4">
                         <Space direction="vertical">
                             <ul>
                                 <li>
@@ -130,8 +148,9 @@ const Interview2 = () => {
                         </Space>
                     </Panel>
 
-                    <Panel header="fiber" key="4">
+                    <Panel header="fiber" key="5">
                         <Space direction="vertical">
+                            <Link href="/react/VirtualDom?callback='/interview/2'">详解</Link>
                             <Text mark> React16之前的版本有一个主要的问题 —— 虚拟 dom 的 diff 操作是同步完成的。</Text>
                             <Text>js在单线程环境里运行，操作很多时，便会造成阻塞</Text>
                             <Text>fiber将diff操作变成可中断的，只有当浏览器空闲时再做diff。避免diff更新长时间占据浏览器线程。fiber就是用的这个思路</Text>
@@ -145,11 +164,22 @@ const Interview2 = () => {
                             </ul>
                         </Space>
                     </Panel>
+
+                    <Panel header="hooks" key="6">
+                        <Space direction="vertical">
+                            <Text>hooks代替class Components</Text>
+                            <ul>
+                                <li><Text>1. 很难复用逻辑（只能用HOC，或者render props），会导致组件树层级很深</Text></li>
+                                <li><Text>2. 会产生巨大的组件（指很多代码必须写在类里面）</Text></li>
+                                <li><Text>3. 类组件很难理解，比如方法需要bind，this指向不明确</Text></li>
+                            </ul>
+                        </Space>
+                    </Panel>
                 </Collapse >
             </Wrap >
 
             <Wrap>
-                <Title level={3}>React 优化</Title>
+                <Title level={3}>React优化</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
@@ -284,13 +314,9 @@ const Interview2 = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
-
-
-
-
-
         </>
     )
 }
 
 export default Interview2
+

@@ -7,8 +7,10 @@ import PreviewImg from '@components/previewImg'
 
 import {
     ajax, queryUrlParams, createNew, extend8, call, apply, bind, myPromise, parseInt, debounce, throttle, queryUrlParams2,
-    clone1,
+    clone1, _useState, _memo, createContext, observer,
 } from './example'
+import { subscriber } from '@views/Exercises/list/example'
+import { resolve } from 'path'
 
 
 const { Panel } = Collapse
@@ -64,10 +66,7 @@ const Interview3 = () => {
                     <Panel header="观察者模式" key="1">
                         <Space direction="vertical">
                             <Text mark>被观察者对象（subject）维护一组观察者（observer），subject状态发生变化时，通过observer的某些方法把变化通知到observer</Text>
-                            <Row>
-                                <Col><Card><Highlight language="javascript">{debounce}</Highlight></Card></Col>
-                                <Col><Card><Highlight language="javascript">{throttle}</Highlight></Card></Col>
-                            </Row>
+                            <Highlight language="javascript">{observer}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -134,6 +133,28 @@ const Interview3 = () => {
             </Wrap>
 
             <Wrap>
+                <Title level={3}>React</Title>
+                <Collapse ghost>
+                    <Panel header="useState" key="1">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{_useState}</Highlight></Card>
+                        </Space>
+                    </Panel>
+
+                    <Panel header="memo" key="2">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{_memo}</Highlight></Card>
+                        </Space>
+                    </Panel>
+
+                    <Panel header="createContext" key="3">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{createContext}</Highlight></Card>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+            <Wrap>
                 <Title level={3}>queryUrlParams</Title>
                 <Collapse ghost>
                     <Panel header="slice切割、遍历" key="1">
@@ -178,3 +199,4 @@ const Interview3 = () => {
 }
 
 export default Interview3
+

@@ -1,7 +1,7 @@
 import React from 'react'
 import Highlight from 'react-highlight'
 
-import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert } from 'antd'
+import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Tooltip, Tag } from 'antd'
 
 import { Wrap } from '@components/Base'
 import PreviewImg from '@components/previewImg'
@@ -14,9 +14,147 @@ const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
 const VirtualDom = () => (
     <>
-        <PageHeader title="虚拟DOM" />
         <Wrap>
-            <Collapse defaultActiveKey={['1']} ghost>
+            <Title level={3}>Fiber</Title>
+            <Collapse ghost>
+                <Panel header="为什么会出现fiber" key="1">
+                    <Space direction="vertical">
+                        <Title level={4}>React16之前组件渲染更新的时候，分为2个阶段</Title>
+                        <ul>
+                            <li>调和阶段（Reconciler）： React会自顶向下通过递归，遍历新数据生成的Virtual DOM，然后通过Diff算法，找到需要变更的元素（patch），放到更新队列里</li>
+                            <li>渲染阶段（Renderer）：遍历更新队列，调用宿主环境的API，实际更新渲染对应元素。例例如WEB、Native、WebGL</li>
+                        </ul>
+                        <Text>在调和阶段，由于采用递归的遍历方式（Stack Reconciler），任务一旦开始，就无法中断，JS将一直占用主线程，直到整颗Virtual DOM树计算完成，才把执行权交给渲染引擎</Text>
+                    </Space>
+                </Panel>
+
+                <Panel header="fiber做了什么" key="2">
+                    <Space direction="vertical">
+                        <Text>之前主要的问题是任务一旦执行，就无法中断，js线程一直占用主线程，导致卡顿。</Text>
+                        <Text>如果把渲染更新过程拆分成多个子任务，每次只做一小部分，做完看是否有剩余时间，如果有，继续执行下一部分</Text>
+                        <Text>如果没有，挂起当前任务，将事件控制权交给主线程，等主线程不忙的时候再继续执行。</Text>
+                        <Text>这种策略叫做 Cooperative Scheduling（合作式调度），操作系统常用
+                        <Tooltip title="操作系统常用任务调度策略：先来先服务（FCFS）调度算法、短作业（进程）优先调度算法（SJ/PF）、最高优先权优先调度算法（FPF）、高响应比优先调度算法（HRN）、时间片轮转法（RR）、多级队列反馈法">
+                                <Tag color="#2db7f5">任务调度策略</Tag>
+                            </Tooltip>之一。</Text>
+                        <ul>
+                            <li>浏览器是一帧一帧执行的，在两个执行帧之间，主线程通常会有一小段空闲时间，<Text mark>requestIdleCallback可以在这个空闲期（Idle Period）调用空闲期回调（Idle Callback）</Text>，执行一些任务</li>
+                            <li>低优先级任务由requestIdleCallback处理</li>
+                            <li>高优先级任务，如动画骨干由<Text mark>requestAnimationFrame</Text>处理</li>
+                            <li>requestIdleCallback可以再多个空闲期调用空闲期回调，执行任务</li>
+                            <li>requestIdleCallback方法提供deadline，任务执行限制时间，切分任务，避免长时间执行，阻塞UI渲染导致掉帧</li>
+                        </ul>
+                    </Space>
+                </Panel>
+
+                <Panel header="什么是fiber" key="3">
+                    <Space direction="vertical">
+                        <Text>Fiber代表一种<Text mark>工作单元</Text></Text>
+                        <Text>按照函数调用栈的方式，实现一个<Text mark>虚拟的堆栈帧</Text></Text>
+                        <Text>Fiber是一种数据结构（堆栈帧），也是一种解决可中断的调用任务的解决方案，特性就是<Text mark>时间分片（time slicing）</Text>和<Text mark>暂停（supense）</Text></Text>
+                        <Text>将可中断任务拆分成多个子任务，按照优先级来自由调度子任务，分段式更新，将同步渲染改为异步渲染</Text>
+
+                        <Title level={4}>Fiber需要解决的问题</Title>
+                        <ul>
+                            <li>1. 如何拆分子任务？</li>
+                            <li>2. 子任务多大合适？</li>
+                            <li>3. 如何判断是否还有剩余时间</li>
+                            <li>4. 有剩余时间怎么调度应该执行哪个一个任务</li>
+                            <li>5. 没有剩余时间的任务怎么办</li>
+                        </ul>
+                    </Space>
+                </Panel>
+
+
+                <Panel header="fiber如何工作" key="4">
+                    <Space direction="vertical">
+                        <ul>
+                            <li>1. ReactDOM.render()和setState的时候开始创建更新。</li>
+                            <li>2. 将创建的更新加入任务队列，等待调度。</li>
+                            <li>3. 在requestIdleCallback空闲时执行任务。</li>
+                            <li>4. 从根节点开始遍历 Fiber Node，并且构建WokeInProgress Tree。</li>
+                            <li>5. 生成effectList。</li>
+                            <li>6. 根据EffectList更新DOM。</li>
+                        </ul>
+                        <ul>
+                            <li>
+                                第一部分从 ReactDOM.render() 方法开始，把接收的 React Element 转换为 Fiber 节点，并为其设置优先级，创建 Update，加入到更新队列，这部分主要是做一些初始数据的准备。
+                            </li>
+                            <li>
+                                第二部分主要是三个函数：scheduleWork、requestWork、performWork，即安排工作、申请工作、正式工作三部曲，React 16 新增的异步调用的功能则在这部分实现，这部分就是 Schedule 阶段，前面介绍的 Cooperative Scheduling 就是在这个阶段，只有在这个解决获取到可执行的时间片，第三部分才会继续执行。具体是如何调度的，后面文章再介绍，这是 React 调度的关键过程。
+                            </li>
+                            <li>
+                                第三部分是一个大循环，遍历所有的 Fiber 节点，通过 Diff 算法计算所有更新工作，产出 EffectList 给到 commit 阶段使用，这部分的核心是 beginWork 函数，这部分基本就是FiberReconciler ，包括reconciliation 和 commit阶段。
+                            </li>
+                        </ul>
+
+                        <Title level={4}>一、Fiber Node</Title>
+                        <Text>Fiber Node中承载了非常关键的上下文信息，可以说是贯彻整个创建和更新的流程</Text>
+                        <Text>Fiber Node中记录了父节点、子节点、兄弟节点、上一次的prop值和上一次的state值、sideEffect</Text>
+
+                        <Title level={4}>二、Fiber Reconciler</Title>
+                        <Text mark>Fiber Reconciler是React里的调和器，这也是任务调度完成之后，如何去执行每个任务，如何去更新每一个节点的过程，对应上面的第三部分。</Text>
+
+                        <Text mark>Reconciler过程：</Text>
+                        <ul>
+                            <li>（可中断）render/reconciliation 通过构造 WorkInProgress Tree 得出 Change。</li>
+                            <li>（不可中断）commit 应用这些DOM change。</li>
+                        </ul>
+
+
+                        <Text>reconciliation阶段:</Text>
+                        <ul>
+                            <li>在 reconciliation 阶段的每个工作循环中，每次处理一个 Fiber，处理完可以中断/挂起整个工作循环。通过每个节点更新结束时向上归并 Effect List 来收集任务结果，reconciliation 结束后，根节点的 Effect List里记录了包括 DOM change 在内的所有 Side Effect。</li>
+                            <li>由于 reconciliation 阶段是可中断的，一旦中断之后恢复的时候又会重新执行，所以很可能 reconciliation 阶段的生命周期方法会被多次调用，所以在 reconciliation 阶段的生命周期的方法是不稳定的，我想这也是 React 为什么要废弃 componentWillMount 和 componentWillReceiveProps方法而改为静态方法 getDerivedStateFromProps 的原因</li>
+                        </ul>
+                        <Text>render/reconciliation生命周期</Text>
+                        <ul>
+                            <li>[UNSAFE_]componentWillMount（弃用）</li>
+                            <li>[UNSAFE_]componentWillReceiveProps（弃用）</li>
+                            <li>getDerivedStateFromProps</li>
+                            <li>shouldComponentUpdate</li>
+                            <li>[UNSAFE_]componentWillUpdate（弃用）</li>
+                            <li>render</li>
+                        </ul>
+
+                        <Text>commit阶段:</Text>
+                        <ul>
+                            <li>commit 阶段可以理解为就是将 Diff 的结果反映到真实 DOM 的过程</li>
+                            <li>在 commit 阶段，在 commitRoot 里会根据 effect的 effectTag，具体 effectTag 见源码 ，进行对应的插入、更新、删除操作，根据 tag 不同，调用不同的更新方法</li>
+                        </ul>
+
+                        <Text>commit阶段生命周期</Text>
+                        <ul>
+                            <li>getSnapshotBeforeUpdate</li>
+                            <li>componentDidMount</li>
+                            <li>componentDidUpdate</li>
+                            <li>componentWillUnmount</li>
+                        </ul>
+                    </Space>
+                </Panel>
+
+                <Panel header="Fiber Tree和WorkInProgress Tree" key="5">
+                    <Space direction="vertical">
+                        <Text>
+                            React 在 render 第一次渲染时，会通过 React.createElement 创建一颗 Element 树，可以称之为。<Text mark>Virtual DOM Tree</Text>，由于要记录上下文信息，加入了 Fiber，每一个 Element 会对应一个 Fiber Node，将 Fiber Node 链接起来的结构成为<Text mark>Fiber Tree</Text>。它反映了用于渲染 UI 的应用程序的状态。这棵树通常被称为<Text mark>current 树（当前树，记录当前页面的状态）</Text>
+                        </Text>
+
+                        <Text>在后续的更新过程中（setState），每次重新渲染都会重新创建 Element, 但是 Fiber 不会，Fiber 只会使用对应的 Element 中的数据来更新自己必要的属性</Text>
+                        <Text>Fiber Tree 一个重要的特点是链表结构，将递归遍历编程循环遍历，然后配合 requestIdleCallback API, 实现任务拆分、中断与恢复。</Text>
+                        <Text>通过Fiber Node的父节点、子节点、兄弟节点构成了链表结构</Text>
+
+                        <Text>WorkInProgress Tree：反映了要刷新到屏幕的未来状态</Text>
+                        <Text>WorkInProgress Tree 构造完毕，得到的就是新的 Fiber Tree，然后喜新厌旧（把 current 指针指向WorkInProgress Tree，丢掉旧的 Fiber Tree）就好了</Text>
+                        <Text>每个 Fiber上都有个alternate属性，也指向一个 Fiber，创建 WorkInProgress 节点时优先取alternate，没有的话就创建一个</Text>
+                        <Text>创建 WorkInProgress Tree 的过程也是一个 Diff 的过程，Diff 完成之后会生成一个 Effect List，这个 Effect List 就是最终 Commit 阶段用来处理副作用的阶段</Text>
+                    </Space>
+                </Panel>
+            </Collapse>
+        </Wrap>
+
+        <Wrap>
+            <Title level={3}>虚拟DOM</Title>
+            <Collapse defaultActiveKey="" ghost>
                 <Panel header="虚拟DOM" key="1">
                     <Space direction="vertical">
                         <Text>虚拟DOM：使用 JavaScript对象去描述DOM</Text>
@@ -39,7 +177,7 @@ const VirtualDom = () => (
                         <Card title="虚拟DOM的作用">
                             <ul>
                                 <li>Virtual DOM 在牺牲部分性能前提下，增加了可维护性</li>
-                                <li>实现了对DOM的集中操作，在数据改变时，线修改虚拟DOM，再反映到真实DOM中， 以最小的代价更新DOM</li>
+                                <li>实现了对DOM的集中操作，在数据改变时，线修改虚拟DOM，再反映到真实DOM中，以最小的代价更新DOM</li>
                                 <li>可以使用函数式UI</li>
                                 <li>可以渲染DOM意外的端，跨平台使用，例如RN</li>
                                 <li>更好的使用SSR，同构渲染</li>
@@ -56,12 +194,11 @@ const VirtualDom = () => (
                         </Card>
                     </Space>
                 </Panel>
-
                 <Panel header="DIFF" key="2">
                     <Space direction="vertical">
                         <Text mark>更新React 16 Fiber 之后，react的数据结构从树改成了链表结构，diff算法随之修改</Text>
 
-                        <Title>react 16之前的diff算法策略</Title>
+                        <Title level={4}>react 16之前的diff算法策略</Title>
                         <ul>
                             <li>1. web UI中DOM节点跨层级移动的操作少，可以忽略不计</li>
                             <li>2. 拥有相同类的两个组件将会生成相似树状结构，拥有不同类的两个组件将会生成不同的树状结构</li>
@@ -82,7 +219,6 @@ const VirtualDom = () => (
                             </ul>
                         </Card>
 
-
                         <Text>reconcileChildren</Text>
                         <ul>
                             <li><Text code>reconcileChildren</Text>只是一个入口函数</li>
@@ -92,123 +228,9 @@ const VirtualDom = () => (
                         </ul>
                     </Space>
                 </Panel>
-
-                <Panel header="Fiber" key="3">
-                    <Space direction="vertical">
-                        <Card>
-                            <Text mark>React16之前组件渲染更新的时候，分为2个阶段</Text>
-                            <ul>
-                                <li>调和阶段（Reconciler）： React会自顶向下通过递归，遍历新数据生成的Virtual DOM，然后通过Diff算法，找到需要变更的元素（patch），放到更新队列里</li>
-                                <li>渲染阶段（Renderer）：遍历更新队列，调用宿主环境的API，实际更新渲染对应元素。例例如WEB、Native、WebGL</li>
-                            </ul>
-                            <Text>在调和阶段，优于采用递归的遍历方式 （Stack Reconciler），优于任务一旦开始，就无法中断，JS将一直占用主线程，直到整颗Virtual DOM树计算完成，才把执行权交给渲染引擎</Text>
-                        </Card>
-
-                        <Title>如何解决上述的问题</Title>
-                        <Card>
-                            <Text>把渲染更新过程拆分成多个子任务，每次只做一小部分，做完看是否有剩余时间，如果有，继续执行下一部分</Text>
-                            <Text>如果没有，挂起当前任务，将事件控制权交给主线程，等主线程不忙的时候再继续执行。</Text>
-                            <ul>
-                                <li>低优先级任务由<Text mark>requestIdleCallback</Text>处理</li>
-                                <li>高优先级任务，如动画县骨干由<Text mark>requestAnimationFrame</Text>处理</li>
-                                <li><Text mark>requestIdleCallback</Text>可以再多个空闲期调用空闲期回调，执行任务</li>
-                                <li><Text mark>requestIdleCallback</Text>方法提供deadline，任务执行限制时间，切分任务，避免长时间执行，阻塞UI渲染导致掉帧</li>
-                            </ul>
-                        </Card>
-                        <Card>
-                            <Title>Fiber</Title>
-                            <ul>
-                                <li>1. 如何拆分子任务？</li>
-                                <li>2. 子任务多大合适？</li>
-                                <li>3. 如何判断是否还有剩余时间</li>
-                                <li>4. 有剩余时间怎么调度应该执行哪个一个任务</li>
-                                <li>5. 没有剩余时间的任务怎么办</li>
-                            </ul>
-
-                            <Text>Fiber代表一种<Text mark>工作单元</Text></Text>
-                            <Text>按照函数调用栈的方式，实现一个<Text mark>虚拟的堆栈帧</Text></Text>
-                            <Text>Fiber是一种数据结构（堆栈帧），也是一种解决可中断的调用任务的解决方案，特性就是<Text mark>时间分片（time slicing）</Text>和<Text mark>暂停（supense）</Text></Text>
-                            <Text>将可中断任务拆分成多个子任务，按照优先级来自由调度子任务，分段式更新，将同步渲染改为异步渲染</Text>
-
-                        </Card>
-
-                        <Card title="Fiber如何工作">
-                            <ul>
-                                <li>1. ReactDOM.render()和setState的时候创建更新</li>
-                                <li>2. 将创建的更新加入任务队列，等待调度</li>
-                                <li>3. 在<Text mark>requestIdleCallback</Text>空闲时执行任务</li>
-                                <li>4. 从根结点开始遍历Fiber Node，并且构建WokeInProgress Tree</li>
-                                <li>5. 生成effectList</li>
-                                <li>6. 根据effectList更新DOM</li>
-                            </ul>
-                        </Card>
-
-
-                        待续。。。。
-                    </Space>
-                </Panel>
             </Collapse>
         </Wrap>
 
-        <PageHeader title="事件机制注册" />
-        <Wrap>
-            <Collapse defaultActiveKey={['1']} ghost>
-                <Panel header="流程" key="1">
-                    <Space direction="vertical">
-                        <ul>
-                            <li>事件注册 - 组件挂载阶段，根据组件内声明的事件类型 onChange、onClick、等，给document上添加事件 addEventListener，并指定统一的事件处理程序dispatchEvent</li>
-                            <li>事件储存 - 把react组件内的所有事件统一存放到一个对象里，缓存起来，在触发事件的时候查找对应的方法去执行</li>
-                        </ul>
-                        <Card>
-                            <PreviewImg src={VirtualDomImg} />
-                        </Card>
-
-                    </Space>
-                </Panel>
-
-                <Panel header="关键步骤" key="2">
-                    <Space direction="vertical">
-                        <Text>react拿到将要挂载组件的虚拟dom（react element对象），然后处理react dom的props，判断属性内是否有声明为事件的属性</Text>
-                        <Text>例如onClick、onChange，拿到事件类型click、change和对应的事件处理程序fn。执行下面第三部</Text>
-
-                        <ul>
-                            <li>1. 完成事件注册</li>
-                            <li>2. 将react dom，事件类型，处理函数fn放到数组储存</li>
-                            <li>3. 组件挂载完成后，处理第2步生成的数组，遍历该数组把事件处理函数存储到listenerBrank对象中</li>
-                        </ul>
-
-                        <Card>
-                            <PreviewImg src={VirtualDomImg2} />
-                        </Card>
-                    </Space>
-                </Panel>
-            </Collapse>
-        </Wrap>
-
-
-        <PageHeader title="事件执行机制" />
-        <Wrap>
-            <Card title="流程">
-                <ul>
-                    <li>1. 进入统一的事件分发函数（dispatchEvent）</li>
-                    <li>2. 结合原生事件找到当前节点对应的ReactDOMComponent对象</li>
-                    <li>
-                        3. 合成事件的开始
-                    <ul>
-                            <li>3.1 根据当前事件类型生成指定的合成对象</li>
-                            <li>3.2 封装原生事件和冒泡机制</li>
-                            <li>3.3 查找当前元素以及他素有的父级</li>
-                            <li>3.4 在listenerBank查找事件回调并合成到 event（合成事件结束）</li>
-                        </ul>
-                    </li>
-                    <li>4. 批量处理合成事件内的回调事件（事件触发完成end）</li>
-                </ul>
-            </Card>
-            <Card>
-                <PreviewImg src={VirtualDomImg3} />
-            </Card>
-
-        </Wrap>
     </>
 )
 

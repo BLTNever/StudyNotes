@@ -1,6 +1,6 @@
 
 
-const note1Fn = `
+export const note1Fn = `
 function multiplyFn(x, y) {
     return x * y;  
 }
@@ -11,7 +11,7 @@ function printSquare(x) {
 printSquare(5);
 `;
 
-const note2Fn = `
+export const note2Fn = `
 setTimeout(function() {
     console.log('setTimeout');
 })
@@ -25,7 +25,7 @@ new Promise(function(resolve) {
 console.log('console');
 `;
 
-const note3Fn = `
+export const note3Fn = `
 setImmediate(function(){
     console.log(1);
 },0);
@@ -47,7 +47,7 @@ console.log(8);
 结果是：3 4 6 8 7 5 2 1
 `
 
-const note2Subject = `
+export const note2Subject = `
 console.log('1');
 
 setTimeout(function() {
@@ -88,7 +88,7 @@ setTimeout(function() {
 })
 // console执行的顺序`;
 
-const valueType = `
+export const valueType = `
 // 值类型： Number、 String、 Boolean、 undefined、 Symbol
 var a = 100;
 var b = a;
@@ -118,11 +118,11 @@ typeof function(){} // function
 // 请使用Object.prototype.toString.call()
 `;
 
-const toStringfly = `
+export const toStringfly = `
 var arrToStr1 = JSON.stringify(arr1);
 var arrToStr2 = JSON.stringify(arr2);`;
 
-const note3Subject = `
+export const note3Subject = `
 function changeAgeAndReference(person) {
     person.age = 25;
     person = {
@@ -140,7 +140,7 @@ var personObj2 = changeAgeAndReference(personObj1);
 console.log(personObj1); // -> ?
 console.log(personObj2); // -> ?`;
 
-const note4Subject = `
+export const note4Subject = `
 [] == ![]
 NaN !== NaN
 
@@ -180,7 +180,7 @@ a + []
 `
 
 
-const objectThis1 = `
+export const objectThis1 = `
 var point = {
     x: 0,
     y: 0,
@@ -192,7 +192,7 @@ var point = {
 point.moveTo(1, 2) // this绑定到当前对象，point上
 `
 
-const objectThis2 = `
+export const objectThis2 = `
 var a = {
     aa : 0,
     bb : 0,
@@ -219,7 +219,7 @@ console.log(b.fn()); // 0, this指向对象本身
 })(b.fn);
 `
 
-const fnThis = `
+export const fnThis = `
 var point = {
     x: 0,
     y: 0,
@@ -240,7 +240,7 @@ point.x; // 1
 point.y; // 2
 `
 
-const constructedFnThis = `
+export const constructedFnThis = `
 var x = 1;
 function Fn () {
     this.x = 2;
@@ -251,7 +251,7 @@ console.log(fn.x) // 2
 console.log(x) // 1
 `
 
-const arrowFn = `
+export const arrowFn = `
 var obj = {
     x : 1,
     fn : function() { 
@@ -268,7 +268,7 @@ obj.arrowFn();
 `
 
 
-const arrowFn2 = `
+export const arrowFn2 = `
 var x = 1;
 var obj =  {
     x: 10,
@@ -278,7 +278,7 @@ obj.fn(); // 1
 obj.fn.call(obj) // 1
 `
 
-const lexicalScope = `
+export const lexicalScope = `
 var a = 2;
 
 function foo1 () {
@@ -294,7 +294,7 @@ function foo2 () {
 foo2();
 `
 
-const dynamicScope = `
+export const dynamicScope = `
 value=1
 function foo () {
     echo $value;
@@ -306,7 +306,7 @@ function bar() {
 bar
 `
 
-const async1 = `
+export const async1 = `
 
 const getValueA = new Promise(resolve => {
     setTimeout(() => {
@@ -341,7 +341,7 @@ async function getABC() {
 
 
 
-const async2 = `
+export const async2 = `
 async function getABC() {
     const start = new Date();
     
@@ -356,7 +356,7 @@ async function getABC() {
 }
 `
 
-const note11Example1 = `
+export const note11Example1 = `
 var obj = { 'a' : 1, 'b': 2 };
 var arr = [0, 1 , 2];
 
@@ -373,7 +373,7 @@ arr[2] = 2;
 `
 
 
-const note11Example2 = `
+export const note11Example2 = `
 function fn(){}
 console.log(fn.prototype);
 
@@ -383,7 +383,7 @@ console.log(fn.prototype);
 }`
 
 
-const note11Example3 = `
+export const note11Example3 = `
 function fn() {};
 
 fn.prototype.name = 'Alec';
@@ -392,7 +392,7 @@ fn.prototype.getAge = function () {
 }`
 
 
-const note11Example4 = `
+export const note11Example4 = `
 function Fn () {};
 
 Fn.prototype.name = 'Alec';
@@ -406,7 +406,7 @@ console.log(fn.getAge); // 16
 `
 
 
-const example1 = `
+export const example1 = `
 (1) 创建 Hello.js
 exports.say = function() {
     console.log('Hello World');
@@ -417,7 +417,7 @@ var hello = require('./Hello');
 hello.say();
 `
 
-const example2 = `
+export const example2 = `
 (1) 把对象封装到模块中，文件名为： Say.js
 //私有变量
 var test = 110;
@@ -442,7 +442,7 @@ say.setName('Alec');
 say.hello();
 `
 
-const example3 = `
+export const example3 = `
 (1) 创建一个文件compute.js
 //圆面积计算
 export function area(radius) {
@@ -465,7 +465,7 @@ console.log('圆面积：' + circle.area(10));
 console.log('圆周长：' + circle.circumference(11));
 `
 
-const example4 = `
+export const example4 = `
 (1) 使用 export default 命令用于指定模块的默认输出。 模块文件：compute.js
 //圆面积计算
 export default function area(radius) {
@@ -483,7 +483,7 @@ console.log('圆面积：' + area(10));
 console.log('圆周长：' + circumference(11));
 `
 
-const example5 = `
+export const example5 = `
 // congfig.js 内使用module.exports导出
 
 const getA = () => {
@@ -502,7 +502,7 @@ module.exports = {
 import { getA, getB } from './config.js'
 `
 
-const example6 = `
+export const example6 = `
 var module1 = (function() {
     count: 1;
     var fn1 = function() {
@@ -518,7 +518,7 @@ var module1 = (function() {
 })()
 `
 
-const example7 = `
+export const example7 = `
 ;(function(window, WALL, undefined) {
    // 给wall命名空间绑定方法say
    WALL.say = function() {
@@ -537,8 +537,51 @@ const example7 = `
 wall.say();
 wall.whoIam();
 `
+export const AMD = `
+// 导出 math.js
+define(function() {
+    var add = function(x, y) {
+        return x + y
+    }
+    return {
+        add: add
+    }
+})
 
-const bitNot = `~0000000000000000 => 0000000000001001
+// 加载
+require(['math'], function(math) {
+    console.log(math.add(1, 2))
+})
+
+
+/*
+*  define导出的模块如果有其他依赖需要在define第一个参数中指定
+*/
+define(['jQuery'], function(jQuery) {
+    function fn () {
+        jQuery.doSomething()
+    }
+
+    return {
+        fn: fn
+    }
+})
+`
+
+export const CMD = `
+// 定义模块 myModule
+define(function(require, exports, module){
+    var $ = require(jQuery)
+
+}) 
+
+// 加载模块
+seajs.use(['myModule'], function(my) {
+    ...
+})
+`
+
+export const bitNot = `~0000000000000000 => 0000000000001001
 -------取反
 ~1111111111111111 => 1111111111110110
 -------符号位不变，其余取反
@@ -546,45 +589,10 @@ const bitNot = `~0000000000000000 => 0000000000001001
 -------加1
 ~1000000000000000 => 0000000000001010`;
 
-const executionContext = `
+export const executionContext = `
 executionContext = {
     variable object: var, function, arguments,
     scope chain: varible scope + all parents scope,
     thisValue: context object
 }
 `
-
-export {
-    note1Fn, // note1
-    note2Fn, // note2
-    note3Fn,
-    note2Subject, // note2
-    toStringfly, // note3
-    valueType,
-    note3Subject, // note3
-    note4Subject, // note4
-    objectThis1, // note6
-    objectThis2, // note6
-    fnThis, // note6
-    constructedFnThis, // note6
-    arrowFn, // note6
-    arrowFn2, // note6
-    lexicalScope, // note7
-    dynamicScope, // note7
-    async1, // note8
-    async2, // note8
-    example1, // note15
-    example2, // note15
-    example3, // note15
-    example4, // note15
-    example5, // note15
-    example6, // note15
-    example7,
-
-    note11Example1,
-    note11Example2,
-    note11Example3,
-    note11Example4,
-    bitNot,
-    executionContext,
-}

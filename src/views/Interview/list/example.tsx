@@ -1,4 +1,8 @@
 import { useForm } from "antd/lib/form/Form"
+import { T } from "antd/lib/upload/utils"
+import { fill, reject, values } from "lodash"
+import { fn } from "moment"
+import { resolve } from "path"
 
 export const debounce = `
 // 函数防抖 —— 设定时间内触发一次
@@ -37,7 +41,7 @@ function throttle(fn, delay) {
             prevTime = curTime
         } else {
             timeout = setTimeout(() => {
-                fn.apply(_this, args);
+                fn.apply(_this, args)
             }, delay)
         }
     }
@@ -251,7 +255,7 @@ function main(num, m, n) {
 export const radix2 = `
 function getNums36() {
     let num36 = []
-    for(let i = 0;i <= 36;i++) {
+    for(let i = 0i <= 36i++) {
         if(i >=0 && i <= 9) {
             nums36.push(i)
         }esle {
@@ -556,6 +560,29 @@ class _Promise1 {
     }
 }
 
+Promise.race = promises =>
+    new Promise((resolve, reject) => {
+        promises.forEach(promise => {
+            promise.then(resolve, reject)
+        })
+    })
+
+Promise.all = promises =>
+    new Promise((resolve, reject) => {
+        let len = promises.length
+        let res = []
+        promises.forEach((p, i) => {
+            p.then(r => {
+                if (len === 1) {
+                    resolve(res)
+                } else {
+                    res[i] = r
+                }
+                len--
+            }, reject)
+        })
+    })
+
 
 // promise 三个状态
 const PENDING = "pending"
@@ -598,7 +625,65 @@ function Promise(executor) {
             }
         })
     }
-
+    
+    /**
+     * resolve中的值几种情况：
+     * 1.普通值
+     * 2.promise对象
+     * 3.thenable对象/函数
+     */
+    
+    /**
+     * 针对resolve中不同值情况 进行处理
+     * @param  promise2  promise1.then方法返回的新的promise对象
+     * @param  x         promise1中onFulfilled的返回值
+     * @param  resolve   promise2的resolve方法
+     * @param  reject    promise2的reject方法
+     */
+    
+    function resolvePromise(promise2, x, resolve, reject) {
+        if (promise2 === x) {
+            return reject(new TypeError('循环引用'))
+        }
+    
+        let called = false // 避免多次调用
+    
+        if (x instanceof Promise) {  // x是一个promise对象
+            if (x.status === PENDING) { // 如果为等待态需等待直至x被执行或拒绝 并解析y值
+                x.then(y => {
+                    resolvePromise(promise2, y, resolve, reject)
+                }, reason => {
+                    reject(reason)
+                })
+            } else { // 如果x已经处于执行态/拒绝态(值已经被解析为普通值)，用相同的值执行传递下去 promise
+                x.then(resolve, reject)
+            }
+            // 如果x为对象或者函数
+        } else if (x != null && ((typeof x === 'object') || (typeof x === 'function'))) {
+            try { // 是否是thenable对象（具有then方法的对象/函数）
+                let then = x.then
+                if (typeof then === 'function') {
+                    then.call(x, y => {
+                        if(called) return
+                        called = true
+                        resolvePromise(promise2, y, resolve, reject)
+                    }, reason => {
+                        if(called) return
+                        called = true
+                        reject(reason)
+                    })
+                } else { // 说明是一个普通对象/函数
+                    resolve(x)
+                }
+            } catch(e) {
+                if(called) return
+                called = true
+                reject(e)
+            }
+        } else { // 普通值
+            resolve(x)
+        }
+    }
     function then(onFulfilled, onRejected) {
         let newPromise
         // 处理参数默认值 保证参数后续能够继续执行
@@ -675,7 +760,7 @@ function _parseInt(str, radix = 10) {
     if(!len) return NaN
 
     str = String(str).trim().split('.')[0]
-    for(var i = 0; i < len; i++) {
+    for(var i = 0 i < len i++) {
         var arr = str.split('').reverse().join('')
         res += Math.floor(arr[i]) * Math.pow(radix, i)
     }
@@ -791,3 +876,124 @@ export const publish = `
 const Pu
 
 `
+
+export const _useState = `
+/**
+ * 实现1
+ * /
+let index = 0
+let stateList = []
+function _useState(initState) {
+    let currentIndex = index
+    let _state = stateList[currentIndex] ? stateList[currentIndex] : initState
+    function setState(prevState) {
+        stateList[currentIndex] = prevState
+        render()
+        index = 0
+    }
+    index++
+    return [stateList[currentIndex], setState]
+}
+
+/**
+ * 实现2
+ * /
+let states = []
+let setters = []
+let index = 0
+function createSetter(stateIndex) {
+    return function(prevState) {
+        states[stateIndex] = prevState
+        render()
+    }
+}
+function _useState(initState) {
+    states[index] =  states[index] ? states[index] : initState
+
+    setters.push(createSetter(index))
+    const state = states[index]
+    const setState = setters[index]
+
+    index++
+    return [state, setState]
+}
+
+`
+
+export const createContext = `
+function createContext() {
+    let currentValue
+    function Provider(props) {
+        currentValue = props.value
+        return props.childred
+    }
+    let context = {
+        Provider,
+        get _currentValue() {
+            return currentValue
+        }
+    }
+    return context
+}
+
+`
+export const _memo = `
+function memo(OldComponent) {
+    return class extends React.Component {
+        shouldComponentUpdate(nextProps, nextState) {
+            if(nextProps === this.props) return false
+            if(Object.keys(nexProps).length === Object.keys(this.props).length) return true
+
+            if(nextProps === null || this.props === null) return true // 初始化？
+
+            for(le key in this.props) {
+                if(this.props[key] !== nextProps[key]) return true
+            }
+
+            return false
+        }
+        render() {
+            <OldComponent {...this.props}/>
+        }
+    }
+}
+`
+
+const createStore = `
+const createStore = (reducer, initialState) => {
+    // internal variables
+    const store = {}
+    store.state = initialState
+    store.listeners = []
+
+    // api-subscribe
+    store.subscribe = (listener) => {
+        store.listeners.push(listener)
+    }
+    // api-dispatch
+    store.dispatch = (action) => {
+        store.state = reducer(store.state, action)
+        store.listeners.forEach(listener => listener())
+    }
+
+    // api-getState
+    store.getState = () => store.state
+
+    return store
+}
+`
+
+function getNum(nums, target) {
+    const len = nums.length
+    const map = new Map()
+    map.set(nums[0], 0)
+    for(let i = 0; i < len; i++) {
+        const other = target - nums[i]
+        console.log(other)
+        if(map.has(target - nums[i])) {
+            return [map.get(other), i]
+        }else {
+            map.set(nums[i],i)
+        }
+    }
+}

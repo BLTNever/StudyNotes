@@ -39,6 +39,15 @@ const menu = [
         ]
     },
     {
+        id: '60000',
+        name: '浏览器',
+        icon: <IconFont type="icon-web" />,
+        route: 'brower',
+        children: [
+            { id: '61000', name: '事件委托', route: '/brower/Delegate' },
+        ]
+    },
+    {
         id: '30000',
         name: 'React',
         icon: <SolutionOutlined />,
@@ -59,7 +68,8 @@ const menu = [
             { id: '41000', name: 'javascript基础', route: '/interview/1' },
             { id: '48000', name: 'ts', route: '/interview/8' },
             { id: '42000', name: '框架', route: '/interview/2' },
-            { id: '43000', name: '手写', route: '/interview/3' },
+            { id: '43000', name: '手写1', route: '/interview/3' },
+            { id: '43000', name: '手写2', route: '/interview/3-1' },
             { id: '44000', name: 'webpack', route: '/interview/4' },
             { id: '45000', name: '算法', route: '/interview/5' },
             { id: '46000', name: 'html/css/移动端适配', route: '/interview/6' },

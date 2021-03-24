@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "start": "cross-env REACT_APP_ENV=dev react-app-rewired start",
+        "start": "cross-env REACT_APP_ENV=dev PORT=8888 react-app-rewired start",
         "build": "cross-env REACT_APP_ENV=prod react-app-rewired build"
     },
     "dependencies": {

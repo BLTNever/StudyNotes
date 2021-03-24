@@ -15,10 +15,11 @@ const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
 const EventLoop = () => (
     <>
-        <PageHeader title="JS事件循环" />
+
 
         <Wrap>
-            <Collapse defaultActiveKey={['1']} ghost>
+            <PageHeader title="JS事件循环" />
+            <Collapse defaultActiveKey="" ghost>
                 <Panel header="什么是事件循环？" key="1">
                     <Space direction="vertical">
                         <Text>JavaScript是单线程的，但是JavaScript的宿主环境不是单线程的，如浏览器（引入web workers之前）、nodejs</Text>
@@ -123,9 +124,10 @@ const EventLoop = () => (
         </Wrap>
 
 
-        <PageHeader title="事件循环进程模型" />
+
         <Wrap>
-            <Collapse defaultActiveKey={['1']} ghost>
+            <PageHeader title="事件循环进程模型" />
+            <Collapse defaultActiveKey="" ghost>
                 <Panel header="模型" key="1">
                     <Space direction="vertical">
                         <Card>

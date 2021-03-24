@@ -26,6 +26,8 @@ export const VirtualDom = lazy(() => import(/* webpackChunkName: "VirtualDom" */
 export const Interview1 = lazy(() => import(/* webpackChunkName: "Interview1" */'@views/Interview/list/Interview1'))
 export const Interview2 = lazy(() => import(/* webpackChunkName: "Interview2" */'@views/Interview/list/Interview2'))
 export const Interview3 = lazy(() => import(/* webpackChunkName: "Interview3" */'@views/Interview/list/Interview3'))
+export const Interview31 = lazy(() => import(/* webpackChunkName: "Interview3-1" */'@views/Interview/list/Interview3-1'))
+
 export const Interview4 = lazy(() => import(/* webpackChunkName: "Interview4" */'@views/Interview/list/Interview4'))
 export const Interview5 = lazy(() => import(/* webpackChunkName: "Interview5" */'@views/Interview/list/Interview5'))
 export const Interview6 = lazy(() => import(/* webpackChunkName: "Interview6" */'@views/Interview/list/Interview6'))
@@ -40,6 +42,9 @@ export const Exercise4 = lazy(() => import(/* webpackChunkName: "Exercises4" */'
 export const Exercise5 = lazy(() => import(/* webpackChunkName: "Exercises5" */'@views/Exercises/list/Exercise5'))
 export const Exercise6 = lazy(() => import(/* webpackChunkName: "Exercises6" */'@views/Exercises/list/Exercise6'))
 export const Exercise7 = lazy(() => import(/* webpackChunkName: "Exercises7" */'@views/Exercises/list/Exercise7'))
+
+// Brower
+export const Delegate = lazy(() => import(/* webpackChunkName: "Delegate" */'@views/Brower/list/Delegate'))
 
 
 // export default {

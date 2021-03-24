@@ -15,28 +15,31 @@ const ExecuteStack = () => (
     <>
         <Wrap>
             <Title level={3}>JS代码执行过程</Title>
-            <Collapse ghost>
-                <Panel header="" key="1">
-                    <Space direction="vertical">
-                        <Text mark>1. JS执行过程分为代码编译阶段、代码执行阶段</Text>
-                        <Text>2. 编译阶段：由编译器完成，将代码翻译成可执行代码，这个阶段确定<b>作用域规则</b></Text>
-                        <Text>3. 执行阶段：由引擎完成，执行可执行代码，<b>执行上下文</b>在这个阶段创建</Text>
-                    </Space>
-                </Panel>
-            </Collapse>
+            <ul>
+                <li><Text mark>1. JS执行过程分为代码编译阶段、代码执行阶段</Text></li>
+                <li><Text>2. 代码编译阶段：由编译器完成，将代码翻译成可执行代码，这个阶段确定<Text mark>作用域规则</Text></Text></li>
+                <li><Text>3. 代码执行阶段：由引擎完成，执行可执行代码，这个阶段创建<Text mark>执行上下文</Text></Text></li>
+            </ul>
         </Wrap>
-        <PageHeader title="JS执行上下文" />
+
         <Wrap>
-            <Collapse defaultActiveKey={['1']} ghost>
+            <PageHeader title="JS执行上下文" />
+            <Collapse defaultActiveKey="" ghost>
                 <Panel header="什么是执行上下文？" key="1">
                     <Space direction="vertical">
-                        <Text disabled>执行上下文是评估和执行 JavaScript 代码的环境的抽象概念。每当 Javascript 代码在运行的时候，它都是在执行上下文中运行</Text>
+                        <Text mark>执行上下文是评估和执行 JavaScript 代码的环境的抽象概念。每当 Javascript 代码在运行的时候，它都是在执行上下文中运行</Text>
                         <Title level={4}>执行上下文的类型:</Title>
-                        <Text><b>1.全局执行上下文: </b>这是默认或者说基础的上下文，任何不在函数内部的代码都在全局上下文中。它会执行两件事：</Text>
-                        <Text>&nbsp;&nbsp;&nbsp;&nbsp;1.1创建一个全局的 window 对象（浏览器的情况下）</Text>
-                        <Text>&nbsp;&nbsp;&nbsp;&nbsp;1.2设置 this 的值等于这个全局对象。一个程序中只会有一个全局执行上下文。</Text>
-                        <Text><b>2.函数执行上下文: </b>每当一个函数被调用时, 都会为该函数创建一个新的上下文。每个函数都有它自己的执行上下文，不过是在函数被调用时创建的。函数上下文可以有任意多个。每当一个新的执行上下文被创建，它会按定义的顺序执行一系列步骤。</Text>
-                        <Text><b>3.Eval 函数执行上下文: </b>执行在 eval 函数内部的代码也会有它属于自己的执行上下文。</Text>
+                        <ul>
+                            <li>
+                                <Text>1. 全局执行上下文:这是默认或者说基础的上下文，任何不在函数内部的代码都在全局上下文中。它会执行两件事：</Text>
+                                <ul>
+                                    <li><Text>1.1 创建一个全局的 window 对象（浏览器的情况下）</Text></li>
+                                    <li><Text>1.2 设置 this 的值等于这个全局对象。一个程序中只会有一个全局执行上下文。</Text></li>
+                                </ul>
+                            </li>
+                            <li><Text>2. 函数执行上下文: 每当一个函数被调用时, 都会为该函数创建一个新的上下文。每个函数都有它自己的执行上下文，不过是在函数被调用时创建的。函数上下文可以有任意多个。每当一个新的执行上下文被创建，它会按定义的顺序执行一系列步骤。</Text></li>
+                            <li><Text>3. Eval函数执行上下文: 执行在 eval 函数内部的代码也会有它属于自己的执行上下文。</Text></li>
+                        </ul>
                     </Space>
                 </Panel>
                 <Panel header="执行栈" key="2">
@@ -45,44 +48,41 @@ const ExecuteStack = () => (
                         <Text>当 JavaScript 引擎第一次遇到你的脚本时，它会创建一个全局的执行上下文并且压入当前执行栈。每当引擎遇到一个函数调用，它会为该函数创建一个新的执行上下文并压入栈的顶</Text>
                     </Space>
                 </Panel>
-                <Panel header="调用栈(示例)" key="3">
+                <Panel header="code" key="3">
                     <Highlight>{note1Fn}</Highlight>
                     <PreviewImg src={callStack} />
                 </Panel>
             </Collapse>
         </Wrap>
 
-        <PageHeader title="怎么创建执行上下文？" subTitle="创建执行上下文有两个阶段：1) 创建阶段 和 2) 执行阶段" />
         <Wrap>
-            <Collapse defaultActiveKey={['1']} ghost>
+            <PageHeader title="怎么创建执行上下文？" subTitle="创建执行上下文有两个阶段：1) 创建阶段 和 2) 执行阶段" />
+            <Collapse defaultActiveKey="" ghost>
                 <Panel header="创建阶段" key="1">
-                    <ul>
-                        <li>1. This 绑定</li>
-                        <li>2. 创建词法环境组件</li>
-                        <li>3. 创建变量环境组件</li>
-                    </ul>
-                    <Row gutter={16}>
+                    <Row gutter={24}>
                         <Col span={8}>
-                            <Card title="1、This 绑定：">
+                            <Card title="1、This绑定">
                                 <Space direction="vertical">
-                                    <Text>在全局执行上下文中，<Text mark>this 的值指向全局对象</Text>(在浏览器中，this引用 Window 对象)。</Text>
-                                    <Text>在函数执行上下文中，<Text mark>this 的值取决于该函数是如何被调用的</Text>。如果它被一个引用对象调用，那么 this 会被设置成那个对象，否则 this 的值被设置为全局对象或者 undefined（在严格模式下）</Text>
+                                    <ul>
+                                        <li><Text>在全局执行上下文中，<Text mark>this 的值指向全局对象</Text>(在浏览器中，this引用 Window 对象)。</Text></li>
+                                        <li><Text>在函数执行上下文中，<Text mark>this 的值取决于该函数是如何被调用的</Text>。如果它被一个引用对象调用，那么 this 会被设置成那个对象，否则 this 的值被设置为全局对象或者 undefined（在严格模式下）</Text></li>
+                                    </ul>
                                 </Space>
                             </Card>
                         </Col>
                         <Col span={8}>
-                            <Card title="2、词法环境">
+                            <Card title="2、创建词法环境">
                                 <Space direction="vertical">
-                                    <Paragraph>
+                                    <Text>
                                         词法环境是一种规范类型，基于 ECMAScript 代码的词法嵌套结构来定义标识符和具体变量和函数的关联。一个词法环境由环境记录器和一个可能的引用外部词法环境的空值组成。
-                                    </Paragraph>
+                                    </Text>
                                     <Text>在此阶段，完成对所有这些变量的分配，最后执行代码。</Text>
                                     <Text>注意 — 在执行阶段，如果 JavaScript 引擎不能在源码中声明的实际位置找到 let 变量的值，它会被赋值为 undefined。</Text>
                                 </Space>
                             </Card>
                         </Col>
                         <Col span={8}>
-                            <Card title="3、变量环境">
+                            <Card title="3、创建变量环境">
                                 <Space direction="vertical">
                                     <Text>它同样是一个词法环境，其环境记录器持有变量声明语句在执行上下文中创建的绑定关系</Text>
                                     <Text>变量环境也是一个词法环境，所以它有着上面定义的词法环境的所有属性。</Text>
@@ -99,9 +99,12 @@ const ExecuteStack = () => (
                     </Space>
                 </Panel>
             </Collapse>
+        </Wrap>
 
+        <Wrap>
             <PageHeader title="词法环境详解" />
-            <Collapse defaultActiveKey={['1']} ghost>
+
+            <Collapse defaultActiveKey="" ghost>
                 <Panel header="词法环境类型" key="1">
                     <Space direction="vertical">
                         <Text>1. <b>全局环境(在全局执行上下文中):</b>是没有外部环境引用的词法环境。全局环境的外部环境引用是 null。它拥有内建的 Object/Array/等、在环境记录器内的原型函数（关联全局对象，比如 window 对象）还有任何用户定义的全局变量，并且 this的值指向全局对象。。</Text>
@@ -116,4 +119,4 @@ const ExecuteStack = () => (
     </>
 )
 
-export default ExecuteStack   
+export default ExecuteStack

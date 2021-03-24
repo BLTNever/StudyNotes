@@ -9,9 +9,7 @@ import { example1, example2, example3, example4, example5, example6, example7, A
 const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
 const Note15 = () => (
-    <div>
-        <h2>CommonJs、ESModule、AMD、CMD模块规范对比介绍</h2>
-
+    <>
         <Wrap>
             <Title level={3}>CommonJS</Title>
             <Collapse ghost>
@@ -164,7 +162,7 @@ const Note15 = () => (
                             <li><Text>CommonJS输出的是值的拷贝（浅拷贝），一旦输出一个值，模块内部的变化就影响不到这个值</Text></li>
                             <li><Text>JS引擎在遇到EsModule模块时，会生成一个只读的引用，等到代码执行的时候，再根据引用，到被加载的模块里取值。EsModule是动态引用</Text></li>
                         </ul>
-                        
+
                         <Title level={4}>2. CommonJs模块是运行时加载，EsModule是编译时输出</Title>
                         <ul>
                             <li><Text>运行时加载：CommonJs模块就是对象，输入时先加载整个模块，生成一个对象，再从对象上读取方法</Text></li>
@@ -177,46 +175,37 @@ const Note15 = () => (
             </Collapse>
         </Wrap>
 
+        <Wrap>
+            <Title level={3}>EsModule、CommonJS混合使用</Title>
+            <Collapse ghost>
+                <Panel header="" key="1">
+                    <Space direction="vertical">
+                        <Highlight language="javascript">{example5}</Highlight>
+                    </Space>
+                </Panel>
+            </Collapse>
+        </Wrap>
 
-
-        <div className="note-wrap">
-            <h3>ES Module & CommonJS混合使用</h3>
-            <Row gutter={16}>
-                <Col span={12}>
-                    <Card title="">
-                        <Highlight language="javascript">
-                            {example5}
-                        </Highlight>
-                    </Card>
-                </Col>
-                <Col span={12}>
-                    <Card title="">
-
-                    </Card>
-                </Col>
-            </Row>
-        </div>
-
-        <div className="note-wrap">
-            <h3>原生实现</h3>
-            <Row gutter={16}>
-                <Col span={12}>
-                    <Card title="立即执行函数">
-                        <h4>使用立即执行函数（Immediately-Invoked Function Expression, IIFE）</h4>
+        <Wrap>
+            <Title level={3}>原生实现</Title>
+            <Collapse ghost>
+                <Panel header="立即执行函数" key="1">
+                    <Space direction="vertical">
+                        <Title level={4}>使用立即执行函数（Immediately-Invoked Function Expression, IIFE）</Title>
                         <Highlight language="javascript">{example6}</Highlight>
-                    </Card>
-                </Col>
-                <Col span={12}>
-                    <Card title="放大模式">
+                    </Space>
+                </Panel>
+                <Panel header="放大模式" key="2">
+                    <Space direction="vertical">
                         <p>放大模式的好处就是，可以不用考虑代码加载的先后顺序。</p>
                         <p><b>宽放大模式</b>： 实参部分的window.wall || (window.wall = {`{}`})</p>
                         <h4>多出来的分号; 是为了防止多个文件合并的时候首尾相接的问题</h4>
                         <Highlight language="javascript">{example7}</Highlight>
-                    </Card>
-                </Col>
-            </Row>
-        </div>
-    </div >
+                    </Space>
+                </Panel>
+            </Collapse>
+        </Wrap>
+    </>
 )
 
 

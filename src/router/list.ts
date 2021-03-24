@@ -77,6 +77,17 @@ export const list = [
         ]
     },
     {
+        path: '/brower',
+        // component: RouteBase.Js,
+        children: [
+            {
+                path: '/brower/Delegate',
+                component: RouteBase.Delegate,
+            },
+         
+        ]
+    },
+    {
         path: '/interview',
         // component: RouteBase.Js,
         children: [
@@ -91,6 +102,10 @@ export const list = [
             {
                 path: '/interview/3',
                 component: RouteBase.Interview3,
+            },
+            {
+                path: '/interview/3-1',
+                component: RouteBase.Interview31,
             },
             {
                 path: '/interview/4',

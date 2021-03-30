@@ -141,42 +141,47 @@ console.log(personObj1); // -> ?
 console.log(personObj2); // -> ?`;
 
 export const note4Subject = `
-[] == ![]
-NaN !== NaN
+[] == ![] // true
+NaN !== NaN // true
 
-1 == true
-2 == true
-"2" == true // flase
+1 == true // true
+2 == true // true
+"2" == true // false
 
-null > 0
-null < 0
-null == 0
-null >= 0
+null > 0 // false
+null < 0 // false
+null == 0 // false
+null >= 0 // true
 
-true + 1
-undefined + 1
+// +加法运算符
+true + 1 // 2
+undefined + 1 // NaN
+
+{} + 1 // 1 
+{1 + 1} + 1 // 1 !!!???
 
 let obj = {}
+obj + 1 // "[object Object]1"  !!!???
 
-{} + 1
-{1 + 1} + 1
+{} + {}  // "[object Object][object Object]"
+[] + {} // "[object Object]"
+{} + []  // 0
+[] + [] // ""
 
-obj + 1
-{} + {} 
+var a = 1
+[] + a // '1'
+{} + a // 1
+a + [] // '1'
+a + {} // "1[object Object]"
 
-[] + {} 
-[] + a 
-+ [] 
-{} + [] 
-a + [] 
+[2,3] + [1,2] // "2,31,2"
+[2] + 1 // "21"
+[2] + (-1) // "2-1"
 
-[2,3] + [1,2] 
-[2] + 1 
-[2] + (-1) 
-
-[2] - 1
-[2,3] - 1 
-{} - 1 
+// 减法运算符
+[2] - 1 // 1
+[2,3] - 1  // NaN
+{} - 1  // -1
 `
 
 

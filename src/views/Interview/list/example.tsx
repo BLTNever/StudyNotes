@@ -673,40 +673,6 @@ const queryURLParams = (url) => {
 `
 
 export const observer = `
-function Subject() {
-    this.observers = []
-}
-Subject.prototype = {
-    subscribe: function (observer) {
-        if (this.observers.indexOf(observer) < 0) {
-            this.observers.push(observer)
-        }
-    },
-    unsubscribe: function (removeObserver) {
-        this.observers = this.observers.filter(observer => observer !== removeObserver)
-    },
-    fire: function () {
-        this.observers.forEach(observer => {
-            observer.call()
-        })
-    }
-}
-
-const subject = new Subject()
-
-function observer1() {
-    console.log(11111)
-}
-function observer2() {
-    console.log(22222)
-}
-
-subject.subscribe(observer1)
-subject.subscribe(observer2)
-subject.fire()
-
-subject.unsubscribe(observer2)
-subject.fire()
 
 type TEvent = () => void
 interface IEvent {
@@ -744,6 +710,40 @@ class EventBus {
         events.forEach((e: any) => e.call())
     }
 }
+
+
+function Subject() {
+    this.observers = []
+}
+Subject.prototype = {
+    subscribe: function (observer) {
+        if (this.observers.indexOf(observer) < 0) {
+            this.observers.push(observer)
+        }
+    },
+    unsubscribe: function (removeObserver) {
+        this.observers = this.observers.filter(observer => observer !== removeObserver)
+    },
+    run: function () {
+        this.observers.forEach(observer => {
+            observer.call()
+        })
+    }
+}
+
+const subject = new Subject()
+
+function observer1() { console.log(11111) }
+function observer2() { console.log(22222) }
+
+subject.subscribe(observer1)
+subject.subscribe(observer2)
+subject.run()
+
+subject.unsubscribe(observer2)
+subject.run()
+
+
 
 `
 
@@ -815,27 +815,6 @@ function createContext() {
 }
 
 `
-export const _memo = `
-function memo(OldComponent) {
-    return class extends React.Component {
-        shouldComponentUpdate(nextProps, nextState) {
-            if(nextProps === this.props) return false
-            if(Object.keys(nexProps).length === Object.keys(this.props).length) return true
-
-            if(nextProps === null || this.props === null) return true // 初始化？
-
-            for(le key in this.props) {
-                if(this.props[key] !== nextProps[key]) return true
-            }
-
-            return false
-        }
-        render() {
-            <OldComponent {...this.props}/>
-        }
-    }
-}
-`
 
 const createStore = `
 const createStore = (reducer, initialState) => {
@@ -861,6 +840,30 @@ const createStore = (reducer, initialState) => {
 }
 `
 
+export const _memo = `
+function memo(OldComponent) {
+    return class extends React.Component {
+        shouldComponentUpdate(nextProps, nextState) {
+            if(nextProps === this.props) return false
+            if(Object.keys(nexProps).length === Object.keys(this.props).length) return true
+
+            if(nextProps === null || this.props === null) return true // 初始化？
+
+            for(le key in this.props) {
+                if(this.props[key] !== nextProps[key]) return true
+            }
+
+            return false
+        }
+        render() {
+            <OldComponent {...this.props}/>
+        }
+    }
+}
+`
+
+
+
 export const event1 = `
 /**
  * 
@@ -884,21 +887,132 @@ document.body.addEventListener('click', function(e) {
 }, true)
 `
 
-// function getNum(nums, target) {
-//     const len = nums.length
-//     const map = new Map()
-//     map.set(nums[0], 0)
-//     for(let i = 0; i < len; i++) {
-//         const other = target - nums[i]
-//         console.log(other)
-//         if(map.has(target - nums[i])) {
-//             return [map.get(other), i]
-//         }else {
-//             map.set(nums[i],i)
-//         }
-//     }
-// }
+export const twoNums = `
+function twoNum(nums: any, target: any) {
+    const map: any = new Map()
+    for (let [key, val] of nums.entries()) {
+        let other = target - val
+        if (map.get(other) !== undefined) return [map.get(other), key]
+        map.set(val, key)
+    }
+}
+`
+export const findShortSubArray = `
+/**
+ *  1.用哈希表去记录每个元素出现的次数，用元素的值做key, value存储[值第一次出现的下标start，值最后出现的下标end， 出现的次数count]
+ *  2.遍历这个哈希表的值，出现的次数大于max值的时候，重新给max值赋值，记录min最短长度为当前值的end下标 - start下标
+ *  3.如果count === max值，对比已存在的min值和当前的end - start值，找出最短长度
+ *  4.数组下标从0开始，return的min值+1
+ * /
+function findSubArray(nums) {
+    let obj = {}
+    let max = 0
+    nums.forEach((item, key) => {
+        if (obj.hasOwnProperty(item)) {
+            obj[item][1] = key
+            obj[item][2]++
+        } else {
+            obj[item] = [key, key, 1]
+        }
+    })
+    let min = 0
+    for (let [start, end, count] of Object.values(obj)) {
+        if (count > max) {
+            max = count
+            min = end - start
+        } else if (count === max) {
+            min = Math.min(min, (end - start))
+        }
+    }
+    return min + 1
+}
 
+// 一次遍历，
+function findSubArray(nums) {
+    let obj = {}
+    let max = 0
+    let min = 0
+    nums.forEach((v, k) => {
+        if (obj.hasOwnProperty(v)) {
+            obj[v][1] = k
+            obj[v][2]++
+            if(obj[v][2] > max) {
+                max = obj[v][2]
+                min = obj[v][1] - obj[v][0]
+            } else if(obj[v][2] === max) {
+                min = Math.min(min, obj[v][1] - obj[v][0])
+            }
+        } else {
+            obj[v] = [k, k, 1]
+        }
+    })
+    return min + 1
+}
+`
 
+export const createTree = `
+const arr = [
+    { id: 1 },
+    { id: 2, parentId: 1},
+    { id: 3, parentId: 1},
+    { id: 4, parentId: 2},
+    { id: 5, parentId: 3},
+    { id: 6, parentId: 3},
+]
+转化为树的形式：
+root = {
+    id: 1,
+    children: [{
+        id: 2,
+        children: [{id: 4, children: [] }]
+    }, {
+        id: 3,
+       children: [{id: 5, children: [] },{id: 6, children: [] }]
+    }]
+}
+let ans: any = null
+const mapper = {}
+function createTree(list: any) {
+    for (const item of list) {
+        mapper[item.id] = item // 在哈希表中通过id去存储每个item
+        item.children = [] // 给item初始化添加children
+        if (!item.parentId) { // 如果没有parentId设置为root节点
+            ans = item
+        } else {
+            // 通过parentId去哈希表里查找id === parentId的元素
+            if (!mapper[item.parentId]) { // 未找到 创建一条新的数据
+                mapper[item.parentId] = {
+                    id: item.parentId,
+                    children: [],
+                }
+            }
+            mapper[item.parentId].children.push(item) // 找到mapper存在key为parentId的元素，在children里push当前的元素
+        }
+    }
+}
+
+function createTree(list: any) {
+    if (!list?.length) return {}
+    let obj = null
+    let mapper = {}
+    for (let item of list) {
+        mapper[item.id] = item
+        item.children = []
+        if (!item.parentId) {
+            obj = item
+        } else {
+            if (mapper[item.parentId]) {
+                mapper[item.parentId].children.push(item)
+            } else {
+                mapper[item.parentId] = {
+                    id: item.parentId,
+                    children: []
+                }
+            }
+        }
+    }
+    return obj
+}
+`
 
 

@@ -48,23 +48,25 @@ const Types = () => (
 
                 <Panel header="引用类型" key="2">
                     <Space direction="vertical">
-                        <Text>引用类型将内容存储在<b>堆</b>中，堆所对应的栈中记录的是<b>指针(堆的地址)</b>,外部访问时先引出地址，再通过地址去找到值所存放的位置。引用类型赋值是<b>地址引用</b>。</Text>
-                        <Text>引用类型通过引用来传递</Text>
-                        <Text>
-                            引用类型是指object即广义的对象类型，可由多个简单类型的值的合成，可以看作是一个存放各种值的容器。比如<Tag>Array</Tag>、<Tag>Object</Tag>、<Tag>Regx</Tag>等
-                            </Text>
+                        <ul>
+                            <li><Text>引用类型将内容存储在<b>堆</b>中，堆所对应的栈中记录的是<b>指针(堆的地址)</b>,外部访问时先引出地址，再通过地址去找到值所存放的位置。引用类型赋值是<b>地址引用</b>。</Text></li>
+                            <li> <Text>引用类型通过引用来传递</Text></li>
+                            <li><Text>
+                                引用类型是指object即广义的对象类型，可由多个简单类型的值的合成，可以看作是一个存放各种值的容器。比如<Tag>Array</Tag>、<Tag>Object</Tag>、<Tag>Regx</Tag>等
+                            </Text></li>
+                        </ul>
                     </Space>
                 </Panel>
             </Collapse>
         </Wrap>
 
         <Wrap>
-            <PageHeader title="值类型和引用类型的区别" />
+            <PageHeader title="基本类型和引用类型的区别" />
             <Collapse defaultActiveKey="" ghost>
                 <Panel header="区别" key="1">
                     <Row gutter={24}>
                         <Col span={12}>
-                            <Card title="值类型：">
+                            <Card title="基本类型：">
                                 <Text> 1、占用空间固定，保存在栈中（当一个方法执行时，每个方法都会建立自己的内存栈，在这个方法内定义的变量将会逐个放入这块栈内存里，随着方法的执行结束，这个方法的内存栈也将自然销毁了。因此，所有在方法中定义的变量都是放在栈内存中的；栈中存储的是基础变量以及一些对象的引用变量，<b>基础变量的值是存储在栈中，而引用变量存储在栈中的是指向堆中的数组或者对象的地址，这就是为何修改引用类型总会影响到其他指向这个地址的引用变量。</b>）</Text>
                                 <Text>2、<b>保存与复制的是值本身</b></Text>
                                 <Text>3、它们是完全独立的拷贝，互不干涉。</Text>
@@ -145,178 +147,145 @@ const Types = () => (
                 <Panel header="显示类型转换" key="1">
                     <Space direction="vertical">
                         <Title level={4}>调用构造函数进行强制类型转换</Title>
-                        <ul>
-                            <li><Popover content={booleanFn} title="Boolean()"><Tag color="orange">Boolean()</Tag></Popover>转换为Boolean</li>
-                            <li>
-                                <Popover content={numberFn} title="Number()"><Tag color="orange">Number()</Tag></Popover>
+                        <Text><Popover content={booleanFn} title="Boolean()"><Tag color="orange">Boolean()</Tag></Popover>转换为Boolean</Text>
+                        <Text>
+                            <Popover content={numberFn} title="Number()"><Tag color="orange">Number()</Tag></Popover>转换为Number
+                            </Text>
+                        <Text>
+                            <Popover content={intFn} title="parseInt()">
+                                <Tag color="orange">parseInt()</Tag>
+                            </Popover>转换为Number
+                            </Text>
+                        <Text>
+                            <Popover content={floatFn} title="parseFloat()">
+                                <Tag color="orange">parseFloat()</Tag>
+                            </Popover>
                                 转换为Number
-                            </li>
-                        </ul>
+                            </Text>
+                        <Text>
+                            <Popover content={stringFn} title="String()">
+                                <Tag color="orange">String()</Tag>
+                            </Popover>
+                                转换为String
+                            </Text>
+                        <Text>
+                            <Popover content={toStringFn} title="toString()">
+                                <Tag color="orange">toString()</Tag>
+                            </Popover>
+                                转换为String
+                            </Text>
                     </Space>
-
                 </Panel>
 
-                <Row gutter={16}>
-                    <Col span={12}>
-                        <Card title="显示类型转换">
+                <Panel header="隐式类型转换" key="2">
+                    <Space direction="vertical">
+                        <Title level={4}>“+” 运算符</Title>
+                        <Text>1. 字符串相加：&quot;hello&quot; + &quot;world&quot;; // &quot;hello world&quot;</Text>
+                        <Text>2. 字符串数字相加：&quot;2&quot; + 3 or 2 + &quot;3&quot;; // &quot;23&quot;</Text>
+                        <Text>3. 数字加数字加字符串：1 + 2 + &quot;3&quot;; // &quot;33&quot;; 1 + &quot;2&quot; + &quot;3&quot;; // &quot;123&quot; (“+”的运算方向是从左到右)</Text>
+                        <Text>4. 数字+布尔值：3 + true; // 4 (在遇到算数运算符(- 、* 、/ 和 %)的时候会在运算之前将参与运算的双方转换成数字。 Number(true) === 1)</Text>
 
-                            <div className="mb">
-
-                            </div>
-                            <div className="mb">
-                                <Popover content={intFn} title="parseInt()">
-                                    <Tag color="orange">parseInt()</Tag>
-                                </Popover>
-                            转换为Number
-                            </div>
-                            <div className="mb">
-                                <Popover content={floatFn} title="parseFloat()">
-                                    <Tag color="orange">parseFloat()</Tag>
-                                </Popover>
-                            转换为Number
-                            </div>
-                            <div className="mb">
-                                <Popover content={stringFn} title="String()">
-                                    <Tag color="orange">String()</Tag>
-                                </Popover>
-                            转换为String
-                            </div>
-                            <div className="mb">
-                                <Popover content={toStringFn} title="toString()">
-                                    <Tag color="orange">toString()</Tag>
-                                </Popover>
-                            转换为String
-                            </div>
-                        </Card>
-                    </Col>
-                    <Col span={12}>
-                        <Card title="隐式类型转换">
-                            {/* <h4>Strings &lt; &minus; &gt; Numbers</h4> */}
-                            <h4>“+” 运算符</h4>
-                            <Text>1. &quot;hello&quot; + &quot;world&quot;; // &quot;hello world&quot;(字符串通过“+”号连接)</Text>
-                            <Text>2. &quot;2&quot; + 3 or 2 + &quot;3&quot;; // &quot;23&quot;(字符串和数字相加，把数字转成字符串，不论顺序)</Text>
-                            <Text>3. 1 + 2 + &quot;3&quot;; // &quot;33&quot;; 1 + &quot;2&quot; + &quot;3&quot;; // &quot;123&quot; (“+”的运算方向是从做到右)</Text>
-                            <Text>4. 3 + true; // 4 (在遇到算数运算符(- 、* 、/ 和 %)的时候会在运算之前将参与运算的双方转换成数字。 Number(true) === 1)</Text>
-
-                            <h4>条件判断运算 == </h4>
-                            <div className="mb">
-                                1. 如果比较的两者中有布尔值(Boolean)，会把 <Tag>Boolean</Tag> 先转换为对应的 <Tag>Number</Tag>，即 0 和 1，然后进行比较。
-                            </div>
-                            <div className="mb">
-                                2. 如果比较的双方中有一方为 <Tag>Number</Tag>，一方为 <Tag>String</Tag>时，会把 <Tag>String</Tag> 通过 Number() 方法转换为数字，然后进行比较。
-                            </div>
-                            <div className="mb">
-                                3. 如果比较的双方中有一方为 <Tag>Boolean</Tag>，一方为 <Tag>String</Tag>时，会将双方转换为数字，然后再进行比较。
-                            </div>
-                            <div className="mb">
-                                4. 如果比较的双方中有一方为 <Tag>Number</Tag>，一方为<Tag>Object时</Tag>，则会调用 <Tag>valueOf</Tag> 方法将O<Tag>bject</Tag>转换为数字，然后进行比较。
-                            </div>
-                            <div className="mb">
-                                Javascript 中，只有 <Tag>空字符串</Tag>、<Tag>数字0</Tag>、<Tag>false</Tag>、<Tag>null</Tag>、<Tag>undefinedl</Tag> 和<Tag> NaNl</Tag> 这 6 个值为假之外，其他所有的值均为真值。
-                            </div>
-                            <Text>详细请看下一章== vs ===, typeof vs instanceof</Text>
-                            <h3>
-                                建议在所有使用条件判断的时候都使用全等运算符 === 来进行条件判断。全等运算符会先进行数据类型判断，并且不会发生隐式类型转换。
-                            </h3>
-                        </Card>
-                    </Col>
-                </Row>
+                        <Title level={4}>条件判断运算 == </Title>
+                        <Text>
+                            1. 如果比较的两者中有布尔值<Tag>Boolean</Tag>，会把<Tag>Boolean</Tag>先转换为对应的<Tag>Number</Tag>，即 0 和 1，然后进行比较。
+                        </Text>
+                        <Text>
+                            2. 如果比较的双方中有一方为<Tag>Number</Tag>，一方为<Tag>String</Tag>时，会把<Tag>String</Tag> 通过 Number() 方法转换为数字，然后进行比较。
+                        </Text>
+                        <Text>
+                            3. 如果比较的双方中有一方为 <Tag>Boolean</Tag>，一方为<Tag>String</Tag>时，会将双方转换为数字，然后再进行比较。
+                        </Text>
+                        <Text>
+                            4. 如果比较的双方中有一方为<Tag>Object</Tag>，一方为<Tag>Number</Tag>，则会调用 <Tag>valueOf</Tag>方法将<Tag>Object</Tag>转换为数字，然后进行比较。
+                        </Text>
+                        <Text>
+                            5. 如果比较的双方中有一方为<Tag>Object</Tag>，一方为<Tag>String</Tag>，则会将<Tag>Object</Tag>转换为字符串，然后进行比较。
+                        </Text>
+                        <Text>
+                            6. 两个<Tag>Object</Tag>对比，那么比较的是<Text mark>引用值</Text>
+                        </Text>
+                        <Text>
+                            Javascript 中，只有<Tag>空字符串</Tag>、<Tag>数字0</Tag>、<Tag>false</Tag>、<Tag>null</Tag>、<Tag>undefinedl</Tag> 和<Tag> NaNl</Tag> 这 6 个值为假之外，其他所有的值均为真值。
+                        </Text>
+                        <Text mark>建议在所有使用条件判断的时候都使用全等运算符 === 来进行条件判断。全等运算符会先进行数据类型判断，并且不会发生隐式类型转换</Text>
+                    </Space>
+                </Panel>
             </Collapse>
         </Wrap>
 
-        <div>
-            <h2>相等判断、类型判断</h2>
-            <div className="note-wrap">
-                <h3> == VS === </h3>
-                <Row gutter={16}>
-                    <Col span={12}>
-                        <Card title="JS相等行判断">
-                            <h4>ES2015中有四种相等算法：</h4>
-                            <Text><b>抽象相等比较 (==)</b></Text>
-                            <Text>
-                                <b>严格相等比较 (===): </b>
-                            用于  Array.prototype.indexOf, Array.prototype.lastIndexOf, 和 case-matching
-                        </Text>
-                            <Text><b>同值零:</b> 用于 %TypedArray% 和 ArrayBuffer 构造函数、以及Map和Set操作, 并将用于 ES2016/ES7 中的String.prototype.includes</Text>
-                            <Text><b>同值:</b> 用于所有其他地方</Text>
+        <Wrap>
+            <PageHeader title="相等判断、类型判断" />
+            <Collapse defaultActiveKey="" ghost>
+                <Panel header="==VS===" key="1">
+                    <Space direction="vertical">
+                        <Title level={4}>Escript中有四种相等算法：</Title>
+                        <ul>
+                            <li><Text>抽象相等比较 (==)</Text></li>
+                            <li><Text>严格相等比较 (===): 用于Array.prototype.indexOf, Array.prototype.lastIndexOf, 和case-matching</Text></li>
+                            <li><Text>同值零: 用于 %TypedArray% 和 ArrayBuffer 构造函数、以及Map和Set操作, 并将用于 ES2016/ES7 中的String.prototype.includes</Text></li>
+                            <li><Text>同值: 用于所有其他地方</Text></li>
+                        </ul>
 
+                        <Title level={4}>JavaScript提供三种不同的值比较操作：</Title>
+                        <ul>
+                            <li><Text>===严格相等（&quot;triple equals&quot; 或 &quot;identity&quot;）:===将进行相同的比较，而不进行类型转换 (如果类型不同, 只是总会返回 false )</Text></li>
+                            <li><Text>==宽松相等 (&quot;double equals&quot;): ==将执行类型转换</Text></li>
+                            <li><Text>以及 Object.is （ECMAScript 2015/ ES6 新特性）：Object.is的行为方式与三等号相同，但是对于NaN和-0和+0进行特殊处理，所以最后两个不相同，而Object.is（NaN，NaN）将为 true</Text></li>
+                        </ul>
+                    </Space>
+                </Panel>
 
-                            <h4>JavaScript提供三种不同的值比较操作：</h4>
-                            <Text>严格相等 (&quot;triple equals&quot; 或 &quot;identity&quot;)，使用 === </Text>
-                            <Text>宽松相等 (&quot;double equals&quot;) ，使用 ==</Text>
-                            <Text>以及 Object.is （ECMAScript 2015/ ES6 新特性）</Text>
+                <Panel header="==和===的异同点" key="2">
+                    <Space direction="vertical">
+                        <ul>
+                            <li><Text>比较双方都是对象时，只有指向同一个对象才会相等（包含==/===），引用地址的比较</Text></li>
+                            <li><Text>===要求比较双方类型相同并且值相等</Text></li>
+                            <li><Text>==在比较双方类型不同的时候通常会进行隐式类型转换</Text></li>
+                            <li><Text>null == undefined, null/undefined不进行隐式类型转换</Text></li>
+                            <li><Text>进行隐式类型或转换时，优先转换成Number型</Text></li>
+                        </ul>
+                    </Space>
+                </Panel>
 
+                <Panel header="typeof" key="3">
+                    <Space direction="vertical">
+                        <Title level={4}>typeof方法返回一个字符串，来表示数据的类型</Title>
+                        <ul>
+                            <li><Text>typeof <b className="orange">Boolean</b> =&gt; &quot;boolean&quot;</Text></li>
+                            <li><Text>typeof <b className="orange">Number</b> =&gt; &quot;number&quot;</Text></li>
+                            <li><Text>typeof <b className="orange">String</b> =&gt; &quot;string&quot;</Text></li>
+                            <li><Text>typeof <b className="orange">Symbol(（ECMAScript6新增)</b> =&gt; &quot;symbol&quot;</Text></li>
+                            <li><Text>typeof <b className="orange">Function</b> =&gt;function&quot;</Text></li>
+                            <li><Text>typeof <b className="orange">Undefined</b> =&gt; &quot;undefined&quot;</Text></li>
+                            <li><Text>typeof <b className="orange">Null</b> =&gt; &quot;object&quot;</Text></li>
+                            <li><Text>typeof <b className="orange">Array</b> =&gt; &quot;object&quot;</Text></li>
+                            <li><Text>typeof <b className="orange">Object</b> =&gt; &quot;object&quot;</Text></li>
+                            <li><Text>typeof <b className="orange">new Date()</b> =&gt; &quot;object&quot;</Text></li>
+                            <li><Text>typeof <b className="orange">/abc/g</b> =&gt; &quot;object&quot;</Text></li>
+                            <li><Text>typeof <b className="orange">new RegExp(&quot;meow&quot;)</b> =&gt; &quot;object&quot;</Text></li>
+                        </ul>
+                    </Space>
+                </Panel>
 
-                            <h5>
-                                <Text>==将执行类型转换;</Text>
-                                <Text>===将进行相同的比较，而不进行类型转换 (如果类型不同, 只是总会返回 false ); </Text>
-                                <Text>而Object.is的行为方式与三等号相同，但是对于NaN和-0和+0进行特殊处理，所以最后两个不相同，而Object.is（NaN，NaN）将为 true;</Text>
-                            </h5>
-                        </Card>
-                    </Col>
-                    <Col span={12}>
-                        <Card title="==和===的异同点">
-                            <Text>比较双方都是对象时，只有指向同一个对象才会相等(包含==/===)。</Text>
-                            <Text>===要求比较双方类型相同并且值相等。</Text>
-                            <Text>==在比较双方类型不同的时候通常会进行隐式类型转换。</Text>
-                            <Text>null==undefined, null/undefined不进行隐式类型转换。</Text>
-                            <Text>进行隐式类型或转换时，优先转换成Number型。</Text>
-                        </Card>
-                    </Col>
-                </Row>
-            </div>
+                <Panel header="instanceof" key="4">
+                    <Space direction="vertical">
+                        <Text>instanceof运算符可以用来判断某个构造函数的prototype属性<b>是否存在于另外一个要检测对象的原型链上</b></Text>
+                    </Space>
+                </Panel>
 
-            <div className="note-wrap">
-                <h3> typeof VS instanceof </h3>
-                <Row gutter={16}>
-                    <Col span={12}>
-                        <Card title="typeof">
-                            <Space direction="vertical">
-                                <h4>typeof方法返回一个字符串，来表示数据的类型。</h4>
-                                <Text>typeof <b className="orange">Undefined</b> =&gt; &quot;undefined&quot;</Text>
-                                <Text>typeof <b className="orange">Null</b> =&gt; &quot;object&quot;</Text>
-                                <Text>typeof <b className="orange">Boolean</b> =&gt; &quot;boolean&quot;</Text>
-                                <Text>typeof <b className="orange">Number</b> =&gt; &quot;number&quot;</Text>
-                                <Text>typeof <b className="orange">String</b> =&gt; &quot;string&quot;</Text>
-                                <Text>typeof <b className="orange">Symbol(（ECMAScript6新增)</b> =&gt; &quot;symbol&quot;</Text>
-                                <Text>typeof <b className="orange">Function</b> =&gt; ‘function&quot;</Text>
-                                <Text>typeof <b className="orange">Array</b> =&gt; &quot;object&quot;</Text>
-                                <Text>typeof <b className="orange">Object</b> =&gt; &quot;object&quot;</Text>
-                                <Text>typeof <b className="orange">new Date()</b> =&gt; &quot;object&quot;</Text>
-                                <Text>typeof <b className="orange">/abc/g</b> =&gt; &quot;object&quot;</Text>
-                                <Text>typeof <b className="orange">new RegExp(&quot;meow&quot;)</b> =&gt; &quot;object&quot;</Text>
-                            </Space>
-                        </Card>
-                    </Col>
-                    <Col span={12}>
-                        <Card title="Object.prototype.toString">
-                            <h4>typeof来判断数据类型其实并不准确。比如数组、正则、日期、对象的typeof返回值都是object，这就会造成一些误差</h4>
-                            <Text>所以在typeof判断类型的基础上，我们还需要利用<b>Object.prototype.toString</b>方法来进一步判断数据类型</Text>
-                            <Table dataSource={compareTable} pagination={false}>
-                                <Column title="数据" dataIndex="data" key="data" />
-                                <Column title="toString" dataIndex="toString" key="toString" />
-                                <Column title="typeof" dataIndex="typeof" key="typeof" />
-                            </Table>
-                        </Card>
-                    </Col>
-                </Row>
-
-                <Row>
-                    <h4>instanceof</h4>
-                    <Col span={12}>
-                        <Card title="instanceof">
-                            <Text>instanceof运算符可以用来判断某个构造函数的prototype属性<b>是否存在于另外一个要检测对象的原型链上</b>。</Text>
-
-                            <Text>待续...</Text>
-                        </Card>
-                    </Col>
-                    <Col span={12}>
-                        {/* <Card title="instanceof">
-                    </Card> */}
-                    </Col>
-                </Row>
-            </div>
-        </div >
+                <Panel header="Object.prototype.toString" key="5">
+                    <Space direction="vertical">
+                        <Title level={4}>typeof来判断数据类型其实并不准确。比如数组、正则、日期、对象的typeof返回值都是object，这就会造成一些误差</Title>
+                        <Text>所以在typeof判断类型的基础上，我们还需要利用<b>Object.prototype.toString</b>方法来进一步判断数据类型</Text>
+                        <Table dataSource={compareTable} pagination={false}>
+                            <Column title="数据" dataIndex="data" key="data" />
+                            <Column title="toString" dataIndex="toString" key="toString" />
+                            <Column title="typeof" dataIndex="typeof" key="typeof" />
+                        </Table>
+                    </Space>
+                </Panel>
+            </Collapse>
+        </Wrap>
     </>
 )
 

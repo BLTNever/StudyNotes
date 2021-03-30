@@ -75,11 +75,7 @@ const Interview3 = () => {
             <Wrap>
                 <Title level={3}>原生方法的实现</Title>
                 <Collapse ghost>
-                    <Panel header="extend" key="1">
-                        <Space direction="vertical">
-                            <Card><Highlight language="javascript">{extend8}</Highlight></Card>
-                        </Space>
-                    </Panel>
+                   
                     <Panel header="promise" key="2">
                         <Space direction="vertical">
                             <Card><Highlight language="javascript">{myPromise}</Highlight></Card>
@@ -112,6 +108,12 @@ const Interview3 = () => {
                     <Panel header="parseInt" key="7">
                         <Space direction="vertical">
                             <Card><Highlight language="javascript">{parseInt}</Highlight></Card>
+                        </Space>
+                    </Panel>
+
+                    <Panel header="extend" key="1">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{extend8}</Highlight></Card>
                         </Space>
                     </Panel>
                 </Collapse>

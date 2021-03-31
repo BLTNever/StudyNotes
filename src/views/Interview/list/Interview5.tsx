@@ -8,8 +8,9 @@ import PreviewImg from '@components/previewImg'
 import {
     traversal1, traversal2, traversal3, traversal4, radix, radix2, twoNums,
     findShortSubArray, createTree
-} from './example'
+} from './algorithm'
 import { BSTree, nodes } from './fn'
+import { stringFn } from '@views/Js/list/fn'
 
 const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
@@ -30,11 +31,9 @@ const Interview5 = () => {
     }
 
 
-
-
     useEffect(() => {
         const arr = [1, 2, 7, 3, 4, 1, 2, 3, 5, 6, 2, 1, 3, 4, 2, 3, 2, 3, 1, 3]
-
+        // orderFn()
         // findShortestSubArray(arr)
     }, [])
     return (
@@ -96,7 +95,7 @@ const Interview5 = () => {
                                 <Col span={12}><Card><Highlight language="javascript">{traversal4}</Highlight></Card></Col>
                             </Row>
                         </Space>
-                        {/* {orderFn()} */}
+
                     </Panel>
                 </Collapse>
             </Wrap>
@@ -121,3 +120,47 @@ const Interview5 = () => {
 export default Interview5
 
 
+
+const arr = [
+    { id: 1 },
+    { id: 2, pId: 3 },
+    { id: 3, pId: 1 },
+    { id: 4, pId: 2 },
+    { id: 5, pId: 1 },
+    { id: 6, pId: 3 },
+]
+
+function createTree1(list: any) {
+    if (!list?.length) return []
+
+    let mapper: any = {}
+    let obj = null
+    for (let item of list) {
+        mapper[item.id] = item
+        item.children = []
+        if (!item.pId) {
+            obj = item
+        } else {
+            if (mapper[item.pId]) {
+                mapper[item.pId].children.push(item)
+            } else {
+                mapper[item.pId] = {
+                    id: item.pId,
+                    children: []
+                }
+            }
+        }
+    }
+    return obj
+}
+
+function listToTree(list: any[], pId?: number): any {
+    const arr = list.filter((i: any) => i.pId === pId)
+    return arr.map((i: any) => {
+        return {
+            ...i,
+            children: listToTree(list, i.id)
+        }
+    })
+}
+console.log(listToTree(arr))

@@ -9,7 +9,7 @@ import VirtualDomImg from '@images/react-event.jpg'
 import VirtualDomImg2 from '@images/react-event2.jpg'
 import VirtualDomImg3 from '@images/react-event3.jpg'
 
-// import { } from './example'
+import { _useState } from './example'
 const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
 const VirtualDom = () => (
@@ -150,6 +150,91 @@ const VirtualDom = () => (
                     </Space>
                 </Panel>
             </Collapse>
+        </Wrap>
+
+        <Wrap>
+            <Title level={3}>hooks</Title>
+            <Collapse ghost>
+                <Panel header="useState" key="3">
+                    <Space direction="vertical">
+                        <ul>
+                            <li><Text>1. setState只在合成事件和钩子函数中是“异步”的，在原生事件（addEventListener）和setTimeout中都是“同步”的</Text></li>
+                            <li>
+                                <Text>2. setState的异步不是在内部实现的，代码执行的过程和结都是同步的，只是在合成事件和钩子函数中的调用顺序在更新之前，导致无法拿到更新后的结果，形成所谓的异步，可以通过setState(partialState, callback)在callback中拿到结果</Text>
+                            </li>
+                            <li>
+                                <Text>
+                                    3. setState的批量更新也是建立在异步（合成事件、钩子函数）之上，在原生事件和setTimeout中是无法批量更新的
+                                    </Text>
+                            </li>
+                            <li>
+                                <Text>react更新是通过“事务”（Transacation）的，通过isBatchingUpdates: boolean控制，setTimout中事务无法管控</Text>
+                            </li>
+                        </ul>
+                        <Highlight>{_useState}</Highlight>
+                    </Space>
+                </Panel>
+
+                <Panel header="useEffect" key="4">
+                    <Space direction="vertical">
+                        <ul>
+                            <li>
+                                <Text>每次Render的内容都会形成一个快照保存下来，当状态改变Rerender的时候，形成了N个Render状态，每个状态都拥有自己固定不变的Props和State，函数在每次渲染时也是独立的。这就是 Capture Value 特性</Text>
+                            </li>
+                            <li><Text>useEffect 也一样具有Capture Value的特性</Text></li>
+                            <li><Text>利用useRef可以绕过Capture Value特性，ref在render中保持了唯一的引用，对ref的取值和赋值拿到的都是最终状态</Text> </li>
+                            <li>
+                                <Text>回收机制：组件被销毁时，通过useEffect注册的监听事件也要被销毁，通过useEffect的return返回值做到</Text>
+                            </li>
+                            <li><Text>优化：通过useEffect的第二个参数告诉React用到哪些外部变量，制定变量更新是才会再次执行useEffect</Text></li>
+                            <li><Text>通过useReducer节耦useEffect的更新与操作，但是是绕过了diff算法</Text></li>
+                            <li><Text mark>性能：useEffect在渲染结束时执行，所以不会阻塞浏览器渲染进程</Text></li>
+                            <li><Text mark>符合React fiber的特性，Fiber会根据情况暂停或插入执行不同组件的Render，如果代码遵循Capture Value的特性，在Fiber环境下能保证值的安全访问，弱化生命周期也能解决执行中断的问题</Text></li>
+                        </ul>
+                        <Title level={4}>effect渲染流程</Title>
+                        <ul>
+                            <li><Text mark>mount阶段：执行了mountEffect，执行pushEffect,创建一个新的effect，跟之前的effect通过next链接成一个环形链表，用于顺序执行</Text></li>
+                            <li>
+                                update阶段：
+                                    <ul>
+                                    <li><Text mark>1. 调用dispatchAction，创建一个update，绑定到hooks.queue上，通过链表next指向</Text></li>
+                                    <li><Text mark>2. 执行到updateEffectImpl</Text></li>
+                                    <li><Text mark>3. 这里的pushEffect跟mountEffect的区别是传入了第三个参数，上一个effect的消除函数</Text></li>
+                                    <li><Text mark>4. 在update阶段，调用了areHookInputsEqual来判断依赖是否变化，如果变化就会再执行一次</Text></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </Space>
+                </Panel>
+
+                <Panel header="fiber" key="5">
+                    <Space direction="vertical">
+                        <Link href="/react/VirtualDom?callback='/interview/2'">详解</Link>
+                        <Text mark> React16之前的版本有一个主要的问题 —— 虚拟 dom 的 diff 操作是同步完成的。</Text>
+                        <Text>js在单线程环境里运行，操作很多时，便会造成阻塞</Text>
+                        <Text>fiber将diff操作变成可中断的，只有当浏览器空闲时再做diff。避免diff更新长时间占据浏览器线程。fiber就是用的这个思路</Text>
+                        <Text>fiber解决的是调度问题</Text>
+                        <Text mark>用户交互属于高优先级，尽快响应，diff操作优先级低</Text>
+                        <Text mark>fiber将diff递归操作变成遍历操作，类似链表操作，返回子节点</Text>
+                        <Text>浏览器API：requestIdleCallback方法将在浏览器的空闲时段内调用函数做异步diff。这使开发者能够在主事件循环上执行后台和低优先级工作，而不会影响延迟关键事件，如动画和输入响应。</Text>
+                        <ul>
+                            <li><Text>每一个fiber都分配一个expirationTime属性</Text></li>
+                            <li><Text>使用lane取代expirationTime？？？</Text></li>
+                        </ul>
+                    </Space>
+                </Panel>
+
+                <Panel header="hooks" key="6">
+                    <Space direction="vertical">
+                        <Text>hooks代替class Components</Text>
+                        <ul>
+                            <li><Text>1. 很难复用逻辑（只能用HOC，或者render props），会导致组件树层级很深</Text></li>
+                            <li><Text>2. 会产生巨大的组件（指很多代码必须写在类里面）</Text></li>
+                            <li><Text>3. 类组件很难理解，比如方法需要bind，this指向不明确</Text></li>
+                        </ul>
+                    </Space>
+                </Panel>
+            </Collapse >
         </Wrap>
 
         <Wrap>

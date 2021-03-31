@@ -5,7 +5,7 @@ import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert
 import { Wrap } from '@components/Base'
 import PreviewImg from '@components/previewImg'
 
-import { traversal1, traversal2, traversal3, traversal4, radix, radix2 } from './example'
+import {  } from './example'
 import { BSTree, nodes } from './fn'
 
 const { Panel } = Collapse
@@ -14,54 +14,6 @@ const { Paragraph, Title, Text, Link } = Typography
 
 const Interview6 = () => {
 
-
-    function findShortestSubArray(nums: number[]) {
-        if (!nums.length) return 0
-        console.log('nums>>>', nums)
-
-        let obj = {}
-        // let len = 0
-        nums.forEach((item, key) => {
-            if (obj.hasOwnProperty(item)) {
-                obj[item].push(key)
-            } else {
-                obj[item] = [key]
-            }
-            // len = obj[item].length
-            // if(obj[item].length < len) {
-            //     delete obj[item]
-            // }
-        })
-        console.log('obj>>>', obj)
-
-        let arr: number[] = []
-        let len = 0
-        for (let i in obj) {
-            if (obj[i].length >= len) {
-                arr = obj[i].length > len ? [obj[i]] : arr.concat([obj[i]])
-                len = obj[i].length
-            }
-        }
-        console.log('arr>>>', arr)
-        if (!arr.length) return 0
-
-        let maxArr: number[] = []
-        arr.forEach((item: any) => {
-            if (item.length) {
-                maxArr.push(item[item.length - 1] - item[0] + 1)
-            }
-        })
-        console.log('maxArr>>>', maxArr)
-        return Math.min(...maxArr)
-    }
-
-
-
-    useEffect(() => {
-        const arr = [1, 2, 7, 3, 4, 1, 2, 3, 5, 6, 2, 1, 3, 4, 2, 3, 2, 3, 1, 3]
-
-        findShortestSubArray(arr)
-    }, [])
     return (
         <>
             <Wrap>

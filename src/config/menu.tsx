@@ -54,7 +54,7 @@ const menu = [
         route: 'react',
         children: [
             { id: '31000', name: 'react事件机制', route: '/react/Event' },
-            { id: '32000', name: 'react Fiber', route: '/react/VirtualDom' },
+            { id: '32000', name: 'react hooks', route: '/react/VirtualDom' },
         ]
     },
 

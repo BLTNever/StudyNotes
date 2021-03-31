@@ -8,7 +8,7 @@ import PreviewImg from '@components/previewImg'
 import nativetojs from '@images/rnnativetojs.png'
 import lifeCircle from '@images/lifeCircle.jpg'
 
-import { radix, radix2, ajax, traversal1, traversal2, traversal3, traversal4 } from './example'
+import {  _useState } from './example'
 
 
 
@@ -18,8 +18,6 @@ const { Paragraph, Title, Text, Link } = Typography
 
 const Interview2 = () => {
     const [temp, setTemp] = React.useState(5);
-
-
 
     return (
         <>
@@ -112,20 +110,7 @@ const Interview2 = () => {
 
                     <Panel header="useState" key="3">
                         <Space direction="vertical">
-                            <ul>
-                                <li><Text>1. setState只在合成事件和钩子函数中是“异步”的，在原生事件（addEventListener）和setTimeout中都是“同步”的</Text></li>
-                                <li>
-                                    <Text>2. setState的异步不是在内部实现的，代码执行的过程和结都是同步的，只是在合成事件和钩子函数中的调用顺序在更新之前，导致无法拿到更新后的结果，形成所谓的异步，可以通过setState(partialState, callback)在callback中拿到结果</Text>
-                                </li>
-                                <li>
-                                    <Text>
-                                        3. setState的批量更新也是建立在异步（合成事件、钩子函数）之上，在原生事件和setTimeout中是无法批量更新的
-                                    </Text>
-                                </li>
-                                <li>
-                                    <Text>react更新是通过“事务”（Transacation）的，通过isBatchingUpdates: boolean控制，setTimout中事务无法管控</Text>
-                                </li>
-                            </ul>
+                            <Highlight>{_useState}</Highlight>
                         </Space>
                     </Panel>
 
@@ -135,8 +120,8 @@ const Interview2 = () => {
                                 <li>
                                     <Text>每次Render的内容都会形成一个快照保存下来，当状态改变Rerender的时候，形成了N个Render状态，每个状态都拥有自己固定不变的Props和State，函数在每次渲染时也是独立的。这就是 Capture Value 特性</Text>
                                 </li>
-                                <li> <Text>useEffect 也一样具有Capture Value的特性</Text></li>
-                                <li> <Text>利用useRef可以绕过Capture Value特性，ref在render中保持了唯一的引用，对ref的取值和赋值拿到的都是最终状态</Text> </li>
+                                <li><Text>useEffect 也一样具有Capture Value的特性</Text></li>
+                                <li><Text>利用useRef可以绕过Capture Value特性，ref在render中保持了唯一的引用，对ref的取值和赋值拿到的都是最终状态</Text> </li>
                                 <li>
                                     <Text>回收机制：组件被销毁时，通过useEffect注册的监听事件也要被销毁，通过useEffect的return返回值做到</Text>
                                 </li>
@@ -144,6 +129,19 @@ const Interview2 = () => {
                                 <li><Text>通过useReducer节耦useEffect的更新与操作，但是是绕过了diff算法</Text></li>
                                 <li><Text mark>性能：useEffect在渲染结束时执行，所以不会阻塞浏览器渲染进程</Text></li>
                                 <li><Text mark>符合React fiber的特性，Fiber会根据情况暂停或插入执行不同组件的Render，如果代码遵循Capture Value的特性，在Fiber环境下能保证值的安全访问，弱化生命周期也能解决执行中断的问题</Text></li>
+                            </ul>
+                            <Title level={4}>effect渲染流程</Title>
+                            <ul>
+                                <li><Text mark>mount阶段：执行了mountEffect，执行pushEffect,创建一个新的effect，跟之前的effect通过next链接成一个环形链表，用于顺序执行</Text></li>
+                                <li>
+                                    update阶段：
+                                    <ul>
+                                        <li><Text mark>1. 调用dispatchAction，创建一个update，绑定到hooks.queue上，通过链表next指向</Text></li>
+                                        <li><Text mark>2. 执行到updateEffectImpl</Text></li>
+                                        <li><Text mark>3. 这里的pushEffect跟mountEffect的区别是传入了第三个参数，上一个effect的消除函数</Text></li>
+                                        <li><Text mark>4. 在update阶段，调用了areHookInputsEqual来判断依赖是否变化，如果变化就会再执行一次</Text></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </Space>
                     </Panel>

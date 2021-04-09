@@ -71,6 +71,10 @@ export const list = [
                 component: RouteBase.VirtualDom,
             },
             {
+                path: '/react/Redux',
+                component: RouteBase.Redux,
+            },
+            {
                 path: '/react',
                 redirect: '/react/Event',
             },
@@ -84,12 +88,11 @@ export const list = [
                 path: '/brower/Delegate',
                 component: RouteBase.Delegate,
             },
-         
+
         ]
     },
     {
         path: '/interview',
-        // component: RouteBase.Js,
         children: [
             {
                 path: '/interview/1',
@@ -130,6 +133,47 @@ export const list = [
             {
                 path: '/interview',
                 redirect: '/interview/1',
+            },
+        ]
+    },
+    {
+        path: '/algorithm',
+        children: [
+            {
+                path: '/algorithm/1',
+                component: RouteBase.Algorithm1,
+            },
+            {
+                path: '/algorithm/2',
+                component: RouteBase.Algorithm2,
+            },
+            {
+                path: '/algorithm/3',
+                component: RouteBase.Algorithm3,
+            },
+            {
+                path: '/algorithm/4',
+                component: RouteBase.Algorithm4,
+            },
+            {
+                path: '/algorithm/5',
+                component: RouteBase.Algorithm5,
+            },
+            {
+                path: '/algorithm/6',
+                component: RouteBase.Algorithm6,
+            },
+            {
+                path: '/algorithm/7',
+                component: RouteBase.Algorithm7,
+            },
+            {
+                path: '/algorithm/8',
+                component: RouteBase.Algorithm8,
+            },
+            {
+                path: '/algorithm',
+                redirect: '/algorithm/1',
             },
         ]
     },

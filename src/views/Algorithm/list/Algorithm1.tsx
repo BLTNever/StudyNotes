@@ -7,16 +7,15 @@ import PreviewImg from '@components/previewImg'
 
 import {
     traversal1, traversal2, traversal3, traversal4, radix, radix2, twoNums,
-    findShortSubArray, createTree
-} from './algorithm'
+    findShortSubArray, createTree, depJson, infinityCurry
+} from './example'
 import { BSTree, nodes } from './fn'
-import { stringFn } from '@views/Js/list/fn'
 
 const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
 
 
-const Interview5 = () => {
+const Algorithm1 = () => {
     const orderFn = () => {
         console.group("%c 二叉树遍历", "background: #333; color: yellow")
         console.log('data>>>', nodes)
@@ -76,6 +75,28 @@ const Interview5 = () => {
             </Wrap>
 
             <Wrap>
+                <Title level={3}>JSON数据的深度</Title>
+                <Collapse ghost>
+                    <Panel header="" key="1">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{depJson}</Highlight></Card>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>无限柯里化</Title>
+                <Collapse ghost>
+                    <Panel header="" key="1">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{infinityCurry}</Highlight></Card>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
                 <Title level={3}>树的遍历有几种方式，实现层次遍历</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
@@ -117,39 +138,50 @@ const Interview5 = () => {
     )
 }
 
-export default Interview5
+export default Algorithm1
 
 
 
-const arr = [
-    { id: 1 },
-    { id: 2, pId: 3 },
-    { id: 3, pId: 1 },
-    { id: 4, pId: 2 },
-    { id: 5, pId: 1 },
-    { id: 6, pId: 3 },
-]
 
-function createTree1(list: any) {
-    if (!list?.length) return []
+// function curry(fn) {
+//     return function curried(...args) {
+//         console.log('args>>>', args)
+//         const complete = args.length >= fn.length && !args.slice(0, fn.length).includes(curry.placeholder)
+//         console.log('complete>>>', complete)
+//         if (complete) return fn.apply(this, args)
+//         return function (...otherArgs) {
+//             console.log('otherArgs>>>', otherArgs)
+//             const res = args.map(arg => arg === curry.placeholder && otherArgs.length ? otherArgs.shift() : arg);
+//             console.log('res>>>', res)
+//             return curried(...res, ...otherArgs);
+//         }
+//     }
+// }
 
-    let mapper: any = {}
-    let obj = null
-    for (let item of list) {
-        mapper[item.id] = item
-        item.children = []
-        if (!item.pId) {
-            obj = item
+// curry.placeholder = Symbol()
+// const join = (a, b, c) => {
+//     return `${a}_${b}_${c}`
+// }
+
+// const curriedJoin = curry(join)
+// const _ = curry.placeholder
+// console.log(111, curriedJoin(1, 2, 3))
+// console.log(222, curriedJoin(_, 2)(1, 3))
+// console.log(333, curriedJoin(_, _, _)(1)(_, 3)(2))
+
+const arr = [1, [2], [3, [4]]];
+function flat(arr: any, depth = 1) {
+    const stack = arr.map((item: any) => [item, depth])
+    console.log(stack)
+    const res = []
+    while (stack.length > 0) {
+        const [item, itemDepth] = stack.pop()
+        if (Array.isArray(item) && itemDepth > 0) {
+            stack.push(...item.map(i => [i, itemDepth - 1]))
         } else {
-            if (mapper[item.pId]) {
-                mapper[item.pId].children.push(item)
-            } else {
-                mapper[item.pId] = {
-                    id: item.pId,
-                    children: []
-                }
-            }
+            res.push(item)
         }
     }
-    return obj
+    return res.reverse()
 }
+console.log(flat(arr, 3))

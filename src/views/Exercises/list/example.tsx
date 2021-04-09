@@ -31,14 +31,14 @@ var array = [];
 var obj = {}
 for(var i = 0; i < arr.length; i++) {
     if(!obj[arr[i]) {
-        array.push.push(arr[i])
+        array.push(arr[i])
         obj[arr[i]] = 1;
     }else {
         obj[arr[i]]++;
     }
 }
 `;
-export const arrFn5 = `
+export const flat1 = `
 let arr = [1, 2, [3, 4, 5, [6, 7], 8], 9, 10, [11, [12, 13]]];
 
 function flatten(arr) {
@@ -49,7 +49,7 @@ function flatten(arr) {
 }
 console.log(flatten(arr));
 `;
-export const arrFn6 = `
+export const flat2 = `
 let arr = [1, 2, [3, 4, 5, [6, 7], 8], 9, 10, [11, [12, 13]]];
 
 const flatten = arr => arr.reduce((acc, cur) => {
@@ -58,7 +58,7 @@ const flatten = arr => arr.reduce((acc, cur) => {
 console.log(flatten(arr));
 `;
 
-export const arrFn7 = `
+export const flat3 = `
 let arr = [1, 2, [3, 4, 5, [6, 7], 8], 9, 10, [11, [12, 13]]];
 
 const flatten = arr => {

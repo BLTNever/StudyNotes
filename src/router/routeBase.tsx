@@ -20,6 +20,7 @@ export const Moudles = lazy(() => import(/* webpackChunkName: "Moudles" */'@view
 // React 
 export const ReactEvent = lazy(() => import(/* webpackChunkName: "ReactEvent" */'@views/React/list/ReactEvent'))
 export const VirtualDom = lazy(() => import(/* webpackChunkName: "VirtualDom" */'@views/React/list/VirtualDom'))
+export const Redux = lazy(() => import(/* webpackChunkName: "Redux" */'@views/React/list/Redux'))
 
 
 // Interview
@@ -47,26 +48,13 @@ export const Exercise7 = lazy(() => import(/* webpackChunkName: "Exercises7" */'
 export const Delegate = lazy(() => import(/* webpackChunkName: "Delegate" */'@views/Brower/list/Delegate'))
 
 
-// export default {
-//     Home,
-//     Login,
-//     // Js,
-//     ExecuteStack,
-//     EventLoop,
-//     Types,
-//     This,
-//     Operators,
-//     Closure,
-//     Async,
-//     Prototype,
-//     Moudles,
-//     // React,
-//     ReactEvent,
-//     VirtualDom,
+// Algorithm
+export const Algorithm1 = lazy(() => import(/* webpackChunkName: "Algorithm1" */'@views/Algorithm/list/Algorithm1'))
+export const Algorithm2 = lazy(() => import(/* webpackChunkName: "Algorithm2" */'@views/Algorithm/list/Algorithm2'))
+export const Algorithm3 = lazy(() => import(/* webpackChunkName: "Algorithm3" */'@views/Algorithm/list/Algorithm3'))
+export const Algorithm4 = lazy(() => import(/* webpackChunkName: "Algorithm4" */'@views/Algorithm/list/Algorithm4'))
+export const Algorithm5 = lazy(() => import(/* webpackChunkName: "Algorithm5" */'@views/Algorithm/list/Algorithm5'))
+export const Algorithm6 = lazy(() => import(/* webpackChunkName: "Algorithm6" */'@views/Algorithm/list/Algorithm6'))
+export const Algorithm7 = lazy(() => import(/* webpackChunkName: "Algorithm7" */'@views/Algorithm/list/Algorithm7'))
+export const Algorithm8 = lazy(() => import(/* webpackChunkName: "Algorithm8" */'@views/Algorithm/list/Algorithm8'))
 
-//     // Interview
-//     Interview1,
-//     Interview2,
-//     Interview3,
-//     Interview4,
-// }

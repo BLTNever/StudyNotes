@@ -7,7 +7,7 @@ import PreviewImg from '@components/previewImg'
 
 import {
     ajax, queryUrlParams, event1, queryUrlParams2,
-    clone1, _useState, _memo, 
+    clone1, _useState, _memo, multiRequest
 } from './example'
 
 
@@ -53,8 +53,8 @@ const Interview3 = () => {
 
     useEffect(() => {
         const url = "https://www.baidu.com?name=coder&age=20&callback=https%3A%2F%2Fbaidu.com%3Fname%3Dtest&list[]=a&list[]=b&json=%7B%22str%22%3A%22abc%22,%22num%22%3A123%7D"
-        const test = queryURLParams(url)
-        console.log('test queryUrlParams>>>>>', test)
+        // const test = queryURLParams(url)
+        // console.log('test queryUrlParams>>>>>', test)
     }, [])
     return (
         <>
@@ -75,12 +75,12 @@ const Interview3 = () => {
                 <Collapse ghost>
                     <Panel header="slice切割、遍历" key="1">
                         <Space direction="vertical">
-                            <Card><Highlight language="javascript">{queryUrlParams}</Highlight></Card>
+                            <Highlight language="javascript">{queryUrlParams}</Highlight>
                         </Space>
                     </Panel>
                     <Panel header="new URL api" key="2">
                         <Space direction="vertical">
-                            <Card><Highlight language="javascript">{queryUrlParams2}</Highlight></Card>
+                            <Highlight language="javascript">{queryUrlParams2}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -88,13 +88,15 @@ const Interview3 = () => {
 
             <Wrap>
                 <Title level={3}>深拷贝</Title>
+                <Space direction="vertical">
+                    <Text>基本类型的变量不存在深拷贝浅拷贝</Text>
+                    <Text>引用类型的浅拷贝复制的是在栈中的地址，而非在堆中存的数据（例如直接赋值、Array的slice和concat等）</Text>
+                    <Text>使用JSON.parse(JSON.stringify(obj))做深拷贝赋值会忽略掉undefined和函数表达式</Text>
+                </Space>
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
-                            <Text>基本类型的变量不存在深拷贝浅拷贝</Text>
-                            <Text>引用类型的浅拷贝复制的是在栈中的地址，而非在堆中存的数据（例如直接赋值、Array的slice和concat等）</Text>
-                            <Text>使用JSON.parse(JSON.stringify(obj))做深拷贝赋值会忽略掉undefined和函数表达式</Text>
-                            <Card><Highlight language="javascript">{clone1}</Highlight></Card>
+                            <Highlight language="javascript">{clone1}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -103,19 +105,23 @@ const Interview3 = () => {
             <Wrap>
                 <Title level={3}>原生ajax</Title>
                 <Collapse ghost>
-                    <Panel header="" key="1">
+                    <Panel header="实现" key="1">
                         <Space direction="vertical">
-                            <Card><Highlight language="javascript">{ajax}</Highlight></Card>
+                            <Highlight language="javascript">{ajax}</Highlight>
+                        </Space>
+                    </Panel>
+                    <Panel header="并发" key="2">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{multiRequest}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
             </Wrap>
-
-
 
         </>
     )
 }
 
 export default Interview3
+
 

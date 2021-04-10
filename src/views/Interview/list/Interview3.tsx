@@ -9,8 +9,8 @@ import { Wrap } from '@components/Base'
 import PreviewImg from '@components/previewImg'
 
 import {
-    ajax, queryUrlParams, createNew, extend8, call, apply, bind, myPromise, parseInt, debounce, throttle, queryUrlParams2,
-    clone1, _useState, _memo, createContext, observer,
+    ajax, throttle2, createNew, extend8, call, apply, bind, myPromise, parseInt, debounce, throttle, queryUrlParams2,
+    clone1, _useState, _memo, createContext, observer, debounce2, debounce3
 } from './example'
 
 
@@ -126,11 +126,18 @@ const Interview3 = () => {
                     <Panel header="防抖" key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{debounce}</Highlight>
+                            <h4>增加立即执行和是否延时执行参数</h4>
+                            <Highlight language="javascript">{debounce2}</Highlight>
+                            <h4>在hooks中实现</h4>
+                            <Highlight language="javascript">{debounce3}</Highlight>
                         </Space>
                     </Panel>
                     <Panel header="节流" key="2">
                         <Space direction="vertical">
+                            <h4>这个function无论多么频繁地调用，原始的func的调用也不会超过指定的频率</h4>
                             <Highlight language="javascript">{throttle}</Highlight>
+                            <h4>throttle支持leading（是否立即执行）和trailing（是否冷却后执行）</h4>
+                            <Highlight language="javascript">{throttle2}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>

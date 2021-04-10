@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-    HomeOutlined, createFromIconfontCN, SolutionOutlined
+    HomeOutlined, createFromIconfontCN, SolutionOutlined, CalculatorOutlined
 } from '@ant-design/icons'
 
 
@@ -49,12 +49,13 @@ const menu = [
     },
     {
         id: '30000',
-        name: 'React',
+        name: 'React/redux',
         icon: <SolutionOutlined />,
         route: 'react',
         children: [
             { id: '31000', name: 'react事件机制', route: '/react/Event' },
             { id: '32000', name: 'react hooks', route: '/react/VirtualDom' },
+            { id: '33000', name: 'redux', route: '/react/Redux' },
         ]
     },
 
@@ -68,11 +69,28 @@ const menu = [
             { id: '41000', name: 'javascript基础', route: '/interview/1' },
             { id: '48000', name: 'ts', route: '/interview/8' },
             { id: '42000', name: '框架', route: '/interview/2' },
-            { id: '43000', name: '手写1', route: '/interview/3' },
-            { id: '43000', name: '手写2', route: '/interview/3-1' },
+            { id: '43000', name: '编程题1', route: '/interview/3' },
+            { id: '43000', name: '编程题2', route: '/interview/3-1' },
             { id: '44000', name: 'webpack', route: '/interview/4' },
-            { id: '45000', name: '算法', route: '/interview/5' },
+            // { id: '45000', name: '算法', route: '/interview/5' },
             { id: '46000', name: 'html/css/移动端适配', route: '/interview/6' },
+
+        ]
+    },
+    {
+        id: '40000',
+        name: 'Algorithm',
+        icon: <CalculatorOutlined />,
+        route: 'algorithm',
+        children: [
+            { id: '41000', name: '记录', route: '/algorithm/1' },
+            { id: '42000', name: '数组', route: '/algorithm/2' },
+            { id: '43000', name: '排序', route: '/algorithm/3' },
+            { id: '44000', name: '求和', route: '/algorithm/4' },
+            { id: '45000', name: '求次', route: '/algorithm/5' },
+            { id: '46000', name: '链表', route: '/algorithm/6' },
+            { id: '47000', name: '栈和队列', route: '/algorithm/7' },
+            { id: '48000', name: '双指针', route: '/algorithm/8' },
 
         ]
     },

@@ -182,8 +182,6 @@ function scale36(n) {
 }
 `
 
-
-
 export const twoNums = `
 function twoNum(nums: any, target: any) {
     const map: any = new Map()
@@ -267,6 +265,7 @@ root = {
        children: [{id: 5, children: [] },{id: 6, children: [] }]
     }]
 }
+// 设置哈希表去操作
 let ans: any = null
 const mapper = {}
 function createTree(list: any) {
@@ -313,7 +312,7 @@ function createTree(list: any) {
 
 // 递归的方法 需要传id进去
 function listToTree(list: any[], pId?: number): any {
-    const arr =list.filter((i: any) => i.pId === pId)
+    const arr = list.filter((i: any) => i.pId === pId)
     return arr.map((i: any) => {
         return {
             ...i,
@@ -323,3 +322,317 @@ function listToTree(list: any[], pId?: number): any {
 }
 `
 
+export const depJson = `
+const a = { b: 1, c: { d: { f: { g: 2 } }, h: { j: { k: 2, l: { m: 3 } } } } }
+
+function depJson(json) {
+    const obj = typeof json === 'string' ? JSON.parse(json) : json
+    if(typeof obj !== 'object') return 0
+    let count = 1
+    for (let key in obj) {
+        if (typeof obj[key] === 'object') {
+            count = Math.max(count, depJson(obj[key]) + 1)
+        }
+    }
+    return count
+}
+`
+
+export const infinityCurry = `
+/**
+ * 单个入参
+ * /
+function curry(num) {
+    let sum = 1
+    return function multiply(num) {
+        if(num) {
+            sum *= num
+            return multiply
+        }
+        return sum
+    }
+}
+function curry(ans = 1) {
+    return (num) => {
+        if(num) return curry.call(this, ans * num)
+        return ans
+    }
+}
+
+/**
+ * 多个数据传入
+ * /
+ function curry(...ans) {
+    if (!ans.length) return 0
+    ans = [...ans].reduce((a, b) => a * b, 1)
+    return (...args) => {
+        if (args.length) {
+            ans *= [...args].reduce((a, b) => a * b, 1)
+            return curry.call(this, ...[ans])
+        }
+        return ans
+    }
+}
+curry(2, 3)(3, 5)(4)()
+`
+
+export const flat1 = `
+// 遍历递归
+function flat(arr, depth = 1) {
+    let result = []
+    arr.forEach(item => {
+        // 去掉depth就是Infinity
+        if(Array.isArray(item) && depth > 0) {
+            result = [...result, ...flat(arr, depth - 1)]
+        } esle result.push(item)
+    })
+}
+// reduce 递归
+function flat(arr, depth = 1) {
+    return depth ? 
+        arr.reduce((acc, cur) => {
+            return [...acc, ...(Array.isArray(cur) ? flat(cur, depth - 1) : [cur])]
+        }, []) : arr
+}
+function flat(arr) {
+    return arr.reduce((acc, cur) => {
+        return Array.isArray(cur) ? [...acc, ...flat(cur)] : [...acc, cur]
+    }, [])
+}
+
+//
+function flat(arr) {
+    while(arr.some(item => Array.isArray(item))) {
+        arr = [].concat(...arr)
+    }
+    return arr
+}
+`
+
+export const flat2 = `
+// 不使用递归
+function flat(arr, depth = 1) {
+    let result = []
+    let stock = arr.map(item => ([item, depth]))
+
+    while(stock.length) {
+        // shift比pop慢，因为一旦删除第一个元素，它还需要将所有元素向左移。
+        const [top, dep] = stock.pop()
+
+        if(Array.isArray(top) && dep) {
+            stock.push(...top.map(item => ([item, dep - 1])))
+        }else {
+            result.push(top)
+        }
+    }
+    return result.reverse()
+}
+`
+export const quickSort = `
+function quickSort(arr) {
+    if (arr.length <= 1) return arr
+    const len = arr.length
+    const index = Math.floor(len >> 1)
+    const pivot = arr.splice(index, 1)[0]
+    const left = []
+    const right = []
+    for (let i = 0; i < len; i++) {
+        if (arr[i] > pivot) {
+            right.push(arr[i])
+        } else if (arr[i] <= pivot) {
+                left.push(arr[i])
+        }
+    }
+    return quick(left).concat([pivot], quick(right))
+    
+}
+`
+
+export const random = `
+//定义一个数组arr
+let arr = new Array();
+//给这个数组按添加值
+for(let i = 0;i < 50;i++){
+    arr.push(i);
+};
+//将数组的值随机交换位置
+function fn_random(arr){
+    arr.sort(function(){
+        return .5 - Math.random();
+    });
+};
+function fn_random2(arr){
+    let currentIndex = arr.length;
+    while(currentIndex) {
+        let randomIndex = Math.floor(Math.random()*currentIndex);
+        currentIndex--;
+        let temp = arr[currentIndex];
+        arr[currentIndex] = arr[randomIndex];
+        arr[randomIndex] = temp;
+    }
+}
+
+`
+export const filterSame = `
+// Set
+array = Array.from(new Set(array))
+
+// filter
+array = array.filter((el, index) => array.indexOf(el) === index)
+
+// reduce
+array = array.reduce((unique, el) => unique.includes(el) ? unique : [...unique, el], [])
+
+const unique = arr => {
+    let obj = {}
+    arr.forEach(value=>{
+        obj[value] = 0
+    })
+    return Object.keys(obj)
+}
+`
+
+export const sort = `
+function systemSort(arr) {
+    return arr.sort(function(a, b) {
+        return a - b
+    })
+ }
+`
+
+export const bubbleSort = `
+function bubbleSort(arr) {
+    var len = arr.length
+    for(var i = len-1; i > 0; i--) {
+        for(var j = 0; j < i; j++) {
+            if(arr[j] > arr[j+1]) {
+                var tmp = arr[j]
+                arr[j] = arr[j + 1]
+                arr[j + 1]= tmp
+            }  
+        }
+    }
+    return arr
+}
+const sort = arr => {
+    let isSwap;
+    for(let i=0;i<arr.length;i++){
+        isSwap = false;
+        for(let j=0;j<arr.length;j++){
+            if(arr[j] > arr[j+1]){
+                [arr[j],arr[j+1]] = [arr[j+1],arr[j]];
+                isSwap = true;
+            }
+        }
+        if(!isSwap){
+            break;
+        }
+    }
+    return arr;
+}
+`
+
+export const sort2 = `
+const sort = arr => {
+    arr.forEach((v,i)=>{
+        for(let j=i+1;j<arr.length;j++){
+            if (arr[i] > arr[j]) {
+                [arr[i],arr[j]] = [arr[j],arr[i]]
+            }
+        }
+    })
+    return arr;
+}
+`
+export const arrFn13 = `
+function flat(arr) {
+    return Array.form(new Set(arr.flat(Infinity))).sort((a, b) => a - b);
+}
+`;
+
+export const arrFn14 = `
+const arr = [1,[1,2,3],1,[6,2],3,4,5,[6],[6,7,9]]
+function flat(arr) {
+    let result = []
+    arr.forEach((item, key) => {
+        if(Array.isArray(item)) {
+            // arr.splice(key, 1, ...flat(item))
+            result.push(...flat(item))
+        }else {
+            result.push(...flat(item))
+        }
+    })
+
+    return result
+}
+const result5 = Array.from(new Set(flat(arr))).sort((a, b) => a - b)
+`
+
+export const destructuring = `
+function fn(targetArray: any, formater: any) {
+    // formater第一次传入的是字符串，转为数组，之后递归，传入的则都是数组
+    // [a-z] 匹配a到z的字母 [0-9]匹配数字， \w匹配字母数字 下划线
+    let arr = Array.isArray(formater) ? formater : JSON.parse(formater.replace(/(\w+)/g, '"$1"'))
+    console.log(arr)
+    let obj = {}
+    arr.forEach((value: any, index: number) => {
+        // 缓存该键对应的值
+        let res = targetArray[index]
+        if (Array.isArray(value)) {// 值为数组时，需要递归
+            // 将递归的值拷贝至最初的对象，思路类似深拷贝
+            Object.assign(obj, fn(res, value))
+        } else {// 值为数值时，直接赋值
+            obj[value] = res
+        }
+    })
+    return obj
+}
+console.log(fn([1, [2, [4]], 3], '[a,[b,[d,e]],c]'))
+`
+
+export const _isEqual = `
+
+function _isEqual(a: any, b: any, map = new Map()): any {
+    if (a === b) return true
+
+    if (map.has(a) || map.has(b)) return true
+    map.set(a, b)
+    if (typeof a === 'object' && typeof b === 'object') {
+        const aKeys = Object.keys(a)
+        const bKeys = Object.keys(b)
+        if (aKeys.length !== bKeys.length) return false
+        for (let i in aKeys) {
+            if (!_isEqual(a[aKeys[i]], b[bKeys[i]], map)) return false
+        }
+        return true
+    }
+    return false
+}
+
+let map = new Map()
+let set = new Set()
+function isEqual(a: any, b: any) {
+    if (a === b) return true
+    if (typeof a !== 'object' || typeof b !== 'object') return false
+    map.set(a, b)
+    set.add(a)
+    set.add(b)
+
+    if (Array.isArray(a) && Array.isArray(b)) {
+        if (a.length !== b.length) return false
+        for (let i in a) {
+            if (map.has(a[i]) || map.has(b[i])) return true
+            if (set.has(a[i]) || set.has(b[i])) return true
+            if (!isEqual(a, b)) return false
+        }
+        return true
+    }
+
+    if (Object.keys(a).length !== Object.keys(b).length) return false
+    for (let i in a) {
+        if (map.has(a[i]) || map.has(b[i])) return true
+        if (set.has(a[i]) || set.has(b[i])) return true
+        if (!isEqual(a, b)) return false
+    }
+}
+`

@@ -3,7 +3,7 @@ import Highlight from 'react-highlight';
 
 import { Card, Col, Row } from 'antd';
 
-import { arrFn1, arrFn2, arrFn3, arrFn4, arrFn5, arrFn6, arrFn7, arrFn8, arrFn9, arrFn10, arrFn11, arrFn12, arrFn13, arrFn14 } from './example'
+import { arrFn1, arrFn2, arrFn3, arrFn4, flat1, flat2, flat3, arrFn8, arrFn9, arrFn10, arrFn11, arrFn12, arrFn13, arrFn14 } from './example'
 
 
 const Exercise1 = () => (
@@ -47,7 +47,6 @@ const Exercise1 = () => (
                 <Col span={12}>
                     <Card title="ES6 ">
                         <Highlight language="javascript">{arrFn13}</Highlight>
-
                     </Card>
                 </Col>
                 <Col span={12}>
@@ -56,8 +55,6 @@ const Exercise1 = () => (
                     </Card>
                 </Col>
             </Row>
-
-
         </div>
 
         <div className="note-wrap">
@@ -65,17 +62,17 @@ const Exercise1 = () => (
             <Row gutter={16}>
                 <Col span={8}>
                     <Card title="迭代">
-                        <Highlight language="javascript">{arrFn5}</Highlight>
+                        <Highlight language="javascript">{flat1}</Highlight>
                     </Card>
                 </Col>
                 <Col span={8}>
                     <Card title="递归">
-                        <Highlight language="javascript">{arrFn6}</Highlight>
+                        <Highlight language="javascript">{flat2}</Highlight>
                     </Card>
                 </Col>
                 <Col span={8}>
                     <Card title="flat">
-                        <Highlight language="javascript">{arrFn7}</Highlight>
+                        <Highlight language="javascript">{flat3}</Highlight>
                         <p>flat() 方法会按照一个可指定的深度递归遍历数组，并将所有元素与遍历到的子数组中的元素合并为一个新数组返回。</p>
                         <p>var newArray = arr.flat(depth); //depth 可选 指定要提取嵌套数组的结构深度，默认值为 1。</p>
                         <p>使用 Infinity 作为深度，展开任意深度的嵌套数组</p>

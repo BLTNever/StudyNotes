@@ -7,15 +7,16 @@ import PreviewImg from '@components/previewImg'
 
 import {
     traversal1, traversal2, traversal3, traversal4, radix, radix2, twoNums,
-    findShortSubArray, createTree,
-} from './algorithm'
+    findShortSubArray, createTree, depJson, infinityCurry, destructuring,
+    _isEqual
+} from './example'
 import { BSTree, nodes } from './fn'
 
 const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
 
 
-const Interview5 = () => {
+const Algorithm1 = () => {
     const orderFn = () => {
         console.group("%c 二叉树遍历", "background: #333; color: yellow")
         console.log('data>>>', nodes)
@@ -43,7 +44,7 @@ const Interview5 = () => {
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
-                            <Card><Highlight language="javascript">{twoNums}</Highlight></Card>
+                            <Highlight language="javascript">{twoNums}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -56,7 +57,7 @@ const Interview5 = () => {
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
-                            <Card><Highlight language="javascript">{findShortSubArray}</Highlight></Card>
+                            <Highlight language="javascript">{findShortSubArray}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -64,17 +65,36 @@ const Interview5 = () => {
 
             <Wrap>
                 <Title level={3}>数据转换：数组-树</Title>
-                <Text>一维数组转成树的结构</Text>
                 <Collapse ghost>
-                    <Panel header="" key="1">
+                    <Panel header="一维数组转成树的结构" key="1">
                         <Space direction="vertical">
-                            <Card><Highlight language="javascript">{createTree}</Highlight></Card>
+                            <Highlight language="javascript">{createTree}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
             </Wrap>
 
-           
+            <Wrap>
+                <Title level={3}>JSON数据的深度</Title>
+                <Collapse ghost>
+                    <Panel header="" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{depJson}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>无限柯里化</Title>
+                <Collapse ghost>
+                    <Panel header="" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{infinityCurry}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
 
             <Wrap>
                 <Title level={3}>树的遍历有几种方式，实现层次遍历</Title>
@@ -88,15 +108,37 @@ const Interview5 = () => {
                                 <li>后序：左 -&gt; 右 -&gt; 根</li>
                             </ul>
                             <Row>
-                                <Col span={12}><Card><Highlight language="javascript">{traversal1}</Highlight></Card></Col>
-                                <Col span={12}><Card><Highlight language="javascript">{traversal2}</Highlight></Card></Col>
+                                <Col span={12}><Highlight language="javascript">{traversal1}</Highlight></Col>
+                                <Col span={12}><Highlight language="javascript">{traversal2}</Highlight></Col>
                             </Row>
                             <Row>
-                                <Col span={12}><Card><Highlight language="javascript">{traversal3}</Highlight></Card></Col>
-                                <Col span={12}><Card><Highlight language="javascript">{traversal4}</Highlight></Card></Col>
+                                <Col span={12}><Highlight language="javascript">{traversal3}</Highlight></Col>
+                                <Col span={12}><Highlight language="javascript">{traversal4}</Highlight></Col>
                             </Row>
                         </Space>
 
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>Array解构赋值</Title>
+                <Collapse ghost>
+                    <Panel header="将目标数组（targetArray）通过ES6的解构格式（formater）" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{destructuring}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>isEqual</Title>
+                <Collapse ghost>
+                    <Panel header="对比数据是否相等" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{_isEqual}</Highlight>
+                        </Space>
                     </Panel>
                 </Collapse>
             </Wrap>
@@ -118,4 +160,4 @@ const Interview5 = () => {
     )
 }
 
-export default Interview5
+export default Algorithm1

@@ -181,6 +181,125 @@ function scale36(n) {
     return arr.join('')
 }
 `
+export const arrFn13 = `
+function flat(arr) {
+    return Array.form(new Set(arr.flat(Infinity))).sort((a, b) => a - b);
+}
+`;
+
+export const arrFn14 = `
+const arr = [1,[1,2,3],1,[6,2],3,4,5,[6],[6,7,9]]
+function flat(arr) {
+    let result = []
+    arr.forEach((item, key) => {
+        if(Array.isArray(item)) {
+            // arr.splice(key, 1, ...flat(item))
+            result.push(...flat(item))
+        }else {
+            result.push(...flat(item))
+        }
+    })
+
+    return result
+}
+const result5 = Array.from(new Set(flat(arr))).sort((a, b) => a - b)
+`
+export const _flat = `
+const arr = [1, 2, 3, 4, [1, 2, 3, [1, 2, 3, [1, 2, 3]]], 5, "string", { name: "弹铁蛋同学" }];
+// concat + 递归
+function flat(arr) {
+    let list = [];
+    arr.forEach(item => {
+        if (Array.isArray(item)) {
+            list = list.concat(arguments.callee(item)));   // 递归
+            // 或者用扩展运算符
+            // list.push(...arguments.callee(item));
+        } else {
+            list.push(item);
+        }
+    });
+    return list;
+}
+// reduce
+const flat = arr => {
+    return arr.reduce((pre, cur) => {
+      return pre.concat(Array.isArray(cur) ? flat(cur) : cur);
+    }, []);
+  }
+
+`
+
+export const filterSame = `
+// Set
+array = Array.from(new Set(array))
+
+// filter
+array = array.filter((el, index) => array.indexOf(el) === index)
+
+// reduce
+array = array.reduce((unique, el) => unique.includes(el) ? unique : [...unique, el], [])
+
+const unique = arr => {
+    let obj = {}
+    arr.forEach(value=>{
+        obj[value] = 0
+    })
+    return Object.keys(obj)
+}
+`
+
+export const sort = `
+function systemSort(arr) {
+    return arr.sort(function(a, b) {
+        return a - b
+    })
+ }
+`
+
+export const bubbleSort = `
+function bubbleSort(arr) {
+    var len = arr.length
+    for(var i = len-1; i > 0; i--) {
+        for(var j = 0; j < i; j++) {
+            if(arr[j] > arr[j+1]) {
+                var tmp = arr[j]
+                arr[j] = arr[j + 1]
+                arr[j + 1]= tmp
+            }  
+        }
+    }
+    return arr
+}
+const sort = arr => {
+    let isSwap;
+    for(let i=0;i<arr.length;i++){
+        isSwap = false;
+        for(let j=0;j<arr.length;j++){
+            if(arr[j] > arr[j+1]){
+                [arr[j],arr[j+1]] = [arr[j+1],arr[j]];
+                isSwap = true;
+            }
+        }
+        if(!isSwap){
+            break;
+        }
+    }
+    return arr;
+}
+`
+
+export const sort2 = `
+const sort = arr => {
+    arr.forEach((v,i)=>{
+        for(let j=i+1;j<arr.length;j++){
+            if (arr[i] > arr[j]) {
+                [arr[i],arr[j]] = [arr[j],arr[i]]
+            }
+        }
+    })
+    return arr;
+}
+`
 
 export const twoNums = `
 function twoNum(nums: any, target: any) {
@@ -244,7 +363,52 @@ function findSubArray(nums) {
     return min + 1
 }
 `
+export const quickSort = `
+function quickSort(arr) {
+    if (arr.length <= 1) return arr
+    const len = arr.length
+    const index = Math.floor(len >> 1)
+    const pivot = arr.splice(index, 1)[0]
+    const left = []
+    const right = []
+    for (let i = 0; i < len; i++) {
+        if (arr[i] > pivot) {
+            right.push(arr[i])
+        } else if (arr[i] <= pivot) {
+                left.push(arr[i])
+        }
+    }
+    return quick(left).concat([pivot], quick(right))
+    
+}
+`
 
+export const random = `
+//定义一个数组arr
+let arr = new Array();
+//给这个数组按添加值
+for(let i=0;i<50;i++){
+    arr.push(i);
+};
+//将数组的值随机交换位置
+function fn_random(arr){
+    arr.sort(function(){
+        return .5-Math.random();
+    });
+};
+function fn_random2(arr){
+    let currentIndex=arr.length;
+    while(currentIndex)
+    {
+        let randomIndex=Math.floor(Math.random()*currentIndex);
+        currentIndex--;
+        let temp=arr[currentIndex];
+        arr[currentIndex]=arr[randomIndex];
+        arr[randomIndex]=temp;
+    }
+}
+
+`
 export const createTree = `
 const arr = [
     { id: 1 },

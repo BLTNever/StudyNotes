@@ -7,7 +7,8 @@ import PreviewImg from '@components/previewImg'
 
 import {
     traversal1, traversal2, traversal3, traversal4, radix, radix2, twoNums,
-    findShortSubArray, createTree
+    findShortSubArray, createTree, arrFn13, arrFn14, _flat, sort, bubbleSort,
+    sort2, filterSame, random, quickSort
 } from './algorithm'
 import { BSTree, nodes } from './fn'
 import { stringFn } from '@views/Js/list/fn'
@@ -71,6 +72,41 @@ const Interview5 = () => {
                         <Space direction="vertical">
                             <Card><Highlight language="javascript">{createTree}</Highlight></Card>
                         </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>数组操作</Title>
+                <Collapse ghost>
+                    <Panel header="多维数组拍平排序去重" key="1">
+                        <Card title="ES6">
+                            <Highlight language="javascript">{arrFn13}</Highlight>
+                        </Card>
+                        <Card title="递归">
+                            <Highlight language="javascript">{arrFn14}</Highlight>
+                        </Card>
+                        <Card title="flat的实现">
+                            <Highlight language="javascript">{_flat}</Highlight>
+                        </Card>
+                    </Panel>
+                    <Panel header="去重" key="2">
+                        <Highlight language="javascript">{filterSame}</Highlight>
+                    </Panel>
+                    <Panel header="sort排序" key="3">
+                        <Highlight language="javascript">{sort}</Highlight>
+                    </Panel>
+                    <Panel header="冒泡排序" key="4">
+                        <Highlight language="javascript">{bubbleSort}</Highlight>
+                    </Panel>
+                    <Panel header="选择排序" key="5">
+                        <Highlight language="javascript">{sort2}</Highlight>
+                    </Panel>
+                    <Panel header="快速排序" key="6">
+                        <Highlight language="javascript">{quickSort}</Highlight>
+                    </Panel>
+                    <Panel header="洗牌算法" key="7">
+                        <Highlight language="javascript">{random}</Highlight>
                     </Panel>
                 </Collapse>
             </Wrap>
@@ -154,13 +190,32 @@ function createTree1(list: any) {
     return obj
 }
 
-function listToTree(list: any[], pId?: number): any {
-    const arr = list.filter((i: any) => i.pId === pId)
-    return arr.map((i: any) => {
-        return {
-            ...i,
-            children: listToTree(list, i.id)
+
+function deep(target: any): any {
+    if (typeof target !== 'object') return 0
+    let ans = 0
+    for (const key in target) {
+        if (typeof target[key] === 'object') {
+            ans = Math.max(ans, deep(target[key]) + 1)
         }
-    })
+    }
+    return ans
 }
-console.log(listToTree(arr))
+let obj = {
+    a: {
+        b: {
+            c: { 
+                d: 1 }
+        },
+        e: {
+            f: {
+                g: {
+                    h: {
+                        x: {}
+                    }
+                }
+            }
+        }
+    }
+}
+console.log(deep(obj))

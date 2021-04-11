@@ -58,3 +58,13 @@ export const Algorithm6 = lazy(() => import(/* webpackChunkName: "Algorithm6" */
 export const Algorithm7 = lazy(() => import(/* webpackChunkName: "Algorithm7" */'@views/Algorithm/list/Algorithm7'))
 export const Algorithm8 = lazy(() => import(/* webpackChunkName: "Algorithm8" */'@views/Algorithm/list/Algorithm8'))
 
+// Program
+
+export const Program1 = lazy(() => import(/* webpackChunkName: "Program1" */'@views/Program/list/Program1'))
+export const Program2 = lazy(() => import(/* webpackChunkName: "Program2" */'@views/Program/list/Program2'))
+export const Program3 = lazy(() => import(/* webpackChunkName: "Program3" */'@views/Program/list/Program3'))
+export const Program4 = lazy(() => import(/* webpackChunkName: "Program4" */'@views/Program/list/Program4'))
+export const Program5 = lazy(() => import(/* webpackChunkName: "Program5" */'@views/Program/list/Program5'))
+export const Program6 = lazy(() => import(/* webpackChunkName: "Program6" */'@views/Program/list/Program6'))
+export const Program7 = lazy(() => import(/* webpackChunkName: "Program7" */'@views/Program/list/Program7'))
+export const Program8 = lazy(() => import(/* webpackChunkName: "Program8" */'@views/Program/list/Program8'))

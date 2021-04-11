@@ -16,7 +16,7 @@ const ReactEvent = () => (
     <>
         <PageHeader title="事件机制理解" />
         <Wrap>
-            <Collapse defaultActiveKey={['1']} ghost>
+            <Collapse defaultActiveKey="" ghost>
                 <Panel header="表象理解" key="1">
                     <Space direction="vertical">
                         <Text>react自身实现了一套自己的事件机制，包括事件注册、事件合成、事件冒泡、事件派发，基于浏览器的事件机制下完成</Text>
@@ -64,7 +64,7 @@ const ReactEvent = () => (
 
         <PageHeader title="事件机制注册" />
         <Wrap>
-            <Collapse defaultActiveKey={['1']} ghost>
+            <Collapse defaultActiveKey="" ghost>
                 <Panel header="流程" key="1">
                     <Space direction="vertical">
                         <ul>

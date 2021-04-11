@@ -178,6 +178,47 @@ export const list = [
         ]
     },
     {
+        path: '/Program',
+        children: [
+            {
+                path: '/Program/1',
+                component: RouteBase.Program1,
+            },
+            {
+                path: '/Program/2',
+                component: RouteBase.Program2,
+            },
+            {
+                path: '/Program/3',
+                component: RouteBase.Program3,
+            },
+            {
+                path: '/Program/4',
+                component: RouteBase.Program4,
+            },
+            {
+                path: '/Program/5',
+                component: RouteBase.Program5,
+            },
+            {
+                path: '/Program/6',
+                component: RouteBase.Program6,
+            },
+            {
+                path: '/Program/7',
+                component: RouteBase.Program7,
+            },
+            {
+                path: '/algorithm/8',
+                component: RouteBase.Algorithm8,
+            },
+            {
+                path: '/algorithm',
+                redirect: '/algorithm/1',
+            },
+        ]
+    },
+    {
         path: '/exercise',
         // component: RouteBase.Js,
         children: [

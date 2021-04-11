@@ -97,31 +97,6 @@ const Algorithm1 = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>树的遍历有几种方式，实现层次遍历</Title>
-                <Collapse ghost>
-                    <Panel header="" key="1">
-                        <Space direction="vertical">
-                            <Text mark>遍历方式：1.前序遍历、2.中序遍历、3.后序遍历、4.层次遍历</Text>
-                            <ul>
-                                <li>前序：根 -&gt; 左 -&gt; 右</li>
-                                <li>中序：左 -&gt; 根 -&gt; 右</li>
-                                <li>后序：左 -&gt; 右 -&gt; 根</li>
-                            </ul>
-                            <Row>
-                                <Col span={12}><Highlight language="javascript">{traversal1}</Highlight></Col>
-                                <Col span={12}><Highlight language="javascript">{traversal2}</Highlight></Col>
-                            </Row>
-                            <Row>
-                                <Col span={12}><Highlight language="javascript">{traversal3}</Highlight></Col>
-                                <Col span={12}><Highlight language="javascript">{traversal4}</Highlight></Col>
-                            </Row>
-                        </Space>
-
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
-            <Wrap>
                 <Title level={3}>Array解构赋值</Title>
                 <Collapse ghost>
                     <Panel header="将目标数组（targetArray）通过ES6的解构格式（formater）" key="1">
@@ -156,8 +131,34 @@ const Algorithm1 = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
+
+            <Wrap>
+                <Title level={3}>树的遍历有几种方式，实现层次遍历</Title>
+                <Collapse ghost>
+                    <Panel header="" key="1">
+                        <Space direction="vertical">
+                            <Text mark>遍历方式：1.前序遍历、2.中序遍历、3.后序遍历、4.层次遍历</Text>
+                            <ul>
+                                <li>前序：根 -&gt; 左 -&gt; 右</li>
+                                <li>中序：左 -&gt; 根 -&gt; 右</li>
+                                <li>后序：左 -&gt; 右 -&gt; 根</li>
+                            </ul>
+                            <Row>
+                                <Col span={12}><Card><Highlight language="javascript">{traversal1}</Highlight></Card></Col>
+                                <Col span={12}><Card><Highlight language="javascript">{traversal2}</Highlight></Card></Col>
+                            </Row>
+                            <Row>
+                                <Col span={12}><Card><Highlight language="javascript">{traversal3}</Highlight></Card></Col>
+                                <Col span={12}><Card><Highlight language="javascript">{traversal4}</Highlight></Card></Col>
+                            </Row>
+                        </Space>
+
+                    </Panel>
+                </Collapse>
+            </Wrap>
         </>
     )
 }
 
 export default Algorithm1
+

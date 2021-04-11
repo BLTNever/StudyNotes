@@ -69,11 +69,28 @@ const menu = [
             { id: '41000', name: 'javascript基础', route: '/interview/1' },
             { id: '48000', name: 'ts', route: '/interview/8' },
             { id: '42000', name: '框架', route: '/interview/2' },
-            { id: '43000', name: '编程题1', route: '/interview/3' },
-            { id: '43000', name: '编程题2', route: '/interview/3-1' },
+            // { id: '43000', name: '编程题1', route: '/interview/3' },
+            // { id: '43000', name: '编程题2', route: '/interview/3-1' },
             { id: '44000', name: 'webpack', route: '/interview/4' },
             // { id: '45000', name: '算法', route: '/interview/5' },
             { id: '46000', name: 'html/css/移动端适配', route: '/interview/6' },
+
+        ]
+    },
+    {
+        id: '50000',
+        name: '编程题',
+        icon: <CalculatorOutlined />,
+        route: 'program',
+        children: [
+            { id: '51000', name: '一', route: '/program/1' },
+            { id: '52000', name: '二', route: '/program/2' },
+            // { id: '53000', name: '排序', route: '/program/3' },
+            // { id: '54000', name: '求和', route: '/program/4' },
+            // { id: '55000', name: '求次', route: '/program/5' },
+            // { id: '56000', name: '链表', route: '/program/6' },
+            // { id: '57000', name: '栈和队列', route: '/program/7' },
+            // { id: '58000', name: '双指针', route: '/program/8' },
 
         ]
     },

@@ -161,7 +161,7 @@ function main(num, m, n) {
 export const radix2 = `
 function getNums36() {
     let num36 = []
-    for(let i = 0i <= 36i++) {
+    for(let i = 0; i <= 36; i++) {
         if(i >=0 && i <= 9) {
             nums36.push(i)
         }esle {
@@ -609,21 +609,22 @@ function _isEqual(a: any, b: any, map = new Map()): any {
     return false
 }
 
+
 let map = new Map()
 let set = new Set()
 function isEqual(a: any, b: any) {
-    if (a === b) return true
-    if (typeof a !== 'object' || typeof b !== 'object') return false
+    if (typeof a !== 'object' || typeof b !== 'object') return a === b
     map.set(a, b)
-    set.add(a)
-    set.add(b)
+    // console.log(map)
+    // set.add(a)
+    // set.add(b)
 
     if (Array.isArray(a) && Array.isArray(b)) {
         if (a.length !== b.length) return false
-        for (let i in a) {
+        for (let i = 0; i < a.length; i++) {
             if (map.has(a[i]) || map.has(b[i])) return true
-            if (set.has(a[i]) || set.has(b[i])) return true
-            if (!isEqual(a, b)) return false
+            // if (set.has(a[i]) || set.has(b[i])) return true
+            if (!isEqual(a[i], b[i])) return false
         }
         return true
     }
@@ -631,8 +632,13 @@ function isEqual(a: any, b: any) {
     if (Object.keys(a).length !== Object.keys(b).length) return false
     for (let i in a) {
         if (map.has(a[i]) || map.has(b[i])) return true
-        if (set.has(a[i]) || set.has(b[i])) return true
-        if (!isEqual(a, b)) return false
+        // if (set.has(a[i]) || set.has(b[i])) return true
+        if (!isEqual(a[i], b[i])) return false
     }
+    return true
 }
+
+var a = { b: 1, c: 2, d: { e: 3 } }
+var b = { b: 1, d: { e: 3 }, c: 2 }
+console.log(isEqual(a, b))
 `

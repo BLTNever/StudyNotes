@@ -642,3 +642,95 @@ var a = { b: 1, c: 2, d: { e: 3 } }
 var b = { b: 1, d: { e: 3 }, c: 2 }
 console.log(isEqual(a, b))
 `
+
+
+export const _reverseList = `
+/**
+ * 遍历
+ * @param head 
+ * @returns 
+ */
+function reverseList (head) {
+    if(!head || !head.next) return head
+    let cur = head
+    let pre = null
+    while(cur) {
+        const next = cur.next
+        cur.next = pre
+        pre = cur
+        cur = next
+    }
+
+    return pre
+}
+
+/**
+ * 递归
+ * @param head 
+ * @returns 
+ */
+ function reverseList (head) {
+    if(!head || !head.next) return head
+    // 递归反转子链表
+    let next = reverseList(head.next)
+    // 获取原来链表的第二个节点
+    let nextTail = head.next
+    // 调整原来头结点和第二个节点的指向
+    nextTail.next = head
+    head.next = null    
+
+    return next
+}
+`
+export const _merge1 = `
+function _merge(A, B) {
+    let result = []
+
+    while(A.length || B.length) {
+        if(!A.length) {
+            result.push(B.shift())
+            continue
+        }
+        if(!B.length) {
+            result.push(A.shift())
+            continue
+        }
+
+        let a = A[0]
+        let b = B[0]
+        if(a > b) {
+            result.push(B.shift())
+        }else {
+            result.push(A.shift())
+        }
+    }
+}
+`
+export const _merge2 = `
+function __merge(A, m, B, n) {
+    // 设置一个指针，指针初始化指向A的末尾
+    // 然后向左移动指针
+    let current = m + n - 1
+
+    while (current >= 0) {
+        if (n === 0) return
+
+        if (m < 1) {
+            A[current--] = B[--n]
+            continue
+        }
+        if (n < 1) {
+            A[current--] = A[--m]
+            continue
+        }
+
+        if (A[m - 1] > B[n - 1]) {
+            A[current--] = A[--m]
+        } else {
+            A[current--] = B[--n]
+        }
+    }
+}
+
+`
+

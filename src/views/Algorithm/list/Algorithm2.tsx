@@ -6,8 +6,7 @@ import { Wrap } from '@components/Base'
 import PreviewImg from '@components/previewImg'
 
 import {
-    flat1, flat2, sort, bubbleSort, sort2, filterSame, random, quickSort,
-    arrFn13, arrFn14,
+    flat1, flat2, _merge1, _merge2, arrFn13, arrFn14,
 } from './example'
 import { time } from 'console'
 import { last } from 'lodash'
@@ -50,14 +49,15 @@ const Algorithm2 = () => {
                 </Collapse>
             </Wrap>
             <Wrap>
-                {/* <Title level={3}></Title>
+                <Title level={3}>合并两个有序数组</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
-                        <Space direction="vertical">
-                            <Card><Highlight language="javascript">{twoNums}</Highlight></Card>
-                        </Space>
+                        <Row gutter={24}>
+                            <Col span={12}><Card><Highlight language="javascript">{_merge1}</Highlight></Card></Col>
+                            <Col span={12}><Card><Highlight language="javascript">{_merge2}</Highlight></Card></Col>
+                        </Row>
                     </Panel>
-                </Collapse> */}
+                </Collapse>
             </Wrap>
         </>
     )

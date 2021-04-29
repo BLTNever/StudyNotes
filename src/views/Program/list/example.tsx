@@ -824,6 +824,51 @@ subject.unsubscribe(observer2)
 subject.run()
 `
 
+export const eventEmitter = `
+class EventEmit {
+    events: any = {}
+
+    substribe(eventName: string, callback?: Function) {
+        const { events } = this
+        // 不存在就设置一个空的map
+        if (!(eventName in events)) {
+            events[eventName] = new Map()
+        }
+        // 已存在， callback当作key, 记录一下数量count
+        events[eventName].set(callback, (events[eventName].get(callback) || 0) + 1)
+
+        return {
+            release() {
+                const count = events[eventName].get(callback)
+                if (count === 1) {
+                    // count === 0 删掉callback
+                    events[eventName].delate(callback)
+                    if (!events[eventName].size) {
+                        // 如果删掉callback后，当前eventName为空，删掉这个元素
+                        delete events[eventName]
+                    }
+                } else {
+                    // 数量—1
+                    events[eventName].set(callback, count - 1)
+                }
+            }
+        }
+    }
+
+    emit(eventName: string, ...args: any) {
+        const { events }: any = this
+        if (!(eventName in events)) return
+
+        let list: [any, number][] = Object.entries(events[eventName])
+        for (let [callback, count] of list) {
+            while (count) {
+                callback(...args)
+                count--
+            }
+        }
+    }
+}
+`
 
 
 
@@ -923,7 +968,6 @@ function memo(OldComponent) {
         shouldComponentUpdate(nextProps, nextState) {
             if(nextProps === this.props) return false
             if(Object.keys(nexProps).length === Object.keys(this.props).length) return true
-
             if(nextProps === null || this.props === null) return true // 初始化？
 
             for(le key in this.props) {
@@ -937,8 +981,20 @@ function memo(OldComponent) {
         }
     }
 }
-`
 
+`
+export const _usememo = `
+function _useMemo(func, resolver) {
+    let cache = {}
+    return function (...args) {
+        const key = resolver ? resolver(...args) : [...args].join('_')
+        if (!cache[key]) {
+            cache[key] = func.call(this, ...args)
+        }
+        return cache[key]
+    }
+}
+`
 
 
 export const event1 = `
@@ -998,37 +1054,38 @@ function _render(json) {
 
 export const virtualize = `
 function virtualize(element: Element) {
-    let props = {}
-
-    for (let attr of element.attributes) {
-        const key = attr.name === 'class' ? 'className' : attr.name
-        props[key] = attr.value
+    let props: any = {}
+    const { attributes, childNodes } = element
+    for (let attr of [...attributes]) {
+        const { name, value } = attr
+        const key = name === 'class' ? 'className' : name
+        props[key] = value
     }
-    // Element.nodeType: 1 元素， 2属性，3元素或属性的文本
-    const children = [...element.childNodes].map(node => {
-        return node.nodeType === 3
-            ? node.textContent
-            : virtualize(node)
+
+    const children = [...childNodes].map((node: any) => {
+        return node.nodeType === 3 ? node.textContent : virtualize(node)
     })
+    console.log(children)
     props.children = children.length === 1 ? children[0] : children
     return {
-        type: element.tagName.toLowerCase()
-        props,
+        type: element.tagName.toLowerCase(),
+        props
     }
 }
 function virtualRender(obj) {
     if(typeof obj === 'string') {
       return document.createTextNode(obj)
     }
-    const { type, props: { children, ...attrs } } = obj
+    const { type, props } = obj
+    const { children, ...attrs } = props
     const node = document.createElement(type)
   
     for (let [attr, value] of Object.entries(attrs)) {
       node[attr] = value
     }
   
-    const childrenArr = Array.isArray(children) ? children : [children]
-    for (let child of childrenArr) {
+    const childrens = Array.isArray(children) ? children : [children]
+    for (let child of childrens) {
       node.append(virtualRender(child))
     }
     return node
@@ -1063,4 +1120,48 @@ function _reverse(n: number) {
 }
 
 console.log(_reverse(1233456))
+`
+
+
+export const _assign = `
+function _objectAssign(target: any, ...sources: any) {
+    if (target === null || target === undefined) throw new Error('not object')
+    if (typeof target !== 'object') {
+        target = Object(target)
+    }
+    // if (typeof sources === 'number') target = new Number(target)
+    // if (typeof sources === 'string') target = new String(target)
+    // if (typeof sources === 'boolean') target = new Boolean(target)
+
+    for (let source of sources) {
+        if (source === null || source === undefined) continue
+        console.log('target>>>', target)
+        console.log('source>>>', target)
+        console.log('symbol>>>', Object.getOwnPropertySymbols(source))
+        // Object.defineProperties在一个对象上定义一个或多个新的属性或修改现有属性，并返回该对象
+        // Object.getOwnPropertyDescriptors所指定对象的所有自身属性的描述符|| {}
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source))
+        // Object.getOwnPropertySymbols 方法返回一个给定对象自身的所有 Symbol 属性的数组
+        for (let symbol in Object.getOwnPropertySymbols(source)) {
+            target[symbol] = source[symbol]
+        }
+    }
+    return target
+}
+console.log(_objectAssign({}, { a: 1, b: 2, c: 3 }, { d: 4, f: 5 }))
+`
+
+export const _map = `
+declare interface Array<T> {
+    _map<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[];
+}
+Array.prototype._map = function (callback, args) {
+    const length = this.length
+    let result = []
+    for (let i = 0; i < length; i++) {
+        if (i in this) {
+            result[i] = callback.call(args, this[i], i, this)
+        }
+    }
+}
 `

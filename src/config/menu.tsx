@@ -83,9 +83,9 @@ const menu = [
         icon: <CalculatorOutlined />,
         route: 'program',
         children: [
-            { id: '51000', name: '一', route: '/program/1' },
-            { id: '52000', name: '二', route: '/program/2' },
-            // { id: '53000', name: '排序', route: '/program/3' },
+            { id: '51000', name: '原生、DOM', route: '/program/1' },
+            { id: '52000', name: '常用方法', route: '/program/2' },
+            { id: '53000', name: '框架', route: '/program/3' },
             // { id: '54000', name: '求和', route: '/program/4' },
             // { id: '55000', name: '求次', route: '/program/5' },
             // { id: '56000', name: '链表', route: '/program/6' },

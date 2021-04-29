@@ -183,14 +183,15 @@ function scale36(n) {
 `
 
 export const twoNums = `
-function twoNum(nums: any, target: any) {
-    const map: any = new Map()
-    for (let [key, val] of nums.entries()) {
-        let other = target - val
+function twoSum(nums: number[], target: number) {
+    let map = new Map()
+    for (let [key, value] of Object.entries(nums)) {
+        let other = target - value
         if (map.get(other) !== undefined) return [map.get(other), key]
-        map.set(val, key)
+        map.set(value, key)
     }
 }
+console.log(twoSum([2, 7, 11, 15], 18))
 `
 export const findShortSubArray = `
 /**
@@ -338,7 +339,7 @@ function depJson(json) {
 }
 `
 
-export const infinityCurry = `
+export const infinityCurry1 = `
 /**
  * 单个入参
  * /
@@ -358,7 +359,8 @@ function curry(ans = 1) {
         return ans
     }
 }
-
+`
+export const infinityCurry2 = `
 /**
  * 多个数据传入
  * /
@@ -375,7 +377,6 @@ function curry(ans = 1) {
 }
 curry(2, 3)(3, 5)(4)()
 `
-
 export const flat1 = `
 // 遍历递归
 function flat(arr, depth = 1) {
@@ -652,15 +653,15 @@ export const _reverseList = `
  */
 function reverseList (head) {
     if(!head || !head.next) return head
+    // 定义2个指针，pre在前cur在后
     let cur = head
     let pre = null
     while(cur) {
-        const next = cur.next
-        cur.next = pre
-        pre = cur
+        const next = cur.next // 暂存下一个节点
+        cur.next = pre  // cur的next指向pre
+        pre = cur // 移动 pre和cur
         cur = next
     }
-
     return pre
 }
 
@@ -671,13 +672,9 @@ function reverseList (head) {
  */
  function reverseList (head) {
     if(!head || !head.next) return head
-    // 递归反转子链表
-    let next = reverseList(head.next)
-    // 获取原来链表的第二个节点
-    let nextTail = head.next
-    // 调整原来头结点和第二个节点的指向
-    nextTail.next = head
-    head.next = null    
+    let next = reverseList(head.next) // 拿到下一个节点？
+    head.next.next = head // ？？？
+    head.next = null // ？？？
 
     return next
 }
@@ -704,6 +701,7 @@ function _merge(A, B) {
             result.push(A.shift())
         }
     }
+    return result
 }
 `
 export const _merge2 = `
@@ -731,6 +729,139 @@ function __merge(A, m, B, n) {
         }
     }
 }
+`
 
+export const maxSubArray = `
+function maxSubArray(nums: number[]) {
+    if (nums.length === 1) return nums[0]
+    let ans = nums[0]
+    let sum = 0
+
+    for (let num of nums) {
+        // if (sum > 0) sum += num
+        // else sum = num
+        sum = Math.max((sum + num), num)
+        ans = Math.max(sum, ans)
+    }
+    return ans
+}
+console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
+`
+
+
+export const creteNode = `
+class ListNode {
+    private prev: any
+    private next: any
+    private key: string
+    public constructor(key: string) {
+        // 指向前一个节点
+        this.prev = null
+        // 指向后一个节点
+        this.next = null
+        // 节点的数据(或者用于查找的键)
+        this.key = key
+    }
+}
+
+/**
+ * 双向链表
+ */
+class List {
+    private head: null | any
+    public constructor() {
+        this.head = null
+    }
+
+    public createNode(key: string) {
+        return new ListNode(key)
+    }
+
+    public insert(node: any) {
+        node.prev = null
+        node.next = this.head
+        if (this.head) {
+            this.head.prev = node
+        }
+        this.head = node
+    }
+
+    public search(key: string) {
+        let node = this.head
+        while (node !== null && node.key !== key) {
+            node = node.next
+        }
+        return node
+    }
+
+    public delete(node: any) {
+        const { prev, next } = node
+        delete node.prev
+        delete node.next
+
+        if (node === this.head) {
+            this.head = next
+        }
+
+        if (prev) {
+            prev.next = next
+        }
+        if (next) {
+            next.prev = prev
+        }
+    }
+}
+`
+
+export const mergeTwoList = `
+function mergeTwoList(A: any, B: any) {
+    if (!A) {
+        return B
+    } else if (!B) {
+        return A
+    } else if (A.val < B.val) {
+        A.next = mergeTwoList(A.next, B)
+        return A
+    } else {
+        B.next = mergeTwoList(A, B.next)
+        return B
+    }
+}
+console.log(mergeTwoList([1, 2, 4], [1, 3, 4]))
+`
+
+export const getIntersectionNode1 = `
+// 双指针
+function getIntersectionNode(headA: any, headB: any) {
+    if (!headA || !headB) return null
+
+    let A = headA
+    let B = headB
+    while (A !== B) {
+        A = A !== null ? A.next : headB;
+        B = B !== null ? B.next : headA;
+    }
+    return A
+}
+`
+
+export const getIntersectionNode2 = `
+// hash表
+function getIntersectionNode(headA: any, headB: any) {
+    if (!headA || !headB) return null
+
+    let A = headA
+    let B = headB
+    let map = new Map()
+
+    while (A) {
+        map.set(A, 1)
+        A = A.next
+    }
+    while (B) {
+        if (map.has(B)) return B
+        B = B.next
+    }
+}
 `
 

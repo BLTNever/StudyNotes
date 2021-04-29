@@ -47,8 +47,6 @@ const Operator = () => (
                     </Space>
                 </Panel>
 
-
-
                 <Panel header="类型转换图示：" key="6">
                     <PreviewImg src={coercion} />
                 </Panel>
@@ -109,44 +107,34 @@ const Operator = () => (
                 </Panel>
             </Collapse>
         </Wrap>
-        <div className="note-wrap">
-            <h3>i++ & ++i</h3>
-            <Row gutter={16}>
-                <Col span={12}>
-                    <Card title="i++">
+
+        <Wrap>
+            <PageHeader title="i++ & ++i" />
+            <Collapse defaultActiveKey="" ghost>
+                <Panel header="i++" key="1">
+                    <Space direction="vertical">
                         <h4>i++ 返回原来的值</h4>
-                        <p>i++ 先返回i , 再自增加1</p>
-                        <p>i++ : 先运算，后加1</p>
-                        <p>i++ 不能做为左值</p>
-                    </Card>
-                </Col>
-                <Col span={12}>
-                    <Card title="++i">
+                        <ul>
+                            <li>i++ 先返回i , 再自增加1</li>
+                            <li>i++ : 先运算，后加1</li>
+                            <li>i++ 不能做为左值</li>
+                        </ul>
+                    </Space>
+                </Panel>
+                <Panel header="++i" key="2">
+                    <Space direction="vertical">
                         <h4>++i 返回加1后的值</h4>
-                        <p>++i 先自增加1, 再返回i</p>
-                        <p>++i : 先加1，后运算</p>
-                        <p>++i 可以作为左值</p>
-                        <p>左值是对应内存中有确定存储地址的对象的表达式的值，而右值是所有不是左值的表达式的值</p>
-                    </Card>
-                </Col>
-            </Row>
-        </div>
+                        <ul>
+                            <li>++i 先自增加1, 再返回i</li>
+                            <li>++i : 先加1，后运算</li>
+                            <li>++i 可以作为左值</li>
+                            <li>左值是对应内存中有确定存储地址的对象的表达式的值，而右值是所有不是左值的表达式的值</li>
+                        </ul>
+                    </Space>
+                </Panel>
+            </Collapse>
+        </Wrap>
 
-        <div className="note-wrap">
-            <h3>i+=1 & i=i+1</h3>
-            <Row gutter={16}>
-                <Col span={12}>
-                    <Card title="i+=1">
-
-                    </Card>
-                </Col>
-                <Col span={12}>
-                    <Card title="i=i+1">
-
-                    </Card>
-                </Col>
-            </Row>
-        </div>
 
         <Wrap>
             <PageHeader title="位运算" />

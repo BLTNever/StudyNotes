@@ -6,9 +6,9 @@ import { Wrap } from '@components/Base'
 import PreviewImg from '@components/previewImg'
 
 import {
-    ajax, queryUrlParams, event1, queryUrlParams2,
-    clone1, _useState, _memo, multiRequest, createContext,
-    _render, virtualize
+    queryUrlParams, queryUrlParams2,
+    clone1,  observer, eventEmitter,
+    debounce, debounce2, debounce3, throttle, throttle2
 } from './example'
 
 
@@ -60,7 +60,18 @@ const Program2
         }, [])
         return (
             <>
-
+                <Wrap>
+                    <Title level={3}>设计模式</Title>
+                    <Collapse ghost>
+                        <Panel header="观察者模式" key="1">
+                            <Space direction="vertical">
+                                <Text mark>被观察者对象（subject）维护一组观察者（observer），subject状态发生变化时，通过observer的某些方法把变化通知到observer</Text>
+                                <Highlight language="javascript">{observer}</Highlight>
+                                <Highlight language="javascript">{eventEmitter}</Highlight>
+                            </Space>
+                        </Panel>
+                    </Collapse>
+                </Wrap>
                 <Wrap>
                     <Title level={3}>queryUrlParams</Title>
                     <Collapse ghost>
@@ -92,54 +103,30 @@ const Program2
                         </Panel>
                     </Collapse>
                 </Wrap>
-
                 <Wrap>
-                    <Title level={3}>原生ajax</Title>
+                    <Title level={3}>节流和防抖</Title>
                     <Collapse ghost>
-                        <Panel header="实现" key="1">
+                        <Panel header="防抖" key="1">
                             <Space direction="vertical">
-                                <Highlight language="javascript">{ajax}</Highlight>
+                                <Highlight language="javascript">{debounce}</Highlight>
+                                <h4>增加立即执行和是否延时执行参数</h4>
+                                <Highlight language="javascript">{debounce2}</Highlight>
+                                <h4>在hooks中实现</h4>
+                                <Highlight language="javascript">{debounce3}</Highlight>
                             </Space>
                         </Panel>
-                        <Panel header="并发" key="2">
+                        <Panel header="节流" key="2">
                             <Space direction="vertical">
-                                <Highlight language="javascript">{multiRequest}</Highlight>
+                                <h4>这个function无论多么频繁地调用，原始的func的调用也不会超过指定的频率</h4>
+                                <Highlight language="javascript">{throttle}</Highlight>
+                                <h4>throttle支持leading（是否立即执行）和trailing（是否冷却后执行）</h4>
+                                <Highlight language="javascript">{throttle2}</Highlight>
                             </Space>
                         </Panel>
                     </Collapse>
                 </Wrap>
-                <Wrap>
-                    <Title level={3}>React</Title>
-                    <Collapse ghost>
-                        <Panel header="render" key="1">
-                            <Space direction="vertical">
-                                <Highlight language="javascript">{_render}</Highlight>
-                            </Space>
-                        </Panel>
-                        <Panel header="virtualize" key="2">
-                            <Space direction="vertical">
-                                <Highlight language="javascript">{virtualize}</Highlight>
-                            </Space>
-                        </Panel>
-                        <Panel header="useState" key="3">
-                            <Space direction="vertical">
-                                <Highlight language="javascript">{_useState}</Highlight>
-                            </Space>
-                        </Panel>
 
-                        <Panel header="memo" key="4">
-                            <Space direction="vertical">
-                                <Highlight language="javascript">{_memo}</Highlight>
-                            </Space>
-                        </Panel>
-
-                        <Panel header="createContext" key="5">
-                            <Space direction="vertical">
-                                <Highlight language="javascript">{createContext}</Highlight>
-                            </Space>
-                        </Panel>
-                    </Collapse>
-                </Wrap>
+               
             </>
         )
     }

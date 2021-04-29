@@ -51,7 +51,7 @@ const Algorithm2 = () => {
             <Wrap>
                 <Title level={3}>合并两个有序数组</Title>
                 <Collapse ghost>
-                    <Panel header="" key="1">
+                    <Panel header="给你两个有序整数数组 nums1 和 nums2，请你将 nums2 合并到 nums1 中，使 nums1 成为一个有序数组" key="1">
                         <Row gutter={24}>
                             <Col span={12}><Card><Highlight language="javascript">{_merge1}</Highlight></Card></Col>
                             <Col span={12}><Card><Highlight language="javascript">{_merge2}</Highlight></Card></Col>

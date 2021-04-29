@@ -9,8 +9,8 @@ import { Wrap } from '@components/Base'
 import PreviewImg from '@components/previewImg'
 
 import {
-    throttle2, createNew, extend8, call, apply, bind, myPromise, parseInt, debounce, throttle,
-    observer, debounce2, debounce3, event1, _instanceof
+    createNew, extend8, call, apply, bind, myPromise, parseInt, event1, _instanceof, ajax,
+    multiRequest, _assign, _map
 } from './example'
 
 
@@ -61,26 +61,11 @@ const Program = () => {
     }, [])
     return (
         <>
-            <Wrap>
-                <Title level={3}>设计模式</Title>
-                <Collapse ghost>
-                    <Panel header="观察者模式" key="1">
-                        <Space direction="vertical">
-                            <Text mark>被观察者对象（subject）维护一组观察者（observer），subject状态发生变化时，通过observer的某些方法把变化通知到observer</Text>
-                            <Highlight language="javascript">{observer}</Highlight>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
+
 
             <Wrap>
                 <Title level={3}>原生方法的实现</Title>
                 <Collapse ghost>
-                    <Panel header="promise" key="2">
-                        <Space direction="vertical">
-                            <Card><Highlight language="javascript">{myPromise}</Highlight></Card>
-                        </Space>
-                    </Panel>
                     <Panel header="call" key="3">
                         <Space direction="vertical">
                             <Card><Highlight language="javascript">{call}</Highlight></Card>
@@ -123,29 +108,51 @@ const Program = () => {
                             <Card><Highlight language="javascript">{extend8}</Highlight></Card>
                         </Space>
                     </Panel>
+
+                    <Panel header="map" key="9">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{_map}</Highlight></Card>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+            <Wrap>
+                <Title level={3}>原生ajax</Title>
+                <Collapse ghost>
+                    <Panel header="实现" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{ajax}</Highlight>
+                        </Space>
+                    </Panel>
+                    <Panel header="并发" key="2">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{multiRequest}</Highlight>
+                        </Space>
+                    </Panel>
                 </Collapse>
             </Wrap>
 
             <Wrap>
-                <Title level={3}>节流和防抖</Title>
+                <Title level={3}>Object.assign</Title>
                 <Collapse ghost>
-                    <Panel header="防抖" key="1">
+                    <Panel header="" key="1">
                         <Space direction="vertical">
-                            <Highlight language="javascript">{debounce}</Highlight>
-                            <h4>增加立即执行和是否延时执行参数</h4>
-                            <Highlight language="javascript">{debounce2}</Highlight>
-                            <h4>在hooks中实现</h4>
-                            <Highlight language="javascript">{debounce3}</Highlight>
+                            <Highlight language="javascript">{_assign}</Highlight>
                         </Space>
                     </Panel>
-                    <Panel header="节流" key="2">
+
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>Promise</Title>
+                <Collapse ghost>
+                    <Panel header="" key="1">
                         <Space direction="vertical">
-                            <h4>这个function无论多么频繁地调用，原始的func的调用也不会超过指定的频率</h4>
-                            <Highlight language="javascript">{throttle}</Highlight>
-                            <h4>throttle支持leading（是否立即执行）和trailing（是否冷却后执行）</h4>
-                            <Highlight language="javascript">{throttle2}</Highlight>
+                            <Highlight language="javascript">{myPromise}</Highlight>
                         </Space>
                     </Panel>
+
                 </Collapse>
             </Wrap>
 
@@ -167,5 +174,4 @@ const Program = () => {
 }
 
 export default Program
-
 

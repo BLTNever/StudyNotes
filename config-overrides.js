@@ -10,7 +10,7 @@ const {
     disableEsLint,
     addWebpackModuleRule
 } = require('customize-cra')
-const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
+// const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const antTheme = require('./config/antTheme')
@@ -80,7 +80,7 @@ module.exports = override(
         test: lessModuleRegex,
         use: getStyleLoaders(true)
     }),
-    addWebpackPlugin(new AntdDayjsWebpackPlugin()),
+    // addWebpackPlugin(new AntdDayjsWebpackPlugin()),
     fixBabelImports('import', {
         // antd相关配置
         libraryName: 'antd',

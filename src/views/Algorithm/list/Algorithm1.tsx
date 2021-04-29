@@ -6,9 +6,9 @@ import { Wrap } from '@components/Base'
 import PreviewImg from '@components/previewImg'
 
 import {
-    traversal1, traversal2, traversal3, traversal4, radix, radix2, twoNums,
-    findShortSubArray, createTree, depJson, infinityCurry, destructuring,
-    _isEqual
+    traversal1, traversal2, traversal3, traversal4, radix, radix2,
+    findShortSubArray, createTree, depJson, destructuring,
+    _isEqual, infinityCurry1, infinityCurry2,
 } from './example'
 import { BSTree, nodes } from './fn'
 
@@ -38,17 +38,7 @@ const Algorithm1 = () => {
     }, [])
     return (
         <>
-            <Wrap>
-                <Title level={3}>两数之和</Title>
-                <Text>给一个整数数组nums和一个整数目标值target，在数组中找出两数之和为target的那两个数，返回他们在数组中下标</Text>
-                <Collapse ghost>
-                    <Panel header="" key="1">
-                        <Space direction="vertical">
-                            <Highlight language="javascript">{twoNums}</Highlight>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
+
 
             <Wrap>
                 <Title level={3}>数组的度</Title>
@@ -89,9 +79,10 @@ const Algorithm1 = () => {
                 <Title level={3}>无限柯里化</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
-                        <Space direction="vertical">
-                            <Highlight language="javascript">{infinityCurry}</Highlight>
-                        </Space>
+                        <Row gutter={24}>
+                            <Col span={12}><Card><Highlight language="javascript">{infinityCurry1}</Highlight></Card></Col>
+                            <Col span={12}><Card><Highlight language="javascript">{infinityCurry2}</Highlight></Card></Col>
+                        </Row>
                     </Panel>
                 </Collapse>
             </Wrap>

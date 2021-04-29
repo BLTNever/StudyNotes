@@ -46,14 +46,29 @@ export default Algorithm4
 
 
 const arr = [7, 1, 5, 3, 6, 4]
+// function maxProfit(price: number[]) {
+//     if (price.length <= 1) return 0
+//     let max = 0
+//     let min = price[0]
+//     for (let p of price) {
+//         min = Math.min(min, p)
+//         max = Math.max(max, p - min)
+//     }
+//     return max
+// }
+// console.log(maxProfit(arr))
+
 function maxProfit(price: number[]) {
     if (price.length <= 1) return 0
-    let max = 0
-    let min = price[0]
-    for (let p of price) {
-        min = Math.min(min, p)
-        max = Math.max(max, p - min)
+    let ans = 0
+    let cur = 0
+    for (let i = 0; i < price.length; i++) {
+        if (price[i] > price[cur]) {
+            ans = Math.max(ans, price[i] - price[cur])
+        } else {
+            cur = i
+        }
     }
-    return max
+    return ans
 }
 console.log(maxProfit(arr))

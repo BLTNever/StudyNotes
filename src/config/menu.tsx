@@ -53,6 +53,7 @@ const menu = [
         icon: <SolutionOutlined />,
         route: 'react',
         children: [
+            { id: '34000', name: 'react理念/模型', route: '/react/Source' },
             { id: '31000', name: 'react事件机制', route: '/react/Event' },
             { id: '32000', name: 'react hooks', route: '/react/VirtualDom' },
             { id: '33000', name: 'redux', route: '/react/Redux' },
@@ -100,15 +101,16 @@ const menu = [
         icon: <CalculatorOutlined />,
         route: 'algorithm',
         children: [
-            { id: '41000', name: '记录', route: '/algorithm/1' },
-            { id: '42000', name: '数组', route: '/algorithm/2' },
-            { id: '43000', name: '排序', route: '/algorithm/3' },
-            { id: '44000', name: '求和', route: '/algorithm/4' },
-            { id: '45000', name: '求次', route: '/algorithm/5' },
-            { id: '46000', name: '链表', route: '/algorithm/6' },
-            { id: '47000', name: '栈和队列', route: '/algorithm/7' },
-            { id: '48000', name: '双指针', route: '/algorithm/8' },
-
+            { id: 'note', name: '记录', route: '/algorithm/note' },
+            { id: 'base', name: '基础', route: '/algorithm/base' },
+            { id: 'array', name: '数组', route: '/algorithm/array' },
+            { id: 'string', name: '字符串', route: '/algorithm/string' },
+            { id: 'math', name: '数学', route: '/algorithm/math' },
+            { id: 'sort', name: '排序', route: '/algorithm/sort' },
+            { id: 'aggregate', name: '求和', route: '/algorithm/aggregate' },
+            { id: 'list', name: '链表', route: '/algorithm/list' },
+            { id: 'stack', name: '栈和队列', route: '/algorithm/stack' },
+            { id: 'doublePointer', name: '双指针', route: '/algorithm/doublePointer' },
         ]
     },
     // {

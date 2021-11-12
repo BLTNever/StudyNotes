@@ -63,6 +63,10 @@ export const list = [
         // component: RouteBase.Js,
         children: [
             {
+                path: '/react/Source',
+                component: RouteBase.ReactSource,
+            },
+            {
                 path: '/react/Event',
                 component: RouteBase.ReactEvent,
             },
@@ -140,36 +144,48 @@ export const list = [
         path: '/algorithm',
         children: [
             {
-                path: '/algorithm/1',
-                component: RouteBase.Algorithm1,
+                path: '/algorithm/note',
+                component: RouteBase.AlgoNote,
             },
             {
-                path: '/algorithm/2',
-                component: RouteBase.Algorithm2,
+                path: '/algorithm/base',
+                component: RouteBase.AlgoBase,
             },
             {
-                path: '/algorithm/3',
-                component: RouteBase.Algorithm3,
+                path: '/algorithm/array',
+                component: RouteBase.AlgoArray,
             },
             {
-                path: '/algorithm/4',
-                component: RouteBase.Algorithm4,
+                path: '/algorithm/sort',
+                component: RouteBase.AlgoSort,
+            },
+            {
+                path: '/algorithm/string',
+                component: RouteBase.AlgoString,
+            },
+            {
+                path: '/algorithm/math',
+                component: RouteBase.AlgoMath,
+            },
+            {
+                path: '/algorithm/aggregate',
+                component: RouteBase.AlgoAggregate,
             },
             {
                 path: '/algorithm/5',
                 component: RouteBase.Algorithm5,
             },
             {
-                path: '/algorithm/6',
-                component: RouteBase.Algorithm6,
+                path: '/algorithm/list',
+                component: RouteBase.AlgoListNode,
             },
             {
-                path: '/algorithm/7',
-                component: RouteBase.Algorithm7,
+                path: '/algorithm/stack',
+                component: RouteBase.AlgoStack,
             },
             {
-                path: '/algorithm/8',
-                component: RouteBase.Algorithm8,
+                path: '/algorithm/doublePointer',
+                component: RouteBase.AlgoDoublePointer,
             },
             {
                 path: '/algorithm',
@@ -210,7 +226,7 @@ export const list = [
             },
             {
                 path: '/algorithm/8',
-                component: RouteBase.Algorithm8,
+                component: RouteBase.AlgoDoublePointer,
             },
             {
                 path: '/algorithm',

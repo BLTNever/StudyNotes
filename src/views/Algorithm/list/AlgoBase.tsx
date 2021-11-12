@@ -3,10 +3,10 @@ import Highlight from 'react-highlight'
 import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert } from 'antd'
 
 import { Wrap } from '@components/Base'
-import PreviewImg from '@components/previewImg'
 
 import {
-    flat1, flat2, _merge1, _merge2, arrFn13, arrFn14,
+    flat1, flat2, arrFn13, arrFn14,
+    sort, bubbleSort, sort2, random, quickSort,
 } from './example'
 import { time } from 'console'
 import { last } from 'lodash'
@@ -16,7 +16,7 @@ const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
 
 
-const Algorithm2 = () => {
+const AlgoBase = () => {
 
     return (
         <>
@@ -48,14 +48,24 @@ const Algorithm2 = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
+
             <Wrap>
-                <Title level={3}>合并两个有序数组</Title>
+                <Title level={4}>基础排序操作</Title>
                 <Collapse ghost>
-                    <Panel header="给你两个有序整数数组 nums1 和 nums2，请你将 nums2 合并到 nums1 中，使 nums1 成为一个有序数组" key="1">
-                        <Row gutter={24}>
-                            <Col span={12}><Card><Highlight language="javascript">{_merge1}</Highlight></Card></Col>
-                            <Col span={12}><Card><Highlight language="javascript">{_merge2}</Highlight></Card></Col>
-                        </Row>
+                    <Panel header="sort排序" key="3">
+                        <Highlight language="javascript">{sort}</Highlight>
+                    </Panel>
+                    <Panel header="冒泡排序" key="4">
+                        <Highlight language="javascript">{bubbleSort}</Highlight>
+                    </Panel>
+                    <Panel header="选择排序" key="5">
+                        <Highlight language="javascript">{sort2}</Highlight>
+                    </Panel>
+                    <Panel header="快速排序" key="6">
+                        <Highlight language="javascript">{quickSort}</Highlight>
+                    </Panel>
+                    <Panel header="洗牌算法" key="7">
+                        <Highlight language="javascript">{random}</Highlight>
                     </Panel>
                 </Collapse>
             </Wrap>
@@ -63,7 +73,7 @@ const Algorithm2 = () => {
     )
 }
 
-export default Algorithm2
+export default AlgoBase
 
 
 

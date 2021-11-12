@@ -12,7 +12,7 @@ const { Paragraph, Title, Text, Link } = Typography
 
 
 
-const Interview7 = () => {
+const AlgoStack = () => {
 
 
 
@@ -23,6 +23,6 @@ const Interview7 = () => {
     )
 }
 
-export default Interview7
+export default AlgoStack
 
 

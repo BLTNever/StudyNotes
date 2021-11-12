@@ -7,16 +7,18 @@ import PreviewImg from '@components/previewImg'
 
 import {
     traversal1, traversal2, traversal3, traversal4, radix, radix2,
-    findShortSubArray, createTree, depJson, destructuring,
+    depJson, destructuring,
     _isEqual, infinityCurry1, infinityCurry2,
 } from './example'
+
+import { findShortSubArray, createTree, } from './egArray'
 import { BSTree, nodes } from './fn'
 
 const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
 
 
-const Algorithm1 = () => {
+const AlgoNote = () => {
     const orderFn = () => {
         console.group("%c 二叉树遍历", "background: #333; color: yellow")
         console.log('data>>>', nodes)
@@ -151,5 +153,5 @@ const Algorithm1 = () => {
     )
 }
 
-export default Algorithm1
+export default AlgoNote
 

@@ -13,7 +13,7 @@ const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
 
 
-const Algorithm4 = () => {
+const AlgoAggregate = () => {
 
     return (
         <>
@@ -42,7 +42,7 @@ const Algorithm4 = () => {
     )
 }
 
-export default Algorithm4
+export default AlgoAggregate
 
 
 const arr = [7, 1, 5, 3, 6, 4]

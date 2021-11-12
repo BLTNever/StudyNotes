@@ -14,7 +14,7 @@ function debounce(fn, delay) {
 } 
 
 window.onscroll = debounce(function() {
-    cnsonle.log('debounce')
+    console.log('debounce')
 }, 1000)
 
 
@@ -24,10 +24,9 @@ function debounce(fn, delay, immediate = false) {
         if(timer) clearTimeout(timer)
         
         if(immediate) {
-            timer = setTimeout(() => {
-                timer = null
-            }, delay)
-            if(!timer) fn.apply(this, [...arguments])
+            let now = !timer // 第一次进入是timer是null now为true, 
+            timer = setTimeout(() => { timer = null }, delay) // ？？
+            if(now) fn.apply(this, [...arguments])
         } else {
             timer = setTimeout(() => {
                 fn.apply(this, [...arguments])
@@ -39,6 +38,32 @@ function debounce(fn, delay, immediate = false) {
 `
 
 export const debounce2 = `
+/**
+ * @desc 函数防抖
+ * @param func 函数
+ * @param wait 延迟执行毫秒数
+ * @param immediate true 表立即执行，false 表非立即执行
+ */
+function debounce(func, wait, immediate) {
+    let timeout //创建一个标记用来存放定时器的返回值
+    return function () {
+        let context = this
+        let args = arguments
+        if (timeout) clearTimeout(timeout) //每当用户输入时把前一个setTimeout clear()掉
+        if (immediate) {  //判断是否立即执行
+            var callNow = !timeout
+            timeout = setTimeout(() => {
+                timeout = null
+            }, wait)
+            if (callNow) func.apply(context, args)
+        } else {
+            timeout = setTimeout(() => {
+            //然后又创建一个新的 setTimeout, 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数
+                func.apply(this, arguments)
+            }, wait)
+        }
+    }
+}
 /**
  *  
  * @param func 
@@ -1153,12 +1178,12 @@ console.log(_objectAssign({}, { a: 1, b: 2, c: 3 }, { d: 4, f: 5 }))
 
 export const _map = `
 declare interface Array<T> {
-    _map<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[];
+    _map<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[]
 }
 Array.prototype._map = function (callback, args) {
     const length = this.length
     let result = []
-    for (let i = 0; i < length; i++) {
+    for (let i = 0 i < length i++) {
         if (i in this) {
             result[i] = callback.call(args, this[i], i, this)
         }

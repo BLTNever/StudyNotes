@@ -7,7 +7,7 @@ import PreviewImg from '@components/previewImg'
 
 import {
     queryUrlParams, queryUrlParams2,
-    clone1,  observer, eventEmitter,
+    clone1, observer, eventEmitter,
     debounce, debounce2, debounce3, throttle, throttle2
 } from './example'
 
@@ -107,7 +107,10 @@ const Program2
                     <Title level={3}>节流和防抖</Title>
                     <Collapse ghost>
                         <Panel header="防抖" key="1">
+                            <Title level={3}>触发高频事件后，在N秒内函数只会执行一次，N秒内再次触发高频事件，则重新计算时间</Title>
+                            <Text mark>每次触发事件时都取消之前的延时调用方法</Text>
                             <Space direction="vertical">
+
                                 <Highlight language="javascript">{debounce}</Highlight>
                                 <h4>增加立即执行和是否延时执行参数</h4>
                                 <Highlight language="javascript">{debounce2}</Highlight>
@@ -116,8 +119,9 @@ const Program2
                             </Space>
                         </Panel>
                         <Panel header="节流" key="2">
+                            <Title level={3}>高频事件触发，N秒内只执行一次，稀释函数的执行频率</Title>
+                            <Text mark>每次触发事件都会判断是否有在等待执行的延时函数</Text>
                             <Space direction="vertical">
-                                <h4>这个function无论多么频繁地调用，原始的func的调用也不会超过指定的频率</h4>
                                 <Highlight language="javascript">{throttle}</Highlight>
                                 <h4>throttle支持leading（是否立即执行）和trailing（是否冷却后执行）</h4>
                                 <Highlight language="javascript">{throttle2}</Highlight>
@@ -126,11 +130,12 @@ const Program2
                     </Collapse>
                 </Wrap>
 
-               
+
             </>
         )
     }
 
 export default Program2
+
 
 

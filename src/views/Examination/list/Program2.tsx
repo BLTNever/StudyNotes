@@ -8,7 +8,9 @@ import PreviewImg from '@components/previewImg'
 import {
     queryUrlParams, queryUrlParams2,
     clone1, observer, eventEmitter,
-    debounce, debounce2, debounce3, throttle, throttle2
+    debounce, debounce2, debounce3,
+    throttle11, throttle12, throttle13,
+    throttle2, throttle3
 } from './example'
 
 
@@ -118,14 +120,23 @@ const Program2
                                 <Highlight language="javascript">{debounce3}</Highlight>
                             </Space>
                         </Panel>
-                        <Panel header="节流" key="2">
+                        <Panel header="节流1" key="2">
                             <Title level={3}>高频事件触发，N秒内只执行一次，稀释函数的执行频率</Title>
                             <Text mark>每次触发事件都会判断是否有在等待执行的延时函数</Text>
-                            <Space direction="vertical">
-                                <Highlight language="javascript">{throttle}</Highlight>
-                                <h4>throttle支持leading（是否立即执行）和trailing（是否冷却后执行）</h4>
-                                <Highlight language="javascript">{throttle2}</Highlight>
-                            </Space>
+                            <Row gutter={24}>
+                                <Col span={8}><Card title="时间戳"><Highlight language="javascript">{throttle11}</Highlight></Card></Col>
+                                <Col span={8}><Card title="计时器"><Highlight language="javascript">{throttle12}</Highlight></Card></Col>
+                                <Col span={8}><Card title="结合写法"><Highlight language="javascript">{throttle13}</Highlight></Card></Col>
+                            </Row>
+
+                        </Panel>
+                        <Panel header="节流2" key="3">
+                            <h4></h4>
+                            <Highlight language="javascript">{throttle2}</Highlight>
+                        </Panel>
+                        <Panel header="节流3" key="4">
+                            <h4>throttle支持leading（是否立即执行）和trailing（是否冷却后执行）</h4>
+                            <Highlight language="javascript">{throttle3}</Highlight>
                         </Panel>
                     </Collapse>
                 </Wrap>
@@ -136,6 +147,9 @@ const Program2
     }
 
 export default Program2
+
+
+
 
 
 

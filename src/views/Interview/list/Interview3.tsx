@@ -125,6 +125,7 @@ const Interview3 = () => {
                 <Collapse ghost>
                     <Panel header="防抖" key="1">
                         <Space direction="vertical">
+                            <h4></h4>
                             <Highlight language="javascript">{debounce}</Highlight>
                             <h4>增加立即执行和是否延时执行参数</h4>
                             <Highlight language="javascript">{debounce2}</Highlight>
@@ -134,7 +135,7 @@ const Interview3 = () => {
                     </Panel>
                     <Panel header="节流" key="2">
                         <Space direction="vertical">
-                            <h4>这个function无论多么频繁地调用，原始的func的调用也不会超过指定的频率</h4>
+                            <h4>这个function无论多么频繁地调用，原始的func的调用也不会超过指定的频率(固定间隔时间执行一次)</h4>
                             <Highlight language="javascript">{throttle}</Highlight>
                             <h4>throttle支持leading（是否立即执行）和trailing（是否冷却后执行）</h4>
                             <Highlight language="javascript">{throttle2}</Highlight>
@@ -165,7 +166,7 @@ const Interview3 = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
-            
+
         </>
     )
 }

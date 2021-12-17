@@ -1,38 +1,41 @@
 
 export const debounce = `
-// 函数防抖 —— 设定时间内触发一次
+// 函数防抖 —— 持续触发，只有在最后一次触发事件后延时执行
 function debounce(fn, delay) {
     let timer = null
     return (...args) => {
         if(timer) clearTimeout(timer)
+
         timer = setTimeout(() => {
             fn.apply(this, [...args])
         }, delay)
     }
 } 
-
-window.onscroll = debounce(function() {
-    cnsonle.log('debounce')
-}, 1000)
-
-
+/**
+ * 增加是否立即执行参数immediate
+ * /
 function debounce(fn, delay, immediate = false) {
     let timer = null
-    return () => {
+    return function() {
+        let _this =this
+        let args = arguments
         if(timer) clearTimeout(timer)
         
         if(immediate) {
-            timer = setTimeout(() => {
+            timer = setTimeout(function() {
                 timer = null
             }, delay)
-            if(!timer) fn.apply(this, [...arguments])
+            if(!timer) fn.apply(_this, args)
         } else {
-            timer = setTimeout(() => {
-                fn.apply(this, [...arguments])
+            timer = setTimeout(function() {
+                fn.apply(_this, args)
             }, delay)
         }
     }
 } 
+window.onscroll = debounce(function() {
+    cnsonle.log('debounce')
+}, 1000)
 
 `
 
@@ -44,24 +47,22 @@ export const debounce2 = `
  * @param option leading: 是否立即执行； trailing: 是否延时执行；
  * @returns 
  */
-function debounce(func, wait, option = { leading: false, trailing: true }) {
+function debounce(fn, wait, option = { leading: false, trailing: true }) {
     const { leading, trailing } = option
     let timer = null
     let lastArgs = null
     return (...args) => {
-        // 都为false return
-        if(!leading && !trailing) return null
+        let _this = this
+        if(!leading && !trailing) return null             // 都为false return
+      
+        if (!timer && leading) fn.call(this, ...args)   // 第一次执行 同时是立即执行的话
+        else lastArgs = args                              // 否-记录一下参数
 
-        // 第一次执行 同时是立即执行的话
-        if (!timer && leading) func.call(this, ...args)
-        // 否-记录一下参数
-        else lastArgs = args
-
-        if(timer) clearTimeout(timer)
-        // 延时执行并且有记录的参数数据，通过setTimeout执行
+        if(timer) clearTimeout(timer)                     // 延时执行并且有记录的参数数据，通过setTimeout执行
+      
         timer = setTimeout(() => {
             if(trailing && lastArgs){
-                func.call(this, ...lastArgs)
+                fn.call(_this, ...lastArgs)
             }
             timer = null
         }, wait)
@@ -91,8 +92,67 @@ function useDebounce(fn, delay, dep = []) {
 `
 
 export const throttle = `
-// 函数节流 —— 只允许一个函数在N秒内执行一次
-function throttle(fn, wait) {
+/**
+ * 时间戳写法 第一次立即执行
+ * @param fn 
+ * @param interval 
+ */
+function throttle(fn, interval) {
+    let last = 0
+    return function () {
+        let now = Date.now()
+        if (now - last >= interval) {
+            last = now
+            fn.apply(this, arguments)
+        }
+    }
+}
+/**
+ * 计时器写法， 最后一次会延时执行
+ * @param fn 
+ * @param interval 
+ * @returns 
+ */
+function throttle(fn, interval) {
+    let timer = null
+    return function () {
+        let _this = this
+        let args = arguments
+        if (!timer) {
+            timer = setTimeout(function() {
+                fn.apply(_this, args)
+                timer = null
+            })
+        }
+    }
+}
+/**
+ * 
+ * @param fn 
+ * @param delay 
+ * @returns 
+ */
+function throttle(fn, delay) {
+    let start = Date.now()
+    let timer = null
+    return function () {
+        let cur = Date.now()
+        let _this = this
+        let args = arguments
+        let remain = delay - (cur - start)
+        if (remain <= 0) {                      // 剩余时间 小于等于0 立即执行          
+            fn.apply(_this, args)
+            start = Date.now()
+        } else {
+            timer = setTimeout(fn, remain)      // 剩余时间 大于0 延时剩余时间执行
+        }
+    }
+}
+/** 
+ * setTimeout, 第一次立即执行
+ * 
+ * /
+function throttle(fn, delay) {
     let waiting = false
     let lastArgs = null
     return (...args) => {
@@ -102,24 +162,23 @@ function throttle(fn, wait) {
             setTimeout(() => {
                 lastArgs && fn.call(this, ...lastArgs)
                 waiting = false
-            }, wait)
+            }, delay)
         } else {
             lastArgs = [...args]
         }
     }
 }
-function throttle(func, wait) {
-    // your code here
+function throttle(fn, delay) {
     let timer = null
     let lastArgs = null
 
     return (...args) => {
         if (!timer) {
-            func.call(this, ...args)
+            fn.call(this, ...args)
             timer = setTimeout(() => {
-                lastArgs && func.call(this, ...lastArgs)
+                lastArgs && fn.call(this, ...lastArgs)
                 timer = null
-            }, wait)
+            }, delay)
         } else {
             lastArgs = [...args]
         }
@@ -131,21 +190,20 @@ const throttleScroll = throttle(function() {
 window.scroll = throttleScroll
 `
 export const throttle2 = `
-
 /**
  *  
- * @param func 
+ * @param fn 
  * @param wait 
  * @param option leading: 是否立即执行； trailing: 是否延时执行；
  * @returns 
  */
-function throttle(func, wait, option = { leading: true, trailing: true }) {
+function throttle(fn, wait, option = { leading: true, trailing: true }) {
     const { leading, trailing } = option
     let timer = null
     let lastArgs = null
     const timeFn = () => {
         if (trailing && lastArgs) {
-            func.call(this, ...lastArgs)
+            fn.call(this, ...lastArgs)
             lastArgs = null
             timer = setTimeout(timeFn, wait)
         } else {
@@ -164,12 +222,12 @@ function throttle(func, wait, option = { leading: true, trailing: true }) {
 
 /**
  * 
- * @param func 
+ * @param fn 
  * @param wait 
  * @param option leading: 是否立即执行； trailing: 是否延时执行；
  * @returns 
  */
-function throttle(func, wait, option = { leading: true, trailing: true }) {
+function throttle(fn, wait, option = { leading: true, trailing: true }) {
     const { leading, trailing } = option
     let waiting = false
     let timer = null
@@ -177,7 +235,7 @@ function throttle(func, wait, option = { leading: true, trailing: true }) {
     const timeFn = () => {
         timer = setTimeout(() => {
             if (trailing && lastArgs) {
-                func.call(this, ...lastArgs)
+                fn.call(this, ...lastArgs)
                 if (timer) timer = null
                 lastArgs = null
                 timeFn()

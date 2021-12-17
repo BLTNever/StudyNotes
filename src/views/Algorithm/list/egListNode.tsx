@@ -122,8 +122,8 @@ function getIntersectionNode(headA: any, headB: any) {
     let A = headA
     let B = headB
     while (A !== B) {
-        A = A !== null ? A.next : headB;
-        B = B !== null ? B.next : headA;
+        A = A !== null ? A.next : headB;    // A 是否为null, 是-指针移动到下一个节点，否-指针指向 headB, 继续遍历
+        B = B !== null ? B.next : headA;    // B 是否为null, 是-指针移动到下一个节点，否-指针指向 headA, 继续遍历
     }
     return A
 }

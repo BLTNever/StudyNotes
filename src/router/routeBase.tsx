@@ -65,8 +65,8 @@ export const AlgoBinaryTree = lazy(() => import(/* webpackChunkName: "AlgoBase" 
 
 // Examination
 
+export const NativeMethod = lazy(() => import(/* webpackChunkName: "NativeMethod" */'@views/Examination/list/nativeMethod'))
 export const Program = lazy(() => import(/* webpackChunkName: "Program" */'@views/Examination/list/program'))
-export const Program2 = lazy(() => import(/* webpackChunkName: "Program2" */'@views/Examination/list/Program2'))
 export const ExaminationFramework = lazy(() => import(/* webpackChunkName: "Framework" */'@views/Examination/list/framework'))
 export const Program4 = lazy(() => import(/* webpackChunkName: "Program4" */'@views/Examination/list/Program4'))
 export const Program5 = lazy(() => import(/* webpackChunkName: "Program5" */'@views/Examination/list/Program5'))

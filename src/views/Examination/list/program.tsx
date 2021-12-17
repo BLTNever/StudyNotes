@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-member-accessibility */
-
-
 import React, { useEffect } from 'react'
 import Highlight from 'react-highlight'
 import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert } from 'antd'
@@ -9,8 +6,11 @@ import { Wrap } from '@components/Base'
 import PreviewImg from '@components/previewImg'
 
 import {
-    createNew, extend8, call, apply, bind, myPromise, parseInt, event1, _instanceof, ajax,
-    multiRequest, _assign, _map
+    queryUrlParams, queryUrlParams2,
+    clone1, observer, eventEmitter,
+    debounce, debounce2, debounce3,
+    throttle11, throttle12, throttle13,
+    throttle2, throttle3
 } from './example'
 
 
@@ -56,105 +56,86 @@ const Program = () => {
 
     useEffect(() => {
         const url = "https://www.baidu.com?name=coder&age=20&callback=https%3A%2F%2Fbaidu.com%3Fname%3Dtest&list[]=a&list[]=b&json=%7B%22str%22%3A%22abc%22,%22num%22%3A123%7D"
-        const test = queryURLParams(url)
-        console.log('test queryUrlParams>>>>>', test)
+        // const test = queryURLParams(url)
+        // console.log('test queryUrlParams>>>>>', test)
     }, [])
     return (
         <>
             <Wrap>
-                <Title level={3}>原生方法的实现</Title>
+                <Title level={3}>设计模式</Title>
                 <Collapse ghost>
-                    <Panel header="call、apply、bind实现" key="3">
-                        <Row>
-                            <Col span={12}><Card><Highlight language="javascript">{call}</Highlight></Card></Col>
-                            <Col span={12}><Card><Highlight language="javascript">{apply}</Highlight></Card></Col>
+                    <Panel header="观察者模式" key="1">
+                        <Space direction="vertical">
+                            <Text mark>被观察者对象（subject）维护一组观察者（observer），subject状态发生变化时，通过observer的某些方法把变化通知到observer</Text>
+                            <Highlight language="javascript">{observer}</Highlight>
+                            <Highlight language="javascript">{eventEmitter}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+            <Wrap>
+                <Title level={3}>queryUrlParams</Title>
+                <Collapse ghost>
+                    <Panel header="slice切割、遍历" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{queryUrlParams}</Highlight>
+                        </Space>
+                    </Panel>
+                    <Panel header="new URL api" key="2">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{queryUrlParams2}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>深拷贝</Title>
+                <Space direction="vertical">
+                    <Text>基本类型的变量不存在深拷贝浅拷贝</Text>
+                    <Text>引用类型的浅拷贝复制的是在栈中的地址，而非在堆中存的数据（例如直接赋值、Array的slice和concat等）</Text>
+                    <Text>使用JSON.parse(JSON.stringify(obj))做深拷贝赋值会忽略掉undefined和函数表达式</Text>
+                </Space>
+                <Collapse ghost>
+                    <Panel header="" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{clone1}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+            <Wrap>
+                <Title level={3}>节流和防抖</Title>
+                <Collapse ghost>
+                    <Panel header="防抖" key="1">
+                        <Title level={3}>触发高频事件后，在N秒内函数只会执行一次，N秒内再次触发高频事件，则重新计算时间</Title>
+                        <Text mark>每次触发事件时都取消之前的延时调用方法</Text>
+                        <Space direction="vertical">
+
+                            <Highlight language="javascript">{debounce}</Highlight>
+                            <h4>增加立即执行和是否延时执行参数</h4>
+                            <Highlight language="javascript">{debounce2}</Highlight>
+                            <h4>在hooks中实现</h4>
+                            <Highlight language="javascript">{debounce3}</Highlight>
+                        </Space>
+                    </Panel>
+                    <Panel header="节流1" key="2">
+                        <Title level={3}>高频事件触发，N秒内只执行一次，稀释函数的执行频率</Title>
+                        <Text mark>每次触发事件都会判断是否有在等待执行的延时函数</Text>
+                        <Row gutter={24}>
+                            <Col span={8}><Card title="时间戳"><Highlight language="javascript">{throttle11}</Highlight></Card></Col>
+                            <Col span={8}><Card title="计时器"><Highlight language="javascript">{throttle12}</Highlight></Card></Col>
+                            <Col span={8}><Card title="结合写法"><Highlight language="javascript">{throttle13}</Highlight></Card></Col>
                         </Row>
-                        <Row><Col span={12}><Card><Highlight language="javascript">{bind}</Highlight></Card></Col></Row>
-                    </Panel>
 
-                    <Panel header="new函数" key="6">
-                        <Space direction="vertical">
-                            <Text>创建一个全新的对象</Text>
-                            <Text>对象执行[[prototype]]链接，将这个新对象的[[prototype]]链接到这个构造函数.prototype所指的对象</Text>
-                            <Text>这个新对象会绑定到函数调用的this</Text>
-                            <Text>函数如果没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象</Text>
-                            <Card><Highlight language="javascript">{createNew}</Highlight></Card>
-                        </Space>
                     </Panel>
-                    <Panel header="instanceof" key="8">
-                        <Space direction="vertical">
-                            <Text>instanceof 用于判断左侧值是否是右侧值的实例，所以左侧必须是一个对象，而右侧是一个类</Text>
-                            <Text>instanceof 会查找原型链，知道 null 之前如果还不是这个对象的实例则会返回 false，否则返回 true</Text>
-                            <Card><Highlight language="javascript">{_instanceof}</Highlight></Card>
-                        </Space>
+                    <Panel header="节流2" key="3">
+                        <h4></h4>
+                        <Highlight language="javascript">{throttle2}</Highlight>
                     </Panel>
-                    <Panel header="parseInt" key="7">
-                        <Space direction="vertical">
-                            <Card><Highlight language="javascript">{parseInt}</Highlight></Card>
-                        </Space>
-                    </Panel>
-
-                    <Panel header="extend" key="1">
-                        <Space direction="vertical">
-                            <Card><Highlight language="javascript">{extend8}</Highlight></Card>
-                        </Space>
-                    </Panel>
-
-                    <Panel header="map" key="9">
-                        <Space direction="vertical">
-                            <Card><Highlight language="javascript">{_map}</Highlight></Card>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-            <Wrap>
-                <Title level={3}>原生ajax</Title>
-                <Collapse ghost>
-                    <Panel header="实现" key="1">
-                        <Space direction="vertical">
-                            <Highlight language="javascript">{ajax}</Highlight>
-                        </Space>
-                    </Panel>
-                    <Panel header="并发" key="2">
-                        <Space direction="vertical">
-                            <Highlight language="javascript">{multiRequest}</Highlight>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
-            <Wrap>
-                <Title level={3}>Object.assign</Title>
-                <Collapse ghost>
-                    <Panel header="" key="1">
-                        <Space direction="vertical">
-                            <Highlight language="javascript">{_assign}</Highlight>
-                        </Space>
-                    </Panel>
-
-                </Collapse>
-            </Wrap>
-
-            <Wrap>
-                <Title level={3}>Promise</Title>
-                <Collapse ghost>
-                    <Panel header="" key="1">
-                        <Space direction="vertical">
-                            <Highlight language="javascript">{myPromise}</Highlight>
-                        </Space>
-                    </Panel>
-
-                </Collapse>
-            </Wrap>
-
-            <Wrap>
-                <Title level={3}>委托</Title>
-                <Collapse ghost>
-                    <Panel header="DOM事件委托" key="1">
-                        <Space direction="vertical">
-                            <Text >** 点击页面中div打印dom节点</Text>
-                            <Highlight language="javascript">{event1}</Highlight>
-                        </Space>
+                    <Panel header="节流3" key="4">
+                        <h4>throttle支持leading（是否立即执行）和trailing（是否冷却后执行）</h4>
+                        <Highlight language="javascript">{throttle3}</Highlight>
                     </Panel>
                 </Collapse>
             </Wrap>
@@ -165,4 +146,9 @@ const Program = () => {
 }
 
 export default Program
+
+
+
+
+
 

@@ -690,7 +690,7 @@ Function.prototype._bind = function(context = window, ...outerArgs) {
 }
 `
 
-export const myPromise = `
+export const promise = `
 class Promise {
     callback = []
 

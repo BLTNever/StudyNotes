@@ -85,8 +85,8 @@ const menu = [
         icon: <CalculatorOutlined />,
         route: 'examination',
         children: [
-            { id: '51000', name: '编程题', route: '/examination/program' },
-            { id: '52000', name: '常用方法', route: '/examination/2' },
+            { id: '51000', name: '原生方法实现', route: '/examination/nativeMethod' },
+            { id: '52000', name: '编程题', route: '/examination/program' },
             { id: '53000', name: '框架', route: '/examination/framework' },
 
         ]

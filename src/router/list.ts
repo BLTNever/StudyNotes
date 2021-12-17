@@ -205,12 +205,12 @@ export const list = [
         path: '/examination',
         children: [
             {
-                path: '/examination/program',
-                component: RouteBase.Program,
+                path: '/examination/nativeMethod',
+                component: RouteBase.NativeMethod,
             },
             {
                 path: '/examination/2',
-                component: RouteBase.Program2,
+                component: RouteBase.Program,
             },
             {
                 path: '/examination/framework',

@@ -55,7 +55,7 @@ const menu = [
         children: [
             { id: '34000', name: 'react理念/模型', route: '/react/Source' },
             { id: '31000', name: 'react事件机制', route: '/react/Event' },
-            { id: '32000', name: 'react hooks', route: '/react/VirtualDom' },
+            { id: '32000', name: 'react详解', route: '/react/Detail' },
             { id: '33000', name: 'redux', route: '/react/Redux' },
         ]
     },
@@ -66,13 +66,14 @@ const menu = [
         icon: <SolutionOutlined />,
         route: 'interview',
         children: [
+            { id: '44000', name: '模拟题', route: '/interview/record' },
             { id: '47000', name: '前端相关', route: '/interview/7' },
-            { id: '41000', name: 'javascript基础', route: '/interview/1' },
+            { id: '41000', name: 'javascript', route: '/interview/js' },
             { id: '48000', name: 'ts', route: '/interview/8' },
-            { id: '42000', name: '框架', route: '/interview/2' },
+            { id: '42000', name: '框架', route: '/interview/framework' },
             // { id: '43000', name: '编程题1', route: '/interview/3' },
             // { id: '43000', name: '编程题2', route: '/interview/3-1' },
-            { id: '44000', name: 'webpack', route: '/interview/4' },
+            { id: '44000', name: 'webpack', route: '/interview/webpack' },
             // { id: '45000', name: '算法', route: '/interview/5' },
             { id: '46000', name: 'html/css/移动端适配', route: '/interview/6' },
 
@@ -80,18 +81,13 @@ const menu = [
     },
     {
         id: '50000',
-        name: '编程题',
+        name: 'Examination',
         icon: <CalculatorOutlined />,
-        route: 'program',
+        route: 'examination',
         children: [
-            { id: '51000', name: '原生、DOM', route: '/program/1' },
-            { id: '52000', name: '常用方法', route: '/program/2' },
-            { id: '53000', name: '框架', route: '/program/3' },
-            // { id: '54000', name: '求和', route: '/program/4' },
-            // { id: '55000', name: '求次', route: '/program/5' },
-            // { id: '56000', name: '链表', route: '/program/6' },
-            // { id: '57000', name: '栈和队列', route: '/program/7' },
-            // { id: '58000', name: '双指针', route: '/program/8' },
+            { id: '51000', name: '编程题', route: '/examination/program' },
+            { id: '52000', name: '常用方法', route: '/examination/2' },
+            { id: '53000', name: '框架', route: '/examination/framework' },
 
         ]
     },
@@ -106,11 +102,12 @@ const menu = [
             { id: 'array', name: '数组', route: '/algorithm/array' },
             { id: 'string', name: '字符串', route: '/algorithm/string' },
             { id: 'math', name: '数学', route: '/algorithm/math' },
-            { id: 'sort', name: '排序', route: '/algorithm/sort' },
+            { id: 'binaryTree', name: '二叉树', route: '/algorithm/binaryTree' },
             { id: 'aggregate', name: '求和', route: '/algorithm/aggregate' },
-            { id: 'list', name: '链表', route: '/algorithm/list' },
+            { id: 'list', name: '链表', route: '/algorithm/listNode' },
             { id: 'stack', name: '栈和队列', route: '/algorithm/stack' },
             { id: 'doublePointer', name: '双指针', route: '/algorithm/doublePointer' },
+            { id: 'sort', name: '排序', route: '/algorithm/sort' },
         ]
     },
     // {

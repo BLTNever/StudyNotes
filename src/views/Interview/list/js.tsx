@@ -35,7 +35,6 @@ const Interview1 = () => (
         </Wrap>
 
 
-
         <Wrap>
             <Title level={3}>原型、继承、new</Title>
             <Collapse ghost>
@@ -67,13 +66,11 @@ const Interview1 = () => (
                 </Panel>
                 <Panel header="继承的种类" key="3">
                     <Space direction="vertical">
-                        <ul>
-                            <li><Card title="1. 构造函数继承："><Highlight language="javascript">{extend3}</Highlight></Card></li>
-                            <li><Card title="2. 原型链继承："><Highlight language="javascript">{extend4}</Highlight></Card> </li>
-                            <li><Card title="3. 构造函数原型链组合继承："><Highlight language="javascript">{extend5}</Highlight></Card></li>
-                            <li><Card title="4. 寄生式继承："><Highlight language="javascript">{extend6}</Highlight></Card></li>
-                            <li><Card title="5. 寄生组合式继承（class实现）："><Highlight language="javascript">{extend7}</Highlight></Card></li>
-                        </ul>
+                        <Card title="1. 构造函数继承："><Highlight language="javascript">{extend3}</Highlight></Card>
+                        <Card title="2. 原型链继承："><Highlight language="javascript">{extend4}</Highlight></Card>
+                        <Card title="3. 构造函数原型链组合继承："><Highlight language="javascript">{extend5}</Highlight></Card>
+                        <Card title="4. 寄生式继承："><Highlight language="javascript">{extend6}</Highlight></Card>
+                        <Card title="5. 寄生组合式继承（class实现）："><Highlight language="javascript">{extend7}</Highlight></Card>
                     </Space>
                     <Row><Col><Card><Highlight language="javascript">{createNew}</Highlight></Card></Col></Row>
                 </Panel>
@@ -96,7 +93,7 @@ const Interview1 = () => (
                     </Space>
                 </Panel>
 
-                <Panel header="CommonJs和EsModule的区别" key="">
+                <Panel header="CommonJs和EsModule的区别" key="2">
                     <Space direction="vertical">
                         <ul>
                             <li><Text>1. CommonJs模块输出的值的拷贝，EsModule模块输出的是值得引用</Text></li>

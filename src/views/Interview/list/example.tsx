@@ -1,8 +1,3 @@
-import { useForm } from "antd/lib/form/Form"
-import { T } from "antd/lib/upload/utils"
-import { fill, reject, values } from "lodash"
-import { fn } from "moment"
-import { resolve } from "path"
 
 export const debounce = `
 // 函数防抖 —— 设定时间内触发一次
@@ -795,27 +790,27 @@ const Pu
 
 export const _useState = `
 /**
- * 实现1
+ * 简单实现
  * /
 let index = 0
-let stateList = []
-function _useState(initState) {
+let states = []
+function useState(initState) {
     let currentIndex = index
-    let _state = stateList[currentIndex] ? stateList[currentIndex] : initState
+    let _state = states[currentIndex] ? states[currentIndex] : initState
     function setState(prevState) {
-        stateList[currentIndex] = prevState
+        states[currentIndex] = prevState
         render()
         index = 0
     }
     index++
-    return [stateList[currentIndex], setState]
+    return [states[currentIndex], setState]
 }
 
 /**
  * 实现2
  * /
 let states = []
-let setters = []
+let setter = []
 let index = 0
 function createSetter(stateIndex) {
     return function(prevState) {
@@ -823,12 +818,12 @@ function createSetter(stateIndex) {
         render()
     }
 }
-function _useState(initState) {
-    states[index] =  states[index] ? states[index] : initState
+function useState(initState) {
+    states[index] = states[index] ? states[index] : initState
 
-    setters.push(createSetter(index))
+    setter.push(createSetter(index))
     const state = states[index]
-    const setState = setters[index]
+    const setState = setter[index]
 
     index++
     return [state, setState]

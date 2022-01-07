@@ -17,18 +17,8 @@ const AlgoAggregate = () => {
 
     return (
         <>
-
             <Wrap>
-                <Title level={3}>最大子序和</Title>
-                <Collapse ghost>
-                    <Panel header="给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和" key="1">
-                        <Space><Highlight language="javascript">{maxSubArray}</Highlight></Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
-            <Wrap>
-                <Title level={3}>两数之和</Title>
+                <Title level={3}>1. 两数之和</Title>
                 <Collapse ghost>
                     <Panel header="给一个整数数组nums和一个整数目标值target，在数组中找出两数之和为target的那两个数，返回他们在数组中下标" key="1">
                         <Space direction="vertical">
@@ -37,6 +27,17 @@ const AlgoAggregate = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
+            
+            <Wrap>
+                <Title level={3}>53. 最大子数组和</Title>
+                <Collapse ghost>
+                    <Panel header="给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和" key="1">
+                        <Space><Highlight language="javascript">{maxSubArray}</Highlight></Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+
 
         </>
     )

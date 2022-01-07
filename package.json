@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "start": "cross-env REACT_APP_ENV=dev PORT=8888 react-app-rewired start",
+        "start": "cross-env REACT_APP_ENV=dev PORT=9999 react-app-rewired start",
         "build": "cross-env REACT_APP_ENV=prod react-app-rewired build"
     },
     "dependencies": {
@@ -11,7 +11,7 @@
         "@types/classnames": "^2.2.10",
         "@types/lodash": "^4.14.154",
         "@types/screenfull": "^4.1.0",
-        "antd": "^4.1.0",
+        "antd": "^4.17.2",
         "antd-dayjs-webpack-plugin": "^1.0.0",
         "axios": "^0.19.2",
         "dayjs": "^1.10.4",
@@ -62,6 +62,9 @@
         "stylus": "^0.54.7",
         "stylus-loader": "^3.0.2",
         "typescript": "^3.8.3"
+    },
+    "resolutions": {
+        "react-error-overlay": "6.0.9"
     },
     "eslintConfig": {
         "extends": "react-app"

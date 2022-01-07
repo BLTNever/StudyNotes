@@ -8,7 +8,7 @@ import PreviewImg from '@components/previewImg'
 import nativetojs from '@images/rnnativetojs.png'
 import lifeCircle from '@images/lifeCircle.jpg'
 
-import {  _useState } from './example'
+import { _useState } from './example'
 
 
 
@@ -16,17 +16,45 @@ const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
 
 
-const Interview2 = () => {
-    const [temp, setTemp] = React.useState(5);
+const framework = () => {
 
     return (
         <>
             <Wrap>
                 <Title level={3}>React事件机制</Title>
+                <Link href="/react/Event'">详细说明</Link>
                 <Collapse ghost>
-                    <Panel header="" key="1">
+                    <Panel header="原生事件" key="1">
                         <Space direction="vertical">
-                            <Link href="/react/Event?callback='/interview/2'">查看</Link>
+                            <Text>JS原生事件有三种：</Text>
+                            <Paragraph>
+                                <blockquote>
+                                    <ul>
+                                        <li>直接在标签属性绑定：{`<div onclick="console.log(123)"></div>`}</li>
+                                        <li>通过DOM绑定：{`document.getElementByTagName("div").onclick = function () {
+                                        console.log(111)
+                                        }`}</li>
+                                        <li>通过EventTaget的监听事件：{`document.addEventListener('onclick',(e) => {
+                                            console.log(111)
+                                        })`}</li>
+                                    </ul>
+                                </blockquote>
+                            </Paragraph>
+                        </Space>
+                    </Panel>
+                    <Panel header="React合成事件" key="2">
+                        <Space direction="vertical">
+                            <Title level={4}>React合成事件是指将原生事件合成一个React事件</Title>
+                            <Text mark>React封装自己的一套事件机制，目的是为了实现全浏览器的一致性，抹平不同浏览器之间的差异性</Text>
+                            <Paragraph>
+                                <blockquote>
+                                    <Text>事件流包括三个阶段：事件捕获、目标阶段和事件冒泡（window -&gt; document -&gt; html -&gt; body ... -&gt; target）</Text>
+                                    <Text>React合成事件的工作原理大致可以分为两个阶段：1. 事件绑定 2.事件触发</Text>
+                                    <Text>在React17之前，React是把事件委托在document上的，React17及以后版本不再把事件委托在document上，而是委托在挂载的容器上</Text>
+                                    <Text>React合成事件一套机制：React并不是将click事件直接绑定在dom上面，而是采用事件冒泡的形式冒泡到document上面，然后React将事件封装给SyntheticEvent函数处理、运行和处理。</Text>
+                                    <Text>如果DOM上绑定了过多的事件处理函数，整个页面响应以及内存占用可能都会受到影响。React为了避免DOM事件滥用，同时屏蔽底层不同浏览器之间的事件系统差异，实现了一个中间层——SyntheticEvent。</Text>
+                                </blockquote>
+                            </Paragraph>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -75,9 +103,9 @@ const Interview2 = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>React相关</Title>
+                <Title level={3}>React优势</Title>
                 <Collapse ghost>
-                    <Panel header="React性能" key="1">
+                    <Panel header="React性能在少量更新DOM情况下没有原生操作更快，优势体现在安全性，规范和兼容性" key="1">
                         <Space direction="vertical">
                             <ul>
                                 <li><Text mark>性能：操作一次DOM，原生更快，整个项目操作react更好</Text></li>
@@ -88,33 +116,89 @@ const Interview2 = () => {
                             </ul>
                         </Space>
                     </Panel>
+                </Collapse>
+            </Wrap>
 
-                    <Panel header="setState" key="2">
+            <Wrap>
+                <Title level={3}>setState</Title>
+                <Collapse ghost>
+                    <Panel header="由 React 控制的事件处理过程 setState 不会同步更新 this.state; 在 React 控制之外的情况，setState 会同步更新 this.state" key="1">
+                        <Space direction="vertical"><ul>
+                            <li>setState只在合成事件和钩子函数中是“异步”的，在原生事件（addEventListener）和setTimeout中都是“同步”的</li>
+                            <li>setState的异步不是在内部实现的，代码执行的过程和结都是同步的，只是在合成事件和钩子函数中的调用顺序在更新之前，导致无法拿到更新后的结果，形成所谓的异步，可以通过setState(partialState, callback)在callback中拿到结果</li>
+                            <li>setState的批量更新也是建立在异步（合成事件、钩子函数）之上，在原生事件和setTimeout中是无法批量更新的</li>
+                            <li>react更新是通过“事务”（Transacation）的，通过isBatchingUpdates: boolean控制，setTimout中事务无法管控</li>
+                            <li>batchedUpdates: 在一个上下文中同时触发多次更新，这些更新会合并成一次更新</li>
+                        </ul>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>useState</Title>
+                <Collapse ghost>
+                    <Panel header="useState内部存储的states/setter是个数组，会按照数组顺序进行改变，所以useState不能在if/else循环里, " key="1">
+                        <Highlight>{_useState}</Highlight>
+                    </Panel>
+                    <Panel header="useState调用一次，每次渲染触发2次" key="2">
+                        <Space direction="vertical">
+                            <Text mark>组件的一次更新流程，在视图真正刷新之前的部分都是可能被多次调用的，因而这些部分中不能出现副作用，开发环境下会刻意触发两次以使得开发者能注意到误用的副作用。</Text>
+                            <Text>React 在 Dev mode 下会刻意执行两次渲染，以防止组件内有什么 side effect 引起 bug，提前预防。</Text>
+                        </Space>
+                    </Panel>
+
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>fiber解决了什么问题</Title>
+                <Collapse ghost>
+                    <Panel header="React16之前出现的问题" key="1">
                         <Space direction="vertical">
                             <ul>
-                                <li><Text>1. setState只在合成事件和钩子函数中是“异步”的，在原生事件（addEventListener）和setTimeout中都是“同步”的</Text></li>
-                                <li>
-                                    <Text>2. setState的异步不是在内部实现的，代码执行的过程和结都是同步的，只是在合成事件和钩子函数中的调用顺序在更新之前，导致无法拿到更新后的结果，形成所谓的异步，可以通过setState(partialState, callback)在callback中拿到结果</Text>
-                                </li>
-                                <li>
-                                    <Text>
-                                        3. setState的批量更新也是建立在异步（合成事件、钩子函数）之上，在原生事件和setTimeout中是无法批量更新的
-                                    </Text>
-                                </li>
-                                <li>
-                                    <Text>react更新是通过“事务”（Transacation）的，通过isBatchingUpdates: boolean控制，setTimout中事务无法管控</Text>
-                                </li>
+                                <li>大量的同步计算任务在主线程运行阻塞了浏览器的 UI 渲染。默认情况下，JS 运算、页面布局和页面绘制都是运行在浏览器的主线程当中，他们之间是互斥的关系。</li>
+                                <li>如果 JS 运算持续占用主线程或者占用主线程时间过长（以60Hz刷新频率来算，一帧耗时16毫秒），页面就没法得到及时的更新，出现卡顿。</li>
+                            </ul>
+                        </Space>
+                    </Panel>
+                    <Panel header="Fiber 主要解决两个问题" key="2">
+                        <Space direction="vertical">
+                            <ul>
+                                <li>保证任务在浏览器空闲时执行: 依赖浏览器提供的 API requestIdleCallback() 实现任务调度 -- 优先级高的任务优先执行，优先级低的任务尽量在浏览器空闲时执行。</li>
+                                <li>任务碎片化: 链表结构</li>
+                            </ul>
+                        </Space>
+                    </Panel>
+                    <Panel header="Fiber 的优点" key="3">
+                        <Space direction="vertical">
+                            <ul>
+                                <li>Fiber双缓存可以在构建好workinprogress Fiber树之后切换成current Fiber，内存中直接一次性切换，提高了性能</li>
+                                <li>Fiber的存在使异步可中断的更新成为了可能，作为工作单元，可以在时间片内执行工作，没时间了交还执行权给浏览器，下次时间片继续执行之前暂停之后返回的Fiber</li>
+                                <li>Fiber可以在reconcile的时候进行相应的diff更新，让最后的更新应用在真实节点上</li>
+                            </ul>
+                            <Link href="/react/VirtualDom?callback='/interview/2'">详解</Link>
+                            <Text mark> React16之前的版本有一个主要的问题 —— 虚拟 dom 的 diff 操作是同步完成的。</Text>
+                            <Text>js在单线程环境里运行，操作很多时，便会造成阻塞</Text>
+                            <Text>fiber将diff操作变成可中断的，只有当浏览器空闲时再做diff。避免diff更新长时间占据浏览器线程。fiber就是用的这个思路</Text>
+                            <Text>fiber解决的是调度问题</Text>
+                            <Text mark>用户交互属于高优先级，尽快响应，diff操作优先级低</Text>
+                            <Text mark>fiber将diff递归操作变成遍历操作，类似链表操作，返回子节点</Text>
+                            <Text>浏览器API：requestIdleCallback方法将在浏览器的空闲时段内调用函数做异步diff。这使开发者能够在主事件循环上执行后台和低优先级工作，而不会影响延迟关键事件，如动画和输入响应。</Text>
+                            <ul>
+                                <li><Text>每一个fiber都分配一个expirationTime属性</Text></li>
+                                <li><Text>使用lane取代expirationTime？？？</Text></li>
                             </ul>
                         </Space>
                     </Panel>
 
-                    <Panel header="useState" key="3">
-                        <Space direction="vertical">
-                            <Highlight>{_useState}</Highlight>
-                        </Space>
-                    </Panel>
+                </Collapse>
+            </Wrap>
 
-                    <Panel header="useEffect" key="4">
+            <Wrap>
+                <Title level={3}>useEffect</Title>
+                <Collapse ghost>
+                    <Panel header="useEffect概念和流程" key="4">
                         <Space direction="vertical">
                             <ul>
                                 <li>
@@ -145,25 +229,12 @@ const Interview2 = () => {
                             </ul>
                         </Space>
                     </Panel>
-
-                    <Panel header="fiber" key="5">
-                        <Space direction="vertical">
-                            <Link href="/react/VirtualDom?callback='/interview/2'">详解</Link>
-                            <Text mark> React16之前的版本有一个主要的问题 —— 虚拟 dom 的 diff 操作是同步完成的。</Text>
-                            <Text>js在单线程环境里运行，操作很多时，便会造成阻塞</Text>
-                            <Text>fiber将diff操作变成可中断的，只有当浏览器空闲时再做diff。避免diff更新长时间占据浏览器线程。fiber就是用的这个思路</Text>
-                            <Text>fiber解决的是调度问题</Text>
-                            <Text mark>用户交互属于高优先级，尽快响应，diff操作优先级低</Text>
-                            <Text mark>fiber将diff递归操作变成遍历操作，类似链表操作，返回子节点</Text>
-                            <Text>浏览器API：requestIdleCallback方法将在浏览器的空闲时段内调用函数做异步diff。这使开发者能够在主事件循环上执行后台和低优先级工作，而不会影响延迟关键事件，如动画和输入响应。</Text>
-                            <ul>
-                                <li><Text>每一个fiber都分配一个expirationTime属性</Text></li>
-                                <li><Text>使用lane取代expirationTime？？？</Text></li>
-                            </ul>
-                        </Space>
-                    </Panel>
-
-                    <Panel header="hooks" key="6">
+                </Collapse>
+            </Wrap>
+            <Wrap>
+                <Title level={3}>hooks</Title>
+                <Collapse ghost>
+                    <Panel header="hooks的优势" key="6">
                         <Space direction="vertical">
                             <Text>hooks代替class Components</Text>
                             <ul>
@@ -173,28 +244,24 @@ const Interview2 = () => {
                             </ul>
                         </Space>
                     </Panel>
-                </Collapse >
-            </Wrap >
-
+                </Collapse>
+            </Wrap>
             <Wrap>
                 <Title level={3}>React优化</Title>
                 <Collapse ghost>
-                    <Panel header="" key="1">
+                    <Panel header="react hooks 优化思路" key="1">
                         <Space direction="vertical">
-                            <Text mark>react hooks 优化思路</Text>
                             <ul>
                                 <li>1. 减少render次数：在React中最小号事件的就是reconction（diff），如果不render，就不会reconction</li>
                                 <li>2. 减少计算的量：减少重复计算，对于函数组件来说，每次render都会重新开始执行函数调用</li>
                             </ul>
-
                             <Text code>具体方法：</Text>
                             <ul>
                                 <li>memo：在props不变的情况，通过记忆渲染结果的方法，提高组件的性能，可以传入第二个参数，做自定义比较函数</li>
                                 <li>useCallback：在依赖项发生变化才会更新（useCallback返回的是函数，缓存函数）</li>
-                                <li>usememo：在依赖项发生变化才会更新（usememo返回的是函数运行的结果，缓存计算的值）</li>
+                                <li>useMemo：在依赖项发生变化才会更新（usememo返回的是函数运行的结果，缓存计算的值）</li>
                                 <li>合理拆分组件：控制更小粒度的更新</li>
                             </ul>
-
                             <Text mark>react class Components 优化思路</Text>
                             <ul>
                                 <li>减少render次数：使用<Text code>shouldComponentUpdate</Text>和<Text code>PureComponent</Text>，减少父组件更新引起子组件更新的情况</li>
@@ -316,5 +383,4 @@ const Interview2 = () => {
     )
 }
 
-export default Interview2
-
+export default framework

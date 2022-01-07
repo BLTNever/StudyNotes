@@ -77,10 +77,10 @@ const EventLoop = () => (
                 <Panel header="Macrotask 和 Microtask" key="4">
                     <Space direction="vertical">
                         <ul>
-                            <li><Text mark>Macrotask</Text>（宏任务）: <Text code>setTimeout</Text>, <Text code>setInterval</Text>, <Text code>setImmediate</Text>, I/O, UI rendering</li>
-                            <li><Text mark>Microtask</Text>（微任务）: <Text code>process.nextTick</Text>, <Text code>Promises</Text>, <Text code>Object.observe</Text>（废弃）,<Text code>MutationObserver</Text></li>
+                            <li><Text mark>Macrotask</Text>（宏任务）: <Text code>setTimeout、setInterval、setImmediate、 I/O、script(整体代码)、 UI rendering</Text></li>
+                            <li><Text mark>Microtask</Text>（微任务）: <Text code>process.nextTick、Promises、Object.observe（废弃）、MutationObserver</Text></li>
                         </ul>
-                        <Text mark>同一次事件循环中，微任务永远在宏任务之前执行</Text>
+                        <Text mark>同一次事件循环中，微任务永远在宏任务之前执行?? 因为代码块也是宏任务</Text>
                         <Link href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" target="_blank">
                             Macrotask 和 Microtask执行顺序的可视化操作演示
                         </Link>
@@ -88,7 +88,7 @@ const EventLoop = () => (
                             <ul>
                                 <li>Macrotask的回调任务会推到<Text mark>Macrotask Queues</Text>中</li>
                                 <li>Microtask任务中的函数会被推入<Text mark>Microtasks Queues </Text>队列</li>
-                                <li><Text mark>在每一次事件循环中， Macrotask 只会提取一个执行，而 Microtask 会一直提取，直到 Microtasks Queues 队列清空</Text></li>
+                                <li><Text mark>在每一次事件循环中， Macrotask 只会提取一个执行，执行完提取 Microtask，直到 Microtasks Queues 队列清空</Text></li>
                                 <li><Text mark>事件循环每次只会入栈一个 Macrotask ，主线程执行完该任务后又会先检查 Microtasks Queues 队列并完成里面的所有任务后再执行 Macrotask</Text></li>
                                 <li><Text strong>当microtask队列为空时，event loop检查是否需要执行UI重渲染，如果需要则重渲染UI。这样就结束了当次循环，继续从头开始检查macrotask队列</Text></li>
                             </ul>

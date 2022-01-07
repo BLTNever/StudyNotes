@@ -154,4 +154,3 @@ const AlgoNote = () => {
 }
 
 export default AlgoNote
-

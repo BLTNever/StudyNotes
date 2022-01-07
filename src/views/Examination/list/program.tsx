@@ -61,26 +61,17 @@ const Program = () => {
     }, [])
     return (
         <>
-
-
             <Wrap>
                 <Title level={3}>原生方法的实现</Title>
                 <Collapse ghost>
-                    <Panel header="call" key="3">
-                        <Space direction="vertical">
-                            <Card><Highlight language="javascript">{call}</Highlight></Card>
-                        </Space>
+                    <Panel header="call、apply、bind实现" key="3">
+                        <Row>
+                            <Col span={12}><Card><Highlight language="javascript">{call}</Highlight></Card></Col>
+                            <Col span={12}><Card><Highlight language="javascript">{apply}</Highlight></Card></Col>
+                        </Row>
+                        <Row><Col span={12}><Card><Highlight language="javascript">{bind}</Highlight></Card></Col></Row>
                     </Panel>
-                    <Panel header="apply" key="4">
-                        <Space direction="vertical">
-                            <Card><Highlight language="javascript">{apply}</Highlight></Card>
-                        </Space>
-                    </Panel>
-                    <Panel header="bind" key="5">
-                        <Space direction="vertical">
-                            <Card><Highlight language="javascript">{bind}</Highlight></Card>
-                        </Space>
-                    </Panel>
+
                     <Panel header="new函数" key="6">
                         <Space direction="vertical">
                             <Text>创建一个全新的对象</Text>
@@ -90,7 +81,7 @@ const Program = () => {
                             <Card><Highlight language="javascript">{createNew}</Highlight></Card>
                         </Space>
                     </Panel>
-                    <Panel header="_instanceof" key="8">
+                    <Panel header="instanceof" key="8">
                         <Space direction="vertical">
                             <Text>instanceof 用于判断左侧值是否是右侧值的实例，所以左侧必须是一个对象，而右侧是一个类</Text>
                             <Text>instanceof 会查找原型链，知道 null 之前如果还不是这个对象的实例则会返回 false，否则返回 true</Text>

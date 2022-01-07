@@ -573,15 +573,11 @@ Function.prototype._call = function(context = window, ...args) {
     if(typeof !== 'function'){
         throw new Error('not a function')
     }
-    var obj = context | window
+    var obj = context
     obj.fn = this
-
-    // var args = [...arguments].slice(1)
-
+    // var args = [...arguments].slice(1) // 不使用 ...args 的时候
     var res = obj.fn(...args)
-
     delete obj.fn
-
     return res
 }
 `
@@ -589,7 +585,7 @@ Function.prototype._call = function(context = window, ...args) {
 export const apply = `
 Function.prototyoe._apply = function(context = winodw) {
     //...边界值
-    var obj = context || window
+    var obj = context
     obj.fn = this
     var arg = [...arguments][1] | []
     var res = obj.fn(...arg)

@@ -32,7 +32,7 @@ const Top = (props: any) => {
             <div className="top-right">
                 <ArrowsAltOutlined onClick={setScreenFull} className="screen-full" />
                 <Menu mode="horizontal" className="log-out">
-                    <SubMenu title={<span><UserOutlined />{username}</span>} >
+                    <SubMenu key="1" title={<span><UserOutlined />{username}</span>} >
                         <Menu.Item key="logOut"><Link to="/login" >退出</Link></Menu.Item>
                     </SubMenu>
                 </Menu>

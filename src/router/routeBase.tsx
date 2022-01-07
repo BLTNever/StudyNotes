@@ -20,21 +20,21 @@ export const Moudles = lazy(() => import(/* webpackChunkName: "Moudles" */'@view
 // React 
 export const ReactSource = lazy(() => import(/* webpackChunkName: "Source" */'@views/React/list/Source'))
 export const ReactEvent = lazy(() => import(/* webpackChunkName: "ReactEvent" */'@views/React/list/ReactEvent'))
-export const VirtualDom = lazy(() => import(/* webpackChunkName: "VirtualDom" */'@views/React/list/VirtualDom'))
+export const Detail = lazy(() => import(/* webpackChunkName: "VirtualDom" */'@views/React/list/VirtualDom'))
 export const Redux = lazy(() => import(/* webpackChunkName: "Redux" */'@views/React/list/Redux'))
 
 
 // Interview
-export const Interview1 = lazy(() => import(/* webpackChunkName: "Interview1" */'@views/Interview/list/Interview1'))
-export const Interview2 = lazy(() => import(/* webpackChunkName: "Interview2" */'@views/Interview/list/Interview2'))
+export const Js = lazy(() => import(/* webpackChunkName: "Js" */'@views/Interview/list/js'))
+export const InterviewFramework = lazy(() => import(/* webpackChunkName: "framework" */'@views/Interview/list/framework'))
 export const Interview3 = lazy(() => import(/* webpackChunkName: "Interview3" */'@views/Interview/list/Interview3'))
 export const Interview31 = lazy(() => import(/* webpackChunkName: "Interview3-1" */'@views/Interview/list/Interview3-1'))
-
-export const Interview4 = lazy(() => import(/* webpackChunkName: "Interview4" */'@views/Interview/list/Interview4'))
+export const Webpack = lazy(() => import(/* webpackChunkName: "webpack" */'@views/Interview/list/webpack'))
 export const Interview5 = lazy(() => import(/* webpackChunkName: "Interview5" */'@views/Interview/list/Interview5'))
 export const Interview6 = lazy(() => import(/* webpackChunkName: "Interview6" */'@views/Interview/list/Interview6'))
-export const Interview7 = lazy(() => import(/* webpackChunkName: "Interview7" */'@views/Interview/list/Interview7'))
+export const frontend = lazy(() => import(/* webpackChunkName: "frontend" */'@views/Interview/list/frontend'))
 export const Interview8 = lazy(() => import(/* webpackChunkName: "Interview8" */'@views/Interview/list/Interview8'))
+export const InterviewRecord = lazy(() => import(/* webpackChunkName: "InterviewRecord" */'@views/Interview/list/record'))
 
 // Exercises
 export const Exercise1 = lazy(() => import(/* webpackChunkName: "Exercises1" */'@views/Exercises/list/Exercise1'))
@@ -61,14 +61,15 @@ export const AlgoDoublePointer = lazy(() => import(/* webpackChunkName: "AlgoDou
 export const AlgoMath = lazy(() => import(/* webpackChunkName: "AlgoMath" */'@views/Algorithm/list/AlgoMath'))
 export const AlgoString = lazy(() => import(/* webpackChunkName: "AlgoString" */'@views/Algorithm/list/AlgoString'))
 export const AlgoBase = lazy(() => import(/* webpackChunkName: "AlgoBase" */'@views/Algorithm/list/AlgoBase'))
+export const AlgoBinaryTree = lazy(() => import(/* webpackChunkName: "AlgoBase" */'@views/Algorithm/list/AlgoBinaryTree'))
 
-// Program
+// Examination
 
-export const Program1 = lazy(() => import(/* webpackChunkName: "Program1" */'@views/Program/list/Program1'))
-export const Program2 = lazy(() => import(/* webpackChunkName: "Program2" */'@views/Program/list/Program2'))
-export const Program3 = lazy(() => import(/* webpackChunkName: "Program3" */'@views/Program/list/Program3'))
-export const Program4 = lazy(() => import(/* webpackChunkName: "Program4" */'@views/Program/list/Program4'))
-export const Program5 = lazy(() => import(/* webpackChunkName: "Program5" */'@views/Program/list/Program5'))
-export const Program6 = lazy(() => import(/* webpackChunkName: "Program6" */'@views/Program/list/Program6'))
-export const Program7 = lazy(() => import(/* webpackChunkName: "Program7" */'@views/Program/list/Program7'))
-export const Program8 = lazy(() => import(/* webpackChunkName: "Program8" */'@views/Program/list/Program8'))
+export const Program = lazy(() => import(/* webpackChunkName: "Program" */'@views/Examination/list/program'))
+export const Program2 = lazy(() => import(/* webpackChunkName: "Program2" */'@views/Examination/list/Program2'))
+export const ExaminationFramework = lazy(() => import(/* webpackChunkName: "Framework" */'@views/Examination/list/framework'))
+export const Program4 = lazy(() => import(/* webpackChunkName: "Program4" */'@views/Examination/list/Program4'))
+export const Program5 = lazy(() => import(/* webpackChunkName: "Program5" */'@views/Examination/list/Program5'))
+export const Program6 = lazy(() => import(/* webpackChunkName: "Program6" */'@views/Examination/list/Program6'))
+export const Program7 = lazy(() => import(/* webpackChunkName: "Program7" */'@views/Examination/list/Program7'))
+export const Program8 = lazy(() => import(/* webpackChunkName: "Program8" */'@views/Examination/list/Program8'))

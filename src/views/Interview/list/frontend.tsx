@@ -13,7 +13,7 @@ const { Paragraph, Title, Text, Link } = Typography
 
 
 
-const Interview7 = () => {
+const frontend = () => {
 
 
 
@@ -184,6 +184,6 @@ const Interview7 = () => {
     )
 }
 
-export default Interview7
+export default frontend
 
 

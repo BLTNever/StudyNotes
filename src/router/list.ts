@@ -71,8 +71,8 @@ export const list = [
                 component: RouteBase.ReactEvent,
             },
             {
-                path: '/react/VirtualDom',
-                component: RouteBase.VirtualDom,
+                path: '/react/Detail',
+                component: RouteBase.Detail,
             },
             {
                 path: '/react/Redux',
@@ -99,12 +99,16 @@ export const list = [
         path: '/interview',
         children: [
             {
-                path: '/interview/1',
-                component: RouteBase.Interview1,
+                path: '/interview/js',
+                component: RouteBase.Js,
             },
             {
-                path: '/interview/2',
-                component: RouteBase.Interview2,
+                path: '/interview/record',
+                component: RouteBase.InterviewRecord,
+            },
+            {
+                path: '/interview/framework',
+                component: RouteBase.InterviewFramework,
             },
             {
                 path: '/interview/3',
@@ -116,7 +120,7 @@ export const list = [
             },
             {
                 path: '/interview/4',
-                component: RouteBase.Interview4,
+                component: RouteBase.Webpack,
             },
             {
                 path: '/interview/5',
@@ -128,7 +132,7 @@ export const list = [
             },
             {
                 path: '/interview/7',
-                component: RouteBase.Interview7,
+                component: RouteBase.frontend,
             },
             {
                 path: '/interview/8',
@@ -176,7 +180,7 @@ export const list = [
                 component: RouteBase.Algorithm5,
             },
             {
-                path: '/algorithm/list',
+                path: '/algorithm/listNode',
                 component: RouteBase.AlgoListNode,
             },
             {
@@ -188,48 +192,52 @@ export const list = [
                 component: RouteBase.AlgoDoublePointer,
             },
             {
+                path: '/algorithm/binaryTree',
+                component: RouteBase.AlgoBinaryTree,
+            },
+            {
                 path: '/algorithm',
-                redirect: '/algorithm/1',
+                redirect: '/algorithm/note',
             },
         ]
     },
     {
-        path: '/Program',
+        path: '/examination',
         children: [
             {
-                path: '/Program/1',
-                component: RouteBase.Program1,
+                path: '/examination/program',
+                component: RouteBase.Program,
             },
             {
-                path: '/Program/2',
+                path: '/examination/2',
                 component: RouteBase.Program2,
             },
             {
-                path: '/Program/3',
-                component: RouteBase.Program3,
+                path: '/examination/framework',
+                component: RouteBase.ExaminationFramework,
             },
             {
-                path: '/Program/4',
+                path: '/examination/4',
                 component: RouteBase.Program4,
             },
             {
-                path: '/Program/5',
+                path: '/examination/5',
                 component: RouteBase.Program5,
             },
             {
-                path: '/Program/6',
+                path: '/examination/6',
                 component: RouteBase.Program6,
             },
             {
-                path: '/Program/7',
+                path: '/examination/7',
                 component: RouteBase.Program7,
             },
             {
-                path: '/algorithm/8',
+                path: '/examination/8',
                 component: RouteBase.AlgoDoublePointer,
             },
             {
-                path: '/algorithm',
+                path: '/examination',
                 redirect: '/algorithm/1',
             },
         ]

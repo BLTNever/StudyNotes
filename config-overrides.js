@@ -15,7 +15,7 @@ const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const antTheme = require('./config/antTheme')
 
-const isDev = process.env.NODE_ENV === 'development'
+const isDev = process.env.NODE_ENV === 'development' || 'development'
 
 const outPutFn = config => {
     const paths = require('react-scripts/config/paths')

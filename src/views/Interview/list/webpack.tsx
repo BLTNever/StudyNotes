@@ -3,9 +3,6 @@ import Highlight from 'react-highlight'
 import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert } from 'antd'
 
 import { Wrap } from '@components/Base'
-import PreviewImg from '@components/previewImg'
-
-
 
 const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
@@ -15,9 +12,6 @@ const Interview4 = () => {
 
     return (
         <>
-
-
-            
             <Wrap>
                 <Title level={3}>webpack构建、优化</Title>
                 <Collapse ghost>

@@ -137,7 +137,7 @@ export const dataSource = [
         ans: <>
             <p>多个原型之间用链, 连起来, 他们之间的关系统称原型链</p>
             <p>__proto__ --{">"} prototype --{">"} __proto__--{">"} prototype--{">"} ......--{">"} null</p>
-            <p>prototype:原型对象;__proto__:原型链指针</p>
+            <p>prototype:原型对象; __proto__:原型链指针</p>
             <p>通过prototype对象指向父类对象，直到指向Object对象为止，这样就形成了一个原型指向的链条，称为原型链</p>
         </>
     },

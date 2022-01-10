@@ -8,17 +8,14 @@ import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert
 import { Wrap } from '@components/Base'
 import PreviewImg from '@components/previewImg'
 
-import {
-    createNew, extend8, call, apply, bind, promise, parseInt, event1, _instanceof, ajax,
-    multiRequest, _assign, _map
-} from './example'
+import * as eg from './example'
 
 
 const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
 
 
-const Program = () => {
+const NativeMethod = () => {
 
     const queryURLParams = (url: string) => {
         if (!url?.length) return {}
@@ -66,10 +63,10 @@ const Program = () => {
                 <Collapse ghost>
                     <Panel header="call、apply、bind实现" key="3">
                         <Row>
-                            <Col span={12}><Card><Highlight language="javascript">{call}</Highlight></Card></Col>
-                            <Col span={12}><Card><Highlight language="javascript">{apply}</Highlight></Card></Col>
+                            <Col span={12}><Card><Highlight language="javascript">{eg.call}</Highlight></Card></Col>
+                            <Col span={12}><Card><Highlight language="javascript">{eg.apply}</Highlight></Card></Col>
                         </Row>
-                        <Row><Col span={12}><Card><Highlight language="javascript">{bind}</Highlight></Card></Col></Row>
+                        <Row><Col span={12}><Card><Highlight language="javascript">{eg.bind}</Highlight></Card></Col></Row>
                     </Panel>
 
                     <Panel header="new函数" key="6">
@@ -78,31 +75,31 @@ const Program = () => {
                             <Text>对象执行[[prototype]]链接，将这个新对象的[[prototype]]链接到这个构造函数.prototype所指的对象</Text>
                             <Text>这个新对象会绑定到函数调用的this</Text>
                             <Text>函数如果没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象</Text>
-                            <Card><Highlight language="javascript">{createNew}</Highlight></Card>
+                            <Card><Highlight language="javascript">{eg.createNew}</Highlight></Card>
                         </Space>
                     </Panel>
                     <Panel header="instanceof" key="8">
                         <Space direction="vertical">
                             <Text>instanceof 用于判断左侧值是否是右侧值的实例，所以左侧必须是一个对象，而右侧是一个类</Text>
                             <Text>instanceof 会查找原型链，知道 null 之前如果还不是这个对象的实例则会返回 false，否则返回 true</Text>
-                            <Card><Highlight language="javascript">{_instanceof}</Highlight></Card>
+                            <Card><Highlight language="javascript">{eg._instanceof}</Highlight></Card>
                         </Space>
                     </Panel>
                     <Panel header="parseInt" key="7">
                         <Space direction="vertical">
-                            <Card><Highlight language="javascript">{parseInt}</Highlight></Card>
+                            <Card><Highlight language="javascript">{eg.parseInt}</Highlight></Card>
                         </Space>
                     </Panel>
 
                     <Panel header="extend" key="1">
                         <Space direction="vertical">
-                            <Card><Highlight language="javascript">{extend8}</Highlight></Card>
+                            <Card><Highlight language="javascript">{eg.extend8}</Highlight></Card>
                         </Space>
                     </Panel>
 
                     <Panel header="map" key="9">
                         <Space direction="vertical">
-                            <Card><Highlight language="javascript">{_map}</Highlight></Card>
+                            <Card><Highlight language="javascript">{eg._map}</Highlight></Card>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -113,12 +110,18 @@ const Program = () => {
                 <Collapse ghost>
                     <Panel header="实现一个Promise" key="1">
                         <Space direction="vertical">
-                            <Highlight language="javascript">{promise}</Highlight>
+                            <Highlight language="javascript">{eg.promise}</Highlight>
                         </Space>
                     </Panel>
-                    <Panel header="模拟promise.all" key="2">
+                    <Panel header="模拟Promise.all" key="2">
                         <Space direction="vertical">
-                            <Highlight language="javascript">{promise}</Highlight>
+                            <Highlight language="javascript">{eg.promiseAll}</Highlight>
+                        </Space>
+                    </Panel>
+
+                    <Panel header="promise装饰器" key="4">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.promiseAll}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -129,12 +132,12 @@ const Program = () => {
                 <Collapse ghost>
                     <Panel header="实现" key="1">
                         <Space direction="vertical">
-                            <Highlight language="javascript">{ajax}</Highlight>
+                            <Highlight language="javascript">{eg.ajax}</Highlight>
                         </Space>
                     </Panel>
                     <Panel header="并发" key="2">
                         <Space direction="vertical">
-                            <Highlight language="javascript">{multiRequest}</Highlight>
+                            <Highlight language="javascript">{eg.multiRequest}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -145,14 +148,12 @@ const Program = () => {
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
-                            <Highlight language="javascript">{_assign}</Highlight>
+                            <Highlight language="javascript">{eg._assign}</Highlight>
                         </Space>
                     </Panel>
 
                 </Collapse>
             </Wrap>
-
-
 
             <Wrap>
                 <Title level={3}>委托</Title>
@@ -160,7 +161,7 @@ const Program = () => {
                     <Panel header="DOM事件委托" key="1">
                         <Space direction="vertical">
                             <Text >** 点击页面中div打印dom节点</Text>
-                            <Highlight language="javascript">{event1}</Highlight>
+                            <Highlight language="javascript">{eg.event1}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -171,30 +172,6 @@ const Program = () => {
     )
 }
 
-export default Program
+export default NativeMethod
 
-const p1 = new Promise((res) => {
-    setTimeout(() => {
-        res(1)
-    }, 1000);
-})
-const p2 = new Promise((res) => {
-    setTimeout(() => {
-        res(2)
-    }, 2000);
-})
-const p3 = new Promise((res) => {
-    setTimeout(() => {
-        res(3)
-    }, 3000);
-})
-function PromiseAll(arr: any[]) {
-    return new Promise((resolve, reject) => {
-        arr.forEach(p => {
-            Promise.resolve(p)
-        })
-    })
-}
-const proAll = PromiseAll([p1, p2]).then((res: any) => {
-    console.log(res)
-})
+

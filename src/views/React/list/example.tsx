@@ -155,8 +155,7 @@ function applyMiddleware(...middlewares) {
 }
 `
 export const _combineReducers = `
-
-function combineReducers(reducers) {
+function _combineReducers(reducers) {
     let finalReducers = {}
     // 过滤非function的reducer
     for (let key in reducers) {

@@ -755,9 +755,62 @@ Promise.all = promises =>
             }, reject)
         })
     })
+`
 
+export const promiseAll = `
+const p1 = new Promise((res) => {
+    setTimeout(() => { res(1) }, 1000);
+})
+const p2 = new Promise((res) => {
+    setTimeout(() => { res(2) }, 2000);
+})
+const p3 = new Promise((res) => {
+    setTimeout(() => { res(3) }, 3000);
+})
+function PromiseAll(arr: any[]) {
+    return new Promise((resolve, reject) => {
+        if (!Array.isArray(arr)) reject(new Error('not array'))
+        let res: any[] = []
+        let count = 0
+        for (let i = 0; i < arr.length; i++) {      // 使用 for 循环，根据下标去存返回值，保证返回值顺序和执行顺序保持一致
+            // Promise.resolve() 会把里面的返回值包裹成 Promise对象 
+            Promise.resolve(arr[i]).then(value => {
+                count++
+                res[i] = value
+                // 不使用 res.length 的原因是因为 arr[3] = 1, arr是 [undefined, undefined, 1]
+                if (count === arr.length) {
+                    resolve(res)
+                }
+            }).catch(e => reject(e))
+        }
+    })
+}
+PromiseAll([p1, p2, p3])
+    .then((res: any) => {
+        console.log(res)
+    }).catch(e => console.log(e)) 
+`
 
-
+export const promiseDescriptor = `
+const cacheMap = new Map()
+function enableCache(target, name, descriptor) {
+    const val = descriptor.value
+    descriptor.value = async function (...args) {
+        const cacheKey = name + JSON.stringify(args)
+        if (!cacheMap.get(cacheKey)) {
+            const cacheValue = Promise.resolve(val.apply(this, args)).catch(_ => {
+                cacheMap.set(cacheKey, null)
+            })
+            cacheMap.set(cacheKey, cacheValue)
+        }
+        return cacheMap.get(cacheKey)
+    }
+    return descriptor
+}
+class PromiseClass {
+    @enableCache
+    static async getInfo()
+}
 `
 
 export const parseInt = `

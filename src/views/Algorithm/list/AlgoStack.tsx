@@ -92,6 +92,21 @@ const AlgoStack = () => {
                 </Collapse>
             </Wrap>
 
+            <Wrap>
+                <Title level={3}>42. 接雨水(hard)</Title>
+                <Collapse ghost>
+                    <Panel header="给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
+                        输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]
+                        输出：6
+                        解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。"  key="1">
+                        <Space direction="vertical">
+                            <a href="https://leetcode-cn.com/problems/trapping-rain-water/" target="_blank">题</a>
+                            <Highlight language="javascript">{eg.calculate}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
             <Title level={2}>队列、单调栈暂缓 自闭中</Title>
         </>
     )
@@ -99,6 +114,67 @@ const AlgoStack = () => {
 
 export default AlgoStack
 
+/**
+ *  对于每一个柱子 i ，能接的水 = min(左（leftMax）右(rightMax)两边最高柱子）-当前柱子高度(height[i])
+ * @param height 
+ * @returns 
+ */
+function trap(height: number[]) {
+    if (!height.length) return 0
+    let len = height.length
+    let ans = 0
+    // 暴力解 时间O(n^2) 空间O(1)
+    // for (let i = 1; i < len - 1; i++) {   // 从第二根柱子开始 去找当前柱子 左右两侧最 高 的柱子
+    //     let left = 0
+    //     let right = 0
+    //     for (let j = i; j < len; j++) {
+    //         // 找右边最高的柱子
+    //         right = Math.max(right, height[j])
+    //     }
+    //     for (let j = i; j >= 0; j--) {
+    //         // 找左边最高的柱子
+    //         left = Math.max(left, height[j])
+    //     }
+    //     ans += Math.min(left, right) - height[i]    // 两侧最高柱子中，最低的柱子和当前柱子的差，就是存储的雨水量
+    // }
+    // return ans
 
+    // 暴力解 时间O(n) 空间O(n)
+    // let leftMax = Array(len).fill(0)
+    // let rightMax = Array(len).fill(0)
+    // leftMax[0] = height[0]
+    // rightMax[len - 1] = height[len - 1]
 
+    // // 从左向右，对比 i 跟 i左侧 的最大值
+    // for (let i = 1; i < len; i++) {
+    //     leftMax[i] = Math.max(leftMax[i], leftMax[i - 1])
+    // }
+    // // 从右向左，对比 i 跟 i右侧 的最大值
+    // for (let i = len - 2; i >= 0; i--) {
+    //     rightMax[i] = Math.max(rightMax[i], rightMax[i + 1])
+    // }
+    // // 掐头去尾，比较当前 i 和左右侧最高柱子中 最低的那个差
+    // for (let i = 1; i < len - 1; i++) {
+    //     ans += Math.min(leftMax[i], rightMax[i]) - height[i]
+    // }
+    // return ans
+
+    // 双指针
+    let left = 0
+    let right = len - 1
+    let l_max = height[0]
+    let r_max = height[len - 1]
+    while (left <= right) {
+        l_max = Math.max(height[left], l_max)
+        r_max = Math.max(height[right], r_max)
+        if (l_max < r_max) {
+            ans += l_max - height[left]
+            left++
+        } else {
+            ans += r_max - height[right]
+            right--
+        }
+    }
+    return ans
+}
 

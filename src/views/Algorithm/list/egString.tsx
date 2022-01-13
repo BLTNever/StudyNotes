@@ -409,3 +409,36 @@ function lengthOfLongestSubstring(s: string) {
 }
 console.log(lengthOfLongestSubstring("aab"))
 `
+
+export const isPathCrossing = `
+function isPathCrossing(path: string) {
+    let set = new Set()
+    set.add('0,0')
+    let pos = [0, 0]
+    for (let p of path) {
+        // if (p === 'N') pos[0]++
+        // else if (p === 'S') pos[0]--
+        // else if (p === 'W') pos[1]--
+        // else if (p === 'E') pos[1]++
+        // switch 效率更高
+        switch (p) {
+            case 'N':
+                pos[0]++
+                break;
+            case 'S':
+                pos[0]--
+                break;
+            case 'W':
+                pos[1]--
+                break;
+            case 'E':
+                pos[1]++
+                break;
+        }
+        const str = pos.join(',')
+        if (set.has(str)) return true
+        set.add(str)
+    }
+    return false
+}
+`

@@ -15,8 +15,7 @@ const Interview4 = () => {
             <Wrap>
                 <Title level={3}>webpack构建、优化</Title>
                 <Collapse ghost>
-                    <Panel header="" key="1">
-                        <Divider orientation="left"><Title level={4}>webpack核心概念：</Title></Divider>
+                    <Panel header="webpack核心概念：" key="1">
                         <Space direction="vertical">
                             <Text>webpack是基于enrty的，分析解析entry所需要加载的所有资源文件，通过不同的Loader来处理不同的文件，用Plugin来扩展webpack功能</Text>
                             <ul>
@@ -27,10 +26,9 @@ const Interview4 = () => {
                                 <li><Text mark>五、模式（Mode）：指示webpack使用相应模式的配置，如development和production</Text></li>
                             </ul>
                         </Space>
-
-                        <Divider orientation="left"><Title level={4}>webpack的构建流程：</Title></Divider>
+                    </Panel>
+                    <Panel header="webpack的构建流程：" key="2">
                         <Space direction="vertical">
-
                             <Text>webpack的运行流程是一个串行的过程</Text>
                             <ul>
                                 <li><Text mark>1. 初始化参数：<b>从配置文件和shell语句中读取并合并参数</b>，得出最终参数</Text></li>
@@ -43,8 +41,8 @@ const Interview4 = () => {
                             </ul>
                             <Text mark>以上过程中，webpack会在特定的时间点广播特定的时间，Plugins在监听到相关的事件后会执行特定的逻辑，并且Plugins可以调用webpack的api改变webpack的运行结果</Text>
                         </Space>
-
-                        <Divider orientation="left"><Title level={4}>利用webpack优化前端性能（提高性能和体验）：</Title></Divider>
+                    </Panel>
+                    <Panel header="利用webpack优化前端性能（提高性能和体验）：" key="3">
                         <Space direction="vertical">
                             <Text>用webpack优化前端性能是指优化webpack的输出结果，让打包的最终结果在浏览器运行更快速，更高效</Text>
                             <ul>
@@ -62,8 +60,8 @@ const Interview4 = () => {
                                 </li>
                             </ul>
                         </Space>
-
-                        <Divider orientation="left"><Title level={4}>提高webpack构建速度：</Title></Divider>
+                    </Panel>
+                    <Panel header="提高webpack构建速度：" key="4">
                         <Space direction="vertical">
                             <Title level={4}>优化打包过程</Title>
                             <ul>
@@ -90,8 +88,8 @@ const Interview4 = () => {
                                 </li>
                             </ul>
                         </Space>
-
-                        <Divider orientation="left"><Title level={4}>webpack与gulp区别：</Title></Divider>
+                    </Panel>
+                    <Panel header="webpack与gulp区别：" key="5">
                         <Space direction="vertical">
                             <ul>
                                 <li>

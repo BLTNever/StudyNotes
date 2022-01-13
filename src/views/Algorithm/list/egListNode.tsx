@@ -137,7 +137,6 @@ function getIntersectionNode(headA: any, headB: any) {
     let A = headA
     let B = headB
     let map = new Map()
-
     while (A) {
         map.set(A, 1)
         A = A.next
@@ -148,9 +147,6 @@ function getIntersectionNode(headA: any, headB: any) {
     }
 }
 `
-
-
-
 
 export const deleteDuplicates = `
 /**
@@ -171,9 +167,47 @@ export const deleteDuplicates = `
     return head
 }
 `
-
-
 export const reverseKGroup = `
+function reverseList(start, end) {
+    let pre = start                 // start 目前指向 dummy 节点，dummy.next指向 head 头节点
+    let cur = start.next            // cur 指向 head 头节点
+    const first = cur               // ？？？ 先保存一下 cur 指针？指向 head?
+    // k === 3的情况下，反转 1 -> 2 -> 3的区间
+    // end 传进来 end.next(3 -> 4) 记下反转区块 后面的那个节点
+    // 反转前 0(dummy、pre、start) -> 1(cur、first、head) -> 2 -> 3 -> 4(end)
+    // 反转后 0 <- 1 <- 2 <- 3(pre、cur) <- 4(end)
+    while (cur !== end) {
+        const next = cur.next
+        cur.next = pre
+        pre = cur
+        cur = next
+    }
+    start.next = pre                // start 指向 反转之后的 尾 节点  0(start) -> 3(pre) -> 2 -> 1
+    first.next = cur                // ？？？返回反转之后的 头 节点  1(first) -> 4(cur) -> 3 - > 2 -> 1
+    return first
+}
+function reverseKGroup(head, k) {
+    let dummy = new ListNode(0)
+    dummy.next = head
+    let start = dummy
+    let end = dummy.next
+
+    let count = 0
+
+    while (end) {
+        count++
+        if (count % k === 0) {
+            start = reverseList(start, end.next)
+            end = start.next
+        } else {
+            end = end.next
+        }
+    }
+    return dummy.next
+}
+`
+
+export const reverseKGroup2 = `
 /**
  * 1. 创建一个新的 node 节点  hair， hair.next 指向 head
  * 2. 定义指针 pre 指向 hair
@@ -223,5 +257,307 @@ function reverseKGroup(head, k) {
         head = tail.next                     // head移动到 下一轮需要翻转的 k子链表 位置
     }
     return hair.next
+}
+`
+
+export const isPalindrome = `
+function isPalindrome(head: ListNode) {
+    if (!head) return true
+    // 转数组，双指针判断， 时间复杂度 O(n) 空间复杂度 O(n)
+    let arr = []
+    while (head) {
+        if (head.val !== null) arr.push(head.val)
+        head = head.next
+    }
+    for (let i = 0, j = arr.length - 1; i < j; i++, j--) {
+        if (arr[i] !== arr[j]) return false
+    }
+    return true
+
+    // 快慢指针 时间复杂度O(n),空间复杂度O(1)
+    let slow = head
+    let fast = head
+    while (fast && fast.next) {         // slow 走一步，fast走两步，slow 指向中间节点 or 中间节点后面一位
+        slow = slow.next
+        fast = fast.next.next
+    }
+    if (fast !== null) slow = slow.next // 如果是fast是奇数情况下，保证slow指向的是后半段起始节点，slow需再单独往后走一个
+    let head2 = null
+    while (slow) {                      // 翻转后半段链表 
+        const next = slow.next
+        slow.next = head2
+        head2 = slow
+        slow = next
+    }
+    while (head && head2) {          // 对比
+        if (head.val !== head2.val) return false
+        head = head.next
+        head2 = head2.next
+    }
+    return true
+}
+`
+
+export const deleteNode = `
+function deleteNode(head: ListNode, val: any) {
+    let dummy = new ListNode(0)         // 定义一个假节点
+    dummy.next = head                   // dummy.next 指向head,  从dummy的 下一个节点值开始对比， 刚好是从head 开始
+    let cur = dummy                     // 定义指针
+    while (cur && cur.next) {           
+        if (cur.next.val === val) {     // 从头开始对比每个节点的值跟 val 是否相等，相等的话 把 next 指向 next.next
+            cur.next = cur.next.next
+        }
+        cur = cur.next
+    }
+    return dummy.next
+}
+`
+
+export const deleteDuplicates2 = `
+function deleteDuplicates(head: any) {
+    if (!head) return head
+    // 解法1
+    let dummy = new ListNode(0)                 // 头节点可能会被修改，创建一个哑节点保存链表
+    dummy.next = head                           // 哑节点 next 指向 head
+    let A = dummy                               // 当前指针
+    while (A.next && A.next.next) {             // next 节点存在， 同时 当 删除 next 后 要链接的 next.next的节点也存在
+        if (A.next.val === A.next.next.val) {   // 值相等的情况下 
+            let nextVal = A.next.val            // 把相同的值保存起来
+            while (A.next && A.next.val === nextVal) {  // 直接删除后面链接中值等于这个值的节点
+                A.next = A.next.next
+            }
+        } else {
+            A = A.next                           // 相邻结点的值不相等，指针移动到next
+        }
+    }
+    return dummy.next
+
+    // 解法2
+    let dummy = new ListNode(999)
+    dummy.next = head
+    let A = dummy
+    let set = new Set()
+    while (A && A.next) {
+        if (A.val === A.next.val) {
+            set.add(A.val)
+            A.next = A.next.next
+        } else {
+            A = A.next
+        }
+    }
+    A = dummy
+    while (A && A.next) {
+        if (set.has(A.next.val)) {
+            A.next = A.next.next
+        } else {
+            A = A.next
+        }
+    }
+    return dummy.next
+}
+`
+
+export const deleteNode2 = `
+function deleteNode(node: ListNode) {
+    // 1 -> 5 -> 2 -> 3
+    // 删除第二个节点 5
+    // 把第二个节点的值变成第三个节点的值, 题目得知 node 肯定不是尾节点
+    // 1 -> 2 -> 2 -> 3
+    // 把第二个节点的指针 next 指向第三个节点的 next
+    // 1 -> 2 -> 3
+    node.val = node.next.val
+    node.next = node.next.next
+}
+`
+
+export const hasCycle = `
+function hasCycle(head: ListNode) {
+    if (!head) return false
+    // 哈希解法
+    let set = new Set()
+    while (head.next) {
+        if (set.has(head)) return true
+        set.add(head)
+        head = head.next
+    }
+    return false
+
+    // 快慢指针
+    let slow = head
+    let fast = head
+    while (fast && fast.next) {
+        fast = fast.next.next
+        slow = slow.next
+        if (fast === slow) return true
+    }
+
+    // 天秀解法。。。JSON.stringify()方法在对象出现循环引用的时候会报错
+    try {
+        JSON.stringify(head)
+    } catch (e) {
+        return true
+    }
+    return false
+
+    // 标记法
+    while (head) {
+        if (head.tag) return true
+        head.tag = true
+        head = head.next
+    }
+}
+`
+export const detectCycle = `
+function detectCycle(head: ListNode) {
+    if (!head) return null
+    // 快慢指针 时间复杂度O(n) 空间复杂度 O(1)
+    // 先判断是否是环形链表，是的话，把任意指针指回  head， 然后跟另外的指针同步前进，相遇的点就是 环形点
+    let fast = head
+    let slow = head
+    while (fast && fast.next) {
+        fast = fast.next.next
+        slow = slow.next
+        if (fast === slow) {        // 快慢指针相遇，说明有环
+            fast = head             // 任意指针指向头部
+            while (fast !== slow) { // fast 和 slow 相遇
+                fast = fast.next
+                slow = slow.next
+            }
+            return fast
+        }
+    }
+    return null
+
+    // 哈希表 时间复杂度O(n) 空间复杂度 O(n)
+    let set = new Set()
+    while (head) {
+        if (set.has(head)) return head
+        set.add(head)
+        head = head.next
+    }
+    return null
+}
+`
+
+export const partition = `
+function partition(head: ListNode, x: number) {
+    // 设定2个哨兵节点，后面挂载 大于等于或小于 x 的 node 节点
+    // 然后把 A、B 两个链表拼接一起
+    let A = new ListNode(0)
+    const a = A
+    let B = new ListNode(0)
+    const b = B
+    while (head) {
+        if (head.val < x) {
+            A.next = head
+            A = A.next
+        } else {
+            B.next = head
+            B = B.next
+        }
+        head = head.next
+    }
+    B.next = null
+    A.next = b.next
+    return a.next
+
+    // Fiber链表解法
+    // React Fiber：>= 目标值节点放入tag链表并从原链表删除。拼接原链表最后节点和tag
+    // Reconcile阶段：找到所有 >= 目标值的节点，放入tag链表。记忆指针，可随时中断或继续迭代
+    // Commit阶段：对tag链表中节点作影响性能的操作，如DOM。操作时机，先操作谁，可自定策略
+    // 好处：长期占用主线程的分散的影响性能操作 → 可中断地收集tag集中到一起 → 自定优先级操作
+    let dummy = new ListNode(0)
+    let p = dummy
+    let tag = new ListNode(0)
+    let t = tag
+    while (head) {
+        if (head.val >= x) {
+            dummy.next = head.next
+            tag.next = head
+            tag = tag.next
+        } else {
+            dummy = head
+        }
+        head = head.next
+    }
+    tag.next = null
+    dummy.next = t.next
+    return p.next
+}
+`
+
+export const reverseBetween = `
+function reversetList(head: ListNode) {
+    let pre = null
+    let cur = head
+    while (cur) {
+        const next = cur.next
+        cur.next = pre
+        pre = cur
+        cur = next
+    }
+}
+function reverseBetween1(head: ListNode, left: number, right: number) {
+    let dummy = new ListNode(0)
+    dummy.next = head
+    // left = 2 right = 4
+    // dummy(pre) -> 1 -> 2 -> 3 -> 4 -> 5
+    let pre = dummy
+    // dummy -> 1(pre) -> 2 -> 3 -> 4 -> 5 
+    for (let i = 0; i < left - 1; i++) {            // 走 left - 1 步，找到 left 位置节点前面一位的节点
+        pre = pre.next
+    }
+    // dummy -> 1(pre、rightNode) -> 2 -> 3 -> 4 -> 5 
+    let rightNode = pre
+    // dummy -> 1(pre) -> 2 -> 3 -> 4(rightNode) -> 5 
+    for (let i = 0; i < right - left + 1; i++) {   // 走 right - left + 1 步，找到 right 节点
+        rightNode = rightNode.next
+    }
+    // 截取链表
+    // dummy -> 1(pre) -> 2(leftNode) -> 3 -> 4(rightNode) -> 5(cur)
+    let leftNode = pre.next                        // 找到 left 节点
+    let cur = rightNode.next                       // 记录 right 节点后面的位置
+    // 切断链接
+    // dummy -> 1(pre)    2(leftNode) -> 3 -> 4(rightNode)   5(cur)
+    pre.next = null
+    rightNode.next = null
+    // 反转
+    // dummy -> 1(pre)    2(leftNode) <- 3 <- 4(rightNode)   5(cur)
+    reversetList(leftNode)
+    // 链接回原来的链表
+    // dummy -> 1(pre) -> 4(rightNode) -> 3 -> 2(leftNode) -> 5(cur)
+    pre.next = rightNode
+    leftNode.next = cur
+    return dummy.next
+}
+`
+
+export const reverseBetween2 = `
+function reverseBetween2(head: ListNode, left: number, right: number) {
+    let dummy = new ListNode(0)
+    dummy.next = head
+    let pre = dummy
+    // left: 2   right: 4
+    // dummy(pre) -> 1 -> 2 -> 3 -> 4 -> 5
+    // dummy -> 1(pre) -> 2 -> 3 -> 4 -> 5
+    for (let i = 0; i < left - 1; i++) {
+        pre = pre.next
+    }
+    // dummy -> 1(pre) -> 2(cur) -> 3 -> 4 -> 5
+    let cur = pre.next
+    for (let i = 0; i < right - left + 1; i++) {    // 循环 right - left 次
+        // dummy -> 1(pre) -> 2(cur) -> 3(next) -> 4 -> 5
+        let next = cur.next
+        // dummy -> 1(pre) -> 2(cur)    3(next) -> 4 -> 5 
+        //                    2(cur) -> 4 -> 5 
+        cur.next = next.next
+        // dummy -> 1(pre) -> 2(cur) <- 3(next)    4 -> 5 
+        //                    2(cur) -> 4 -> 5 
+        next.next = pre.next
+        // dummy -> 1(pre) -> 3(next) -> 2(cur)    4 -> 5 
+        //                    2(cur) -> 4 -> 5 
+        pre.next = next
+    }
+    return dummy.next
 }
 `

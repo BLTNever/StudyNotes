@@ -67,7 +67,7 @@ const menu = [
         route: 'interview',
         children: [
             { id: '44000', name: '模拟题', route: '/interview/record' },
-            { id: '47000', name: '前端相关', route: '/interview/7' },
+            { id: '47000', name: '前端相关', route: '/interview/frontend' },
             { id: '41000', name: 'javascript', route: '/interview/js' },
             { id: '48000', name: 'ts', route: '/interview/8' },
             { id: '42000', name: '框架', route: '/interview/framework' },

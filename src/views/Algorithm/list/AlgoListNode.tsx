@@ -1,25 +1,19 @@
 import React, { useEffect } from 'react'
 import Highlight from 'react-highlight'
-import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert } from 'antd'
+import { Card, Col, Row, Divider, Collapse, Typography, Tag, Space, Alert } from 'antd'
 
 import { Wrap } from '@components/Base'
-import PreviewImg from '@components/previewImg'
 
 import * as eg from './egListNode'
 
 const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
 class ListNode {
-    public prev: any
-    public next: any
-    public val: string
-    public constructor(val: any) {
-        // 指向前一个节点
-        this.prev = null
-        // 指向后一个节点
-        this.next = null
-        // 节点的数据(或者用于查找的键)
-        this.val = val
+    public val: number
+    public next: ListNode | any
+    public constructor(val?: number, next?: ListNode | null) {
+        this.val = (val === undefined ? 0 : val)
+        this.next = (next === undefined ? null : next)
     }
 }
 
@@ -37,8 +31,20 @@ const AlgoListNode = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
+
             <Wrap>
-                <Title level={3}>206. 反转链表（easy）</Title>
+                <Title level={3}>237. 删除链表中的节点（easy）<Tag color="cyan">链表的基本操作-删除</Tag></Title>
+                <Collapse ghost>
+                    <Panel header="请编写一个函数，用于 删除单链表中某个特定节点 。在设计函数时需要注意，你无法访问链表的头节点 head ，只能直接访问 要被删除的节点 。题目数据保证需要删除的节点 不是末尾节点 。" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.deleteNode2}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>206. 反转链表（easy）<Tag color="cyan">链表的基本操作-修改指针</Tag></Title>
                 <Collapse ghost>
                     <Panel header="给单链表的头节点 head ，请反转链表，并返回反转后的链表" key="1">
                         <Space direction="vertical">
@@ -83,6 +89,111 @@ const AlgoListNode = () => {
             </Wrap>
 
             <Wrap>
+                <Title level={3}>234. 回文链表（easy）</Title>
+                <Collapse ghost>
+                    <Panel header="给你一个单链表的头节点 head ，请你判断该链表是否为回文链表。如果是，返回 true ；否则，返回 false 。" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.isPalindrome}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>剑指 Offer 18. 删除链表的节点（easy）</Title>
+                <Collapse ghost>
+                    <Panel header="给定单向链表的头指针和一个要删除的节点的值，定义一个函数删除该节点。返回删除后的链表的头节点。" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.deleteNode}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>141. 环形链表（easy）</Title>
+                <Collapse ghost>
+                    <Panel header="给你一个链表的头节点 head ，判断链表中是否有环。
+                            如果链表中有某个节点，可以通过连续跟踪 next 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。如果 pos 是 -1，则在该链表中没有环。注意：pos 不作为参数进行传递，仅仅是为了标识链表的实际情况。
+                            如果链表中存在环，则返回 true 。 否则，返回 false 。" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.hasCycle}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+
+            <Wrap>
+                <Title level={3}>142. 环形链表 II（medium）</Title>
+                <Collapse ghost>
+                    <Panel header="给定一个链表，返回链表开始入环的第一个节点。如果链表无环，则返回 null。
+                        如果链表中有某个节点，可以通过连续跟踪 next 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。如果 pos 是 -1，则在该链表中没有环。
+                        注意：pos 不作为参数进行传递，仅仅是为了标识链表的实际情况。
+                        不允许修改 链表。" key="1">
+                        <a href="https://leetcode-cn.com/problems/linked-list-cycle-ii/">题</a>
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.detectCycle}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>86. 分隔链表（medium）</Title>
+                <Collapse ghost>
+                    <Panel header="给你一个链表的头节点 head 和一个特定值 x ，请你对链表进行分隔，使得所有 小于 x 的节点都出现在 大于或等于 x 的节点之前。
+                        你应当 保留 两个分区中每个节点的初始相对位置。" key="1">
+                        <a href="https://leetcode-cn.com/problems/partition-list/">题</a>
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.partition}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>92. 反转链表 II（medium）</Title>
+                <Collapse ghost>
+                    <Panel header="给你单链表的头指针 head 和两个整数 left 和 right ，其中 left <= right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表 。" key="1">
+                        <a href="https://leetcode-cn.com/problems/reverse-linked-list-ii/">题</a>
+                        <Space direction="vertical">
+                            <Title level={4}>解1:</Title>
+                            <Highlight language="javascript">{eg.reverseBetween}</Highlight>
+                        </Space>
+                        <Space direction="vertical">
+                            <Title level={4}>解2:</Title>
+                            <Highlight language="javascript">{eg.reverseBetween2}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>148. 排序链表（medium）❌</Title>
+                <Collapse ghost>
+                    <Panel header="给你链表的头结点 head ，请将其按 升序 排列并返回 排序后的链表 。" key="1">
+                        <a href="https://leetcode-cn.com/problems/sort-list/">题</a>
+                        <Space direction="vertical">
+                            {/* <Highlight language="javascript">{eg.sortList}</Highlight> */}
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>82. 删除排序链表中的重复元素 II（medium）</Title>
+                <Collapse ghost>
+                    <Panel header="存在一个按升序排列的链表，给你这个链表的头节点 head ，请你删除链表中所有存在数字重复情况的节点，只保留原始链表中 没有重复出现 的数字。" key="1">
+                        <a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/">题</a>
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.deleteDuplicates2}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
                 <Title level={3}>25. K 个一组翻转链表（hard）</Title>
                 <Collapse ghost>
                     <Panel header={`给你一个链表，每 k 个节点一组进行翻转，请你返回翻转后的链表。
@@ -90,9 +201,17 @@ const AlgoListNode = () => {
                             如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。
                             进阶：
                             你可以设计一个只使用常数额外空间的算法来解决此问题吗？
-                            你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。`} key="1">
+                            你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。`} key="1"
+                    >
+                        <a href="https://leetcode-cn.com/problems/reverse-nodes-in-k-group/">题</a>
+
                         <Space direction="vertical">
+                            <Title level={4}>解1:</Title>
                             <Highlight language="javascript">{eg.reverseKGroup}</Highlight>
+                        </Space>
+                        <Space direction="vertical">
+                            <Title level={4}>解2:</Title>
+                            <Highlight language="javascript">{eg.reverseKGroup2}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -103,30 +222,6 @@ const AlgoListNode = () => {
 
 export default AlgoListNode
 
-function deleteDuplicates(head: any) {
-    if (!head) return head
-    // 解法1
-    // let dummy = new ListNode(0)                 // 头节点可能会被修改，创建一个哑节点保存链表
-    // dummy.next = head                           // 哑节点 next 指向 head
-    // let A = dummy                               // 当前指针
-    // while (A.next && A.next.next) {             // next 节点存在， 同时 当 删除 next 后 要链接的 next.next的节点也存在
-    //     if (A.next.val === A.next.next.val) {   // 值相等的情况下 
-    //         let nextVal = A.next.val            // 把相同的值保存起来
-    //         while (A.next && A.next.val === nextVal) {  // 直接删除后面链接中值等于这个值的节点
-    //             A.next = A.next.next
-    //         }
-    //     } else {
-    //         A = A.next                           // 相邻结点的值不相等，指针移动到next
-    //     }
-    // }
-    // return dummy.next
 
-    // 解法2
-    let dummy = new ListNode(0)
-    dummy.next = head
-    let A  = dummy
-    let map = new Map()
-    // while(){
 
-    // }
-}
+

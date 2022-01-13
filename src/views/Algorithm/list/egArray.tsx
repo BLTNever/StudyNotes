@@ -753,7 +753,7 @@ function minArray(numbers: number[]) {
     let left = 0
     let right = numbers.length - 1
     while (left < right) {
-        const middle = left + (~~(right - left) >> 1)   // ~~(right - left) >> 1 等同于 Math.floor(right - left) / 2
+        const middle = left + ((right - left) >> 1)   // (right - left) >> 1 等同于 Math.floor((right - left) / 2) or ~~((right - left) / 2)
         if (numbers[middle] < numbers[right]) right = middle 
         else if (numbers[middle] > numbers[right]) left = middle + 1   
         else right -= 1
@@ -964,4 +964,17 @@ function minSubArrayLen(target: number, nums: number[]) {
     return ans === Number.MAX_SAFE_INTEGER ? 0 : ans
 }
 console.log(minSubArrayLen(7, [2, 3, 1, 2, 4, 3]))
+`
+
+export const relativeSortArray = `
+function relativeSortArray(arr1: number[], arr2: number[]) {
+    let map = new Map()
+    arr2.forEach((val, key) => map.set(val, key))
+    return arr1.sort((a, b) => {
+        const A = map.has(a) ? map.get(a) : (1000 + a)
+        const B = map.has(b) ? map.get(b) : (1000 + b)
+        return A - B
+    })
+}
+console.log(relativeSortArray([2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19], [2, 1, 4, 3, 9, 6]))
 `

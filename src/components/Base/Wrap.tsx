@@ -3,7 +3,7 @@ import './index.less'
 
 export default function Wrap(props: any) {
     return (
-        <div className="my-wrap">
+        <div className="wrap">
             {props.children}
         </div>
     )

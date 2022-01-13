@@ -6,8 +6,8 @@ import 'moment/locale/zh-cn'
 import './index.less'
 import Top from './Top'
 import avatar from '../../assets/images/avatar.jpeg'
-import MyMenu from './MyMenu'
-
+import Menu from './Menu'
+import { ContentBody } from '../Base'
 moment.locale('en')
 
 const { Sider, Content } = Layout
@@ -45,7 +45,7 @@ const Main = memo((props: IProps & RouteComponentProps) => {
                         ? <span className="author">Alec</span>
                         : <span className="author white">Alec</span>
                 }
-                <MyMenu mode={mode} theme={theme} pathname={location.pathname} />
+                <Menu mode={mode} theme={theme} pathname={location.pathname} />
                 <div className="switch">
                     <Switch checked={theme === 'dark'}
                         onChange={changeTheme}
@@ -57,7 +57,7 @@ const Main = memo((props: IProps & RouteComponentProps) => {
             <Layout>
                 <Top toggle={toggle} collapsed={collapsed} />
                 <Content className="content" >
-                    {props.children}
+                    <ContentBody>{props.children}</ContentBody>
                 </Content>
             </Layout>
         </Layout>

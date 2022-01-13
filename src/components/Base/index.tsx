@@ -1,7 +1,7 @@
-import Content from './Content'
+import ContentBody from './ContentBody'
 import Wrap from './Wrap'
 
 export {
-    Content,
+    ContentBody,
     Wrap,
 }

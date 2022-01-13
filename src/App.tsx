@@ -6,7 +6,6 @@ import './App.less'
 import '@css/index.normal.less';
 import zhCN from 'antd/es/locale/zh_CN'
 
-
 const App = () => {
     return (
         <Main>

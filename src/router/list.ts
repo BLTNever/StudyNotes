@@ -119,7 +119,7 @@ export const list = [
                 component: RouteBase.Interview31,
             },
             {
-                path: '/interview/4',
+                path: '/interview/webpack',
                 component: RouteBase.Webpack,
             },
             {
@@ -131,7 +131,7 @@ export const list = [
                 component: RouteBase.Interview6,
             },
             {
-                path: '/interview/7',
+                path: '/interview/frontend',
                 component: RouteBase.frontend,
             },
             {

@@ -61,10 +61,10 @@ const frontend = () => {
                                 <li>
                                     <Text>
                                         避免浏览器
-                                    <Tooltip title="元素样式的改变并不影响它在文档流中的位置">
+                                        <Tooltip title="元素样式的改变并不影响它在文档流中的位置">
                                             <Tag color="#2db7f5">重绘（修改样式）</Tag>
                                         </Tooltip>和
-                                    <Tooltip title="当 Render Tree 中部分或全部元素的尺寸、结构、或某些属性发生改变时，浏览器重新渲染部分或全部文档的过程">
+                                        <Tooltip title="当 Render Tree 中部分或全部元素的尺寸、结构、或某些属性发生改变时，浏览器重新渲染部分或全部文档的过程">
                                             <Tag color="#108ee9">回流（重新渲染）</Tag>
                                         </Tooltip>
                                     </Text>
@@ -89,6 +89,32 @@ const frontend = () => {
                                 <li><Text>避免持久化存储的容量持续增长</Text></li>
                             </ul>
                         </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>前端工程化</Title>
+                <ul>
+                    <li><Text mark>将系统化的、规范化的、可度量的方法用于前端应用的开发、运行、维护过程</Text></li>
+                    <li><Text mark>用工程化方法构建和维护有效的、实用的、高质量的前端应用</Text></li>
+                    <li><Text mark>提升开发效率、提升产品质量、降低开发难度、降低企业成本应该是工程化的意义所在</Text></li>
+                </ul>
+                <Collapse ghost>
+                    <Panel header="开发" key="1">
+                        <Text mark>框架选型、前后端分离、模块化、组件化、脚手架、组件库、本地开发服务器、Mock服务、微前端</Text>
+                    </Panel>
+                    <Panel header="构建" key="2">
+                        <Text mark>依赖打包、文件压缩、代码分割、增量更新和缓存、资源定位、图标合并、ECMA Script和Babel、CSS预编译和post CSS、持续构建和集成、类库打包、构建优化</Text>
+                    </Panel>
+                    <Panel header="部署" key="3">
+                        <Text mark>持续部署、部署流程设计、静态资源部署策略、Nginx反向代理、SPA路由配置、跨域、HTTPS证书、HTTP2.0配置、灰度发布</Text>
+                    </Panel>
+                    <Panel header="性能" key="4">
+                        <Text mark>缓存策略、缓存复用、CDN内容分发网络、按需加载、同步异步加载、请求合并、首屏渲染速度、HTTP2服务器推送、日志性能监控、预加载、性能测试</Text>
+                    </Panel>
+                    <Panel header="规范" key="4">
+                        <Text mark>目录结构规范、编码规范、技术栈规范、前后端接口规范、Commit message规范、GIT分支管理规范、CodeReview规范、设计规范、图标规范、文档规范、版本规范、开发流程规范、发布流程规范</Text>
                     </Panel>
                 </Collapse>
             </Wrap>

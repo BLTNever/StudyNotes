@@ -182,7 +182,7 @@ function validateStackSequences(pushed: number[], popped: number[]) {
 console.log(validateStackSequences([1, 2, 3, 4, 5], [4, 3, 5, 1, 2]))
 `
 
-export const calculate =`
+export const calculate = `
 function calculate(s: string) {
     let stack: number[] = []
     let num = 0
@@ -205,4 +205,76 @@ function calculate(s: string) {
     return stack.reduce((acc, cur) => acc + cur, 0)
 }
 console.log(calculate("42"))
+`
+
+export const trap = `
+/**
+ *  对于每一个柱子 i ，能接的水 = min(左（leftMax）右(rightMax)两边最高柱子）-当前柱子高度(height[i])
+ * @param height 
+ * @returns 
+ */
+function trap(height: number[]) {
+    if (!height.length) return 0
+    let len = height.length
+    let ans = 0
+    // 暴力解 时间O(n^2) 空间O(1)
+    for (let i = 1; i < len - 1; i++) {   // 从第二根柱子开始 去找当前柱子 左右两侧最 高 的柱子
+        let left = 0
+        let right = 0
+        for (let j = i; j < len; j++) {
+            // 找右边最高的柱子
+            right = Math.max(right, height[j])
+        }
+        for (let k = i; k >= 0; k--) {
+            // 找左边最高的柱子
+            left = Math.max(left, height[k])
+        }
+        ans += Math.min(left, right) - height[i]    // 两侧最高柱子中，最低的柱子和当前柱子的差，就是存储的雨水量
+    }
+    // return ans
+
+    // 暴力解 时间O(n) 空间O(n)
+    // 从左向右，对比 i 跟 i左侧 的最大值
+    let leftMax = Array(len).fill(0)
+    let rightMax = Array(len).fill(0)
+    leftMax[0] = height[0]
+    rightMax[len - 1] = height[len - 1]
+    // 从左向右，对比 height[i] 跟 左侧侧 leftMax[i - 1] 的最大值
+    for (let i = 1; i < len; i++) {
+        leftMax[i] = Math.max(height[i], leftMax[i - 1])
+    }
+    // 从右向左，对比 height[i] 跟 右侧 rightMax[i + 1] 的最大值
+    for (let i = len - 2; i >= 0; i--) {
+        rightMax[i] = Math.max(height[i], rightMax[i + 1])
+    }
+    // 掐头去尾，比较当前 i 和左右侧最高柱子中 最低的那个差
+    for (let i = 1; i < len - 1; i++) {
+        ans += Math.min(leftMax[i], rightMax[i]) - height[i]
+    }
+    return ans
+
+    // 双指针
+    // 每一列雨水的高度，取决于，该列 左侧最高的柱子和右侧最高的柱子中最矮的那个柱子的高度
+    let left = 0
+    let right = len - 1
+    let leftMax = height[0]
+    let rightMax = height[len - 1]
+    while (left <= right) {                           // 维护左右指针
+        // 使用 height[left] 和 height[right]的值更新 leftMax 和rightMax 的值
+        leftMax = Math.max(height[left], leftMax)
+        rightMax = Math.max(height[right], rightMax)
+        // 1. 如果leftMax < rightMax
+        // 2. 下标 left 处能接的雨水量等于 leftMax - height[left]
+        // 3. 下标 right 能接到的雨水量等于 rightMax - height[right] 
+        if (leftMax < rightMax) {
+            ans += leftMax - height[left]             // 对于某一列，能接到的雨水，取决于min(左边最大值，右边最大值)
+            left++
+        } else {
+            ans += rightMax - height[right]
+            right--
+        }
+    }
+    return ans
+}
+console.log(trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
 `

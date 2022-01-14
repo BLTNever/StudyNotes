@@ -1,6 +1,6 @@
 /* eslint-disable react/no-this-in-sfc */
 import React, { useEffect } from 'react'
-import Highlight from 'react-highlight'
+import Highlight from '@components/HighLight'
 import { Collapse, Typography, Tag, Space } from 'antd'
 
 import { Wrap } from '@components/Base'

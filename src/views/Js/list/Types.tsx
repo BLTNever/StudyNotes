@@ -1,6 +1,6 @@
 
 import React from 'react'
-import Highlight from 'react-highlight'
+import Highlight from '@components/HighLight'
 import { Card, Col, Row, Popover, Collapse, Typography, PageHeader, Space, Tag, Table } from 'antd'
 
 import { Wrap } from '@components/Base'

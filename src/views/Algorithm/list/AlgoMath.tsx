@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import Highlight from 'react-highlight'
+import Highlight from '@components/HighLight'
+
 import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert } from 'antd'
 
 import { Wrap } from '@components/Base'
@@ -177,6 +178,23 @@ const AlgoMath = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
+
+            <Wrap>
+                <Title level={3}>18. 四数之和（medium）</Title>
+                <Collapse ghost>
+                    <Panel header={`给你一个由 n 个整数组成的数组 nums ，和一个目标值 target 。请你找出并返回满足下述全部条件且不重复的四元组 [nums[a], nums[b], nums[c], nums[d]] （若两个四元组元素一一对应，则认为两个四元组重复）：
+                        0 <= a, b, c, d < n
+                        a、b、c 和 d 互不相同
+                        nums[a] + nums[b] + nums[c] + nums[d] == target
+                        你可以按 任意顺序 返回答案 。`} key="1">
+                        <a href="https://leetcode-cn.com/problems/4sum/"></a>
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.fourSum}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
         </>
     )
 }
@@ -190,3 +208,61 @@ function printNumbers(n: number) {
     }
 }
 
+
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[][]}
+ */
+function nSum(nums: number[], target: number) {
+    let res: any[] = []
+    let len = nums.length
+    nums.sort((a, b) => a - b)
+
+    const helper = (index: number, N: number, temp: number[]) => {
+        // 如果下标越界了或者 N < 3 就没有必要在接着走下去了
+        if (index === len || N < 3) return
+
+        for (let i = index; i < len; i++) {
+            // 剔除重复的元素
+            if (i > index && nums[i] === nums[i - 1]) {
+                continue
+            }
+            // 如果 N > 3 的话就接着递归
+            // 并且在递归结束之后也不走下边的逻辑
+            // 注意这里不能用 return
+            // 否则循环便不能跑完整
+            if (N > 3) {
+                helper(i + 1, N - 1, [nums[i], ...temp])
+                continue
+            }
+            // 当走到这里的时候，相当于在求「三数之和」了
+            // temp 数组在这里只是把前面递归加入的数组算进来
+            let left = i + 1
+            let right = len - 1
+            while (left < right) {
+                let sum = nums[i] + nums[left] + nums[right] + temp.reduce((prev, curr) => prev + curr)
+                if (sum === target) {
+                    res.push([...temp, nums[i], nums[left], nums[right]])
+                    while (left < right && nums[left] === nums[left + 1]) {
+                        left++
+                    }
+                    while (left < right && nums[right] === nums[right - 1]) {
+                        right--
+                    }
+                    left++
+                    right--
+                } else if (sum < target) {
+                    left++
+                } else {
+                    right--
+                }
+            }
+        }
+    }
+
+    helper(0, 4, [])
+    return res
+};
+// console.log(nSum([1, 0, -1, 0, -2, 2], 0))

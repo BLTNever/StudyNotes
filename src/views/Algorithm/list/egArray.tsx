@@ -4,8 +4,10 @@ export const findShortSubArray = `
  *  2.遍历这个哈希表的值，出现的次数大于max值的时候，重新给max值赋值，记录min最短长度为当前值的end下标 - start下标
  *  3.如果count === max值，对比已存在的min值和当前的end - start值，找出最短长度
  *  4.数组下标从0开始，return的min值+1
- * /
-function findSubArray(nums) {
+ * @param nums 
+ * @returns 
+ */
+function findSubArray(nums: number[]) {
     let obj = {}
     let max = 0
     nums.forEach((n, key) => {
@@ -27,7 +29,6 @@ function findSubArray(nums) {
     }
     return min + 1
 }
-
 // 一次遍历，
 function findSubArray(nums) {
     let obj = {}
@@ -136,7 +137,7 @@ export const _merge1 = `
  * 2. A空，从B中移除第一个push到result中
  * 3. B空，从A中移除第一个push到result中
  * 4. A B不为空取数组第一个判断大小 选择push不同的数据
- * /
+ */
 function _merge(A, B) {
     let result = []
 
@@ -221,19 +222,21 @@ console.log(merge([1, 2, 3], 3, [2, 5, 6], 3))
 
 export const removeDuplicates = `
 function removeDuplicates(nums: number[]) {
-    // const len = nums.length
-    // if (!len) return 0
-    // let fast = 1
-    // let slow = 1
-    // while (fast < len) {
-    //     if (nums[fast] !== nums[fast - 1]) {
-    //         nums[slow++] = nums[fast]
-    //     }
-    //     fast++
-    // }
-    // return slow
     const len = nums.length
     if (!len) return 0
+
+    // 解法1 双指针
+    let fast = 1
+    let slow = 1
+    while (fast < len) {
+        if (nums[fast] !== nums[fast - 1]) {
+            nums[slow++] = nums[fast]
+        }
+        fast++
+    }
+    return slow
+  
+    // 解法2
     let ans = 0                      // 写指针
     for (let i = 1; i < len; i++) {  // 读指针
         if (nums[ans] !== nums[i]) {
@@ -280,7 +283,7 @@ function searchInsert(nums: number[], target: number) {
     let r = nums.length - 1
     let ans = nums.length
     while (l <= r) {
-        const middle = l + Math.floor((r - l) >> 1)
+        const middle = l + ((r - l) >> 1)
         if (target > nums[middle]) {
             l = middle + 1
         } else {
@@ -332,12 +335,10 @@ export const minimumDifference = `
 function minimumDifference(nums: number[], k: number) {
     if (nums.length === 1) return 0
     if (nums.length === 2) return Math.abs(nums[0] - nums[1])
-    nums = nums.sort((a, b) => a - b) // 先从小到大排列
+    nums = nums.sort((a, b) => a - b)                               // 先从小到大排列
     let ans = Number.MAX_SAFE_INTEGER
-    for (let i = 0; i <= nums.length - k; i++) { // 设置一个0 到 nums.length - k的区间 ?? 
-        console.log(ans)
-        console.log(nums[i - k - 1], nums[i])
-        ans = Math.min(ans, Math.abs(nums[i + k - 1] - nums[i])) // 从0开始移动 i 跟 i + k - 1的区间 比较大小
+    for (let i = 0; i <= nums.length - k; i++) {                  // 设置一个0 到 nums.length - k的区间 ?? 
+        ans = Math.min(ans, Math.abs(nums[i + k - 1] - nums[i]))  // 从0开始移动 i 跟 i + k - 1的区间 比较大小
     }
     return ans
 }
@@ -361,13 +362,13 @@ function findMiddleIndex(nums: number[]) {
     //     sum += nums[i]
     // }
 
-    let left = 0 // left 初始化为0
-    let right = total - nums[0] // right初始化为除了第一位元素 之外的所有元素和（遍历从第一位开始）
+    let left = 0                                // left 初始化为0
+    let right = total - nums[0]                 // right初始化为除了第一位元素 之外的所有元素和（遍历从第一位开始）
     for (let i = 0; i < nums.length; i++) {
-        if (left === right) return i 
-        if (i === nums.length - 1) return -1 // 防止出现越界，
-        left += nums[i] // 每向右移动一位， left和增加。 right和减少
-        right -= nums[i + 1] // 设置i === nums.length - 1防止超出数组范围
+        if (left === right) return i            // 找到中间值
+        if (i === nums.length - 1) return -1    // 防止出现越界，
+        left += nums[i]                         // 每向右移动一位， left和增加。 right和减少
+        right -= nums[i + 1]                    // 设置i === nums.length - 1防止超出数组范围
     }
     return -1
 }
@@ -461,10 +462,12 @@ console.log(maximumDifference([9, 4, 3, 2]))
 export const construct2DArray = `
 function construct2DArray(original: number[], m: number, n: number) {
     if (m * n !== original.length) return []
-    // let ans = Array(m).fill(0).map(() => Array(n).fill(0)) // 如果fill的参数为引用类型，会导致都执行都一个引用类型, 使用map返回新数组的特性。 保证内部数组内存指向干净
-    // for (let i = 0; i < original.length; i++) {
-    //     ans[~~(i / n)][i % n] = original[i]
-    // }
+
+    // 一次循环，挨个遍历， 在里面计算位数
+    let ans = Array(m).fill(0).map(() => Array(n).fill(0)) // 如果fill的参数为引用类型，会导致都执行都一个引用类型, 使用map返回新数组的特性。 保证内部数组内存指向干净
+    for (let i = 0; i < original.length; i++) {
+        ans[~~(i / n)][i % n] = original[i]
+    }
 
     // 一次循环， 每次遍历 n 个长度 截取
     let ans = []
@@ -489,12 +492,14 @@ console.log(construct2DArray([1, 2, 3, 4, 5, 6, 7, 8, 9], 3, 3))
 
 export const twoOutOfThree = `
 function twoOutOfThree(nums1: number[], nums2: number[], nums3: number[]) {
+    // 解法1:
     // 取 1 跟 2、1 跟 3 、2 跟 3 的交集，去重
     let a = nums1.filter(n => nums2.includes(n))
     let b = nums1.filter(n => nums3.includes(n))
     let c = nums2.filter(n => nums3.includes(n))
     return Array.from(new Set([...a, ...b, ...c]))
 
+    // 解法2:
     // 第一次遍历 取 1 跟 2 、 1 跟 3的交集。去重 放入 ans
     let ans: number[] = []
     for (let n of nums1) {
@@ -753,7 +758,8 @@ function minArray(numbers: number[]) {
     let left = 0
     let right = numbers.length - 1
     while (left < right) {
-        const middle = left + ((right - left) >> 1)   // (right - left) >> 1 等同于 Math.floor((right - left) / 2) or ~~((right - left) / 2)
+        // (right - left) >> 1 等同于 Math.floor((right - left) / 2) or ~~((right - left) / 2)
+        const middle = left + ((right - left) >> 1)   
         if (numbers[middle] < numbers[right]) right = middle 
         else if (numbers[middle] > numbers[right]) left = middle + 1   
         else right -= 1
@@ -800,7 +806,7 @@ console.log(thirdMax([2, 1, 2, 3, 4]))
 export const missingNumber = `
 function missingNumber(nums: number[]) {
     // 二分法
-    // 
+    // 0 ~ n - 1， 说明下标跟元素是一致的。
     let l = 0
     let r = nums.length - 1
     while (l <= r) {
@@ -919,31 +925,6 @@ function generateMatrix(n: number) {
 }
 `
 
-export const buddyStrings = `
-function buddyStrings(s: string, goal: string) {
-    // 长度不同 返回false
-    if (s.length !== goal.length) return false
-    // 如果 s 跟 goal 相等， s 转成数组之后去重 对比原来的长度。 不相等证明有重复的 返回 true, 否则 false 
-    if (s === goal) return new Set(s.split('')).size !== s.length
-
-    let [first, second] = [-1, -1]          // 定义 2 个变量
-    for (let i = 0; i < s.length; i++) {
-        if (s[i] !== goal[i]) {             // 判断 s[i] yu goal[i] 如果不相等
-            if (first === -1) {             // 如果 first 和 second 还没记录 记录下不相等时候的下标
-                first = i
-            } else if (second === -1) {
-                second = i
-            } else {
-                // 有第三次不同 返回 false
-                return false
-            }
-        }
-    }
-    // 最终判断有 2 处 不同， 同时满足 first 和 second 在 s 和 goal 中交换之后是否相等
-    return second !== -1 && s[first] === goal[second] && s[second] === goal[first]
-}
-console.log(buddyStrings('aa', 'aa'))
-`
 export const minSubArrayLen = `
 function minSubArrayLen(target: number, nums: number[]) {
     let left = 0                                    // 滑动窗口 左值

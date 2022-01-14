@@ -1,6 +1,7 @@
 
 import React from 'react';
-import Highlight from 'react-highlight';
+ import Highlight from '@components/HighLight'
+;
 
 import { Card, Col, Row, Divider } from 'antd';
 import { objectThis1, objectThis2, fnThis, constructedFnThis, arrowFn, arrowFn2 } from './example';

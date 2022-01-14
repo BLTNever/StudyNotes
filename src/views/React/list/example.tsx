@@ -1,7 +1,7 @@
 export const _useState = `
 /**
  * 实现1
- * /
+ */
 let index = 0
 let stateList = []
 function _useState(initState) {
@@ -18,7 +18,7 @@ function _useState(initState) {
 
 /**
  * 实现2
- * /
+ */
 let states = []
 let setters = []
 let index = 0

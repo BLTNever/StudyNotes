@@ -2,7 +2,7 @@
 
 
 import React, { useEffect } from 'react'
-import Highlight from 'react-highlight'
+import Highlight from '@components/HighLight'
 import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert } from 'antd'
 
 import { Wrap } from '@components/Base'

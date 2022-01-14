@@ -1,15 +1,9 @@
 import React, { useEffect } from 'react'
-import Highlight from 'react-highlight'
+import Highlight from '@components/HighLight'
 import { Table, Collapse, Typography, PageHeader, Space, Tag } from 'antd'
-
-import { Wrap } from '@components/Base'
-import PreviewImg from '@components/previewImg'
 
 import { dataSource, columns } from './recordConfig'
 
-
-const { Panel } = Collapse
-const { Paragraph, Title, Text, Link } = Typography
 
 const Interview6 = () => {
 
@@ -21,7 +15,7 @@ const Interview6 = () => {
         rowKey: 'Q',
         scroll: { x: 1500, },
         expandable: {
-            expandedRowRender: (record: any) => <p style={{ margin: 0 }}>{record.description}</p>,
+            expandedRowRender: (record: any) => <div>{record.description}</div>,
             rowExpandable: (record: any) => record.description,
         }
     }

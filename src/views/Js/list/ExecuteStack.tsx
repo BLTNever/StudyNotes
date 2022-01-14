@@ -1,5 +1,5 @@
 import React from 'react'
-import Highlight from 'react-highlight'
+import Highlight from '@components/HighLight'
 
 import { Card, Col, Row, Collapse, Typography, PageHeader, Space } from 'antd'
 import callStack from '@images/call-stack.png'

@@ -561,3 +561,99 @@ function reverseBetween2(head: ListNode, left: number, right: number) {
     return dummy.next
 }
 `
+
+export const copyRandomList = `
+/**
+ * hash表  时间复杂度 O(n)  空间复杂度 O(n)
+ * @param head 
+ * @returns 
+ */
+function copyRandomList(head: ListNode) {
+    let map = new Map()
+    let cur = head
+    // 第一次遍历，复制各节点值，生成一个具有val属性的链表
+    while (cur) {
+        map.set(cur, new Node(cur.val))
+        cur = cur.next
+    }
+    cur = head
+    // 第二次遍历，复制连接关系，根据map映射关系，将random和next指针指向对应的节点或者null
+    while (cur) {
+        map.get(cur).next = cur.next ? map.get(cur.next) : null
+        map.get(cur).random = cur.random ? map.get(cur.random) : null
+        cur = cur.next
+    }
+    return map.get(head)
+}
+
+/**
+ * 递归 时间复杂度 O(n)  空间复杂度 O(1)
+ * @param head 
+ * @param map 
+ * @returns 
+ */
+function _copyRandomList(head: ListNode, map = new Map()) {
+    if (!head) return null
+    if (!map.get(head)) {   // 如果当前map没有要找的head，新建一份
+        map.set(head, { val: head.val })
+        Object.assign(      // 第二个作为第一个的新增参数
+            map.get(head),  // map.get(head)得到的其实就是新的head，所以下面的next和random属性就是为新的head增加的属性
+            {
+                next: _copyRandomList(head.next, map),
+                random: _copyRandomList(head.random, map)
+            }
+        )
+    }
+    return map.get(head)
+}
+`
+
+export const sortList = `
+function merge(head1: ListNode, head2: ListNode) {
+    const dummyHead = new ListNode(0)
+    let cur = dummyHead
+    let A = head1
+    let B = head2
+    while (A !== null && B !== null) { // 合并子区间 小的节点先连
+        if (A.val <= B.val) {
+            cur.next = A
+            A = A.next
+        } else {
+            cur.next = B
+            B = B.next
+        }
+        cur = cur.next
+    }
+    if (A !== null) {              // 两条链表还有节点没合并完，直接合并过来
+        cur.next = A
+    } else if (B !== null) {
+        cur.next = B
+    }
+    return dummyHead.next
+}
+
+function toSortList(head: ListNode, tail: ListNode | null): any {
+    if (head === null) return head    // 极端情况
+
+    if (head.next === tail) {         // 分割到只剩一个节点
+        head.next = null
+        return head
+    }
+    let slow = head
+    let fast = head
+    while (fast !== tail) {           // 的到中间节点
+        slow = slow.next
+        fast = fast.next
+        if (fast !== tail) {
+            fast = fast.next
+        }
+    }
+    const mid = slow
+    return merge(toSortList(head, mid), toSortList(mid, tail))  // 分割区间 递归合并
+}
+
+
+function sortList(head: ListNode) {
+    return toSortList(head, null)
+}
+`

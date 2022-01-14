@@ -1,7 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import React from 'react';
-import Highlight from 'react-highlight';
+ import Highlight from '@components/HighLight'
+;
 
 import { Card, Col, Row, Tag, Popover, Table, Divider, Collapse, Typography, PageHeader, Space } from 'antd';
 import coercion from '@images/coercion.jpg';

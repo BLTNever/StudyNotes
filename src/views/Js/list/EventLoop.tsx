@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react'
-import Highlight from 'react-highlight'
+import Highlight from '@components/HighLight'
 
 import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert } from 'antd'
 

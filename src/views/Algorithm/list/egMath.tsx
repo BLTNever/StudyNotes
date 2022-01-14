@@ -69,7 +69,7 @@ export const mySqrt = `
  * 定义l为0， r为x
  * 循环遍历，定义middle为  l + r + 1的一半
  * 如果middle 小于等于 x / middle，从右半区开始继续循环 反之从左半区开始
- * /
+ */
 function mySqrt(x: number) {
     let l = 0
     let r = x
@@ -277,5 +277,63 @@ function numWays(n: number) {
 }
 
 console.log(numWays(44))
+`
 
+export const fourSum = `
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[][]}
+ */
+function nSum(nums: number[], target: number) {
+    let res: any[] = []
+    let len = nums.length
+    nums.sort((a, b) => a - b)
+
+    const helper = (index: number, N: number, temp: number[]) => {
+        // 如果下标越界了或者 N < 3 就没有必要在接着走下去了
+        if (index === len || N < 3) return
+
+        for (let i = index; i < len; i++) {
+            // 剔除重复的元素
+            if (i > index && nums[i] === nums[i - 1]) {
+                continue
+            }
+            // 如果 N > 3 的话就接着递归
+            // 并且在递归结束之后也不走下边的逻辑
+            // 注意这里不能用 return
+            // 否则循环便不能跑完整
+            if (N > 3) {
+                helper(i + 1, N - 1, [nums[i], ...temp])
+                continue
+            }
+            // 当走到这里的时候，相当于在求「三数之和」了
+            // temp 数组在这里只是把前面递归加入的数组算进来
+            let left = i + 1
+            let right = len - 1
+            while (left < right) {
+                let sum = nums[i] + nums[left] + nums[right] + temp.reduce((prev, curr) => prev + curr)
+                if (sum === target) {
+                    res.push([...temp, nums[i], nums[left], nums[right]])
+                    while (left < right && nums[left] === nums[left + 1]) {
+                        left++
+                    }
+                    while (left < right && nums[right] === nums[right - 1]) {
+                        right--
+                    }
+                    left++
+                    right--
+                } else if (sum < target) {
+                    left++
+                } else {
+                    right--
+                }
+            }
+        }
+    }
+
+    helper(0, 4, [])
+    return res
+};
+console.log(nSum([1, 0, -1, 0, -2, 2], 0))
 `

@@ -4,7 +4,7 @@ export const longestCommonPrefix = `
  * 2. 遍历strs，定义第二个指针j
  * 3. 遍历strs数组中的元素strs[j]，
  * 4. 对比ans的元素跟strs[i][j]是否相等，截取
- * /
+ */
 function longestCommonPrefix(strs: string[]) {
     if (!strs.length) return ''
     let ans = strs[0]
@@ -363,12 +363,38 @@ function replaceSpace(s: string) {
 console.log(replaceSpace("We are happy."))
 `
 
+export const buddyStrings = `
+function buddyStrings(s: string, goal: string) {
+    // 长度不同 返回false
+    if (s.length !== goal.length) return false
+    // 如果 s 跟 goal 相等， s 转成数组之后去重 对比原来的长度。 不相等证明有重复的 返回 true, 否则 false 
+    if (s === goal) return new Set(s.split('')).size !== s.length
+
+    let [first, second] = [-1, -1]          // 定义 2 个变量
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] !== goal[i]) {             // 判断 s[i] yu goal[i] 如果不相等
+            if (first === -1) {             // 如果 first 和 second 还没记录 记录下不相等时候的下标
+                first = i
+            } else if (second === -1) {
+                second = i
+            } else {
+                // 有第三次不同 返回 false
+                return false
+            }
+        }
+    }
+    // 最终判断有 2 处 不同， 同时满足 first 和 second 在 s 和 goal 中交换之后是否相等
+    return second !== -1 && s[first] === goal[second] && s[second] === goal[first]
+}
+console.log(buddyStrings('aa', 'aa'))
+`
+
 export const lengthOfLongestSubstring = `
 /**
  * 滑动窗口
  * @param s 
  * @returns 
- * /
+ */
 function lengthOfLongestSubstring(s: string) {
     let ans = Number.MIN_SAFE_INTEGER
     let left = 0

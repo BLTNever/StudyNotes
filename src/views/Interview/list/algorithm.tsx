@@ -200,7 +200,7 @@ export const findShortSubArray = `
  *  2.遍历这个哈希表的值，出现的次数大于max值的时候，重新给max值赋值，记录min最短长度为当前值的end下标 - start下标
  *  3.如果count === max值，对比已存在的min值和当前的end - start值，找出最短长度
  *  4.数组下标从0开始，return的min值+1
- * /
+ */
 function findSubArray(nums) {
     let obj = {}
     let max = 0

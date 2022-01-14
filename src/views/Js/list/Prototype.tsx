@@ -1,6 +1,7 @@
 
 import React from 'react';
-import Highlight from 'react-highlight';
+ import Highlight from '@components/HighLight'
+;
 
 import { note11Example1, note11Example2, note11Example3, note11Example4 } from './example';
 

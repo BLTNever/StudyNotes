@@ -13,7 +13,7 @@ function debounce(fn, delay) {
 } 
 /**
  * 增加是否立即执行参数immediate
- * /
+ */
 function debounce(fn, delay, immediate = false) {
     let timer = null
     return function() {
@@ -35,7 +35,7 @@ function debounce(fn, delay, immediate = false) {
 } 
 /**
  * 立即执行一遍，触发大于 delay 在执行一遍
- * /
+ */
 function debounce(fn, delay) {
     let timer = null
     let start = Date.now()
@@ -97,7 +97,7 @@ function debounce(fn, wait, option = { leading: false, trailing: true }) {
 export const debounce3 = `
 /**
  * hooks中实现
- * /
+ */
 function useDebounce(fn, delay, dep = []) {
     const debounceRef = useRef({ timer: null, fn })
     const { current } = debounceRef
@@ -183,7 +183,7 @@ export const throttle2 = `
 /** 
  * 计时器 + 时间戳
  * 由immediate控制是否立即执行
- * /
+ */
 function throttle(fn, delay, immediate) {
     let timer
     let prev = 0
@@ -208,7 +208,7 @@ function throttle(fn, delay, immediate) {
 }
 /** 
  * 计时器写法，第一次立即执行
- * /
+ */
 function throttle(fn, delay) {
     let waiting = false
     let lastArgs = null
@@ -510,37 +510,31 @@ function createNew3() {
 `
 
 export const _instanceof = `
-function __instanceof(a: any, b: any): any {
+function _instanceof(a: any, b: any): any {
+    // 实现1:
     let prototype = b.prototype
     if (typeof b !== 'function') throw new Error('right hand Error')
     if (a === null || (typeof a !== 'object' && typeof a !== 'function')) return false
 
-    while (a?.__proto__) {
-        if (a?.__proto__ === prototype) return true
-        a = a?.__proto__
+    while (a.__proto__) {
+        if (a.__proto__ === prototype) return true
+        a = a.__proto__
     }
     return false
-    // let proto = a?.__proto__
-    // let queue = [proto]
-    // while(queue.length) {
-    //     let item = queue.shift()
-    //     if(item === null) return false
-    //     if(item === prototype) return true
-    //     queue.push(item?.__proto__)
-    // }
 
-    // if (proto === null) return false
-    // if (proto === prototype) {
-    //     return true
-    // } else {
-    //     return __instanceof(proto, b)
-    // }
+    // 实现2：
+    let proto = a.__proto__
+    let queue = [proto]
+    while(queue.length) {
+        let item = queue.shift()
+        if(item === null) return false
+        if(item === prototype) return true
+        queue.push(item?.__proto__)
+    }
+    if (proto === null) return false
+    if (proto === prototype) return true
+    else return _instanceof(proto, b)
 }
-
-console.log(__instanceof(new Date(), Date))
-console.log(__instanceof({}, Object))
-console.log(__instanceof(null, Object))
-console.log(__instanceof(NaN, Number))
 `
 export const ajax = `
 const ajax = {
@@ -686,7 +680,6 @@ Function.prototype._bind = function(context = window, ...outerArgs) {
     return function (...innerArgs) {
         return fn.apply(context, [...outArgs, ...innerArgs])
     }
-
 }
 `
 
@@ -844,7 +837,7 @@ export const queryUrlParams = `
  *    name: code,
  *    age: 20
  * }
- * /
+ */
 const queryURLParams = (url) => {
     if (!url?.length) return {}
     let askIndex = url.indexOf('?')
@@ -883,7 +876,7 @@ export const queryUrlParams2 = `
 /**
  * 通过new URL 去解析链接
  * 
- * /
+ */
 const queryURLParams = (url) => {
     if(!url?.length) return ''
     const { hash, host, search,searchParams } = new URL(url)
@@ -1040,7 +1033,7 @@ const Pu
 export const _useState = `
 /**
  * 实现1
- * /
+ */
 let index = 0
 let stateList = []
 function _useState(initState) {
@@ -1057,7 +1050,7 @@ function _useState(initState) {
 
 /**
  * 实现2
- * /
+ */
 let states = []
 let setters = []
 let index = 0

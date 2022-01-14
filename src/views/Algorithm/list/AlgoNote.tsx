@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react'
-import Highlight from 'react-highlight'
-import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert } from 'antd'
+import Highlight from '@components/HighLight'
+import { Card, Col, Row, Collapse, Typography, Space } from 'antd'
 
 import { Wrap } from '@components/Base'
-import PreviewImg from '@components/previewImg'
 
 import {
     traversal1, traversal2, traversal3, traversal4, radix, radix2,
     depJson, destructuring,
     _isEqual, infinityCurry1, infinityCurry2,
-} from './example'
+} from './egNote'
 
 import { findShortSubArray, createTree, } from './egArray'
 import { BSTree, nodes } from './fn'
@@ -40,14 +39,11 @@ const AlgoNote = () => {
     }, [])
     return (
         <>
-
-
             <Wrap>
                 <Title level={3}>数组的度</Title>
-                <Text>定一个非空且只包含非负数的整数数组nums，数组的度的定义是指数组里任一元素出现频数的最大值</Text>
-                <Text>在nums中找到与nums拥有相同大小的度的最短连续子数组，返回其长度</Text>
                 <Collapse ghost>
-                    <Panel header="" key="1">
+                    <Panel header="定一个非空且只包含非负数的整数数组nums，数组的度的定义是指数组里任一元素出现频数的最大值
+                    在nums中找到与nums拥有相同大小的度的最短连续子数组，返回其长度" key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{findShortSubArray}</Highlight>
                         </Space>
@@ -117,8 +113,8 @@ const AlgoNote = () => {
                     <Panel header="" key="1">
                         <Space direction="vertical">
                             <Row>
-                                <Col><Card><Highlight language="javascript">{radix}</Highlight></Card></Col>
-                                <Col><Card><Highlight language="javascript">{radix2}</Highlight></Card></Col>
+                                <Col span={12}><Card><Highlight language="javascript">{radix}</Highlight></Card></Col>
+                                <Col span={12}><Card><Highlight language="javascript">{radix2}</Highlight></Card></Col>
                             </Row>
                         </Space>
                     </Panel>
@@ -128,9 +124,8 @@ const AlgoNote = () => {
             <Wrap>
                 <Title level={3}>树的遍历有几种方式，实现层次遍历</Title>
                 <Collapse ghost>
-                    <Panel header="" key="1">
+                    <Panel header="遍历方式：1.前序遍历、2.中序遍历、3.后序遍历、4.层次遍历" key="1">
                         <Space direction="vertical">
-                            <Text mark>遍历方式：1.前序遍历、2.中序遍历、3.后序遍历、4.层次遍历</Text>
                             <ul>
                                 <li>前序：根 -&gt; 左 -&gt; 右</li>
                                 <li>中序：左 -&gt; 根 -&gt; 右</li>

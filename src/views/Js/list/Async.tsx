@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Highlight from 'react-highlight'
+import Highlight from '@components/HighLight'
 
 import { Card, Col, Row, Divider } from 'antd'
 import { async1, async2 } from './example'

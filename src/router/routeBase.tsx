@@ -15,6 +15,7 @@ export const Closure = lazy(() => import(/* webpackChunkName: "Closure" */'@view
 export const Async = lazy(() => import(/* webpackChunkName: "Async" */'@views/Js/list/Async'))
 export const Prototype = lazy(() => import(/* webpackChunkName: "Prototype" */'@views/Js/list/Prototype'))
 export const Moudles = lazy(() => import(/* webpackChunkName: "Moudles" */'@views/Js/list/Moudles'))
+export const Reg = lazy(() => import(/* webpackChunkName: "Reg" */'@views/Js/list/Reg'))
 
 
 // React 
@@ -53,8 +54,8 @@ export const Delegate = lazy(() => import(/* webpackChunkName: "Delegate" */'@vi
 export const AlgoNote = lazy(() => import(/* webpackChunkName: "AlgoNote" */'@views/Algorithm/list/AlgoNote'))
 export const AlgoArray = lazy(() => import(/* webpackChunkName: "AlgoArray" */'@views/Algorithm/list/AlgoArray'))
 export const AlgoSort = lazy(() => import(/* webpackChunkName: "AlgoSort" */'@views/Algorithm/list/AlgoSort'))
-export const AlgoAggregate = lazy(() => import(/* webpackChunkName: "AlgoAggregate" */'@views/Algorithm/list/AlgoAggregate'))
-export const Algorithm5 = lazy(() => import(/* webpackChunkName: "Algorithm5" */'@views/Algorithm/list/Algorithm5'))
+export const AlgoHash = lazy(() => import(/* webpackChunkName: "AlgoHash" */'@views/Algorithm/list/AlgoHash'))
+export const AlgoDp = lazy(() => import(/* webpackChunkName: "AlgoDp" */'@views/Algorithm/list/AlgoDp'))
 export const AlgoListNode = lazy(() => import(/* webpackChunkName: "AlgoListNode" */'@views/Algorithm/list/AlgoListNode'))
 export const AlgoStack = lazy(() => import(/* webpackChunkName: "AlgoStack" */'@views/Algorithm/list/AlgoStack'))
 export const AlgoDoublePointer = lazy(() => import(/* webpackChunkName: "AlgoDoublePointer" */'@views/Algorithm/list/AlgoDoublePointer'))

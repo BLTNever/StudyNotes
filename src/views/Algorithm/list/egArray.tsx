@@ -1,56 +1,3 @@
-export const findShortSubArray = `
-/**
- *  1.用哈希表去记录每个元素出现的次数，用元素的值做key, value存储[值第一次出现的下标start，值最后出现的下标end， 出现的次数count]
- *  2.遍历这个哈希表的值，出现的次数大于max值的时候，重新给max值赋值，记录min最短长度为当前值的end下标 - start下标
- *  3.如果count === max值，对比已存在的min值和当前的end - start值，找出最短长度
- *  4.数组下标从0开始，return的min值+1
- * @param nums 
- * @returns 
- */
-function findSubArray(nums: number[]) {
-    let obj = {}
-    let max = 0
-    nums.forEach((n, key) => {
-        if (obj.hasOwnProperty(n)) {
-            obj[n][1] = key
-            obj[n][2]++
-        } else {
-            obj[n] = [key, key, 1]
-        }
-    })
-    let min = 0
-    for (let [start, end, count] of Object.values(obj)) {
-        if (count > max) {
-            max = count
-            min = end - start
-        } else if (count === max) {
-            min = Math.min(min, (end - start))
-        }
-    }
-    return min + 1
-}
-// 一次遍历，
-function findSubArray(nums) {
-    let obj = {}
-    let max = 0
-    let min = 0
-    nums.forEach((n, k) => {
-        if (obj.hasOwnProperty(n)) {
-            obj[n][1] = k
-            obj[n][2]++
-            if(obj[n][2] > max) {
-                max = obj[n][2]
-                min = obj[n][1] - obj[n][0]
-            } else if(obj[n][2] === max) {
-                min = Math.min(min, obj[n][1] - obj[n][0])
-            }
-        } else {
-            obj[n] = [k, k, 1]
-        }
-    })
-    return min + 1
-}
-`
 
 
 export const createTree = `
@@ -247,6 +194,22 @@ function removeDuplicates(nums: number[]) {
     return ans + 1
 }
 `
+export const maxSubArray = `
+function maxSubArray(nums: number[]) {
+    if (nums.length === 1) return nums[0]
+    let ans = nums[0]
+    let sum = 0
+
+    for (let num of nums) {
+        // if (sum > 0) sum += num
+        // else sum = num
+        sum = Math.max((sum + num), num)
+        ans = Math.max(sum, ans)
+    }
+    return ans
+}
+console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
+`
 export const removeElement = `
 function removeElement(nums: number[], val: number) {
     const len = nums.length
@@ -296,28 +259,6 @@ function searchInsert(nums: number[], target: number) {
 
 console.log(searchInsert([1, 2, 3, 4, 6, 7], 5))
 `
-
-export const maxProfit = `
-/**
- * 买卖股票的最佳时机I —— 动态规划
- * length小于等于1，只有一天数据 获利 0
- * 定义min 和 max，遍历数组， 比较min跟数组元素大小。 取最小的替换min
- * 比较max 和数组元素 - min的值 获得最大获利
- * @param prices 
- * @returns 
- */
-function maxProfit(prices: number[]) {
-    if (prices?.length <= 1) return 0
-    let min = 0
-    let max = prices[0]
-    for (let p of prices) {
-        min = Math.min(p, min)
-        max = Math.max(p - min, max)
-    }
-    return max
-}
-`
-
 
 export const findRepeatNumber = `
 function findRepeatNumber(nums: number[]) {
@@ -958,4 +899,166 @@ function relativeSortArray(arr1: number[], arr2: number[]) {
     })
 }
 console.log(relativeSortArray([2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19], [2, 1, 4, 3, 9, 6]))
+`
+
+export const mergeSort = `
+/**
+ * flat 拍平 sort排序 时间复杂度： O(nlogn)
+ * @param arr 
+ */
+ function mergeSort(arr: number[][]) {
+    if(!arr.length) return []
+    return [...arr.flat(Infinity)].sort((a: any, b: any) => a - b)
+}
+function merge(arr1: number[], arr2: number[]) {
+    let res = []
+    while (arr1.length > 0 && arr2.length > 0) {    // 有一个数组元素空了 证明另一个数组剩下的值都大于这个数组中的元素，循环停止
+        if (arr1[0] < arr2[0]) {                    // 从头取出来比较大小， 塞到res数组中
+            res.push(arr1.shift())
+        } else {
+            res.push(arr2.shift())
+        }
+    }
+    return res.concat(arr1, arr2)                   // 把多余的元素都塞到res中
+}
+/**
+ * 归并排序 时间复杂度O(nlogn)(归并排序的递归树，树种每层元元素的个数最多是n，也就代表着每层最多进行n次比较，而递归树最多只有log2n层，合在一起就是nlog2n)
+ * @param arr 
+ * @returns 
+ */
+function mergeSort(arr: any[][]) {
+    if (!arr.length) return []
+    while (arr.length > 1) {                       // 最后一个数组就是完整的，所以需要 > 1 的时候停止
+        let arr1 = arr.shift() || []               // 取出arr[0]
+        let arr2 = arr.shift() || []               // 取出arr[1]
+        let tempArr = merge(arr1, arr2)            // 每次合并两个子数组
+        arr.push(tempArr)                          // 压入arr尾部
+    }
+    return arr[0]                                  // 剩下唯一一个数组就是排序好的数组
+}
+console.log(mergeSort([[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 2, 3], [4, 5, 6]]))
+`
+
+
+export const pairSums = `
+/**
+ * 排序双指针
+ * @param nums 
+ * @param target 
+ * @returns 
+ */
+function pairSums(nums: number[], target: number) {
+    let l = 0
+    let r = nums.length - 1
+    let res = []
+    nums = nums.sort((a, b) => a - b)
+    while (l < r) {
+        const sum = nums[l] + nums[r]
+        if (sum > target) {
+            r--
+        } else if (sum < target) {
+            l++
+        } else {
+            res.push([nums[l], nums[r]])
+            l++
+            r--
+        }
+    }
+    return res
+}
+/**
+ * 哈希 - 重点： 使用过一次要删掉，防止重复使用
+ * @param nums 
+ * @param target 
+ * @returns 
+ */
+function pairSums(nums: number[], target: number) {
+    let map = new Map()                                     // 哈希表  key:数字 => value: 出现的次数
+    let res = []
+    for (let n of nums) {
+        const key = target - n
+
+        if (map.has(key)) {
+            res.push([key, n])
+
+            let value = map.get(key) - 1                    // 出现的次数减一，防止两个相同的数据相加达到target，而只有一个数据
+            value ? map.set(key, value) : map.delete(key)   // 出现次数减一后大于0, 保留这个数，如果没有就删掉 
+        } else {
+            map.set(n, (map.get(n) || 0) + 1)
+        }
+    }
+    console.log(map)
+    return res
+}
+`
+
+export const sortArray = `
+/**
+ * 快速排序 - 时间复杂度：O(NlogN),空间复杂度：O(logN) 
+ */
+function sortArray(nums: number[]): number[] {
+    if (nums.length <= 1) return nums
+    let left = []
+    let right = []
+    let mid = nums.length >> 1
+    let pivot = nums.splice(mid, 1)[0]
+    for (let n of nums) {
+        if (n > pivot) {
+            right.push(n)
+        } else {
+            left.push(n)
+        }
+    }
+    return sortArray(left).concat([pivot], sortArray(right))
+}
+/**
+ * 选择排序-时间复杂度：O(N^2)，空间复杂度：O(1)
+ */
+function sortArray(nums: number[]) {
+    let n = nums.length
+    for (let i = n - 1; i > 0; i--) {
+        for (let j = 0; j <= i; j++) {
+            if (nums[j] > nums[i]) {
+                [nums[j], nums[i]] = [nums[i], nums[j]]
+            }
+        }
+    }
+    return nums
+}
+/**
+ * 冒泡排序-时间复杂度：O(N^2)，空间复杂度：O(1)
+ */
+function sortArray(nums: number[]) {
+    let n = nums.length
+    for (let i = n - 1; i > 0; i--) {
+        for (let j = 1; j <= i; j++) {
+            if (nums[j - 1] > nums[j]) {
+                [nums[j - 1], nums[j]] = [nums[j], nums[j - 1]]
+            }
+        }
+    }
+    return nums
+}
+`
+
+export const findKthLargest = `
+function quickSort(nums: number[]): number[] {
+    if (nums.length <= 1) return nums
+    let left = []
+    let right = []
+    let mid = nums.length >> 1
+    let pivot = nums.splice(mid, 1)[0]
+    for (let n of nums) {
+        if (n > pivot) left.push(n)
+        else right.push(n)
+    }
+    return quickSort(left).concat([pivot], quickSort(right))
+}
+/**
+ * 快排降序，取第k个数，
+ * 堆排序暂缓
+ */
+function findKthLargest(nums: number[], k: number) {
+    return quickSort(nums)[k - 1]
+}
 `

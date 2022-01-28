@@ -47,6 +47,7 @@ const Interview1 = () => (
                             <li><Text mark>proto是一个内部属性，不建议对其进行直接操作。 而是建议通过prototype来进行操作。</Text></li>
                             <li><Text mark>原型链：当我们访问一个对象的属性的时候，引擎首先会在当前对象进行查找，如果找不到就会访问该对象的__proto__， 如果__proto__有了，就返回，如果没有则递归执行上述过程，直到__proto__ 为 null。</Text></li>
                             <li><Text mark>继承和原型这部分知识和new是强相关的</Text></li>
+                            <a href="https://github.com/mqyqingfeng/Blog/issues/2" target="_blank">从原型到原型链</a>
                         </ul>
                     </Space>
                     <Row>

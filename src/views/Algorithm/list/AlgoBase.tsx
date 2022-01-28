@@ -5,11 +5,9 @@ import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert
 import { Wrap } from '@components/Base'
 
 import {
-    flat1, flat2, arrFn13, arrFn14,
+    arrFn13, arrFn14,
     sort, bubbleSort, sort2, random, quickSort,
 } from './example'
-import { time } from 'console'
-import { last } from 'lodash'
 
 
 const { Panel } = Collapse
@@ -20,23 +18,6 @@ const AlgoBase = () => {
 
     return (
         <>
-            <Wrap>
-                <Title level={3}>实现flat</Title>
-                <Collapse ghost>
-                    <Panel header="递归" key="1">
-                        <Space direction="vertical">
-                            <Card><Highlight language="javascript">{flat1}</Highlight></Card>
-                        </Space>
-                    </Panel>
-
-                    <Panel header="非递归" key="2">
-                        <Space direction="vertical">
-                            <Card><Highlight language="javascript">{flat2}</Highlight></Card>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
             <Wrap>
                 <Title level={3}>多维数组拍平排序去重</Title>
                 <Collapse ghost>
@@ -55,13 +36,13 @@ const AlgoBase = () => {
                     <Panel header="sort排序" key="3">
                         <Highlight language="javascript">{sort}</Highlight>
                     </Panel>
-                    <Panel header="冒泡排序" key="4">
+                    <Panel header="冒泡排序：双循环，外层循环遍历数组的长度，内循环遍历交换位置。外循环遍历完内循环len - i" key="4">
                         <Highlight language="javascript">{bubbleSort}</Highlight>
                     </Panel>
-                    <Panel header="选择排序" key="5">
+                    <Panel header="选择排序：双循环，i = n - 1,j = 0; j > i ? [j, i] = [i, j]" key="5">
                         <Highlight language="javascript">{sort2}</Highlight>
                     </Panel>
-                    <Panel header="快速排序" key="6">
+                    <Panel header="快速排序：分治，len<=1 return arr;pivot = splice(mid, 1)[0]; quicksort(left).concat([pivot], quicksort(right))" key="6">
                         <Highlight language="javascript">{quickSort}</Highlight>
                     </Panel>
                     <Panel header="洗牌算法" key="7">

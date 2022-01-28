@@ -53,6 +53,10 @@ export const list = [
                 component: RouteBase.Moudles,
             },
             {
+                path: '/js/Reg',
+                component: RouteBase.Reg,
+            },
+            {
                 path: '/js',
                 redirect: '/js/ExecuteStack',
             },
@@ -172,12 +176,12 @@ export const list = [
                 component: RouteBase.AlgoMath,
             },
             {
-                path: '/algorithm/aggregate',
-                component: RouteBase.AlgoAggregate,
+                path: '/algorithm/hash',
+                component: RouteBase.AlgoHash,
             },
             {
-                path: '/algorithm/5',
-                component: RouteBase.Algorithm5,
+                path: '/algorithm/dp',
+                component: RouteBase.AlgoDp,
             },
             {
                 path: '/algorithm/listNode',
@@ -209,7 +213,7 @@ export const list = [
                 component: RouteBase.NativeMethod,
             },
             {
-                path: '/examination/2',
+                path: '/examination/program',
                 component: RouteBase.Program,
             },
             {

@@ -433,7 +433,22 @@ function lengthOfLongestSubstring(s: string) {
     }
     return ans === Number.MIN_SAFE_INTEGER ? 0 : ans
 }
-console.log(lengthOfLongestSubstring("aab"))
+/**
+ * 双指针 
+ * 空间复杂度O(1)
+ */
+function lengthOfLongestSubstring(s: string) {
+    let minIndex = 0
+    let ans = 0
+    for (let i = 0; i < s.length; i++) {
+        if (s.indexOf(s[i], minIndex) < i) {            // 判断是否存在重复的
+            minIndex = s.indexOf(s[i], minIndex) + 1    // 遇到重复的 改变 minIndex指针
+        } else {
+            ans = Math.max(ans, i - minIndex + 1)       // 不重复的增加ans值
+        }
+    }
+    return ans
+}
 `
 
 export const isPathCrossing = `
@@ -466,5 +481,64 @@ function isPathCrossing(path: string) {
         set.add(str)
     }
     return false
+}
+`
+
+export const canBeValid = `
+function canBeValid(s: string, locked: string) {
+    let n = s.length
+    if (n % 2) return false
+    let l = 0
+    let r = 0
+    for (let i = 0; i < n; i++) {
+        if (locked[i] === '1' && s[i] === ')') {    // 从左往右遍历 ")", 遇到不可变的 ")" r++
+            r++                                     // 0 ~ i 的区间内，")"的次数是 r，那么最多有 _l = i + 1 - r 个 "("
+            if (i + 1 - r < r) return false         // 如果 _l 小于 r, 返回false
+        }
+    }
+    for (let i = n - 1; i >= 0; i--) {
+        if (locked[i] === '1' && s[i] === '(') {    // 从右往左遍历 "(", 遇到不可变的 "(" l++
+            l++                                     // i ~ n - 1 的区间内，"("的次数是 l，那么最多有 _r = n - i - l 个 ")"
+            if (n - i - l < l) return false         // 如果 _r 小于 l, 返回false
+        }
+    }
+    return true
+}
+`
+
+export const getSmallestString = `
+/**
+ * 贪心
+ */
+function getSmallestString(n: number, k: number) {
+    let res = Array(n).fill('a')                    // 创建一个 n 长度的数组res， 填充 'a'（满足题干的字典序最小 ）
+    let remain = k - n                              // res 每个都是 'a'(1), 从后往前修改，剩余的值就是 k - n
+    let cur = n - 1                                 // 尾部创建一个指针
+    while (remain) {                                // 差值 remain 为 0 循环结束
+        if (remain > 25) {                          // 'a'默认为1， 所以大于25的 直接用 'z' 替换 
+            res[cur] = 'z'
+            remain -= 25                            // 差值 remain - 25
+            cur--                                   // cur指针向前移动
+        } else {                                    // 小于等于25的 
+            res[cur] = String.fromCharCode(97 + remain) // 用 fromCharCode(97('a') + remain)找到对应的字母
+            remain = 0                              // 置空差值，退出循环
+        }
+    }
+
+    return res.join('')
+}
+/**
+ * 贪心
+ * 先设置n个a，再从后构造字符串
+ */
+function getSmallestString(n: number, k: number) {
+    k -= n                                          // 用和值k 记录与 n 个 'a'的差值
+    let res = ''        
+    let cur = 0                                     // 要转换成字母的数
+    for (let i = n - 1; i >= 0; i--, k -= cur) {    // 从尾部开始遍历， 每次减去 已经转换成字母的数
+        cur = Math.min(25, k)                       // 每次遍历对比 差值 k 跟 25，>=25,计作25，这样每次遍历都用k-cur
+        res = String.fromCharCode(97 + cur) + res   // 把cur 转成字母 与之前的 str 拼接
+    }
+    return res
 }
 `

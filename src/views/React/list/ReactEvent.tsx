@@ -14,9 +14,10 @@ const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
 const ReactEvent = () => (
     <>
-        <PageHeader title="事件机制理解" />
+
         <Wrap>
-            <Collapse defaultActiveKey="" ghost>
+            <PageHeader title="事件机制理解" />
+            <Collapse ghost>
                 <Panel header="表象理解" key="1">
                     <Space direction="vertical">
                         <Text>react自身实现了一套自己的事件机制，包括事件注册、事件合成、事件冒泡、事件派发，基于浏览器的事件机制下完成</Text>
@@ -62,8 +63,8 @@ const ReactEvent = () => (
             </Collapse>
         </Wrap>
 
-        <PageHeader title="事件机制注册" />
         <Wrap>
+            <PageHeader title="事件机制注册" />
             <Collapse defaultActiveKey="" ghost>
                 <Panel header="流程" key="1">
                     <Space direction="vertical">
@@ -77,18 +78,15 @@ const ReactEvent = () => (
 
                     </Space>
                 </Panel>
-
                 <Panel header="关键步骤" key="2">
                     <Space direction="vertical">
                         <Text>react拿到将要挂载组件的虚拟dom（react element对象），然后处理react dom的props，判断属性内是否有声明为事件的属性</Text>
                         <Text>例如onClick、onChange，拿到事件类型click、change和对应的事件处理程序fn。执行下面第三部</Text>
-
                         <ul>
                             <li>1. 完成事件注册</li>
                             <li>2. 将react dom，事件类型，处理函数fn放到数组储存</li>
                             <li>3. 组件挂载完成后，处理第2步生成的数组，便利该数组把事件处理函数存储到listenerBrank对象中</li>
                         </ul>
-
                         <Card>
                             <PreviewImg src={ReactEventImg2} />
                         </Card>
@@ -97,29 +95,31 @@ const ReactEvent = () => (
             </Collapse>
         </Wrap>
 
-
-        <PageHeader title="事件执行机制" />
         <Wrap>
-            <Card title="流程">
-                <ul>
-                    <li>1. 进入统一的事件分发函数（dispatchEvent）</li>
-                    <li>2. 结合原生事件找到当前节点对应的ReactDOMComponent对象</li>
-                    <li>
-                        3. 合成事件的开始
-                    <ul>
-                            <li>3.1 根据当前事件类型生成指定的合成对象</li>
-                            <li>3.2 封装原生事件和冒泡机制</li>
-                            <li>3.3 查找当前元素以及他素有的父级</li>
-                            <li>3.4 在listenerBank查找事件回调并合成到 event（合成事件结束）</li>
+            <PageHeader title="事件执行机制" />
+            <Collapse ghost>
+                <Panel header="流程" key="1">
+                    <Space direction="vertical">
+                        <ul>
+                            <li>1. 进入统一的事件分发函数（dispatchEvent）</li>
+                            <li>2. 结合原生事件找到当前节点对应的ReactDOMComponent对象</li>
+                            <li>
+                                3. 合成事件的开始
+                                <ul>
+                                    <li>3.1 根据当前事件类型生成指定的合成对象</li>
+                                    <li>3.2 封装原生事件和冒泡机制</li>
+                                    <li>3.3 查找当前元素以及他素有的父级</li>
+                                    <li>3.4 在listenerBank查找事件回调并合成到 event（合成事件结束）</li>
+                                </ul>
+                            </li>
+                            <li>4. 批量处理合成事件内的回调事件（事件触发完成end）</li>
                         </ul>
-                    </li>
-                    <li>4. 批量处理合成事件内的回调事件（事件触发完成end）</li>
-                </ul>
-            </Card>
-            <Card>
-                <PreviewImg src={ReactEventImg3} />
-            </Card>
-
+                    </Space>
+                </Panel>
+                <Panel header="图" key="2">
+                    <PreviewImg src={ReactEventImg3} />
+                </Panel>
+            </Collapse>
         </Wrap>
     </>
 )

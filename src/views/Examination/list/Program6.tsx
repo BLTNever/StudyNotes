@@ -5,7 +5,7 @@ import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert
 import { Wrap } from '@components/Base'
 import PreviewImg from '@components/previewImg'
 
-import {  } from './example'
+import {  } from './egNative'
 import { BSTree, nodes } from './fn'
 
 const { Panel } = Collapse

@@ -3,9 +3,8 @@ import Highlight from '@components/HighLight'
 import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert } from 'antd'
 
 import { Wrap } from '@components/Base'
-import PreviewImg from '@components/previewImg'
 
-import { } from './example'
+import { } from './egNative'
 
 const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography

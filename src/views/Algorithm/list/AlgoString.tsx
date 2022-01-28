@@ -1,11 +1,13 @@
 import React, { useRef, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
+
 import Highlight from '@components/HighLight'
-import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert } from 'antd'
+import { Divider, Collapse, Typography, Space } from 'antd'
 
 import { Wrap } from '@components/Base'
 
 import * as eg from './egString'
-
+import * as T from '../config'
 const { Panel } = Collapse
 const { Title } = Typography
 
@@ -25,6 +27,15 @@ const AlgoString = () => {
     // useEffect(() => {
     //     fetch()
     // }, [])
+    const history = useHistory()
+    const scrollToAnchor = (anchorName: string) => {
+        let anchorElement = document.querySelector(anchorName)
+        if (anchorElement) { anchorElement.scrollIntoView() }
+    }
+    useEffect(() => {
+        const { location: { hash } } = history
+        if (hash.length) scrollToAnchor(hash)
+    }, [])
     return (
         <>
             <Wrap>
@@ -85,7 +96,7 @@ const AlgoString = () => {
             <Wrap>
                 <Title level={3}>1945.字符串转化后的各位数字之和（easy）</Title>
                 <Collapse ghost>
-                    <Panel header="给你一个由小写字母组成的字符串 s ，以及一个整数 k 。首先，用字母在字母表中的位置替换该字母，将 s 转化 为一个整数（也就是，'a' 用 1 替换，'b' 用 2 替换，... 'z' 用 26 替换）。接着，将整数 转换 为其 各位数字之和 。共重复 转换 操作 k 次 。" key="1">
+                    <Panel header="给你一个由小写字母组成的字符串 s ，以及一个整数 k 。首先，用字母在字母表中的位置替换该字母，将 s 转化 为一个整数（也就是，'a' 用 1 替换，'b' 用 2 替换，...'z' 用 26 替换）。接着，将整数 转换 为其 各位数字之和 。共重复 转换 操作 k 次 。" key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.getLucky}</Highlight>
                         </Space>
@@ -154,7 +165,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2027. 转换字符串的最少操作次数（easy）</Title>
+                <Title level={3}>2027.转换字符串的最少操作次数（easy）</Title>
                 <Collapse ghost>
                     <Panel header="给你一个字符串 s ，由 n 个字符组成，每个字符不是 'X' 就是 'O' 。
                             一次 操作 定义为从 s 中选出 三个连续字符 并将选中的每个字符都转换为 'O' 。注意，如果字符已经是 'O' ，只需要保持 不变 。
@@ -198,7 +209,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2062. 统计字符串中的元音子字符串（easy）</Title>
+                <Title level={3}>2062.统计字符串中的元音子字符串（easy）</Title>
                 <Collapse ghost>
                     <Panel header={`子字符串 是字符串中的一个连续（非空）的字符序列。
                             元音子字符串 是 仅 由元音（'a'、'e'、'i'、'o' 和 'u'）组成的一个子字符串，且必须包含 全部五种 元音。
@@ -211,7 +222,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2068. 检查两个字符串是否几乎相等（easy）</Title>
+                <Title level={3}>2068.检查两个字符串是否几乎相等（easy）</Title>
                 <Collapse ghost>
                     <Panel header={`如果两个字符串 word1 和 word2 中从 'a' 到 'z' 每一个字母出现频率之差都 不超过 3 ，那么我们称这两个字符串 word1 和 word2 几乎相等 。
                             给你两个长度都为 n 的字符串 word1 和 word2 ，如果 word1 和 word2 几乎相等 ，请你返回 true ，否则返回 false 。
@@ -224,7 +235,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>剑指 Offer 05. 替换空格（easy）</Title>
+                <Title level={3}>剑指 Offer 05.替换空格（easy）</Title>
                 <Collapse ghost>
                     <Panel header={`请实现一个函数，把字符串 s 中的每个空格替换成"%20"。`} key="1">
                         <Space direction="vertical">
@@ -235,7 +246,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>1496. 判断路径是否相交（easy）</Title>
+                <Title level={3}>1496.判断路径是否相交（easy）</Title>
                 <Collapse ghost>
                     <Panel header={`给你一个字符串 path，其中 path[i] 的值可以是 'N'、'S'、'E' 或者 'W'，分别表示向北、向南、向东、向西移动一个单位。
                         你从二维平面上的原点 (0, 0) 处开始出发，按 path 所指示的路径行走。
@@ -249,7 +260,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>859. 亲密字符串（easy）</Title>
+                <Title level={3}>859.亲密字符串（easy）</Title>
                 <Collapse ghost>
                     <Panel header={`给你两个字符串 s 和 goal ，只要我们可以通过交换 s 中的两个字母得到与 goal 相等的结果，就返回 true ；否则返回 false 。
                             交换字母的定义是：取两个下标 i 和 j （下标从 0 开始）且满足 i != j ，接着交换 s[i] 和 s[j] 处的字符。
@@ -262,7 +273,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>3. 无重复字符的最长子串（滑动窗口）（medium）</Title>
+                <Title level={3}>3.无重复字符的最长子串（滑动窗口）（medium）</Title>
                 <Collapse ghost>
                     <Panel header="给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。" key="1">
                         <Space direction="vertical">
@@ -271,8 +282,56 @@ const AlgoString = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
+
+            <Wrap id="getSmallestString">
+                <Title level={3}>663.具有给定数值的最小字符串（medium）{T.GREEDY}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>字符串由若干小写字符组成，字符串的数值 为各字符的数值之和。例如，字符串 &rdquo;abe&rdquo; 的数值等于 1 + 2 + 5 = 8 </li>
+                        <li>给你两个整数 n 和 k 。返回 长度 等于 n 且 数值 等于 k 的 字典序最小 的字符串</li>
+                        <li>如果字符串 x 在字典排序中位于 y 之前，就认为 x 字典序比 y 小</li>
+                    </ul>
+                    } key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.getSmallestString}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap id="canBeValid">
+                <Title level={3}>2116.判断一个括号字符串是否有效（medium）❌不是太理解{T.COUNT}</Title>
+                <Collapse ghost>
+                    <Panel header={<div>
+                        <p>一个括号字符串是只由 `&apos;(`&apos; 和 `&apos;)`&apos; 组成的 非空 字符串。如果一个字符串满足下面 任意 一个条件，那么它就是有效的：</p>
+                        <ul>
+                            <li>字符串为 ().</li>
+                            <li>它可以表示为 AB（A 与 B 连接），其中A 和 B 都是有效括号字符串。</li>
+                            <li>它可以表示为 (A) ，其中 A 是一个有效括号字符串。</li>
+                        </ul>
+                        <p>给你一个括号字符串 s 和一个字符串 locked ，两者长度都为 n 。locked 是一个二进制字符串，只包含 `&apos;0`&apos; 和 `&apos;1`&apos; 。对于 locked 中 每一个 下标 i ：</p>
+                        <ul>
+                            <li>如果 locked[i] 是 `&apos;1`&apos; ，你 不能 改变 s[i] 。</li>
+                            <li>`如果 locked[i] 是 `&apos;0`&apos; ，你 可以 将 s[i] 变为 `&apos;(`&apos; 或者 `&apos;)`&apos;`</li>
+                        </ul>
+                        <p>如果你可以将 s 变为有效括号字符串，请你返回 true ，否则返回 false</p>
+                    </div>} key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.canBeValid}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
         </>
     )
 }
 
 export default AlgoString
+
+
+
+
+try {
+    // console.log(getSmallestString(6, 73))
+} catch (error) { }

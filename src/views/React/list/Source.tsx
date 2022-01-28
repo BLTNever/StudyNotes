@@ -4,7 +4,7 @@ import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Tag }
 
 import { Wrap } from '@components/Base'
 
-import { _createStore, _compose, _applyMiddleware, _combineReducers } from './example'
+import { _createStore, _compose, _applyMiddleware, _combineReducers, createDom } from './example'
 
 const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
@@ -17,7 +17,7 @@ const Source = () => {
 
             <Wrap>
                 <Title level={3}>React理念-实现快速响应</Title>
-
+                <a href="https://xiaochen1024.com/courseware/60b1b2f6cf10a4003b634718/60b1b328cf10a4003b63471b" target="_blank">源码解析</a>
                 <Collapse ghost>
                     <Panel header="CPU的瓶颈" key="1">
                         <Text>例：渲染3000条li，16.6ms浏览器刷新一次。JS可以操作DOM，GUI渲染线程与JS线程是互斥的。所以JS脚本执行和浏览器布局、绘制不能同时执行。</Text>
@@ -54,14 +54,13 @@ const Source = () => {
                             <li>没有过期的任务存放在 timerQueue 中，过期的任务存放在 taskQueue 中，timerQueue 和 timerQueue都是小顶堆，所以 peek 取出来的都是离现在时间最近也就是优先级最高的那个任务，然后优先执行它</li>
                             <li>React现在使用 优先级 表示方法 Lane， Lane 用二进制位表示优先级，二进制中的1表示位置，同一个二进制数可以有多个相同优先级的位，这就可以表示‘批’的概念，而且二进制方便计算。</li>
                             <li>Lane的二进制位，1的bits越多，优先级越低</li>
-                          
+
                         </ul>
                     </Panel>
                 </Collapse>
                 <Collapse ghost>
                     <Panel header="Reconciler（协调器）" key="1">
                         <Text mark>负责找出变化的组件,并打上不同的 Flags（旧版本react叫Tag）-fiber</Text>
-
                         <ul>
                             <li>React15中 Reconciler 使用递归处理虚拟DOM，16之后从递归变成循环可中断过程，通过shouldYield判断是否有剩余时间</li>
                             <li>在React16中 Reconciler 与Renderer不再是交替工作。当 Scheduler 将任务交给 Reconciler 后， Reconciler 会为变化的虚拟DOM打上代表增/删/更新的标记</li>
@@ -95,12 +94,15 @@ const Source = () => {
 
             <Wrap>
                 <Title level={3}>Virtual Dom</Title>
+                <a href="https://segmentfault.com/a/1190000019994425" target="_blank">virtualDom diff算法实现</a>
 
                 <Collapse ghost>
                     <Panel header="Virtual Dom是什么" key="1">
                         <ul>
                             <li>用js对象表示dom信息和结构，更新时重新渲染更新后的对象对应的dom，这个对象就是React.createElement()的返回结果</li>
-                            <li>virtual Dom是一种编程方式，它以对象的形式保存在内存中，它描述了我们dom的必要信息，并且用类似react-dom等模块与真实dom同步，这一过程也叫协调(reconciler)，这种方式可以声明式的渲染相应的ui状态，让我们从dom操作中解放出来，在react中是以fiber树的形式存放组件树的相关信息，在更新时可以增量渲染相关dom，所以fiber也是virtual Dom实现的一部分</li>
+                            <li>virtual Dom是一种编程方式，它以对象的形式保存在内存中，它描述了我们dom的必要信息。</li>
+                            <li>并且用类似react-dom等模块与真实dom同步，这一过程也叫协调(reconciler)，这种方式可以声明式的渲染相应的ui状态，让我们从dom操作中解放出来</li>
+                            <li>在react中是以fiber树的形式存放组件树的相关信息，在更新时可以增量渲染相关dom，所以fiber也是virtual Dom实现的一部分</li>
                         </ul>
                     </Panel>
 
@@ -111,12 +113,14 @@ const Source = () => {
                         </ul>
                         <Text mark>virtual Dom真的快吗？其实virtual Dom只是在更新的时候快，在应用初始的时候不一定快</Text>
                     </Panel>
+                    <Panel header="createDom" key="3">
+                        <Highlight>{createDom}</Highlight>
+                    </Panel>
                 </Collapse>
             </Wrap>
 
             <Wrap>
                 <Title level={3}>Fiber</Title>
-
                 <Collapse ghost>
                     <Panel header="Fiber架构的实现原理" key="1">
                         <ul>
@@ -134,6 +138,5 @@ const Source = () => {
 }
 
 export default Source
-
 
 

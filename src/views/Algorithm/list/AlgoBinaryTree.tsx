@@ -15,7 +15,7 @@ const AlgoBinaryTree = () => {
     return (
         <>
             <Wrap>
-                <Title level={3}>144. 二叉树的前序遍历</Title>
+                <Title level={3}>144.二叉树的前序遍历</Title>
                 <Collapse ghost>
                     <Panel header="给定一个二叉树的根节点 root ，返回它的 前序 遍历。" key="1">
                         <Space direction="vertical">
@@ -25,7 +25,7 @@ const AlgoBinaryTree = () => {
                 </Collapse>
             </Wrap>
             <Wrap>
-                <Title level={3}>94. 二叉树的中序遍历</Title>
+                <Title level={3}>94.二叉树的中序遍历</Title>
                 <Collapse ghost>
                     <Panel header="给定一个二叉树的根节点 root ，返回它的 中序 遍历。" key="1">
                         <Space direction="vertical">
@@ -35,7 +35,7 @@ const AlgoBinaryTree = () => {
                 </Collapse>
             </Wrap>
             <Wrap>
-                <Title level={3}>145. 二叉树的后序遍历</Title>
+                <Title level={3}>145.二叉树的后序遍历</Title>
                 <Collapse ghost>
                     <Panel header="给定一个二叉树的根节点 root ，返回它的 后序 遍历。" key="1">
                         <Space direction="vertical">
@@ -45,8 +45,8 @@ const AlgoBinaryTree = () => {
                 </Collapse>
             </Wrap>
 
-            <Wrap>
-                <Title level={3}>104. 二叉树的最大深度</Title>
+            <Wrap id="maxDepth">
+                <Title level={3}>104.二叉树的最大深度</Title>
                 <Collapse ghost>
                     <Panel header="给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。" key="1">
                         <Space direction="vertical">
@@ -56,8 +56,8 @@ const AlgoBinaryTree = () => {
                 </Collapse>
             </Wrap>
 
-            <Wrap>
-                <Title level={3}>111. 二叉树的最小深度</Title>
+            <Wrap id="minDepth">
+                <Title level={3}>111.二叉树的最小深度</Title>
                 <Collapse ghost>
                     <Panel header="给定一个二叉树，找出其最小深度。最小深度是从根节点到最近叶子节点的最短路径上的节点数量。" key="1">
                         <Space direction="vertical">
@@ -68,7 +68,7 @@ const AlgoBinaryTree = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>112. 路径总和</Title>
+                <Title level={3}>112.路径总和</Title>
                 <Collapse ghost>
                     <Panel header="给你二叉树的根节点 root 和一个表示目标和的整数 targetSum ，判断该树中是否存在 根节点到叶子节点 的路径，这条路径上所有节点值相加等于目标和 targetSum 。" key="1">
                         <Space direction="vertical">
@@ -79,22 +79,25 @@ const AlgoBinaryTree = () => {
             </Wrap>
 
 
-            <Wrap>
-                <Title level={3}>剑指 Offer 06. 从尾到头打印链表</Title>
-                <Collapse ghost>
-                    <Panel header="输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。" key="1">
-                        <Space direction="vertical">
-                            <Highlight language="javascript">{eg.reversePrint}</Highlight>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
         </>
     )
 }
 
 export default AlgoBinaryTree
 
+function preorderTraversal(root: any) {
+    if (!root) return []
+    let res = []
+    let stack = []
+    stack.push(root)
+    while (!stack.length) {
+        const node:any = stack.pop()
+        res.push(node.val)
+        node.right && stack.push(node.right)
+        node.left && stack.push(node.left)
+    }
+    return res
+}
 
 /**
  * 相同的树

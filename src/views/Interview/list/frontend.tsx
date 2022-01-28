@@ -31,14 +31,14 @@ const frontend = () => {
                         <Space direction="vertical">
                             <ul>
                                 <li><Text mark>减少页面请求文件的体积、减少接口请求的数量，延时请求加载</Text></li>
-                                <li><Text>GZIP压缩文件，HTTP缓存文件，优化不必要的代码</Text></li>
+                                <li><Text>GZIP压缩文件，http缓存文件，优化不必要的代码</Text></li>
                                 <li><Text>JS文件加载：预加载（preload & prefetch）、async和defer（defer在DOM Loaded后执行，下载不阻塞DOM渲染，执行会）、按需加载（script.onload、script.readyState）</Text></li>
                                 <li><Text>JS文件体积：切割JS文、JS压缩（gzip）</Text></li>
                                 <li><Text>CSS优化： 避免使用import、放在head媒体查询、link添加preload、动态添加link、不使用用CSS计算、避免使用通配/高级选择器</Text></li>
                                 <li><Text>图片懒加载：图片offsetTop &lt; scrollTop + clintHeight时设置data-src替换src</Text></li>
                                 <li><Text>图片优化，使用svg、iconfont</Text></li>
                                 <li><Text>静态资源部署到CDN、升级到http2.0</Text></li>
-                                <li><Text>资源复用：服务端配置静态资源缓存（常见问题：HTTP缓存策略？Cache-Control？keep-alive？304？ETag？</Text></li>
+                                <li><Text>资源复用：服务端配置静态资源缓存（常见问题：http缓存策略？Cache-Control？keep-alive？304？ETag？</Text></li>
                                 <li><Text>webpack模块打包过程进行优化</Text></li>
                                 <li><Text>扁平化Store数据结构</Text></li>
                             </ul>
@@ -49,7 +49,8 @@ const frontend = () => {
                             <ul>
                                 <li><Text>最后加载JS文件，防止JS文件执行阻塞DOM树和Render树的渲染</Text></li>
                                 <li><Text>优化CSS：压缩CSS文件，选择合适的媒体查询类型</Text></li>
-
+                                <li><Text>减少关键 CSS 元素数量、避免使用CSS表达式、加载CSS推荐用 link 少用 @import</Text></li>
+                                <li><Text>不重要的外置引入的JS使用defer或者async属性异步加载</Text></li>
                             </ul>
                         </Space>
                     </Panel>
@@ -76,7 +77,7 @@ const frontend = () => {
                                 <li><Text>DOM增删操作要少（虚拟长列表、DOM Diff）</Text></li>
                                 <li><Text>在内存中构建DOM，完成后再添加到文档中，document fragment</Text></li>
                                 <li><Text>设置display：none， 先隐藏再操作再显示</Text></li>
-                                <li><Text>CSS硬件加速（GPU加速）</Text></li>
+                                <li><Text>CSS硬件加速（GPU加速）translateZ/translate3d </Text></li>
                             </ul>
                         </Space>
                     </Panel>
@@ -108,10 +109,10 @@ const frontend = () => {
                         <Text mark>依赖打包、文件压缩、代码分割、增量更新和缓存、资源定位、图标合并、ECMA Script和Babel、CSS预编译和post CSS、持续构建和集成、类库打包、构建优化</Text>
                     </Panel>
                     <Panel header="部署" key="3">
-                        <Text mark>持续部署、部署流程设计、静态资源部署策略、Nginx反向代理、SPA路由配置、跨域、HTTPS证书、HTTP2.0配置、灰度发布</Text>
+                        <Text mark>持续部署、部署流程设计、静态资源部署策略、Nginx反向代理、SPA路由配置、跨域、https证书、http2.0配置、灰度发布</Text>
                     </Panel>
                     <Panel header="性能" key="4">
-                        <Text mark>缓存策略、缓存复用、CDN内容分发网络、按需加载、同步异步加载、请求合并、首屏渲染速度、HTTP2服务器推送、日志性能监控、预加载、性能测试</Text>
+                        <Text mark>缓存策略、缓存复用、CDN内容分发网络、按需加载、同步异步加载、请求合并、首屏渲染速度、http2服务器推送、日志性能监控、预加载、性能测试</Text>
                     </Panel>
                     <Panel header="规范" key="4">
                         <Text mark>目录结构规范、编码规范、技术栈规范、前后端接口规范、Commit message规范、GIT分支管理规范、CodeReview规范、设计规范、图标规范、文档规范、版本规范、开发流程规范、发布流程规范</Text>
@@ -147,21 +148,62 @@ const frontend = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>HTTPS的原理、和HTTP的区别、HTTPS2.0</Title>
+                <Title level={3}>https的原理、和http的区别、http2.0、http1.1</Title>
                 <Collapse ghost>
-                    <Panel header="" key="1">
+                    <Panel header="https和http的区别" key="1">
                         <Space direction="vertical">
-                            <Text mark>HTTPS经由HTTP进行通信，但利用了SSL/TLS来加密数据包</Text>
+                            <Text mark>https经由http进行通信，但利用了SSL/TLS来加密数据包</Text>
                             <ul>
-                                <li>HTTPS传输过程是加密的</li>
-                                <li>使用HTTPS协议需要用到CA（Certificate Authority）证书</li>
-                                <li>HTTPS在HTTP使用TCP三次握手建立连接的基础上，要在加上SSL握手需要的9个包，一共12个包</li>
-                                <li>HTTP使用80端口，HTTPS使用443端口</li>
-                                <li>HTTPS在传输过程中使用对称加密加密传输数据</li>
+                                <li>https传输过程是加密的</li>
+                                <li>使用https协议需要用到CA（Certificate Authority）证书</li>
+                                <li>https在http使用TCP三次握手建立连接的基础上，要在加上SSL握手需要的9个包，一共12个包</li>
+                                <li>http使用80端口，https使用443端口</li>
+                                <li>https在传输过程中使用对称加密加密传输数据</li>
                                 <li>CA证书校验是非对称加密</li>
                             </ul>
+                        </Space>
+                    </Panel>
+                    <Panel header="http1.0、1.1、2.0区别" key="2">
+                        <Space direction="vertical">
+                            <Text mark>http1.0默认是短连接（TCP每次都要经过三次握手，四次挥手）</Text>
+                            <Text mark>http1.1默认是持久化连接（建立一次连接，多次请求均由这个连接完成（如果阻塞了，还是会开新的TCP连接的））</Text>
+                            <Text mark>http2.0相比http1.x做了哪些升级？多路复用；二进制分帧；服务端推送；数据流优先级；头部压缩</Text>
+                            <ul>
+                                <li>在http1.0中，发送一次请求时，需要等待服务端响应了才可以继续发送请求</li>
+                                <li>在http1.1中，发送一次请求时，不需要等待服务端响应了就可以发送请求了，但是回送数据给客户端的时候，客户端还是需要按照响应的顺序来一一接收（http 1.1提出了管线化（pipelining）理论，但是仅仅是限于理论的阶段上，这个功能默认还是关闭。http2.0中实现了）</li>
+                                <li>http2与http1.1最重要的区别就是解决了线头阻塞的问题，其中最重要的改动是：多路复用（Multiplexing）</li>
+                                <li>http2所有性能增强的核心在于新的二进制分帧层（不再以文本格式来传输了），它定义了如何封装http消息并在客户端与服务器之间传输</li>
+                                <li>使用HPACK对HTTP/2头部压缩</li>
+                                <li>服务器推送</li>
+                                <li>流量控制：针对传输中的流进行控制（TCP默认的粒度是针对连接）</li>
+                                <li>流优先级（Stream Priority）它被用来告诉对端哪个流更重要</li>
+                            </ul>
+                        </Space>
+                    </Panel>
+                    <Panel header="三次握手、四次挥手" key="3">
+                        <Space direction="vertical">
+                            <Text mark>三次握手是指建立一个TCP连接的时候，需要客户端和服务端总共发送三个SYN包</Text>
+                            <Text mark>进行三次握手的主要作用是为了确认双方的接受和发送能力是否正常、指定自己的初始化序列号为后面的可靠性传输做准备</Text>
+                            <Text mark>实质是连接服务器指定端口，建立TCP连接，并同步连接双方的序列号和确认号，交换TCP窗口大小信息</Text>
+                            <ul>
+                                <li>第一次握手：客户端发送一个SYN报文，并指明客户端的初始序列号ISN（c），客户端处于SYN_SEND状态</li>
+                                <li>第二次握手：服务端收到客户端发送的SYN报文，会以自己的SYN报文作为应答，并指定自己的初始序列号ISN（s）。同时会把客户端的ISN + 1，作为ACK的值，表示自己收到了客户端发送的SYN，此时服务端处于SYN_REVD状态</li>
+                                <li>第三次握手：客户端收到服务端发送的SYN报文，会将服务端的SYN + 1发送一个ACK报文，表示收到服务端的SYN报文，此时客户端处于ESTABLISHED状态。服务器收到 ACK 报文之后，也处于 ESTABLISHED 状态，此时，双方已建立起了连接</li>
+                            </ul>
 
-                            <Text mark>HTTP2.0相比HTTP1.x做了哪些升级？多路复用；二进制分帧；服务端推送；数据流优先级；头部压缩</Text>
+                            <Text mark>四次挥手是指TCP提供的连接一端在结束发送之后还能接受另一端数据的能力</Text>
+                            <Text mark>TCP 的连接的拆除需要发送四个包，因此称为四次挥手（Four-way handshake），客户端或服务器均可主动发起挥手动作。</Text>
+                            <ul>
+                                <li>第一次挥手：客户端发送一个FIN报文，报文中会指定一个序列号。此时客户端处于FIN_WAIT1状态</li>
+                                <li>第二次挥手：服务端接收到FIN报文后，会把客户端的序列号 + 1作为ACK报文发送给客户端，表示已收到。此时服务端处于CLOSE_WAIT状态</li>
+                                <li>第三次挥手：如果服务端也想断开连接，和客户端第一次挥手一样，会发送一个FIN报文，指定一个序列号。此时服务端处于LAST_ACK状态</li>
+                                <li>第四次挥手：客户端接收到服务端的FIN报文后，以服务端的序列号 + 1作为一个ACK报文发送给服务端。此时客户端处于TIME_WAIT状态。需要过一阵子以确保服务端收到自己的 ACK 报文之后才会进入 CLOSED 状态，服务端收到 ACK 报文之后，就处于关闭连接了，处于 CLOSED 状态</li>
+                            </ul>
+                        </Space>
+                    </Panel>
+                    <Panel header="HTTP3.0" key="4">
+                        <Space direction="vertical">
+                            <a href="https://blog.csdn.net/wolfGuiDao/article/details/108729560" target="_blank">详解</a>
                         </Space>
                     </Panel>
                 </Collapse>

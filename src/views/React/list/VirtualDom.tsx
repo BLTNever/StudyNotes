@@ -34,7 +34,7 @@ const VirtualDom = () => (
                         <Text>如果把渲染更新过程拆分成多个子任务，每次只做一小部分，做完看是否有剩余时间，如果有，继续执行下一部分</Text>
                         <Text>如果没有，挂起当前任务，将事件控制权交给主线程，等主线程不忙的时候再继续执行。</Text>
                         <Text>这种策略叫做 Cooperative Scheduling（合作式调度），操作系统常用
-                        <Tooltip title="操作系统常用任务调度策略：先来先服务（FCFS）调度算法、短作业（进程）优先调度算法（SJ/PF）、最高优先权优先调度算法（FPF）、高响应比优先调度算法（HRN）、时间片轮转法（RR）、多级队列反馈法">
+                            <Tooltip title="操作系统常用任务调度策略：先来先服务（FCFS）调度算法、短作业（进程）优先调度算法（SJ/PF）、最高优先权优先调度算法（FPF）、高响应比优先调度算法（HRN）、时间片轮转法（RR）、多级队列反馈法">
                                 <Tag color="#2db7f5">任务调度策略</Tag>
                             </Tooltip>之一。</Text>
                         <ul>
@@ -165,7 +165,7 @@ const VirtualDom = () => (
                             <li>
                                 <Text>
                                     3. setState的批量更新也是建立在异步（合成事件、钩子函数）之上，在原生事件和setTimeout中是无法批量更新的
-                                    </Text>
+                                </Text>
                             </li>
                             <li>
                                 <Text>react更新是通过“事务”（Transacation）的，通过isBatchingUpdates: boolean控制，setTimout中事务无法管控</Text>
@@ -196,7 +196,7 @@ const VirtualDom = () => (
                             <li><Text mark>mount阶段：执行了mountEffect，执行pushEffect,创建一个新的effect，跟之前的effect通过next链接成一个环形链表，用于顺序执行</Text></li>
                             <li>
                                 update阶段：
-                                    <ul>
+                                <ul>
                                     <li><Text mark>1. 调用dispatchAction，创建一个update，绑定到hooks.queue上，通过链表next指向</Text></li>
                                     <li><Text mark>2. 执行到updateEffectImpl</Text></li>
                                     <li><Text mark>3. 这里的pushEffect跟mountEffect的区别是传入了第三个参数，上一个effect的消除函数</Text></li>
@@ -238,11 +238,11 @@ const VirtualDom = () => (
         </Wrap>
 
         <Wrap>
-            <Title level={3}>虚拟DOM</Title>
+            <Title level={3}>VirtualDom</Title>
             <Collapse defaultActiveKey="" ghost>
-                <Panel header="虚拟DOM" key="1">
+                <Panel header="VirtualDom" key="1">
                     <Space direction="vertical">
-                        <Text>虚拟DOM：使用 JavaScript对象去描述DOM</Text>
+                        <Text>VirtualDom：使用 JavaScript对象去描述DOM</Text>
                         <ul>
                             <li>1. 维护一个使用JS对象去表示的Virtual DOM,与真实DOM 一一对应</li>
                             <li>2. 更新时，前后两个Virtual DOM 做diff, 生成变更（Mutation）</li>
@@ -251,18 +251,18 @@ const VirtualDom = () => (
 
                         <Card title="性能">
                             <ul>
-                                <li><Text>虚拟DOM和diff 算法是为了解决由命令式编程变成转变为声明式编程、数据驱动带来的性能问题</Text></li>
-                                <li><Text mark>直接操作DOM的性能不会低于虚拟DOM和diff算法，甚至还会优于</Text></li>
+                                <li><Text>VirtualDom和diff 算法是为了解决由命令式编程变成转变为声明式编程、数据驱动带来的性能问题</Text></li>
+                                <li><Text mark>直接操作DOM的性能不会低于VirtualDom和diff算法，甚至还会优于</Text></li>
                                 <li><Text>diff算法比较过程也会消耗性能。直接操作DOM 不需要比较过程</Text></li>
-                                <li><Text>虚拟DOM和diff算法的强处，是在数据不论怎么变化，都以最小的代价更新DOM。在内存中用心的数据刷新一个虚拟DOM，然后新旧虚拟DOM对比，更新到DOM树上</Text></li>
+                                <li><Text>VirtualDom和diff算法的强处，是在数据不论怎么变化，都以最小的代价更新DOM。在内存中用心的数据刷新一个VirtualDom，然后新旧VirtualDom对比，更新到DOM树上</Text></li>
                                 <li><Text>意义在于覆盖底层DOM操作，以声明式的方法描述目的。代码维护性高。</Text></li>
                             </ul>
                         </Card>
 
-                        <Card title="虚拟DOM的作用">
+                        <Card title="VirtualDom的作用">
                             <ul>
                                 <li>Virtual DOM 在牺牲部分性能前提下，增加了可维护性</li>
-                                <li>实现了对DOM的集中操作，在数据改变时，线修改虚拟DOM，再反映到真实DOM中，以最小的代价更新DOM</li>
+                                <li>实现了对DOM的集中操作，在数据改变时，线修改VirtualDom，再反映到真实DOM中，以最小的代价更新DOM</li>
                                 <li>可以使用函数式UI</li>
                                 <li>可以渲染DOM意外的端，跨平台使用，例如RN</li>
                                 <li>更好的使用SSR，同构渲染</li>
@@ -270,11 +270,11 @@ const VirtualDom = () => (
                             </ul>
                         </Card>
 
-                        <Card title="虚拟DOM的缺点">
+                        <Card title="VirtualDom的缺点">
                             <ul>
-                                <li>首次渲染，多了一层虚拟DOM的计算，比innerHTML慢</li>
-                                <li>需要在内存中维护一份虚拟DOM的备份</li>
-                                <li>虚拟DOM需要花费事件去处理计算</li>
+                                <li>首次渲染，多了一层VirtualDom的计算，比innerHTML慢</li>
+                                <li>需要在内存中维护一份VirtualDom的备份</li>
+                                <li>VirtualDom需要花费事件去处理计算</li>
                             </ul>
                         </Card>
                     </Space>

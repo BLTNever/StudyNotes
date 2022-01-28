@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import Highlight from '@components/HighLight'
+import { useHistory } from 'react-router-dom'
 
-import { Card, Col, Row, Collapse, Typography, Tag, Space } from 'antd'
+import { Col, Row, Collapse, Typography, Tag, Space } from 'antd'
 
 import { Wrap } from '@components/Base'
-
 import * as eg from './egListNode'
 
 const { Panel } = Collapse
-const { Paragraph, Title, Text, Link } = Typography
+const { Title, Link } = Typography
 class ListNode {
     public val: number
     public next: ListNode | any
@@ -19,7 +19,15 @@ class ListNode {
 }
 
 const AlgoListNode = () => {
-
+    const history = useHistory()
+    const scrollToAnchor = (anchorName: string) => {
+        let anchorElement = document.querySelector(anchorName)
+        if (anchorElement) { anchorElement.scrollIntoView() }
+    }
+    useEffect(() => {
+        const { location: { hash } } = history
+        if (hash.length) scrollToAnchor(hash)
+    }, [])
     return (
         <>
             <Wrap>
@@ -44,7 +52,7 @@ const AlgoListNode = () => {
                 </Collapse>
             </Wrap>
 
-            <Wrap>
+            <Wrap id="reverseList">
                 <Title level={3}>206. 反转链表（easy）<Tag color="cyan">链表的基本操作-修改指针</Tag></Title>
                 <Collapse ghost>
                     <Panel header="给单链表的头节点 head ，请反转链表，并返回反转后的链表" key="1">
@@ -111,7 +119,7 @@ const AlgoListNode = () => {
                 </Collapse>
             </Wrap>
 
-            <Wrap>
+            <Wrap id="hasCycle">
                 <Title level={3}>141. 环形链表（easy）</Title>
                 <Collapse ghost>
                     <Panel header="给你一个链表的头节点 head ，判断链表中是否有环。
@@ -124,7 +132,17 @@ const AlgoListNode = () => {
                 </Collapse>
             </Wrap>
 
-
+            <Wrap>
+                <Title level={3}>剑指 Offer 06.从尾到头打印链表</Title>
+                <Collapse ghost>
+                    <Panel header="输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.reversePrint}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+            
             <Wrap>
                 <Title level={3}>142. 环形链表 II（medium）</Title>
                 <Collapse ghost>

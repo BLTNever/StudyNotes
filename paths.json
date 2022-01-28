@@ -38,6 +38,9 @@
             ],
             "@reducer/*": [
                 "reducer/*"
+            ],
+            "@hooks/*": [
+                "hooks/*"
             ]
         }
     }

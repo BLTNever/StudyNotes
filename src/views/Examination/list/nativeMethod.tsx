@@ -1,14 +1,13 @@
-/* eslint-disable @typescript-eslint/explicit-member-accessibility */
-
 
 import React, { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
+
 import Highlight from '@components/HighLight'
-import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert } from 'antd'
+import { Card, Col, Row, Collapse, Typography, Space, Alert } from 'antd'
 
 import { Wrap } from '@components/Base'
-import PreviewImg from '@components/previewImg'
 
-import * as eg from './example'
+import * as eg from './egNative'
 
 
 const { Panel } = Collapse
@@ -17,49 +16,19 @@ const { Paragraph, Title, Text, Link } = Typography
 
 const NativeMethod = () => {
 
-    const queryURLParams = (url: string) => {
-        if (!url?.length) return {}
-        let askIndex = url.indexOf('?')
-        let polIndex = url.indexOf('#') > 0 ? url.indexOf('#') : url.length
-        let host = askIndex > 0 ? url.slice(0, askIndex) : url
-        let askText = askIndex > 0 ? url.slice(askIndex + 1, polIndex) : ''
-        let polText = polIndex > 0 ? url.slice(polIndex) : ''
-
-        if (!askText?.length) return {}
-        askText = decodeURIComponent(askText)
-
-        let obj = {}
-        if (host?.length) obj['host'] = host
-        if (polText?.length) obj['hash'] = polText
-        askText.split('&').forEach((i: string) => {
-            let [key, value] = i.split('=')
-            const arrIndex = key.indexOf('[]')
-            if (arrIndex > 0) {
-                key = key.slice(0, arrIndex)
-                if (key in obj) {
-                    obj[key].push(value)
-                } else {
-                    obj[key] = [value]
-                }
-            } else if (key === 'json') {
-                obj['json'] = value?.length ? JSON.parse(value) : {}
-            } else {
-                obj[key] = decodeURIComponent(value)
-            }
-        })
-        return obj
+    const history = useHistory()
+    const scrollToAnchor = (anchorName: string) => {
+        let anchorElement = document.querySelector(anchorName)
+        if (anchorElement) { anchorElement.scrollIntoView() }
     }
-
-
     useEffect(() => {
-        const url = "https://www.baidu.com?name=coder&age=20&callback=https%3A%2F%2Fbaidu.com%3Fname%3Dtest&list[]=a&list[]=b&json=%7B%22str%22%3A%22abc%22,%22num%22%3A123%7D"
-        const test = queryURLParams(url)
-        console.log('test queryUrlParams>>>>>', test)
+        const { location: { hash } } = history
+        if (hash.length) scrollToAnchor(hash)
     }, [])
     return (
         <>
             <Wrap>
-                <Title level={3}>原生方法的实现</Title>
+                <Title level={3}>Function</Title>
                 <Collapse ghost>
                     <Panel header="call、apply、bind实现" key="3">
                         <Row>
@@ -75,33 +44,25 @@ const NativeMethod = () => {
                             <Text>对象执行[[prototype]]链接，将这个新对象的[[prototype]]链接到这个构造函数.prototype所指的对象</Text>
                             <Text>这个新对象会绑定到函数调用的this</Text>
                             <Text>函数如果没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象</Text>
-                            <Card><Highlight language="javascript">{eg.createNew}</Highlight></Card>
+                            <Highlight language="javascript">{eg.createNew}</Highlight>
                         </Space>
                     </Panel>
-                    <Panel header="instanceof" key="8">
+                    <Panel header="instanceof（测构造函数的 prototype 属性是否出现在某个实例对象的原型链上）" key="8">
                         <Space direction="vertical">
                             <Text>instanceof 用于判断左侧值是否是右侧值的实例，所以左侧必须是一个对象，而右侧是一个类</Text>
                             <Text>instanceof 会查找原型链，知道 null 之前如果还不是这个对象的实例则会返回 false，否则返回 true</Text>
-                            <Card><Highlight language="javascript">{eg._instanceof}</Highlight></Card>
+                            <Highlight language="javascript">{eg._instanceof}</Highlight>
                         </Space>
                     </Panel>
-                    <Panel header="parseInt" key="7">
-                        <Space direction="vertical">
-                            <Card><Highlight language="javascript">{eg.parseInt}</Highlight></Card>
-                        </Space>
-                    </Panel>
+
 
                     <Panel header="extend" key="1">
                         <Space direction="vertical">
-                            <Card><Highlight language="javascript">{eg.extend8}</Highlight></Card>
+                            <Highlight language="javascript">{eg._extend}</Highlight>
                         </Space>
                     </Panel>
 
-                    <Panel header="map" key="9">
-                        <Space direction="vertical">
-                            <Card><Highlight language="javascript">{eg._map}</Highlight></Card>
-                        </Space>
-                    </Panel>
+
                 </Collapse>
             </Wrap>
 
@@ -128,7 +89,7 @@ const NativeMethod = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>原生ajax</Title>
+                <Title level={3}>ajax</Title>
                 <Collapse ghost>
                     <Panel header="实现" key="1">
                         <Space direction="vertical">
@@ -142,36 +103,69 @@ const NativeMethod = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
-
-            <Wrap>
-                <Title level={3}>Object.assign</Title>
+            
+            <Wrap id="array">
+                <Title level={3}>Array</Title>
                 <Collapse ghost>
-                    <Panel header="" key="1">
+                    <Panel header="flat(递归实现)" key="1">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{eg.flat1}</Highlight></Card>
+                        </Space>
+                    </Panel>
+                    <Panel header="flat(非递归实现)" key="2">
+                        <Space direction="vertical">
+                            <Card><Highlight language="javascript">{eg.flat2}</Highlight></Card>
+                        </Space>
+                    </Panel>
+
+                    <Panel header="map" key="3">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg._map}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap id="string">
+                <Title level={3}>String</Title>
+                <Collapse ghost>
+                    <Panel header="trim" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg._trim}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+            <Wrap>
+                <Title level={3}>Object</Title>
+                <Collapse ghost>
+                    <Panel header="assign" key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg._assign}</Highlight>
                         </Space>
                     </Panel>
-
                 </Collapse>
             </Wrap>
 
             <Wrap>
-                <Title level={3}>委托</Title>
+                <Title level={3}>Number</Title>
                 <Collapse ghost>
-                    <Panel header="DOM事件委托" key="1">
+                    <Panel header="parseInt" key="1">
                         <Space direction="vertical">
-                            <Text >** 点击页面中div打印dom节点</Text>
-                            <Highlight language="javascript">{eg.event1}</Highlight>
+                            <Highlight language="javascript">{eg.parseInt}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
             </Wrap>
-
-
         </>
     )
 }
 
 export default NativeMethod
+
+
+try {
+    // console.log(flat(arr))
+} catch (error) { }
 
 

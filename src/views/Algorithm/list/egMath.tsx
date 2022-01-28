@@ -55,7 +55,6 @@ function plusOne(digits: number[]) {
     const len = digits.length
     for (let i = len - 1; i >= 0; i--) {
         digits[i]++         // 从末位开始 + 1
-        // digits[i] = digits[i] % 10,
         digits[i] %= 10     // digits[i]取余， 看是否为0，如果为0 往左一位继续 +1 直到 +1位不为0 无进位为止
         if (digits[i] !== 0) return digits // +1后 无进位 返回
     }
@@ -66,118 +65,22 @@ function plusOne(digits: number[]) {
 export const mySqrt = `
 /**
  * 二分法
- * 定义l为0， r为x
- * 循环遍历，定义middle为  l + r + 1的一半
- * 如果middle 小于等于 x / middle，从右半区开始继续循环 反之从左半区开始
  */
 function mySqrt(x: number) {
     let l = 0
-    let r = x
-    while (l < r) {
-        let middle = l + r + 1 >> 1 // 取中间值
-        if (middle <= x / middle) { // 中间值小于x / 中间值，设置中间值为left开始继续循环，反之 则设置中间值设置为right继续循环
-            l = middle
+    let r = x                           // 整数x的平方根一定是在1到x的范围内
+    while (l <= r) {                    // 循环条件为left <= right,终止为left > right
+        let mid = l + (r - l >> 1)      // 取这个范围内的中间数字 mid 去判断  
+        if (mid * mid <= x) {           // 如果 mid 的平方小于x, 说明 x 的平方根比 mid 大， 从mid + 1 ～ r范围查找
+            l = mid + 1
         } else {
-            r = middle - 1 // ？？
+            r = mid - 1                 // 如果 mid 的平方大于x, 说明 x 的平方根比 mid 小， 从l ~ min - 1范围查找
         }
     }
-    return l
+    return r                            // 由于left可能越界，优先返回right
 }
 `
 
-export const climbStairs = `
-/**
- * 动态规划 数组 复杂度O(n)
- * 爬楼梯可以通过拆分成多个子问题
- * 爬到n - 1的方法数量。再爬1层就到n阶
- * 爬到n - 2的方法数量。再爬2层就到n阶
- * @param n number
- */
- function climbStairs(n: number) {
-    if (n <= 2) return n // 1阶台阶（1）跟2阶台阶（1+1、2），直接返回n
-    let dp = [] // 数组的指针对应的是台阶数，值存出台阶数需要的方法数，0阶不需要爬，且n为正整数。
-
-    // dp[0] = 1 // 也可以根据数组指针式从0开始定义，没有方法数。（从斐波那契数列来说可以设置dp[0]为0，然后从dp[2]开始）
-    dp[1] = 1 // 定义第一阶的爬楼梯方法数
-    dp[2] = 2 // 定义第二阶的爬楼梯方法数
-
-    // 从第三个台阶开始遍历，第三个台阶对应的就是第二个台阶+第一个台阶之和: dp[3 - 1]+dp[3 - 2]
-    for (let i = 3; i <= n; i++) {
-        dp[i] = dp[i - 1] + dp[i - 2] // 到第n个台阶刚好结束
-    }
-    return dp[n]
-}
-
-/**
- * 动态规划 非数组双指针
- * @param n 
- */
-function climbStairs(n: number) {
-    if (n <= 2) return n
-    let prev = 1
-    let cur = 2
-    for (let i = 3; i <= n; i++) {
-        let ans = prev + cur
-        prev = cur
-        cur = ans
-    }
-    return cur
-}
-
-`
-
-export const fib = `
-/**
- * 斐波那契数列 - 动态规划 滚动数组
- * 
- * @param n 
- * @returns 
- */
-function fib(n: number) {
-    if (n < 2) return n
-    let a = 1
-    let b = 1
-    for (let i = 3; i <= n; i++) {
-        let ans = (a + b) % 1000000007
-        a = b
-        b = ans
-    }
-    return b
-}
-`
-
-export const fib1  = `
-function fib1(n: number) {
-    if (n < 2) return n
-    // 滚动数组1
-    let prev = 0
-    let cur = 0
-    let ans = 1
-    for (let i = 2; i <= n; i++) {
-        prev = cur
-        cur = ans
-        ans = prev + cur
-    }
-    return ans
-
-    // 滚动数组2
-    let prev = 0
-    let cur = 1
-    for (let i = 2; i <= n; i++) {
-        let sum = prev + cur
-        prev = cur
-        cur = sum
-    }
-    return cur
-
-    // 动态规划
-    let dp = [0, 1]
-    for (let i = 2; i <= n; i++) {
-        dp[i] = dp[i - 1] + dp[i - 2]
-    }
-    return dp[n]
-}
-`
 export const isThree = `
 /**
  * 除了自身和1 只有一个能被整除的整数只能是开平方为整数
@@ -196,20 +99,7 @@ function isThree(n: number) {
 }
 `
 
-export const findGCD = `
-function findGCD(nums: number[]) {
-    let arr = nums.sort((a, b) => a - b)
-    let min = arr[0]
-    let max = arr[nums.length - 1]
-    if (min === max) return max
-    let ans = 1
-    for (let i = 1; i <= min; i++) {
-        ans = (min % i === 0 && max % i === 0) ? i : ans
-    }
-    return ans
-}
-console.log(findGCD([6, 7, 9]))
-`
+
 
 export const fraction = `
 function fraction(cont: number[]) {
@@ -255,28 +145,19 @@ function divide(a: number, b: number) {
 
 console.log(divide(0, 1))
 `
-
-export const numWays = `
-function numWays(n: number) {
-    if (n < 2) return 1
-    // 滚动数组
-    let prev = 1
-    let cur = 1
-    for (let i = 2; i <= n; i++) {
-        let ans = (prev + cur) % 1000000007
-        prev = cur
-        cur = ans
+export const findGCD = `
+function findGCD(nums: number[]) {
+    let arr = nums.sort((a, b) => a - b)
+    let min = arr[0]
+    let max = arr[nums.length - 1]
+    if (min === max) return max
+    let ans = 1
+    for (let i = 1; i <= min; i++) {
+        ans = (min % i === 0 && max % i === 0) ? i : ans
     }
-    return cur
-    // 动态规划
-    let dp = [1, 1]
-    for (let i = 2; i <= n; i++) {
-        dp[i] = (dp[i - 1] + dp[i - 2]) % 1000000007
-    }
-    return dp[n]
+    return ans
 }
-
-console.log(numWays(44))
+console.log(findGCD([6, 7, 9]))
 `
 
 export const fourSum = `
@@ -336,4 +217,33 @@ function nSum(nums: number[], target: number) {
     return res
 };
 console.log(nSum([1, 0, -1, 0, -2, 2], 0))
+`
+
+export const maxSubArray = `
+/**
+ * 贪心 时间O(n) 空间O(1)
+ * @param nums 
+ * @returns 
+ */
+function maxSubArray(nums: number[]) {
+    let ans = nums[0]
+    let pre = 0
+    for (let n of nums) {
+        pre = Math.max(pre + n, n) // 若之前的和加上当前数，比当前数还小，那么舍弃之前的和，从当前数开始，重新计算和
+        ans = Math.max(ans, pre)
+    }
+    return ans
+}
+console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
+`
+
+export const printNumbers = `
+function printNumbers(n: number) {
+    let max = Math.pow(10, n)
+    let res = []
+    for (let i = 1; i < max; i++) {
+        res.push(i)
+    }
+    return res
+}
 `

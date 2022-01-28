@@ -407,6 +407,23 @@ function hasCycle(head: ListNode) {
     }
 }
 `
+
+
+export const reversePrint = `
+function reversePrint(head: any | null): number[] {
+    if(head === null)return []
+    // 遍历
+    let res = []
+    while (head !== null) {
+        res.unshift(head.val)
+        head = head.next
+    }
+    return res.reverse()
+    // 递归
+    return [...reversePrint(head.next), head.val]
+}
+`
+
 export const detectCycle = `
 function detectCycle(head: ListNode) {
     if (!head) return null

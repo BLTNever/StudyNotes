@@ -278,3 +278,72 @@ function trap(height: number[]) {
 }
 console.log(trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
 `
+
+export const checkValidString = `
+/**
+ * 栈：时间复杂度O(n),空间复杂度O(n)
+ * @param s 
+ * @returns 
+ */
+function checkValidString(s: string) {
+    let leftStack: number[] = []                    // 存左括号的栈
+    let starStack: number[] = []                    // 存星号的栈
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] === '(') leftStack.push(i)         // 遇到左括号，压入栈中
+        if (s[i] === '*') starStack.push(i)         // 遇到星号，压入栈中
+        else {                                      // 遇到右括号
+            if (leftStack.length) leftStack.pop()   // 如果leftStack有值，从栈顶取出来抵消一个
+            else if (starStack) starStack.pop()     // 如果starStack有值，从栈顶取出来抵消一个
+            else return false                       // 如果两个栈都空，证明匹配不上 return false
+        }
+    }
+    if (leftStack < starStack) return false         // left栈大于star栈，说明最后也匹配不了
+    while (leftStack.length && starStack.length) {
+        if (leftStack.pop() > starStack.pop()) return false               // 每次从两个栈顶取出值， 如果 ( 的下标大于 * ，说明在*号右侧 返回false
+    }
+    return true
+}
+/**
+ * 贪心：时间复杂度O(n),空间复杂度O(1)
+ * 遇到左括号，未匹配的左括号数量加 1
+ * 遇到右括号，需要有一个左括号和右括号匹配，因此未匹配的左括号数量减 1
+ * 遇到星号，由于星号可以看成左括号、右括号或空字符串，因此未匹配的左括号数量可能加 11、减 11 或不变
+ * @param s 
+ */
+function checkValidString(s: string) {
+    let min = 0                           // 遍历过程中未匹配的左括号数量可能的最小值和最大值，根据遍历到的字符更新最小值和最大值
+    let max = 0
+    for (let c of s) {
+        if (c === '(') {                  // 遇到左括号，则将最小值和最大值分别加 1            
+            min++;
+            max++;
+        } else if (c === ')') {           // 遇到右括号，则将最小值和最大值分别减 1
+            min = Math.max(min - 1, 0)    // 防止减到负数
+            max--
+            if (max < 0) return false     // 最大值 < 0,说明没有左括号可以和右括号匹配
+        } else {                          // 遇到星号，则将最小值减 1，将最大值加 1
+            min = Math.max(min - 1, 0)   
+            max++
+        }
+    }
+    return min === 0                      // 所有左括号都应和右括号匹配，当最小值为 0 时，证明匹配完成
+}
+/**
+ * 贪心
+ * 
+ * @param s 
+ * @returns 
+ */
+function checkValidString(s: string) {
+    let n = s.length
+    let l = 0
+    let r = 0
+    for (let i = 0; i < n; i++) {
+        l += s[i] === ')' ? -1 : 1            // 正向 匹配到 '(' 跟 '*' + 1， 遇到 ')' 就 -1，
+        r += s[n - i - 1] === '(' ? -1 : 1    // 反向 匹配到 ')' 跟 '*' + 1， 遇到 ')' 就 -1，
+        if (l < 0 || r < 0) return false      // 只要有一个小于0，说明不匹配
+    }
+    return true
+}
+`
+

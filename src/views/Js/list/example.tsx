@@ -586,6 +586,31 @@ seajs.use(['myModule'], function(my) {
 })
 `
 
+export const UMD = `
+(function(window, factory){
+    if(typeof exports === "objects"){
+        // commonjs
+        module.exports = factory();
+    }else if(typeof define === "function" && define.amd){
+        // amd
+        define(factory);
+    }else{
+        window.moduleA = factory();
+    }
+})(window, function(){
+    // 返回module
+    let modlueA = {
+        name : "张三",
+        setName(newName){
+            thie.name = newName;
+        },
+        getName(){
+            return this.name;
+        }
+    }
+    return modlueA;s
+})
+`
 export const bitNot = `~0000000000000000 => 0000000000001001
 -------取反
 ~1111111111111111 => 1111111111110110

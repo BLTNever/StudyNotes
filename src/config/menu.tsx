@@ -36,6 +36,7 @@ const menu = [
             // { id: '21100', name: '网络', route: '/js/Network' },
             { id: '21200', name: '原型', route: '/js/Prototype' },
             { id: '21400', name: '模块化', route: '/js/Moudles' },
+            { id: '21500', name: '正则', route: '/js/Reg' },
         ]
     },
     {
@@ -102,12 +103,13 @@ const menu = [
             { id: 'array', name: '数组', route: '/algorithm/array' },
             { id: 'string', name: '字符串', route: '/algorithm/string' },
             { id: 'math', name: '数学', route: '/algorithm/math' },
+            { id: 'dp', name: '动态规划', route: '/algorithm/dp' },
             { id: 'binaryTree', name: '二叉树', route: '/algorithm/binaryTree' },
-            { id: 'aggregate', name: '求和', route: '/algorithm/aggregate' },
+            { id: 'hash', name: '哈希表', route: '/algorithm/hash' },
             { id: 'list', name: '链表', route: '/algorithm/listNode' },
             { id: 'stack', name: '栈和队列', route: '/algorithm/stack' },
             { id: 'doublePointer', name: '双指针', route: '/algorithm/doublePointer' },
-            { id: 'sort', name: '排序', route: '/algorithm/sort' },
+            // { id: 'sort', name: '排序', route: '/algorithm/sort' },
         ]
     },
     // {

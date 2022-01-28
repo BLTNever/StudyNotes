@@ -5,9 +5,9 @@ export const preorderTraversal = `
  * 1. 先处理根节点
  * 2. 左子树
  * 3. 右子树
- * @param node 
+ * @param root 
  */
-function preorderTraversal(node: any) {
+function preorderTraversal(root: any) {
     let result = []
     function preorder(node) {
         if (!node) return
@@ -15,17 +15,8 @@ function preorderTraversal(node: any) {
         preorder(node.left)
         preorder(node.right)
     }
-    preorder(node)
-    // function preorde(node, result) {
-    //     if (!node) return
-    //     result.push(node.val)
-    //     preorde(node.left, result)
-    //     preorde(node.right, result)
-    // }
-    // preorde(node, result)
-
+    preorder(root)
     return result
-
 }
 /**
  * 二叉树前序遍历（深度遍历）遍历
@@ -59,17 +50,17 @@ export const inorderTraversal = `
  * 2. 中根节点
  * 3. 右子树
  * 4. 无论是前、中、后序遍历，都是先访问根节点，再访问它的左子树，再访问它的右子树
- * @param node 
+ * @param root 
  */
-function inorderTraversal(node: any) {
+function inorderTraversal(root: any) {
     let result = []
-    function inorder(node) {
-        if (!node) return
-        inorder(node.left) // 遍历左子树
-        result.push(node.val) // 压入根节点
-        inorder(node.right) // 遍历右子树
+    function inorder(root) {
+        if (!root) return
+        inorder(root.left) // 遍历左子树
+        result.push(root.val) // 压入根节点
+        inorder(root.right) // 遍历右子树
     }
-    inorder(node)
+    inorder(root)
     return result
 }
 /**
@@ -220,20 +211,5 @@ function hasPathSum(root: any, sum: number): number | boolean | null {
     }
     // 未是叶子节点 就遍历 left right子树。直到叶子节点， 有一个树的叶子节点  被sum减到值为0
     return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val)
-}
-`
-
-export const reversePrint = `
-function reversePrint(head: any | null): number[] {
-    if(head === null)return []
-    // 遍历
-    let res = []
-    while (head !== null) {
-        res.unshift(head.val)
-        head = head.next
-    }
-    return res.reverse()
-    // 递归
-    return [...reversePrint(head.next), head.val]
 }
 `

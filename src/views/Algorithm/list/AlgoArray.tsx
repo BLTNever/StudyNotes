@@ -1,30 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
+
 import Highlight from '@components/HighLight'
-import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert } from 'antd'
+import { Card, Col, Row, Collapse, Typography, Space } from 'antd'
 
 import { Wrap } from '@components/Base'
 
 import * as eg from './egArray'
-
+import * as T from '../config'
 
 const { Panel } = Collapse
 const { Title, } = Typography
 
 const AlgoArray = () => {
-
+    const history = useHistory()
+    const scrollToAnchor = (anchorName: string) => {
+        let anchorElement = document.querySelector(anchorName)
+        if (anchorElement) { anchorElement.scrollIntoView() }
+    }
+    useEffect(() => {
+        const { location: { hash } } = history
+        if (hash.length) scrollToAnchor(hash)
+    }, [])
     return (
         <>
+
             <Wrap>
-                <Title level={3}>697.数组的度（easy）</Title>
+                <Title level={3}>53.最大子数组和</Title>
                 <Collapse ghost>
-                    <Panel header="数组的度的定义是指数组里任一元素出现频数的最大值，在nums中找到与nums拥有相同大小的度的最短连续子数组，返回其长度" key="1">
-                        <Space direction="vertical">
-                            <Highlight language="javascript">{eg.findShortSubArray}</Highlight>
-                        </Space>
+                    <Panel header="给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和" key="1">
+                        <Space><Highlight language="javascript">{eg.maxSubArray}</Highlight></Space>
                     </Panel>
                 </Collapse>
             </Wrap>
-
             <Wrap>
                 <Title level={3}>数据转换：数组-树（easy）</Title>
                 <Collapse ghost>
@@ -76,27 +84,6 @@ const AlgoArray = () => {
                 </Collapse>
             </Wrap>
 
-
-            <Wrap>
-                <Title level={3}>121.买卖股票的最佳时机I（easy）</Title>
-                <Collapse ghost>
-                    <Panel header="给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。
-                        你只能选择 某一天 买入这只股票，并选择在 未来的某一个不同的日子 卖出该股票。设计一个算法来计算你所能获取的最大利润。
-                        返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 0" key="1">
-                        <Highlight language="javascript">{eg.maxProfit}</Highlight>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
-            <Wrap>
-                <Title level={3}>数组中重复的数字（easy）</Title>
-                <Collapse ghost>
-                    <Panel header="在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。" key="1">
-                        <Highlight language="javascript">{eg.findRepeatNumber}</Highlight>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
             <Wrap>
                 <Title level={3}>1984.学生分数的最小差值（easy）</Title>
                 <Collapse ghost>
@@ -112,7 +99,7 @@ const AlgoArray = () => {
                 <Title level={3}>1991.找到数组的中间位置（easy）</Title>
                 <Collapse ghost>
                     <Panel header="给你一个下标从 0 开始的整数数组 nums ，请你找到 最左边 的中间位置 middleIndex （也就是所有可能中间位置下标最小的一个）。
-                            中间位置middleIndex 是满足 nums[0] + nums[1] + ... + nums[middleIndex-1] == nums[middleIndex+1] + nums[middleIndex+2] + ... + nums[nums.length-1] 的数组下标。
+                            中间位置middleIndex 是满足 nums[0] + nums[1] + ...+ nums[middleIndex-1] == nums[middleIndex+1] + nums[middleIndex+2] + ...+ nums[nums.length-1] 的数组下标。
                             如果middleIndex == 0 ，左边部分的和定义为 0 。类似的，如果 middleIndex == nums.length - 1 ，右边部分的和定义为 0 。
                             请你返回满足上述条件 最左边 的 middleIndex ，如果不存在这样的中间位置，请你返回 -1 。。" key="1">
                         <Highlight language="javascript">{eg.findMiddleIndex}</Highlight>
@@ -164,7 +151,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2022.将一维数组转变成二维数组（easy）</Title>
+                <Title level={3}>2022.将一维数组转变成二维数组（easy）{T.MATRIX}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个下标从 0 开始的一维整数数组 original 和两个整数 m 和  n 。你需要使用 original 中 所有 元素创建一个 m 行 n 列的二维数组。
                             original 中下标从 0 到 n - 1 （都 包含 ）的元素构成二维数组的第一行，下标从 n 到 2 * n - 1 （都 包含 ）的元素构成二维数组的第二行，依此类推。
@@ -175,7 +162,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2032.至少在两个数组中出现的值（easy）</Title>
+                <Title level={3}>2032.至少在两个数组中出现的值（easy）{T.ARRAY}</Title>
                 <Collapse ghost>
                     <Panel header="给你三个整数数组 nums1、nums2 和 nums3 ，请你构造并返回一个 与这三个数组都不同的 数组，且由 至少 在 两个 数组中出现的所有值组成。数组中的元素可以按 任意 顺序排列。" key="1">
                         <Highlight language="javascript">{eg.twoOutOfThree}</Highlight>
@@ -184,7 +171,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2037.使每位学生都有座位的最少移动次数（easy）</Title>
+                <Title level={3}>2037.使每位学生都有座位的最少移动次数（easy）{T.SORT}</Title>
                 <Collapse ghost>
                     <Panel header="一个房间里有 n 个座位和 n 名学生，房间用一个数轴表示。给你一个长度为 n 的数组 seats ，其中 seats[i] 是第 i 个座位的位置。同时给你一个长度为 n 的数组 students ，其中 students[j] 是第 j 位学生的位置。
                             你可以执行以下操作任意次：
@@ -197,7 +184,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2053. 数组中第 K 个独一无二的字符串（easy）</Title>
+                <Title level={3}>2053.数组中第 K 个独一无二的字符串（easy）{T.HASH}</Title>
                 <Collapse ghost>
                     <Panel header={`独一无二的字符串 指的是在一个数组中只出现过 一次 的字符串。
                             给你一个字符串数组 arr 和一个整数 k ，请你返回 arr 中第 k 个 独一无二的字符串 。如果 少于 k 个独一无二的字符串，那么返回 空字符串 "" 。
@@ -208,7 +195,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2057. 值相等的最小索引（easy）</Title>
+                <Title level={3}>2057.值相等的最小索引（easy）{T.ARRAY}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个下标从 0 开始的整数数组 nums ，返回 nums 中满足 i mod 10 == nums[i] 的最小下标 i ；如果不存在这样的下标，返回 -1 。
                             x mod y 表示 x 除以 y 的 余数 。" key="1">
@@ -218,7 +205,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2073. 买票需要的时间（easy）</Title>
+                <Title level={3}>2073.买票需要的时间（easy）{T.ARRAY}</Title>
                 <Collapse ghost>
                     <Panel header="有 n 个人前来排队买票，其中第 0 人站在队伍 最前方 ，第 (n - 1) 人站在队伍 最后方 。
                         给你一个下标从 0 开始的整数数组 tickets ，数组长度为 n ，其中第 i 人想要购买的票数为 tickets[i] 。
@@ -230,7 +217,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2078. 两栋颜色不同且距离最远的房子（easy）</Title>
+                <Title level={3}>2078.两栋颜色不同且距离最远的房子（easy）{T.GREEDY}{T.BF}</Title>
                 <Collapse ghost>
                     <Panel header="街上有 n 栋房子整齐地排成一列，每栋房子都粉刷上了漂亮的颜色。给你一个下标从 0 开始且长度为 n 的整数数组 colors ，
                             其中 colors[i] 表示第  i 栋房子的颜色。
@@ -242,7 +229,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2085. 统计出现过一次的公共字符串（easy）</Title>
+                <Title level={3}>2085.统计出现过一次的公共字符串（easy）{T.HASH}</Title>
                 <Collapse ghost>
                     <Panel header="给你两个字符串数组 words1 和 words2 ，请你返回在两个字符串数组中 都恰好出现一次 的字符串的数目。" key="1">
                         <Space direction="vertical">
@@ -253,7 +240,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2089. 找出数组排序后的目标下标（easy）</Title>
+                <Title level={3}>2089.找出数组排序后的目标下标（easy）{T.MATH}{T.DICHOTOMY}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个下标从 0 开始的整数数组 nums 以及一个目标元素 target 。
                         目标下标 是一个满足 nums[i] == target 的下标 i 。
@@ -266,7 +253,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2094. 找出 3 位偶数（easy）</Title>
+                <Title level={3}>2094.找出 3 位偶数（easy）{T.BF}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个整数数组 digits ，其中每个元素是一个数字（0 - 9）。数组中可能存在重复元素。
                         你需要找出 所有 满足下述条件且 互不相同 的整数：
@@ -283,7 +270,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>LCP 01. 猜数字（easy）</Title>
+                <Title level={3}>LCP 01.猜数字（easy）{T.ARRAY}</Title>
                 <Collapse ghost>
                     <Panel header="小A 和 小B 在玩猜数字。小B 每次从 1, 2, 3 中随机选择一个，小A 每次也从 1, 2, 3 中选择一个猜。
                         他们一共进行三次这个游戏，请返回 小A 猜对了几次？
@@ -296,7 +283,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>LCP 06. 拿硬币（easy）</Title>
+                <Title level={3}>LCP 06.拿硬币（easy）{T.MATH}</Title>
                 <Collapse ghost>
                     <Panel header="桌上有 n 堆力扣币，每堆的数量保存在数组 coins 中。我们每次可以选择任意一堆，拿走其中的一枚或者两枚，求拿完所有力扣币的最少次数。" key="1">
                         <Space direction="vertical">
@@ -307,7 +294,16 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>剑指 Offer 11. 旋转数组的最小数字（easy）</Title>
+                <Title level={3}>剑指 Offer 03.数组中重复的数字（easy）{T.HASH}</Title>
+                <Collapse ghost>
+                    <Panel header="在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。" key="1">
+                        <Highlight language="javascript">{eg.findRepeatNumber}</Highlight>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>剑指 Offer 11.旋转数组的最小数字（easy）{T.BF}{T.DICHOTOMY}</Title>
                 <Collapse ghost>
                     <Panel header="把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。
                         给你一个可能存在 重复 元素值的数组 numbers ，它原来是一个升序排列的数组，并按上述情形进行了一次旋转。
@@ -320,7 +316,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>414. 第三大的数（easy）</Title>
+                <Title level={3}>414.第三大的数（easy）{T.SORT}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个非空数组，返回此数组中 第三大的数 。如果不存在，则返回数组中最大的数。" key="1">
                         <Space direction="vertical">
@@ -331,7 +327,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>剑指 Offer 53 - II. 0～n-1中缺失的数字（easy）</Title>
+                <Title level={3}>剑指 Offer 53 - II.0～n-1中缺失的数字（easy）{T.DICHOTOMY}</Title>
                 <Collapse ghost>
                     <Panel header="一个长度为n-1的递增排序数组中的所有数字都是唯一的，并且每个数字都在范围0～n-1之内。在范围0～n-1内的n个数字中有且只有一个数字不在该数组中，请找出这个数字。" key="1">
                         <Space direction="vertical">
@@ -342,7 +338,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>1122. 数组的相对排序（easy）</Title>
+                <Title level={3}>1122.数组的相对排序（easy）{T.HASH}</Title>
                 <Collapse ghost>
                     <Panel header="给你两个数组，arr1 和 arr2， arr2中的元素各不相同;arr2中的每个元素都出现在 arr1 中;
                             对 arr1 中的元素进行排序，使 arr1 中项的相对顺序和 arr2 中的相对顺序相同。未在 arr2 中出现过的元素需要按照升序放在 arr1 的末尾。" key="1"
@@ -354,8 +350,20 @@ const AlgoArray = () => {
                 </Collapse>
             </Wrap>
 
+            <Wrap id="mergeSort">
+                <Title level={3}>合并二维有序数组成一维有序数组{T.MERGE_SORT}</Title>
+                <Collapse ghost>
+                    <Panel header="给你两个数组，arr1 和 arr2， arr2中的元素各不相同;arr2中的每个元素都出现在 arr1 中;
+                            对 arr1 中的元素进行排序，使 arr1 中项的相对顺序和 arr2 中的相对顺序相同。未在 arr2 中出现过的元素需要按照升序放在 arr1 的末尾。" key="1"
+                    >
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.mergeSort}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
             <Wrap>
-                <Title level={3}>380. O(1) 时间插入、删除和获取随机元素（meduim）</Title>
+                <Title level={3}>380.O(1) 时间插入、删除和获取随机元素（meduim）{T.HASH}</Title>
                 <Collapse ghost>
                     <Panel header="实现RandomizedSet 类：" key="1">
                         <Space direction="vertical">
@@ -366,7 +374,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>59. 螺旋矩阵 II（medium）</Title>
+                <Title level={3}>59.螺旋矩阵 II（medium）{T.MATRIX}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个正整数 n ，生成一个包含 1 到 n2 所有元素，且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。" key="1">
                         <Space direction="vertical">
@@ -377,7 +385,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>209. 长度最小的子数组（滑动窗口）（medium）</Title>
+                <Title level={3}>209.长度最小的子数组（滑动窗口）（medium）{T.DOUBLE_POINTER}</Title>
                 <Collapse ghost>
                     <Panel header={`给定一个含有 n 个正整数的数组和一个正整数 target 。
                             找出该数组中满足其和 ≥ target 的长度最小的 连续子数组 [numsl, numsl+1, ..., numsr-1, numsr] ，
@@ -388,9 +396,37 @@ const AlgoArray = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
+
+            <Wrap id="pairSums">
+                <Title level={3}>面试题 16.24.数对和（meduim）{T.DOUBLE_POINTER}{T.HASH}</Title>
+                <Collapse ghost>
+                    <Panel header="设计一个算法，找出数组中两数之和为指定值的所有整数对。一个数只能属于一个数对。" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.pairSums}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap id="findKthLargest">
+                <Title level={3}>215. 数组中的第K个最大元素（meduim）</Title>
+                <Collapse ghost>
+                    <Panel header="设计一个算法，找出数组中两数之和为指定值的所有整数对。一个数只能属于一个数对。" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.findKthLargest}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
         </>
     )
 }
 export default AlgoArray
 
+
+try {
+    // console.log(findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 4))
+} catch (error) {
+    console.log(error)
+}
 

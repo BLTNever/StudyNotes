@@ -8,9 +8,6 @@ import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert
 import { Wrap } from '@components/Base'
 import PreviewImg from '@components/previewImg'
 
-import {
-     sort, bubbleSort, sort2, random, quickSort,
-} from './example'
 
 const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography

@@ -10,7 +10,8 @@ import {
     _isEqual, infinityCurry1, infinityCurry2,
 } from './egNote'
 
-import { findShortSubArray, createTree, } from './egArray'
+import { createTree, } from './egArray'
+import { findShortSubArray } from './egHash'
 import { BSTree, nodes } from './fn'
 
 const { Panel } = Collapse

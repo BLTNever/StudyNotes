@@ -11,7 +11,7 @@ import PreviewImg from '@components/previewImg'
 import {
     _useState, _memo, createContext,
     _render, virtualize,
-} from './example'
+} from './egFramework'
 
 const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography

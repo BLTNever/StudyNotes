@@ -266,6 +266,7 @@ const framework = () => {
                             <ul>
                                 <li>减少render次数：使用<Text code>shouldComponentUpdate</Text>和<Text code>PureComponent</Text>，减少父组件更新引起子组件更新的情况</li>
                             </ul>
+                            <a href="https://github.com/brickspert/blog/issues/36" target="_blank">React 项目性能分析及优化</a>
                         </Space>
                     </Panel>
                 </Collapse>

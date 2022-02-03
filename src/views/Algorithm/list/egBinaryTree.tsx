@@ -79,14 +79,13 @@ function _inorderTraversal(root: any) {
     let result = []
     let stack = []
     while (root || stack?.length) {
-        if (root) {          // 指针访问节点，访问到最底层
-            stack.push(root) // 将访问的节点依次压进栈
-            root = root.left // 指针指向左子树
-            continue
+        while (root) {              // 只要节点有左子节点，就一路向左走到底并压入栈
+            stack.push(root)        // 将访问的节点依次压进栈
+            root = root.left        // 指针指向左子树
         }
-        const node = stack.pop() // 从栈顶取出来要处理的数据
-        result.push(node.val) // push到result
-        root = node.right // 右
+        const node = stack.pop()    // 从栈顶取出来要处理的数据
+        result.push(node.val)       // push到result
+        root = node.right           // 每一个加入到result的元素都要看一下它是否有右结果，如果有右结点，还是要入栈
     }
     // let stack = [root]
     // while (stack?.length) {
@@ -136,9 +135,9 @@ function postorderTraversal(root: any) {
  *           -> stack栈顶部取出 left, left根的left、left 压入 stack栈顶。 left根值 插入 result栈底 ...(循环执行)
  *              从 result 栈底插入，所以此时栈中的顺序是左 右 根 ，符合后续遍历 左 右 根 的顺序
  * 压栈顺序B： -> 根 压入stack栈 
- *           -> stack栈顶取出 root根, root根值 压入 result栈顶, root根的left、right 压入stack 栈顶
- *           -> stack栈顶部取出 right, right根值 压入 result栈顶, right根的left、right压入stack 栈顶 
- *           -> stack栈顶部取出 left, left根值 压入 result栈顶,  left根的left、right压入stack 栈顶 ...(循环执行)
+ *           -> stack栈顶取出 root根, root根值 压入 result栈顶, root根的left、right 压入 stack 栈顶
+ *           -> stack栈顶部取出 right, right根值 压入 result栈顶, right根的left、right 压入 stack 栈顶 
+ *           -> stack栈顶部取出 left, left根值 压入 result栈顶,  left根的left、right 压入 stack 栈顶 ...(循环执行)
  *              压入result栈的顺序是 根 右 左 需要 reverse
  * @param root 
  */
@@ -211,5 +210,31 @@ function hasPathSum(root: any, sum: number): number | boolean | null {
     }
     // 未是叶子节点 就遍历 left right子树。直到叶子节点， 有一个树的叶子节点  被sum减到值为0
     return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val)
+}
+`
+
+
+export const levelOrder = `
+/**
+ * BFS，时间复杂度O(n),空间复杂度O(n)
+ * 遍历每一层
+ */
+function levelOrder(root: any) {
+    if (!root) return []
+    let res = []
+    let queue = []
+    queue.push(root)                                    // 队列中先放入 root 节点
+    while (queue.length !== 0) {
+        const len = queue.length                        // 先记录一下 队列的长度 因为队列长度一直在变化
+        let curLevel = []                               // 记录当前 层级树的数据
+        for (let i = 0; i < len; i++) {
+            const node = queue.shift()                  // 从队列头部取出
+            curLevel.push(node.val)                     // 依次放入当前层
+            if (node.left) queue.push(node.left)        // 当前层级每个节点放入前 查看是否有 left right节点 存在就放入队列中
+            if (node.right) queue.push(node.right)
+        }
+        res.push(curLevel)
+    }
+    return res
 }
 `

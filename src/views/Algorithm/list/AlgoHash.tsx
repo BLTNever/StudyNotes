@@ -7,6 +7,7 @@ import {  Collapse, Typography, Space } from 'antd'
 import { Wrap } from '@components/Base'
 
 import * as eg from './egHash'
+import * as T from '../config'
 
 const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
@@ -35,7 +36,7 @@ const AlgoHash = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>697.数组的度（easy）</Title>
+                <Title level={3}>697.数组的度{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="数组的度的定义是指数组里任一元素出现频数的最大值，在nums中找到与nums拥有相同大小的度的最短连续子数组，返回其长度" key="1">
                         <Space direction="vertical">

@@ -18,3 +18,7 @@ export const COUNT = (<Tag color='cyan'>计数</Tag>)
 export const STACK = (<Tag color='gold'>栈</Tag>)
 export const BFS = (<Tag color='#87d068'>广度优先搜索</Tag>)
 export const  DFS = (<Tag color='#2db7f5'>深度优先搜索</Tag>)
+
+export const EASY = (<Tag color='rgb(0, 175, 155)'>easy</Tag>)
+export const MEDIUM = (<Tag color='rgb(255, 184, 0)'>medium</Tag>)
+export const HARD = (<Tag color='rgb(255, 45, 85)'>hard</Tag>)

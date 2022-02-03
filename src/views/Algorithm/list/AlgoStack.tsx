@@ -28,7 +28,7 @@ const AlgoStack = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>1381.设计一个支持增量操作的栈（medium）</Title>
+                <Title level={3}>1381.设计一个支持增量操作的栈{T.MEDIUM}</Title>
                 <Collapse ghost>
                     <Panel header={<div>
                         <p>请你设计一个支持下述操作的栈</p>
@@ -45,7 +45,7 @@ const AlgoStack = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>150.逆波兰表达式求值（medium）</Title>
+                <Title level={3}>150.逆波兰表达式求值{T.MEDIUM}</Title>
                 <Collapse ghost>
                     <Panel header={<div>
                         <p>根据 逆波兰表示法，求表达式的值</p>
@@ -61,7 +61,7 @@ const AlgoStack = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>394.字符串解码（medium）</Title>
+                <Title level={3}>394.字符串解码{T.MEDIUM}</Title>
                 <Collapse ghost>
                     <Panel header="给定一个经过编码的字符串，返回它解码后的字符串。
                             编码规则为: k[encoded_string]，表示其中方括号内部的 encoded_string 正好重复 k 次。 a 或 2[4] 的输入。" key="1">
@@ -73,7 +73,7 @@ const AlgoStack = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>946.验证栈序列（medium）</Title>
+                <Title level={3}>946.验证栈序列{T.MEDIUM}</Title>
                 <Collapse ghost>
                     <Panel header="给定 pushed 和 popped 两个序列，每个序列中的 值都不重复，只有当它们可能是在最初空栈上进行的推入 push 和弹出 pop 操作序列的结果时，返回 true；否则，返回 false 。" key="1">
                         <Space direction="vertical">
@@ -84,7 +84,7 @@ const AlgoStack = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>227.基本计算器 II（medium）</Title>
+                <Title level={3}>227.基本计算器 II{T.MEDIUM}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个字符串表达式 s ，请你实现一个基本计算器来计算并返回它的值。整数除法仅保留整数部分。" key="1">
                         <Space direction="vertical">
@@ -95,7 +95,7 @@ const AlgoStack = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>678.有效的括号字符串（medium）{T.STACK}{T.GREEDY}</Title>
+                <Title level={3}>678.有效的括号字符串{T.MEDIUM}{T.STACK}{T.GREEDY}</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
                         <p>给定一个只包含三种字符的字符串：（ ，） 和 *，写一个函数来检验这个字符串是否为有效字符串。有效字符串具有如下规则：</p>
@@ -113,7 +113,7 @@ const AlgoStack = () => {
             </Wrap >
 
             <Wrap>
-                <Title level={3}>42.接雨水(hard)</Title>
+                <Title level={3}>42.接雨水{T.HARD}</Title>
                 <Collapse ghost>
                     <Panel header={<div>
                         <p>定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水</p>

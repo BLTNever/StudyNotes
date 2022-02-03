@@ -39,7 +39,7 @@ const AlgoString = () => {
     return (
         <>
             <Wrap>
-                <Title level={3}>14.最长公共前缀（easy）</Title>
+                <Title level={3}>14.最长公共前缀{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="编写一个函数来查找字符串数组中的最长公共前缀。" key="1">
                         <Space direction="vertical">
@@ -50,7 +50,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>20.有效的括号（easy）</Title>
+                <Title level={3}>20.有效的括号{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效" key="1">
                         <Space direction="vertical">
@@ -61,7 +61,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>28.实现 strStr()（easy）</Title>
+                <Title level={3}>28.实现 strStr(){T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="给你两个字符串 haystack 和 needle ，请你在 haystack 字符串中找出 needle 字符串出现的第一个位置（下标从 0 开始）。如果不存在，则返回  -1 。" key="1">
                         <Space direction="vertical">
@@ -72,7 +72,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2843.最后一个单词的长度（easy）</Title>
+                <Title level={3}>2843.最后一个单词的长度{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个字符串 s，由若干单词组成，单词前后用一些空格字符隔开。返回字符串中最后一个单词的长度" key="1">
                         <Space direction="vertical">
@@ -83,7 +83,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>125.验证回文串（easy）</Title>
+                <Title level={3}>125.验证回文串{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写" key="1">
                         <Space direction="vertical">
@@ -94,7 +94,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>1945.字符串转化后的各位数字之和（easy）</Title>
+                <Title level={3}>1945.字符串转化后的各位数字之和{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个由小写字母组成的字符串 s ，以及一个整数 k 。首先，用字母在字母表中的位置替换该字母，将 s 转化 为一个整数（也就是，'a' 用 1 替换，'b' 用 2 替换，...'z' 用 26 替换）。接着，将整数 转换 为其 各位数字之和 。共重复 转换 操作 k 次 。" key="1">
                         <Space direction="vertical">
@@ -105,7 +105,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>1957.删除字符使字符串变好（easy）</Title>
+                <Title level={3}>1957.删除字符使字符串变好{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="一个字符串如果没有 三个连续 相同字符，那么它就是一个 好字符串 。给你一个字符串 s ，请你从 s 删除 最少 的字符，使它变成一个 好字符串 。请你返回删除后的字符串。题目数据保证答案总是 唯一的 。" key="1">
                         <Space direction="vertical">
@@ -116,7 +116,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>1961.检查字符串是否为数组前缀（easy）</Title>
+                <Title level={3}>1961.检查字符串是否为数组前缀{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个字符串 s 和一个字符串数组 words ，请你判断 s 是否为 words 的 前缀字符串 。
                             字符串 s 要成为 words 的 前缀字符串 ，需要满足：s 可以由 words 中的前 k（k 为 正数 ）个字符串按顺序相连得到，且 k 不超过 words.length 。
@@ -129,7 +129,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>1974.作为子字符串出现在单词中的字符串数目（easy）</Title>
+                <Title level={3}>1974.作为子字符串出现在单词中的字符串数目{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个字符串数组 patterns 和一个字符串 word ，统计 patterns 中有多少个字符串是 word 的子字符串。返回字符串数目。
                             子字符串 是字符串中的一个连续字符序列。" key="1">
@@ -141,7 +141,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>使用特殊打字机键入单词的最少时间（easy）</Title>
+                <Title level={3}>使用特殊打字机键入单词的最少时间{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="有一个特殊打字机，它由一个 圆盘 和一个 指针 组成， 圆盘上标有小写英文字母 'a' 到 'z'(顺时针排列)。只有 当指针指向某个字母时，它才能被键入。指针 初始时 指向字符 'a' 。" key="1">
                         <Space direction="vertical">
@@ -152,7 +152,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2000.反转单词前缀（easy）</Title>
+                <Title level={3}>2000.反转单词前缀{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个下标从 0 开始的字符串 word 和一个字符 ch 。找出 ch 第一次出现的下标 i ，反转 word 中从下标 0 开始、直到下标 i 结束（含下标 i ）的那段字符。
                             如果 word 中不存在字符 ch ，则无需进行任何操作。
@@ -165,7 +165,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2027.转换字符串的最少操作次数（easy）</Title>
+                <Title level={3}>2027.转换字符串的最少操作次数{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个字符串 s ，由 n 个字符组成，每个字符不是 'X' 就是 'O' 。
                             一次 操作 定义为从 s 中选出 三个连续字符 并将选中的每个字符都转换为 'O' 。注意，如果字符已经是 'O' ，只需要保持 不变 。
@@ -178,7 +178,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2042.检查句子中的数字是否递增（easy）</Title>
+                <Title level={3}>2042.检查句子中的数字是否递增{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="句子是由若干 token 组成的一个列表，token 间用 单个 空格分隔，句子没有前导或尾随空格。每个 token 要么是一个由数字 0-9 组成的不含前导零的 正整数 ，要么是一个由小写英文字母组成的 单词 。
                             示例，'a puppy has 2 eyes 4 legs' 是一个由 7 个 token 组成的句子：'2' 和 '4' 是数字，其他像 'puppy' 这样的 tokens 属于单词。
@@ -192,7 +192,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2047.句子中的有效单词数（easy）</Title>
+                <Title level={3}>2047.句子中的有效单词数{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header={`句子仅由小写字母（'a' 到 'z'）、数字（'0' 到 '9'）、连字符（'-'）、标点符号（'!'、'.' 和 ','）以及空格（' '）组成。每个句子可以根据空格分解成 一个或者多个 token ，这些 token 之间由一个或者多个空格 ' ' 分隔。
                             如果一个 token 同时满足下述条件，则认为这个 token 是一个有效单词：
@@ -209,7 +209,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2062.统计字符串中的元音子字符串（easy）</Title>
+                <Title level={3}>2062.统计字符串中的元音子字符串{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header={`子字符串 是字符串中的一个连续（非空）的字符序列。
                             元音子字符串 是 仅 由元音（'a'、'e'、'i'、'o' 和 'u'）组成的一个子字符串，且必须包含 全部五种 元音。
@@ -222,7 +222,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2068.检查两个字符串是否几乎相等（easy）</Title>
+                <Title level={3}>2068.检查两个字符串是否几乎相等{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header={`如果两个字符串 word1 和 word2 中从 'a' 到 'z' 每一个字母出现频率之差都 不超过 3 ，那么我们称这两个字符串 word1 和 word2 几乎相等 。
                             给你两个长度都为 n 的字符串 word1 和 word2 ，如果 word1 和 word2 几乎相等 ，请你返回 true ，否则返回 false 。
@@ -235,7 +235,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>剑指 Offer 05.替换空格（easy）</Title>
+                <Title level={3}>剑指 Offer 05.替换空格{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header={`请实现一个函数，把字符串 s 中的每个空格替换成"%20"。`} key="1">
                         <Space direction="vertical">
@@ -246,7 +246,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>1496.判断路径是否相交（easy）</Title>
+                <Title level={3}>1496.判断路径是否相交{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header={`给你一个字符串 path，其中 path[i] 的值可以是 'N'、'S'、'E' 或者 'W'，分别表示向北、向南、向东、向西移动一个单位。
                         你从二维平面上的原点 (0, 0) 处开始出发，按 path 所指示的路径行走。
@@ -260,7 +260,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>859.亲密字符串（easy）</Title>
+                <Title level={3}>859.亲密字符串{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header={`给你两个字符串 s 和 goal ，只要我们可以通过交换 s 中的两个字母得到与 goal 相等的结果，就返回 true ；否则返回 false 。
                             交换字母的定义是：取两个下标 i 和 j （下标从 0 开始）且满足 i != j ，接着交换 s[i] 和 s[j] 处的字符。
@@ -273,7 +273,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>3.无重复字符的最长子串（滑动窗口）（medium）</Title>
+                <Title level={3}>3.无重复字符的最长子串（滑动窗口）{T.MEDIUM}</Title>
                 <Collapse ghost>
                     <Panel header="给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。" key="1">
                         <Space direction="vertical">
@@ -284,7 +284,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap id="getSmallestString">
-                <Title level={3}>663.具有给定数值的最小字符串（medium）{T.GREEDY}</Title>
+                <Title level={3}>663.具有给定数值的最小字符串{T.MEDIUM}{T.GREEDY}</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
                         <li>字符串由若干小写字符组成，字符串的数值 为各字符的数值之和。例如，字符串 &rdquo;abe&rdquo; 的数值等于 1 + 2 + 5 = 8 </li>
@@ -300,7 +300,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap id="canBeValid">
-                <Title level={3}>2116.判断一个括号字符串是否有效（medium）❌不是太理解{T.COUNT}</Title>
+                <Title level={3}>2116.判断一个括号字符串是否有效{T.MEDIUM}❌不是太理解{T.COUNT}</Title>
                 <Collapse ghost>
                     <Panel header={<div>
                         <p>一个括号字符串是只由 `&apos;(`&apos; 和 `&apos;)`&apos; 组成的 非空 字符串。如果一个字符串满足下面 任意 一个条件，那么它就是有效的：</p>

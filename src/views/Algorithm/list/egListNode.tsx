@@ -62,7 +62,34 @@ class List {
     }
 }
 `
+export const baseInsert = `
+temp = 待插入位置的前驱节点.next
+待插入位置的前驱节点.next = 待插入指针
+待插入指针.next = temp
 
+const temp = pre.next
+pre.next = insert
+insert.next = temp
+`
+
+export const baseDelete = `
+待删除位置的前驱节点.next = 待删除位置的前驱节点.next.next
+
+pre.next = pre.next.next
+`
+
+export const baseTraversal = `
+当前指针 = 头指针
+while 当前指针不为空 {
+   print(当前节点)
+   当前指针 = 当前指针.next
+}
+
+const cur = head
+while(cur) {
+    cur = cur.next
+}
+`
 export const reverseList = `
 /**
  * 遍历

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import Highlight from '@components/HighLight'
-import {  Collapse, Typography, Space } from 'antd'
+import { Collapse, Typography, Space } from 'antd'
 
 import { Wrap } from '@components/Base'
 
@@ -25,7 +25,7 @@ const AlgoHash = () => {
     return (
         <>
             <Wrap>
-                <Title level={3}>1. 两数之和</Title>
+                <Title level={3}>1. 两数之和{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="给一个整数数组nums和一个整数目标值target，在数组中找出两数之和为target的那两个数，返回他们在数组中下标" key="1">
                         <Space direction="vertical">
@@ -46,6 +46,16 @@ const AlgoHash = () => {
                 </Collapse>
             </Wrap>
 
+            <Wrap>
+                <Title level={3}>705. 设计哈希集合{T.EASY}</Title>
+                <Collapse ghost>
+                    <Panel header="不使用任何内建的哈希表库设计一个哈希集合（HashSet）" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.findShortSubArray}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
 
 
         </>
@@ -53,6 +63,7 @@ const AlgoHash = () => {
 }
 
 export default AlgoHash
+
 
 
 const arr = [7, 1, 5, 3, 6, 4]
@@ -82,3 +93,4 @@ function maxProfit(price: number[]) {
     return ans
 }
 console.log(maxProfit(arr))
+

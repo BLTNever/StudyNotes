@@ -363,7 +363,7 @@ const AlgoArray = () => {
                 </Collapse>
             </Wrap>
             <Wrap>
-                <Title level={3}>380.O(1) 时间插入、删除和获取随机元素（meduim）{T.HASH}</Title>
+                <Title level={3}>380.O(1) 时间插入、删除和获取随机元素{T.MEDIUM}{T.HASH}</Title>
                 <Collapse ghost>
                     <Panel header="实现RandomizedSet 类：" key="1">
                         <Space direction="vertical">
@@ -398,7 +398,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap id="pairSums">
-                <Title level={3}>面试题 16.24.数对和（meduim）{T.DOUBLE_POINTER}{T.HASH}</Title>
+                <Title level={3}>面试题 16.24.数对和{T.MEDIUM}{T.DOUBLE_POINTER}{T.HASH}</Title>
                 <Collapse ghost>
                     <Panel header="设计一个算法，找出数组中两数之和为指定值的所有整数对。一个数只能属于一个数对。" key="1">
                         <Space direction="vertical">
@@ -409,11 +409,26 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap id="findKthLargest">
-                <Title level={3}>215. 数组中的第K个最大元素（meduim）</Title>
+                <Title level={3}>215. 数组中的第K个最大元素{T.MEDIUM}</Title>
                 <Collapse ghost>
                     <Panel header="设计一个算法，找出数组中两数之和为指定值的所有整数对。一个数只能属于一个数对。" key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.findKthLargest}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap id="findDuplicate">
+                <Title level={3}>287. 寻找重复数{T.MEDIUM}{T.DOUBLE_POINTER}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>给定一个包含 n + 1 个整数的数组 nums ，其数字都在 1 到 n 之间（包括 1 和 n），可知至少存在一个重复的整数</li>
+                        <li>假设 nums 只有 一个重复的整数 ，找出 这个重复的数 </li>
+                        <li>你设计的解决方案必须不修改数组 nums 且只用常量级 O(1) 的额外空间</li>
+                    </ul>} key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.findDuplicate}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -425,7 +440,7 @@ export default AlgoArray
 
 
 try {
-    // console.log(findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 4))
+    // console.log(findDuplicate([3, 9, 3, 4, 2]))
 } catch (error) {
     console.log(error)
 }

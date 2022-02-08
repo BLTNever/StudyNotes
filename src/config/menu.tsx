@@ -104,7 +104,7 @@ const menu = [
             { id: 'string', name: '字符串', route: '/algorithm/string' },
             { id: 'math', name: '数学', route: '/algorithm/math' },
             { id: 'dp', name: '动态规划', route: '/algorithm/dp' },
-            { id: 'binaryTree', name: '二叉树', route: '/algorithm/binaryTree' },
+            { id: 'binaryTree', name: '树', route: '/algorithm/binaryTree' },
             { id: 'hash', name: '哈希表', route: '/algorithm/hash' },
             { id: 'list', name: '链表', route: '/algorithm/listNode' },
             { id: 'stack', name: '栈和队列', route: '/algorithm/stack' },

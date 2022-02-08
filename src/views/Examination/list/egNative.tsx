@@ -198,20 +198,33 @@ function createNew3() {
 `
 
 export const _instanceof = `
-function _instanceof(a: any, b: any): any {
+function _instanceof(left: any, right: any): any {
     // 实现1:
-    let prototype = b.prototype
-    if (typeof b !== 'function') throw new Error('right hand Error')
-    if (a === null || (typeof a !== 'object' && typeof a !== 'function')) return false
+    // 获取对象的原型
+    let proto = Object.getPrototypeOf(left)
+    // 获取构造函数的 prototype 对象
+    let prototype = right.prototype; 
+   
+    // 判断构造函数的 prototype 对象是否在对象的原型链上
+    while (true) {
+        if (!proto) return false;
+        if (proto === prototype) return true;
+        // 如果没有找到，就继续从其原型上找，Object.getPrototypeOf方法用来获取指定对象的原型
+        proto = Object.getPrototypeOf(proto);
+    }
+    // 实现2:
+    let prototype = right.prototype
+    if (typeof right !== 'function') throw new Error('right hand Error')
+    if (left === null || (typeof left !== 'object' && typeof left !== 'function')) return false
 
-    while (a.__proto__) {
-        if (a.__proto__ === prototype) return true
-        a = a.__proto__
+    while (left.__proto__) {
+        if (left.__proto__ === prototype) return true
+        left = left.__proto__
     }
     return false
 
-    // 实现2：
-    let proto = a.__proto__
+    // 实现3：
+    let proto = left.__proto__
     let queue = [proto]
     while(queue.length) {
         let item = queue.shift()
@@ -221,7 +234,7 @@ function _instanceof(a: any, b: any): any {
     }
     if (proto === null) return false
     if (proto === prototype) return true
-    else return _instanceof(proto, b)
+    else return _instanceof(proto, right)
 }
 `
 export const ajax = `

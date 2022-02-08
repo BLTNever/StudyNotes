@@ -87,18 +87,6 @@ function _inorderTraversal(root: any) {
         result.push(node.val)       // push到result
         root = node.right           // 每一个加入到result的元素都要看一下它是否有右结果，如果有右结点，还是要入栈
     }
-    // let stack = [root]
-    // while (stack?.length) {
-    //     const node = stack.pop()
-    //     if(!node) {
-    //         result.push(stack.pop().val)
-    //         continue
-    //     } 
-    //     node.right && stack.push(node.right)
-    //     result.push(node)
-    //     result.push(null) // 切节点
-    //     node.left && stack.push(node.left)
-    // }
     return result
 }
 `
@@ -206,7 +194,7 @@ function hasPathSum(root: any, sum: number): number | boolean | null {
     if (!root) return false
 
     if (!root.left && !root.right) { // 是否递归到了叶子节点
-        return sum === root.val // sum -  叶子节点的值是否和最后传进来的sum相同
+        return sum === root.val     // sum -  叶子节点的值是否和最后传进来的sum相同
     }
     // 未是叶子节点 就遍历 left right子树。直到叶子节点， 有一个树的叶子节点  被sum减到值为0
     return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val)
@@ -237,4 +225,151 @@ function levelOrder(root: any) {
     }
     return res
 }
+/**
+ * 递归，时间复杂度O(n),空间复杂度O(n)
+ */
+ function helper(node: any, result: any, depth: number) {
+    if (!node) return
+    if (!Array.isArray(result[depth])) result[depth] = []
+    result[depth].push(node.val)
+    if (node.left) helper(node.left, result, depth + 1)
+    if (node.right) helper(node.right, result, depth + 1)
+}
+function levelOrder(root: any) {
+    if (!root) return []
+    let res: any = []
+    helper(root, res, 0)
+    return res
+}
 `
+export const isValidBST = `
+/**
+ * 中序遍历遍历：时间复杂度 : O(n)，空间复杂度 : O(n)
+ * 「中序遍历」得到的值构成的序列一定是升序的
+ * 在中序遍历的时候检查当前节点的值是否大于前一个中序遍历到的节点的值即可
+ */
+
+function isValidBST(root: any) {
+    if(!root) return true
+    let stack = []
+    let order = Number.MIN_SAFE_INTEGER
+    while (root !== null || stack.length) {
+        while (root !== null) {
+            stack.push(root)
+            root = root.left
+        }
+        const node = stack.pop()
+        if (node.val <= order) return false
+        order = node.val
+        root = node.right
+    }
+}
+/**
+ * 递归：时间复杂度 : O(n)，空间复杂度 : O(n)
+ * 递归比较 left right跟root值的大小
+ */
+function helper(root: any, min: number, max: number): boolean {
+    if (!root) return true
+    if (root.val <= min || root.right >= max) return false
+    return helper(root.left, min, root.val) && helper(root.right, root.val, max)
+}
+function isValidBST(root: any) {
+    return helper(root, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)
+}`
+
+export const sortedArrayToBST = `
+function sortedArrayToBST(nums: number[]): TreeNode | null {
+    // 解法1-时间复杂度：O(N), 空间复杂度：每次递归都 copy 了 N 的 空间，因此空间复杂度为 O(N ^ 2)    
+    if (!nums.length) return null
+    let mid = nums.length >> 1
+    let root = new TreeNode(nums[mid])
+    root.left = sortedArrayToBST(nums.slice(0, mid))
+    root.right = sortedArrayToBST(nums.slice(mid + 1))
+    return root
+    // 解法2-时间复杂度：O(N) ，空间复杂度：由于是平衡二叉树，因此隐式调用栈的开销为 O(logN)
+    const dfs = (nums: number[], left: any, right: any): TreeNode | null => {
+        if (left > right) return null               // left > right证明没有可选的元素了
+        const mid = left + ((right - left) >> 1)    // 取中间值
+        let root = new TreeNode(nums[mid])          // 中间索引的值当树节点
+        root.left = dfs(nums, left, mid - 1)        // 递归生成左树
+        root.right = dfs(nums, mid + 1, right)      // 递归生成右树
+        return root                                 // 返回生成的树节点
+    }
+    return dfs(nums, 0, nums.length - 1)
+}`
+
+export const BSTIterator = `
+/**
+ * 使用二叉树的中序遍历
+ */
+function BSTIterator(root: TreeNode) {
+    this.index = 0
+    this.list = []
+    let stack = []
+    while (root || stack.length) {
+        while (root) {
+            stack.push(root)
+            root = root.left
+        }
+        const node = stack.pop()
+        this.list.push(node.val)
+        root = root.right
+    }
+    // const inorder = (root: any) => {
+    //     if (!root) return
+    //     inorder(root.left)
+    //     this.list.push(root.left)
+    //     inorder(root.right)
+    // }
+    // inorder(root)
+}
+BSTIterator.prototype.next = function () {
+    return this.list[this.index++]
+}
+BSTIterator.prototype.hasNext = function () {
+    return this.index < this.list.length
+}`
+
+export const isSameTree = `
+/**
+ * 相同的树
+ */
+function isSameTree(p: any, q: any): boolean {
+    if (!p && !q) return true
+    if (!p || !q) return false
+    if (p.val !== q.val) return false
+
+    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
+}`
+
+export const preorder = `
+/**
+ * 遍历、递归 - 时间复杂度O(n)，空间复杂度O(n)
+ * @param root 
+ * @returns 
+ */
+function preorder(root: any) {
+    if (!root) return []
+    // 遍历
+    let stack = []
+    let res = []
+    stack.push(root)
+    while (stack.length) {
+        const node = stack.pop()
+        res.push(node.val)
+        node.children.reverse()
+        stack.push(...node.children)
+    }
+    return res
+    // 递归
+    let res = []
+    const dfs = (root: any) => {
+        if (!root) return
+        res.push(root.val)
+        for (let node of root.children) {
+            dfs(node)
+        }
+    }
+    dfs(root)
+    return res
+}`

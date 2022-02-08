@@ -1062,3 +1062,53 @@ function findKthLargest(nums: number[], k: number) {
     return quickSort(nums)[k - 1]
 }
 `
+
+export const findDuplicate = `
+/**
+ * 快慢指针 时间复杂度O(n) 空间复杂度O(1)
+ * 定义快慢指针，快指针一次走2步，慢指针一次走1步
+ * 当快慢指针相遇时，将快指针放到起始位，并调整为1次1步
+ * 当两指针再次相遇时，就会在环入口处相遇
+ * 暴力法 根据V8对 sort 的实现，length <= 10 采用插入排序（时间复杂度O(n^2),空间复杂度O(1)）,>10 快速排序（时间复杂度O(nlogn), 空间复杂度O(logn)）
+ */
+function findDuplicate(nums: number[]) {
+    // 快慢指针解1
+    let [slow, fast] = [0, 0]
+    slow = nums[slow]
+    fast = nums[nums[fast]]
+    while (slow !== fast) {
+        slow = nums[slow]
+        fast = nums[nums[fast]]
+    }
+    fast = 0
+    while (slow !== fast) {
+        slow = nums[slow]
+        fast = nums[fast]
+    }
+    return slow
+
+    // 快慢指针解2
+    let slow = 0
+    let fast = 0
+    while (true) {
+        slow = nums[slow]
+        fast = nums[nums[fast]]
+        if (slow === fast) {
+            let _slow = 0
+            while (nums[slow] !== nums[_slow]) {
+                slow = nums[slow]
+                _slow = nums[_slow]
+            }
+            return nums[slow]
+        }
+    }
+
+    // 暴力解, 修改了原数组情况下
+    nums = nums.sort((a, b) => a - b)
+    let ans = nums[0]
+    for (let i = 1; i < nums.length; i++) {
+        if (ans === nums[i]) break
+        else ans = nums[i]
+    }
+    return ans
+}`

@@ -273,10 +273,10 @@ const Types = () => (
                     </Space>
                 </Panel>
 
-                <Panel header="Object.prototype.toString" key="5">
+                <Panel header="Object.prototype.toString.call()" key="5">
                     <Space direction="vertical">
                         <Title level={4}>typeof来判断数据类型其实并不准确。比如数组、正则、日期、对象的typeof返回值都是object，这就会造成一些误差</Title>
-                        <Text>所以在typeof判断类型的基础上，我们还需要利用<b>Object.prototype.toString</b>方法来进一步判断数据类型</Text>
+                        <Text>所以在typeof判断类型的基础上，我们还需要利用<b>Object.prototype.toString.call()</b>方法来进一步判断数据类型</Text>
                         <Table dataSource={compareTable} pagination={false}>
                             <Column title="数据" dataIndex="data" key="data" />
                             <Column title="toString" dataIndex="toString" key="toString" />

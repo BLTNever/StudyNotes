@@ -64,3 +64,58 @@ function findSubArray(nums) {
     return min + 1
 }
 `
+
+export const MyHashSet = `
+/**
+ * 不能使用 Obeject、Map、Set的前提下，使用Array模拟
+ * 也不能使用indexOf, inCludes 前提下，遍历模拟
+ * 为了尽可能避免冲突，应当将 BASE 取为一个质数
+ */
+class MyHashSet {
+    private BASE = 769
+    private list: any = new Array(769).fill(0).map(() => new Array(undefined))
+    public add(key: any) {
+        const hash = this.hash(key)
+        for (let ele of this.list[key]) {
+            if (ele === key) return
+        }
+        this.list[hash].push(key)
+    }
+    public remove(key: any) {
+        const hash = this.hash(key)
+        const item = this.list(hash)
+        for (let i = 0; i < item.length; i++) {
+            if (item[i] === key) {
+                item.splice(i, 1)
+                break
+            }
+        }
+
+    }
+    public contain(key: any) {
+        const hash = this.hash(key)
+        for (let ele of this.list[hash]) {
+            if (ele === key) return true
+        }
+        return false
+    }
+    private hash(key: any) {
+        return key % this.BASE
+    }
+}
+
+/**
+ * 使用Set模拟实现  
+ */
+class MyHashSet {
+    private set: any = new Set()
+    public add(key: any) {
+        if (!this.set.hash(key)) this.set.add(key)
+    }
+    public remove(key: any) {
+        if (this.set.hash(key)) this.set.remove(key)
+    }
+    public contain(key: any) {
+        return this.set.has(key)
+    }
+}`

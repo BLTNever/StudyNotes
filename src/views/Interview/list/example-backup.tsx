@@ -42,7 +42,7 @@ function Promise(executor) {
     }
     
     /**
-     * resolve中的值几种情况：
+     * resolve中的值几种情况: 
      * 1.普通值
      * 2.promise对象
      * 3.thenable对象/函数

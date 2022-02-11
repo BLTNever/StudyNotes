@@ -17,7 +17,7 @@ const Redux = () => {
         <>
             <Wrap>
                 <Title level={3}>redux简介</Title>
-                <Text>暴露出来的API：</Text>
+                <Text>暴露出来的API: </Text>
                 <ul>
                     <li><Text mark>CreateStore</Text></li>
                     <li><Text mark>CombineReducers</Text></li>
@@ -25,7 +25,7 @@ const Redux = () => {
                     <li><Text mark>ApplyMiddleware</Text></li>
                     <li><Text mark>Compose</Text></li>
                 </ul>
-                <Text>解决的问题：组件数据共享，同时不会有数据被任意修改</Text>
+                <Text>解决的问题: 组件数据共享，同时不会有数据被任意修改</Text>
                 <Text>改变数据的方式就是通过dispatch一个action来返回一个新的state</Text>
             </Wrap>
 

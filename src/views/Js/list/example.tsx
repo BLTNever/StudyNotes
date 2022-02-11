@@ -44,7 +44,7 @@ process.nextTick(function(){
     console.log(7);
 });
 console.log(8);
-结果是：3 4 6 8 7 5 2 1
+结果是: 3 4 6 8 7 5 2 1
 `
 
 export const note2Subject = `
@@ -89,13 +89,13 @@ setTimeout(function() {
 // console执行的顺序`;
 
 export const valueType = `
-// 值类型： Number、 String、 Boolean、 undefined、 Symbol
+// 值类型:  Number、 String、 Boolean、 undefined、 Symbol
 var a = 100;
 var b = a;
 a = 200;
 console.log(b) // 100
 
-// 引用类型：Object、 Array、 Function、 null（空指针）
+// 引用类型: Object、 Array、 Function、 null（空指针）
 // 可以扩展属性
 var men = {
     age: 20
@@ -137,8 +137,8 @@ var personObj1 = {
     age: 30
 };
 var personObj2 = changeAgeAndReference(personObj1);
-console.log(personObj1); // -> ?
-console.log(personObj2); // -> ?`;
+console.log(personObj1); // → ?
+console.log(personObj2); // → ?`;
 
 export const note4Subject = `
 [] == ![] // true
@@ -423,7 +423,7 @@ hello.say();
 `
 
 export const example2 = `
-(1) 把对象封装到模块中，文件名为： Say.js
+(1) 把对象封装到模块中，文件名为:  Say.js
 //私有变量
 var test = 110;
  
@@ -461,17 +461,17 @@ export function circumference(radius) {
 
 (2) 在其他文件中引入这个模块并调用。这里 import 命令使用大括号的形式加载模块对外的接口。
 import {area,circumference} from './compute';
-console.log('圆面积：' + area(10));
-console.log('圆周长：' + circumference(11));
+console.log('圆面积: ' + area(10));
+console.log('圆周长: ' + circumference(11));
 
 // 也可以使用 * 制定一个对象， 实现模块整体加载
 import * as circle from './compute';
-console.log('圆面积：' + circle.area(10));
-console.log('圆周长：' + circle.circumference(11));
+console.log('圆面积: ' + circle.area(10));
+console.log('圆周长: ' + circle.circumference(11));
 `
 
 export const example4 = `
-(1) 使用 export default 命令用于指定模块的默认输出。 模块文件：compute.js
+(1) 使用 export default 命令用于指定模块的默认输出。 模块文件: compute.js
 //圆面积计算
 export default function area(radius) {
   return Math.PI * radius * radius;
@@ -482,10 +482,10 @@ export function circumference(radius) {
   return 2 * Math.PI * radius;
 }4
 
-(2) 在其他文件中引入这个模块并调用。注意：对于 export default 指定模块的默认输出，import 语句不需要使用大括号。
+(2) 在其他文件中引入这个模块并调用。注意: 对于 export default 指定模块的默认输出，import 语句不需要使用大括号。
 import area, { circumference } from './compute';
-console.log('圆面积：' + area(10));
-console.log('圆周长：' + circumference(11));
+console.log('圆面积: ' + area(10));
+console.log('圆周长: ' + circumference(11));
 `
 
 export const example5 = `
@@ -625,4 +625,15 @@ executionContext = {
     scope chain: varible scope + all parents scope,
     thisValue: context object
 }
+`
+
+export const gen = `
+function* g() {
+    yield 'a';
+    yield 'b';
+    yield 'c';
+    return 'ending';
+}
+
+g(); // 返回一个对象
 `

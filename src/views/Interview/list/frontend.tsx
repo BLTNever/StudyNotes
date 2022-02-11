@@ -22,9 +22,9 @@ const frontend = () => {
             <Wrap>
                 <Title level={3}>性能优化</Title>
                 <ul>
-                    <li><Text mark>减少资源大小：代码压缩、图片压缩、文件切割</Text></li>
-                    <li><Text mark>减少请求时间：服务器优化（服务端渲染、chunked encoding数据分块传输）、利用缓存（cacheContol、localStorage）、优化网络（http2.0、CDN、减少重定向、域名分割资源分配在不同域名下）</Text></li>
-                    <li><Text mark>代码层面：减少DOM操作、使用外部JS，CSS文件以便方便缓存、首屏之外文件按需/延迟加载、合并声明、减少全局变量、合理使用requestAnimationFrame动画代替setTimeout</Text></li>
+                    <li><Text mark>减少资源大小: 代码压缩、图片压缩、文件切割</Text></li>
+                    <li><Text mark>减少请求时间: 服务器优化（服务端渲染、chunked encoding数据分块传输）、利用缓存（cacheContol、localStorage）、优化网络（http2.0、CDN、减少重定向、域名分割资源分配在不同域名下）</Text></li>
+                    <li><Text mark>代码层面: 减少DOM操作、使用外部JS，CSS文件以便方便缓存、首屏之外文件按需/延迟加载、合并声明、减少全局变量、合理使用requestAnimationFrame动画代替setTimeout</Text></li>
                 </ul>
                 <Collapse ghost>
                     <Panel header="加载优化" key="1">
@@ -32,13 +32,13 @@ const frontend = () => {
                             <ul>
                                 <li><Text mark>减少页面请求文件的体积、减少接口请求的数量，延时请求加载</Text></li>
                                 <li><Text>GZIP压缩文件，http缓存文件，优化不必要的代码</Text></li>
-                                <li><Text>JS文件加载：预加载（preload & prefetch）、async和defer（defer在DOM Loaded后执行，下载不阻塞DOM渲染，执行会）、按需加载（script.onload、script.readyState）</Text></li>
-                                <li><Text>JS文件体积：切割JS文、JS压缩（gzip）</Text></li>
-                                <li><Text>CSS优化： 避免使用import、放在head媒体查询、link添加preload、动态添加link、不使用用CSS计算、避免使用通配/高级选择器</Text></li>
-                                <li><Text>图片懒加载：图片offsetTop &lt; scrollTop + clintHeight时设置data-src替换src</Text></li>
+                                <li><Text>JS文件加载: 预加载（preload & prefetch）、async和defer（defer在DOM Loaded后执行，下载不阻塞DOM渲染，执行会）、按需加载（script.onload、script.readyState）</Text></li>
+                                <li><Text>JS文件体积: 切割JS文、JS压缩（gzip）</Text></li>
+                                <li><Text>CSS优化:  避免使用import、放在head媒体查询、link添加preload、动态添加link、不使用用CSS计算、避免使用通配/高级选择器</Text></li>
+                                <li><Text>图片懒加载: 图片offsetTop &lt; scrollTop + clintHeight时设置data-src替换src</Text></li>
                                 <li><Text>图片优化，使用svg、iconfont</Text></li>
                                 <li><Text>静态资源部署到CDN、升级到http2.0</Text></li>
-                                <li><Text>资源复用：服务端配置静态资源缓存（常见问题：http缓存策略？Cache-Control？keep-alive？304？ETag？</Text></li>
+                                <li><Text>资源复用: 服务端配置静态资源缓存（常见问题: http缓存策略？Cache-Control？keep-alive？304？ETag？</Text></li>
                                 <li><Text>webpack模块打包过程进行优化</Text></li>
                                 <li><Text>扁平化Store数据结构</Text></li>
                             </ul>
@@ -48,7 +48,7 @@ const frontend = () => {
                         <Space direction="vertical">
                             <ul>
                                 <li><Text>最后加载JS文件，防止JS文件执行阻塞DOM树和Render树的渲染</Text></li>
-                                <li><Text>优化CSS：压缩CSS文件，选择合适的媒体查询类型</Text></li>
+                                <li><Text>优化CSS: 压缩CSS文件，选择合适的媒体查询类型</Text></li>
                                 <li><Text>减少关键 CSS 元素数量、避免使用CSS表达式、加载CSS推荐用 link 少用 @import</Text></li>
                                 <li><Text>不重要的外置引入的JS使用defer或者async属性异步加载</Text></li>
                             </ul>
@@ -71,12 +71,12 @@ const frontend = () => {
                                     </Text>
                                 </li>
                                 <li><Text>重排元素设置为position absolute或fixed脱离文档流</Text></li>
-                                <li><Text>事件委托：利用JS事件冒泡机制把原本需要绑定在子元素的响应事件（click，keydown）委托给父元素。减少内存占用，减少事件注册</Text></li>
+                                <li><Text>事件委托: 利用JS事件冒泡机制把原本需要绑定在子元素的响应事件（click，keydown）委托给父元素。减少内存占用，减少事件注册</Text></li>
                                 <li><Text>高频操作使用函数防抖（debounce）、函数节流（throttle）</Text></li>
                                 <li><Text>尽量使用 transition 和 animation来实现CSS动画，而不是JS实现动画（运行在主线程对动画的流畅度有影响）</Text></li>
                                 <li><Text>DOM增删操作要少（虚拟长列表、DOM Diff）</Text></li>
                                 <li><Text>在内存中构建DOM，完成后再添加到文档中，document fragment</Text></li>
-                                <li><Text>设置display：none， 先隐藏再操作再显示</Text></li>
+                                <li><Text>设置display: none， 先隐藏再操作再显示</Text></li>
                                 <li><Text>CSS硬件加速（GPU加速）translateZ/translate3d </Text></li>
                             </ul>
                         </Space>
@@ -84,9 +84,9 @@ const frontend = () => {
                     <Panel header="CRP（关键渲染路径Critical Rendering Path）优化" key="4">
                         <Space direction="vertical">
                             <ul>
-                                <li>*关键资源的数量： 阻止网页首次渲染的资源</li>
-                                <li>*关键路径长度：获取所有关键资源所需的往返次数总时间</li>
-                                <li>*关键字节：首次渲染的总字节数，等同于所有关键资源传送文件的大小和</li>
+                                <li>*关键资源的数量:  阻止网页首次渲染的资源</li>
+                                <li>*关键路径长度: 获取所有关键资源所需的往返次数总时间</li>
+                                <li>*关键字节: 首次渲染的总字节数，等同于所有关键资源传送文件的大小和</li>
                                 <li><Text>避免持久化存储的容量持续增长</Text></li>
                             </ul>
                         </Space>
@@ -114,7 +114,7 @@ const frontend = () => {
                     <Panel header="性能" key="4">
                         <Text mark>缓存策略、缓存复用、CDN内容分发网络、按需加载、同步异步加载、请求合并、首屏渲染速度、http2服务器推送、日志性能监控、预加载、性能测试</Text>
                     </Panel>
-                    <Panel header="规范" key="4">
+                    <Panel header="规范" key="5">
                         <Text mark>目录结构规范、编码规范、技术栈规范、前后端接口规范、Commit message规范、GIT分支管理规范、CodeReview规范、设计规范、图标规范、文档规范、版本规范、开发流程规范、发布流程规范</Text>
                     </Panel>
                 </Collapse>
@@ -132,16 +132,16 @@ const frontend = () => {
                                 <li>2. 没有命中强缓存规则，浏览器会发送请求，根据请求头的last-modified和etag判断是否命中协商缓存，如果命中，直接从缓存获取资源。如果没有命中，则进入下一步。</li>
                                 <li>3. 如果前两步都没有命中，则直接从服务端获取资源。</li>
                             </ul>
-                            <Title level={4}>浏览器缓存分为两种：1. 强制缓存 2. 协商缓存</Title>
+                            <Title level={4}>浏览器缓存分为两种: 1. 强制缓存 2. 协商缓存</Title>
                             <ul>
-                                <li><Text>强制缓存：强制缓存就是向浏览器缓存查找该请求结果，并根据该结果的缓存规则来决定是否使用该缓存结果的过程</Text></li>
-                                <li><Text>协商缓存：强制缓存时间到期后，浏览器携带缓存标志请求服务端， 由服务端决定是否使用缓存</Text></li>
+                                <li><Text>强制缓存: 强制缓存就是向浏览器缓存查找该请求结果，并根据该结果的缓存规则来决定是否使用该缓存结果的过程</Text></li>
+                                <li><Text>协商缓存: 强制缓存时间到期后，浏览器携带缓存标志请求服务端， 由服务端决定是否使用缓存</Text></li>
                             </ul>
                         </Space>
                     </Panel>
                     <Panel header="服务器缓存" key="2">
                         <Space direction="vertical">
-                            <Text mark>服务器缓存：服务器缓存是把网页解析在内存中做一个映射，把网页存到硬盘中，当其他用户访问时根据内存中的映射返回缓存的网页</Text>
+                            <Text mark>服务器缓存: 服务器缓存是把网页解析在内存中做一个映射，把网页存到硬盘中，当其他用户访问时根据内存中的映射返回缓存的网页</Text>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -171,11 +171,11 @@ const frontend = () => {
                             <ul>
                                 <li>在http1.0中，发送一次请求时，需要等待服务端响应了才可以继续发送请求</li>
                                 <li>在http1.1中，发送一次请求时，不需要等待服务端响应了就可以发送请求了，但是回送数据给客户端的时候，客户端还是需要按照响应的顺序来一一接收（http 1.1提出了管线化（pipelining）理论，但是仅仅是限于理论的阶段上，这个功能默认还是关闭。http2.0中实现了）</li>
-                                <li>http2与http1.1最重要的区别就是解决了线头阻塞的问题，其中最重要的改动是：多路复用（Multiplexing）</li>
+                                <li>http2与http1.1最重要的区别就是解决了线头阻塞的问题，其中最重要的改动是: 多路复用（Multiplexing）</li>
                                 <li>http2所有性能增强的核心在于新的二进制分帧层（不再以文本格式来传输了），它定义了如何封装http消息并在客户端与服务器之间传输</li>
                                 <li>使用HPACK对HTTP/2头部压缩</li>
                                 <li>服务器推送</li>
-                                <li>流量控制：针对传输中的流进行控制（TCP默认的粒度是针对连接）</li>
+                                <li>流量控制: 针对传输中的流进行控制（TCP默认的粒度是针对连接）</li>
                                 <li>流优先级（Stream Priority）它被用来告诉对端哪个流更重要</li>
                             </ul>
                         </Space>
@@ -186,18 +186,18 @@ const frontend = () => {
                             <Text mark>进行三次握手的主要作用是为了确认双方的接受和发送能力是否正常、指定自己的初始化序列号为后面的可靠性传输做准备</Text>
                             <Text mark>实质是连接服务器指定端口，建立TCP连接，并同步连接双方的序列号和确认号，交换TCP窗口大小信息</Text>
                             <ul>
-                                <li>第一次握手：客户端发送一个SYN报文，并指明客户端的初始序列号ISN（c），客户端处于SYN_SEND状态</li>
-                                <li>第二次握手：服务端收到客户端发送的SYN报文，会以自己的SYN报文作为应答，并指定自己的初始序列号ISN（s）。同时会把客户端的ISN + 1，作为ACK的值，表示自己收到了客户端发送的SYN，此时服务端处于SYN_REVD状态</li>
-                                <li>第三次握手：客户端收到服务端发送的SYN报文，会将服务端的SYN + 1发送一个ACK报文，表示收到服务端的SYN报文，此时客户端处于ESTABLISHED状态。服务器收到 ACK 报文之后，也处于 ESTABLISHED 状态，此时，双方已建立起了连接</li>
+                                <li>第一次握手: 客户端发送一个SYN报文，并指明客户端的初始序列号ISN（c），客户端处于SYN_SEND状态</li>
+                                <li>第二次握手: 服务端收到客户端发送的SYN报文，会以自己的SYN报文作为应答，并指定自己的初始序列号ISN（s）。同时会把客户端的ISN + 1，作为ACK的值，表示自己收到了客户端发送的SYN，此时服务端处于SYN_REVD状态</li>
+                                <li>第三次握手: 客户端收到服务端发送的SYN报文，会将服务端的SYN + 1发送一个ACK报文，表示收到服务端的SYN报文，此时客户端处于ESTABLISHED状态。服务器收到 ACK 报文之后，也处于 ESTABLISHED 状态，此时，双方已建立起了连接</li>
                             </ul>
 
                             <Text mark>四次挥手是指TCP提供的连接一端在结束发送之后还能接受另一端数据的能力</Text>
                             <Text mark>TCP 的连接的拆除需要发送四个包，因此称为四次挥手（Four-way handshake），客户端或服务器均可主动发起挥手动作。</Text>
                             <ul>
-                                <li>第一次挥手：客户端发送一个FIN报文，报文中会指定一个序列号。此时客户端处于FIN_WAIT1状态</li>
-                                <li>第二次挥手：服务端接收到FIN报文后，会把客户端的序列号 + 1作为ACK报文发送给客户端，表示已收到。此时服务端处于CLOSE_WAIT状态</li>
-                                <li>第三次挥手：如果服务端也想断开连接，和客户端第一次挥手一样，会发送一个FIN报文，指定一个序列号。此时服务端处于LAST_ACK状态</li>
-                                <li>第四次挥手：客户端接收到服务端的FIN报文后，以服务端的序列号 + 1作为一个ACK报文发送给服务端。此时客户端处于TIME_WAIT状态。需要过一阵子以确保服务端收到自己的 ACK 报文之后才会进入 CLOSED 状态，服务端收到 ACK 报文之后，就处于关闭连接了，处于 CLOSED 状态</li>
+                                <li>第一次挥手: 客户端发送一个FIN报文，报文中会指定一个序列号。此时客户端处于FIN_WAIT1状态</li>
+                                <li>第二次挥手: 服务端接收到FIN报文后，会把客户端的序列号 + 1作为ACK报文发送给客户端，表示已收到。此时服务端处于CLOSE_WAIT状态</li>
+                                <li>第三次挥手: 如果服务端也想断开连接，和客户端第一次挥手一样，会发送一个FIN报文，指定一个序列号。此时服务端处于LAST_ACK状态</li>
+                                <li>第四次挥手: 客户端接收到服务端的FIN报文后，以服务端的序列号 + 1作为一个ACK报文发送给服务端。此时客户端处于TIME_WAIT状态。需要过一阵子以确保服务端收到自己的 ACK 报文之后才会进入 CLOSED 状态，服务端收到 ACK 报文之后，就处于关闭连接了，处于 CLOSED 状态</li>
                             </ul>
                         </Space>
                     </Panel>
@@ -219,18 +219,18 @@ const frontend = () => {
                             <Text mark>线程与CPU资源分配无关，多个线程共享同一进程的资源，使用相同地址空间</Text>
                             <Text mark>一个进程可以包含若干线程</Text>
 
-                            <Title level={4}>系统通信：</Title>
+                            <Title level={4}>系统通信: </Title>
                             <ul>
-                                <li>进程通信：通过管道、套接字、信号交互、共享内存、消息队列进行通信</li>
-                                <li>线程通信：线程本身共享内存，指针指向同一个内容</li>
+                                <li>进程通信: 通过管道、套接字、信号交互、共享内存、消息队列进行通信</li>
+                                <li>线程通信: 线程本身共享内存，指针指向同一个内容</li>
                             </ul>
 
-                            <Title level={4}>node通信：</Title>
+                            <Title level={4}>node通信: </Title>
                             <ul>
                                 <li>node中提供child_process模块来创建子进程（child_process.fork()）</li>
                                 <li>cluster.fork()是child_process.fork()的上层实现，cluster的好处是可以监听共享端口</li>
                                 <li>node进程的通信主要是通在主从（子）进程之间进行通信，子进程之间无法直接通信，只能通过主进程转发</li>
-                                <li>主进程与子进程的通信是通过IPC（Inter Process Communication）进行通信，IPC基于底层libuv根据不同操作系统实现（Windows：命名管道name pie, linux: Unix Domain Socket）</li>
+                                <li>主进程与子进程的通信是通过IPC（Inter Process Communication）进行通信，IPC基于底层libuv根据不同操作系统实现（Windows: 命名管道name pie, linux: Unix Domain Socket）</li>
                             </ul>
 
                             <Title level={4}>node中cluster是怎样开启多进程的，并且一个端口可以被多个进程监听吗</Title>

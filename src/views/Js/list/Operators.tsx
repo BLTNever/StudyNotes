@@ -48,7 +48,7 @@ const Operator = () => (
                     </Space>
                 </Panel>
 
-                <Panel header="类型转换图示：" key="6">
+                <Panel header="类型转换图示: " key="6">
                     <PreviewImg src={coercion} />
                 </Panel>
             </Collapse>
@@ -60,14 +60,14 @@ const Operator = () => (
                 <Panel header="加性运算符" key="1">
                     <Space direction="vertical">
                         <ul>
-                            <li>某个运算数是NaN：结果为NaN</li>
-                            <li>-Infinity加-Infinity：结果为-Infinity</li>
-                            <li>Infinity加-Infinity：结果为NaN</li>
-                            <li>+0 加 -0：结果为 +0</li>
+                            <li>某个运算数是NaN: 结果为NaN</li>
+                            <li>-Infinity加-Infinity: 结果为-Infinity</li>
+                            <li>Infinity加-Infinity: 结果为NaN</li>
+                            <li>+0 加 -0: 结果为 +0</li>
                             <li>-0 加 +0: 结果为 +0</li>
                             <li>-0 加 -0: 结果为 -0</li>
                         </ul>
-                        <Title level={4}>如果某个运算数是字符串，那么采用下列规则：</Title>
+                        <Title level={4}>如果某个运算数是字符串，那么采用下列规则: </Title>
                         <ul>
                             <li>如果两个运算数都是字符串，把第二个字符串连接到第一个上</li>
                             <li>如果只有一个运算数是字符串，把另一个运算数转换成字符串，结果是两个字符串连接成的字符串</li>
@@ -80,15 +80,15 @@ const Operator = () => (
                 <Panel header="减性运算符" key="2">
                     <Space direction="vertical">
                         <ul>
-                            <li>某个运算数是NaN：结果为NaN</li>
-                            <li>Infinity减Infinity：结果为NaN</li>
-                            <li>-Infinity减-Infinity：结果为NaN</li>
-                            <li>Infinity减-Infinity：结果为Infinity</li>
-                            <li>-Infinity减Infinity：结果为-Infinity</li>
-                            <li>+0 减 +0：结果为+0</li>
-                            <li>-0 减 -0：结果为-0</li>
-                            <li>+0 减 -0：结果为+0</li>
-                            <li>如果某个运算符不是数字： 返回NaN</li>
+                            <li>某个运算数是NaN: 结果为NaN</li>
+                            <li>Infinity减Infinity: 结果为NaN</li>
+                            <li>-Infinity减-Infinity: 结果为NaN</li>
+                            <li>Infinity减-Infinity: 结果为Infinity</li>
+                            <li>-Infinity减Infinity: 结果为-Infinity</li>
+                            <li>+0 减 +0: 结果为+0</li>
+                            <li>-0 减 -0: 结果为-0</li>
+                            <li>+0 减 -0: 结果为+0</li>
+                            <li>如果某个运算符不是数字:  返回NaN</li>
                         </ul>
                     </Space>
                 </Panel>
@@ -142,9 +142,9 @@ const Operator = () => (
             <Collapse defaultActiveKey="" ghost>
                 <Panel header="左移运算<<和右移运算>>" key="1">
                     <Space direction="vertical">
-                        <Text mark>左移运算{"<<"}: 简洁记法——乘（{"例：4<<3 4乘2的三次方，向下取整"}）</Text>
-                        <Text>左移运算：把数字中的所有数位向左移动指定的数量。例如，把数字 2（等于二进制中的 10）左移 5 位，结果为 64（等于二进制中的 1000000）</Text>
-                        <Text mark>右移运算{">>"}: 简洁记法——除（{"例：4>>3 4除2的三次，方向下取整"}）</Text>
+                        <Text mark>左移运算{"<<"}: 简洁记法——乘（{"例: 4<<3 4乘2的三次方，向下取整"}）</Text>
+                        <Text>左移运算: 把数字中的所有数位向左移动指定的数量。例如，把数字 2（等于二进制中的 10）左移 5 位，结果为 64（等于二进制中的 1000000）</Text>
+                        <Text mark>右移运算{">>"}: 简洁记法——除（{"例: 4>>3 4除2的三次，方向下取整"}）</Text>
                         <Text> 右移运算: 把32位数字中的所有数位整体右移，同时保留该数的符号（正号或负号）。有符号右移运算符恰好与左移运算相反。例如，把64右移5位，将变为2</Text>
                     </Space>
                 </Panel>

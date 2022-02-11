@@ -20,7 +20,7 @@ const Source = () => {
                 <a href="https://xiaochen1024.com/courseware/60b1b2f6cf10a4003b634718/60b1b328cf10a4003b63471b" target="_blank">源码解析</a>
                 <Collapse ghost>
                     <Panel header="CPU的瓶颈" key="1">
-                        <Text>例：渲染3000条li，16.6ms浏览器刷新一次。JS可以操作DOM，GUI渲染线程与JS线程是互斥的。所以JS脚本执行和浏览器布局、绘制不能同时执行。</Text>
+                        <Text>例: 渲染3000条li，16.6ms浏览器刷新一次。JS可以操作DOM，GUI渲染线程与JS线程是互斥的。所以JS脚本执行和浏览器布局、绘制不能同时执行。</Text>
                         <Text>JS执行时间过长，超出了16.6ms，刷新就没有时间执行样式布局和样式绘制</Text>
                         <ul>
                             <li>在浏览器每一帧的时间中，预留一些时间给JS线程，React利用这部分时间更新组件（可以看到，在源码 (opens new window)中，预留的初始时间是5ms）</li>
@@ -30,9 +30,9 @@ const Source = () => {
                     </Panel>
                     <Panel header="IO的瓶颈" key="2">
                         <ul>
-                            <li>作为架构层面： React15的Reconciler使用递归调用方式执行，数据保存在递归调用栈里，称为stack Reconciler。React16的Reconciler基于Fiber节点实现，称为Fiber Reconciler</li>
-                            <li>作为静态数据结构层面：每个Fiber Node 对应了一个Element Node。保存了组件的类型（class components、function components、原生组件），对应的DOM节点信息</li>
-                            <li>作为动态工作单元： 每个Fiber Node保存了本次更新中组件改变的状态，要执行的工作（删除、插入、更新等）</li>
+                            <li>作为架构层面:  React15的Reconciler使用递归调用方式执行，数据保存在递归调用栈里，称为stack Reconciler。React16的Reconciler基于Fiber节点实现，称为Fiber Reconciler</li>
+                            <li>作为静态数据结构层面: 每个Fiber Node 对应了一个Element Node。保存了组件的类型（class components、function components、原生组件），对应的DOM节点信息</li>
+                            <li>作为动态工作单元:  每个Fiber Node保存了本次更新中组件改变的状态，要执行的工作（删除、插入、更新等）</li>
                         </ul>
                     </Panel>
                 </Collapse>
@@ -124,9 +124,9 @@ const Source = () => {
                 <Collapse ghost>
                     <Panel header="Fiber架构的实现原理" key="1">
                         <ul>
-                            <li>作为架构层面： React15的Reconciler使用递归调用方式执行，数据保存在递归调用栈里，称为stack Reconciler。React16的Reconciler基于Fiber节点实现，称为Fiber Reconciler</li>
-                            <li>作为静态数据结构层面：每个Fiber Node 对应了一个Element Node。保存了组件的类型（class components、function components、原生组件），对应的DOM节点信息</li>
-                            <li>作为动态工作单元： 每个Fiber Node保存了本次更新中组件改变的状态，要执行的工作（删除、插入、更新等）</li>
+                            <li>作为架构层面:  React15的Reconciler使用递归调用方式执行，数据保存在递归调用栈里，称为stack Reconciler。React16的Reconciler基于Fiber节点实现，称为Fiber Reconciler</li>
+                            <li>作为静态数据结构层面: 每个Fiber Node 对应了一个Element Node。保存了组件的类型（class components、function components、原生组件），对应的DOM节点信息</li>
+                            <li>作为动态工作单元:  每个Fiber Node保存了本次更新中组件改变的状态，要执行的工作（删除、插入、更新等）</li>
                         </ul>
                     </Panel>
                 </Collapse>

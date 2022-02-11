@@ -19,46 +19,46 @@ const Interview4 = () => {
                 <Title level={3}>webpack构建、优化</Title>
                 <Collapse ghost>
                     <Panel header="" key="1">
-                        <Divider orientation="left"><Title level={4}>webpack核心概念：</Title></Divider>
+                        <Divider orientation="left"><Title level={4}>webpack核心概念: </Title></Divider>
                         <Space direction="vertical">
                             <Text>webpack是基于enrty的，分析解析entry所需要加载的所有资源文件，通过不同的Loader来处理不同的文件，用Plugin来扩展webpack功能</Text>
                             <ul>
-                                <li><Text mark>一、入口（entry）：指示webpack以哪个文件作为入口起点、分析、构建内部依赖图并进行打包</Text></li>
-                                <li><Text mark>二、输出（Output）：指示webpack打包后的资源bundles输出到哪里，以及如何命名</Text></li>
+                                <li><Text mark>一、入口（entry）: 指示webpack以哪个文件作为入口起点、分析、构建内部依赖图并进行打包</Text></li>
+                                <li><Text mark>二、输出（Output）: 指示webpack打包后的资源bundles输出到哪里，以及如何命名</Text></li>
                                 <li><Text mark>三、Loader: 处理非javascript语言的文件（如图片、css、视音频），webpack只能理解javascript</Text></li>
-                                <li><Text mark>四、插件（Plugins）：可用于执行范围更广的任务，插件的范围包括从打包到压缩，一直到定义重新定义环境中的变量</Text></li>
-                                <li><Text mark>五、模式（Mode）：指示webpack使用相应模式的配置，如development和production</Text></li>
+                                <li><Text mark>四、插件（Plugins）: 可用于执行范围更广的任务，插件的范围包括从打包到压缩，一直到定义重新定义环境中的变量</Text></li>
+                                <li><Text mark>五、模式（Mode）: 指示webpack使用相应模式的配置，如development和production</Text></li>
                             </ul>
                         </Space>
 
-                        <Divider orientation="left"><Title level={4}>webpack的构建流程：</Title></Divider>
+                        <Divider orientation="left"><Title level={4}>webpack的构建流程: </Title></Divider>
                         <Space direction="vertical">
 
                             <Text>webpack的运行流程是一个串行的过程</Text>
                             <ul>
-                                <li><Text mark>1. 初始化参数：<b>从配置文件和shell语句中读取并合并参数</b>，得出最终参数</Text></li>
-                                <li><Text mark>2. 开始编译：从第一步得到的参数<b>初始化Compiler对象</b>，<b>加载所有配置的插件（Plugins）</b>，执行<b>Compiler对象的run方法</b>开始执行编译</Text></li>
-                                <li><Text mark>3. 确定入口：根据<b>配置中的Entry找到所有的入口文件</b></Text></li>
-                                <li><Text mark>4. 编译模块：从入口文件开始，<b>调用所有配置的Loader对模块进行翻译</b>，再找出该模块依赖的模块，再<b>递归</b>本步骤，直到所有入口依赖的文件都经过本步骤的处理</Text></li>
-                                <li><Text mark>5. 完成模块编译：在第四部经过Loader翻译完所有模块后，得到<b>每个模块被翻译后的最终内容和它们之间的依赖关系</b></Text></li>
-                                <li><Text mark>6. 输出资源：<b>根据Entry和模块之间的依赖关系</b>，组装成一个个包含多个模块的Chunk，再把<b>每个Chunk转换成一个单独的文件加入输出列表</b>，这步是可以修改输出内容的最后机会</Text></li>
-                                <li><Text mark>7. 输出完成：在确定好输出内容后，<b>根据配置确定输出的路径和文件名，把文件写入到文件系统</b></Text></li>
+                                <li><Text mark>1. 初始化参数: <b>从配置文件和shell语句中读取并合并参数</b>，得出最终参数</Text></li>
+                                <li><Text mark>2. 开始编译: 从第一步得到的参数<b>初始化Compiler对象</b>，<b>加载所有配置的插件（Plugins）</b>，执行<b>Compiler对象的run方法</b>开始执行编译</Text></li>
+                                <li><Text mark>3. 确定入口: 根据<b>配置中的Entry找到所有的入口文件</b></Text></li>
+                                <li><Text mark>4. 编译模块: 从入口文件开始，<b>调用所有配置的Loader对模块进行翻译</b>，再找出该模块依赖的模块，再<b>递归</b>本步骤，直到所有入口依赖的文件都经过本步骤的处理</Text></li>
+                                <li><Text mark>5. 完成模块编译: 在第四部经过Loader翻译完所有模块后，得到<b>每个模块被翻译后的最终内容和它们之间的依赖关系</b></Text></li>
+                                <li><Text mark>6. 输出资源: <b>根据Entry和模块之间的依赖关系</b>，组装成一个个包含多个模块的Chunk，再把<b>每个Chunk转换成一个单独的文件加入输出列表</b>，这步是可以修改输出内容的最后机会</Text></li>
+                                <li><Text mark>7. 输出完成: 在确定好输出内容后，<b>根据配置确定输出的路径和文件名，把文件写入到文件系统</b></Text></li>
                             </ul>
                             <Text mark>以上过程中，webpack会在特定的时间点广播特定的时间，Plugins在监听到相关的事件后会执行特定的逻辑，并且Plugins可以调用webpack的api改变webpack的运行结果</Text>
                         </Space>
 
-                        <Divider orientation="left"><Title level={4}>利用webpack优化前端性能（提高性能和体验）：</Title></Divider>
+                        <Divider orientation="left"><Title level={4}>利用webpack优化前端性能（提高性能和体验）: </Title></Divider>
                         <Space direction="vertical">
                             <Text>用webpack优化前端性能是指优化webpack的输出结果，让打包的最终结果在浏览器运行更快速，更高效</Text>
                             <ul>
                                 <li>
-                                    <Text mark>压缩代码：删除多余的代码、注释、简化代码写法。还可以利用webpack的<b>UglifyJsPlugin</b>和<b>ParallelUglifyPlugin</b>来压缩JS文件，利用cssnano（css-loader的minimize）</Text>
+                                    <Text mark>压缩代码: 删除多余的代码、注释、简化代码写法。还可以利用webpack的<b>UglifyJsPlugin</b>和<b>ParallelUglifyPlugin</b>来压缩JS文件，利用cssnano（css-loader的minimize）</Text>
                                 </li>
                                 <li>
-                                    <Text mark>CDN加速：构建过程中，将静态资源路径修改为CDN上对应的路径。可以用webpack对于output参数和各loader的publicPath参数来修改资源路径</Text>
+                                    <Text mark>CDN加速: 构建过程中，将静态资源路径修改为CDN上对应的路径。可以用webpack对于output参数和各loader的publicPath参数来修改资源路径</Text>
                                 </li>
                                 <li>
-                                    <Text mark>删除死代码：将代码中永远走不到的片段删掉。可以在启动webpack时追加参数 --optimize-minimize</Text>
+                                    <Text mark>删除死代码: 将代码中永远走不到的片段删掉。可以在启动webpack时追加参数 --optimize-minimize</Text>
                                 </li>
                                 <li>
                                     <Text mark>提取公共代码</Text>
@@ -66,7 +66,7 @@ const Interview4 = () => {
                             </ul>
                         </Space>
 
-                        <Divider orientation="left"><Title level={4}>提高webpack构建速度：</Title></Divider>
+                        <Divider orientation="left"><Title level={4}>提高webpack构建速度: </Title></Divider>
                         <Space direction="vertical">
                             <Title level={4}>优化打包过程</Title>
                             <ul>
@@ -94,14 +94,14 @@ const Interview4 = () => {
                             </ul>
                         </Space>
 
-                        <Divider orientation="left"><Title level={4}>webpack与gulp区别：</Title></Divider>
+                        <Divider orientation="left"><Title level={4}>webpack与gulp区别: </Title></Divider>
                         <Space direction="vertical">
                             <ul>
                                 <li>
-                                    <Text mark>gulp：强调的是开发的流程，通过配置一系列的task，定义task处理的事务（文件压缩合并、雪碧图、启动server、版本控制），定义执行顺序，让gulp执行task，从而构建前端项目的流程</Text>
+                                    <Text mark>gulp: 强调的是开发的流程，通过配置一系列的task，定义task处理的事务（文件压缩合并、雪碧图、启动server、版本控制），定义执行顺序，让gulp执行task，从而构建前端项目的流程</Text>
                                 </li>
                                 <li>
-                                    <Text mark>webpack：是一个前端模块化方案，侧重模块打包，把开发中所有的资源（图片、JS、CSS）堪称模块，通过loader和plugins对资源进行处理，打包成符合生产环境部署的前端资源</Text>
+                                    <Text mark>webpack: 是一个前端模块化方案，侧重模块打包，把开发中所有的资源（图片、JS、CSS）堪称模块，通过loader和plugins对资源进行处理，打包成符合生产环境部署的前端资源</Text>
                                 </li>
                                 <li>
                                     <Text mark>gulp强调开发流程。webpack强调模块开发。</Text>

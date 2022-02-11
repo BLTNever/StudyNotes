@@ -2,12 +2,12 @@ import React from 'react'
 
 export const booleanFn = (
     <>
-        <p>number ：只有0、 NaN 是false</p>
-        <p>string：空字符串为false其他字符串为ture</p>
-        <p>null：false</p>
-        <p>undefined：false</p>
-        <p>Object：全是ture</p>
-        <p>五个falsy值：0,  NaN , &quot;&quot; , null , undefined</p>
+        <p>number : 只有0、 NaN 是false</p>
+        <p>string: 空字符串为false其他字符串为ture</p>
+        <p>null: false</p>
+        <p>undefined: false</p>
+        <p>Object: 全是ture</p>
+        <p>五个falsy值: 0,  NaN , &quot;&quot; , null , undefined</p>
         <p>(falsy: 是在Boolean上下文中认定可以转换为false的值)</p>
     </>
 )
@@ -26,21 +26,21 @@ export const floatFn = (
 export const numberFn = (
     <>
         <div>
-            <h4>字符串转数字：</h4>
+            <h4>字符串转数字: </h4>
             <p>1. 如果是纯数字的字符串，直接转换为数字</p>
             <p>2. 如果字符串中有非数字的内容 则转换为NaN</p>
             <p>3. 如果字符串是一个空串或者全是空格的字符串，则转为0</p>
         </div>
         <div>
-            <h4>布尔转数字：</h4>
+            <h4>布尔转数字: </h4>
             <p>true转成1，false转成0</p>
         </div>
         <div>
-            <h4>null转数字：</h4>
+            <h4>null转数字: </h4>
             <p>结果为0</p>
         </div>
         <div>
-            <h4>undefined转数字：</h4>
+            <h4>undefined转数字: </h4>
             <p>结果为NaN</p>
         </div>
     </>
@@ -57,6 +57,6 @@ export const toStringFn = (
     <>
         <p>调用被转换数据类型的toString（）方法</p>
         <p>该方法不会影响原变量，它会将转换的结果返回</p>
-        <p>注意：null和undefined这两个值没有toString（）方法，如果调用他们的方法会报错。</p>
+        <p>注意: null和undefined这两个值没有toString（）方法，如果调用他们的方法会报错。</p>
     </>
 )

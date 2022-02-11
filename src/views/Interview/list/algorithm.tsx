@@ -256,7 +256,7 @@ const arr = [
     { id: 5, parentId: 3},
     { id: 6, parentId: 3},
 ]
-转化为树的形式：
+转化为树的形式: 
 root = {
     id: 1,
     children: [{

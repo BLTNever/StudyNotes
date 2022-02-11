@@ -26,7 +26,7 @@ const EventLoop = () => (
                         <Text>为了利用多核CPU的计算能力，HTML5提出Web Worker标准，允许JavaScript脚本创建多个线程，但是子线程完全受主线程控制，且不得操作DOM。所以，这个新标准并没有改变JavaScript单线程的本质。</Text>
                         <Text>单线程在程序执行时，所走的程序路径按照连续顺序排下来，前面的必须处理好，后面的才会执行。</Text>
 
-                        <Text>所有任务可以分成两种：</Text>
+                        <Text>所有任务可以分成两种: </Text>
                         <ul>
                             <li><Text mark>同步任务（synchronous）</Text>:在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务</li>
                             <li><Text mark>异步任务（asynchronous）</Text>:不进入主线程、而进入"任务队列"（task queue）的任务，只有"任务队列"通知主线程，某个异步任务可以执行了，该任务才会进入主线程执行</li>
@@ -69,8 +69,8 @@ const EventLoop = () => (
 
                 <Panel header="执行栈与任务队列" key="3">
                     <Space direction="vertical">
-                        <Title level={4}>执行栈（execution context stack），也可以叫执行上下文栈：JavaScript执行栈，顾名思义，是由执行上下文组成，当函数调用时，创建并插入一个执行上下文，通常称为执行栈帧（frame），存储着函数参数和局部变量，当该函数执行结束时，弹出该执行栈帧</Title>
-                        <Title level={4}>任务队列（task queue）：存储待处理消息及对应的回调函数或事件处理程序（除了IO设备（ajax获取服务器数据）的事件以外，还包括一些用户产生的事件（mouseover、click、scroll、keyup等）和定时器等）</Title>
+                        <Title level={4}>执行栈（execution context stack），也可以叫执行上下文栈: JavaScript执行栈，顾名思义，是由执行上下文组成，当函数调用时，创建并插入一个执行上下文，通常称为执行栈帧（frame），存储着函数参数和局部变量，当该函数执行结束时，弹出该执行栈帧</Title>
+                        <Title level={4}>任务队列（task queue）: 存储待处理消息及对应的回调函数或事件处理程序（除了IO设备（ajax获取服务器数据）的事件以外，还包括一些用户产生的事件（mouseover、click、scroll、keyup等）和定时器等）</Title>
                     </Space>
                 </Panel>
 
@@ -100,10 +100,10 @@ const EventLoop = () => (
                                     <li>macrotasks: setTimeout 、setInterval、 setImmediate、requestAnimationFrame,I/O 、UI渲染microtasks: Promise、 process.nextTick、 Object.observe、 MutationObserver</li>
                                     <li>microtasks: Promise、 process.nextTick、 Object.observe、 MutationObserver</li>
                                 </ul>
-                                <Text>当一个程序有：setTimeout， setInterval ，setImmediate， I/O， UI渲染，Promise ，process.nextTick， Object.observe， MutationObserver的时候：</Text>
-                                <Text>1.先执行 macrotasks：I/O -》 UI渲染-》requestAnimationFrame</Text>
-                                <Text>2.再执行 microtasks ：process.nextTick -》 Promise -》MutationObserver -》 Object.observe</Text>
-                                <Text>3.再把setTimeout setInterval setImmediate【三个货不讨喜】 塞入一个新的macrotasks，依次：setTimeout、setInterval -》setImmediate</Text>
+                                <Text>当一个程序有: setTimeout， setInterval ，setImmediate， I/O， UI渲染，Promise ，process.nextTick， Object.observe， MutationObserver的时候: </Text>
+                                <Text>1.先执行 macrotasks: I/O -》 UI渲染-》requestAnimationFrame</Text>
+                                <Text>2.再执行 microtasks : process.nextTick -》 Promise -》MutationObserver -》 Object.observe</Text>
+                                <Text>3.再把setTimeout setInterval setImmediate【三个货不讨喜】 塞入一个新的macrotasks，依次: setTimeout、setInterval -》setImmediate</Text>
 
                                 <Row gutter={16}>
                                     <Col span={12}>
@@ -187,7 +187,7 @@ const EventLoop = () => (
                     </Row>
                 </Panel>
 
-                <Panel header="题：" key="7">
+                <Panel header="题: " key="7">
                     <Card>
                         <code lang="JavaScript">
                             <Highlight language="javascript">{note2Subject}</Highlight>

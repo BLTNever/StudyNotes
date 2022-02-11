@@ -1,23 +1,5 @@
 
 
-export const quickSort = `
-function quickSort(arr) {
-    if (arr.length <= 1) return arr
-    const len = arr.length
-    const mid = len >> 1
-    const pivot = arr.splice(mid, 1)[0]
-    const left = []
-    const right = []
-    for (let i = 0; i < len; i++) {
-        if (arr[i] > pivot) {
-            right.push(arr[i])
-        }else (arr[i] <= pivot) {
-            left.push(arr[i])
-        }
-    }
-    return quickSort(left).concat([pivot], quickSort(right))
-}
-`
 
 export const random = `
 //定义一个数组arr
@@ -72,30 +54,70 @@ function systemSort(arr) {
 `
 
 export const bubbleSort = `
-function bubbleSort(arr) {
-    const len = arr.length
-    for (let i = len - 1; i > 0; i++) {
-        for (let j = 1; j <= i; j++) {
-            if (arr[j - 1] > arr[j]) {
-                [nums[j - 1], nums[j]] = [nums[j], nums[j - 1]]
+function bubbleSort(nums: number[]) {
+    const len = nums.length
+    for (let i = len - 1; i >= 0; i--) {
+        for (let j = 0; j < i; j++) {
+            if (nums[j] > nums[j + 1]) {
+                [nums[j], nums[j + 1]] = [nums[j + 1], nums[j]]
             }
         }
     }
-    return arr
+    return nums
+}
+`
+export const selectSort = `
+function selectSort(nums: number[]) {
+    const len = nums.length
+    let min = 0
+    for (let i = 0; i < len; i++) {
+        min = i
+        for (let j = i; j < len; j++) {
+            if (nums[j] < nums[min]) {
+                min = j
+            }
+        }
+        if (i !== min) {
+            [nums[i], nums[min]] = [nums[min], nums[i]]
+        }
+    }
+    return nums
+}
+`
+export const insertSort = `
+function insertSort(nums: number[]) {
+    let len = nums.length
+    for (let i = 1; i < len; i++) {
+        let temp = nums[i]
+        for (let j = i - 1; j >= 0; j--) {
+            if (nums[j] > temp) {
+                nums[j + 1] = nums[j]
+                nums[j] = temp
+            } else {
+                break
+            }
+        }
+    }
+    return nums
 }
 `
 
-export const sort2 = `
-const sort = arr => {
-    let n = arr.length
-    for(let i = n - 1; i > 0; i--) {
-        for(let j = 0; j <= i; j++){
-            if(nums[j] > nums[i]) {
-                [nums[j], nums[i]] = [nums[i], nums[j]]
-            }
+export const quickSort = `
+function quickSort(arr) {
+    if (arr.length <= 1) return arr
+    const len = arr.length
+    const mid = len >> 1
+    const pivot = arr.splice(mid, 1)[0]
+    const left = []
+    const right = []
+    for (let i = 0; i < len; i++) {
+        if (arr[i] > pivot) {
+            right.push(arr[i])
+        }else (arr[i] <= pivot) {
+            left.push(arr[i])
         }
     }
-    return arr;
+    return quickSort(left).concat([pivot], quickSort(right))
 }
 `
 export const arrFn13 = `

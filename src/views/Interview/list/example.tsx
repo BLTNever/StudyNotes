@@ -258,7 +258,7 @@ function throttle(fn, wait, option = { leading: true, trailing: true }) {
 `
 
 export const extend1 = `
-// 组合继承 - 缺点：执行两次父类构造器
+// 组合继承 - 缺点: 执行两次父类构造器
 function Fn(name) {
     this.name = name
 }

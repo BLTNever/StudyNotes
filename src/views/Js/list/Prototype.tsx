@@ -14,7 +14,7 @@ const Note11 = () => (
             <Row gutter={16}>
                 <Col span={12}>
                     <Card title="一切都是对象">
-                        <h4>除了四种基本类型：<Tag color="orange">undefined、Number、String、Boolean</Tag>，引用类型都是对象；</h4>
+                        <h4>除了四种基本类型: <Tag color="orange">undefined、Number、String、Boolean</Tag>，引用类型都是对象；</h4>
                         <Tag color="cyan">对象是<b>属性的合集</b></Tag>
                         <Divider />
                         <h3>对象和函数的关系</h3>
@@ -27,7 +27,7 @@ const Note11 = () => (
                 </Col>
                 <Col span={12}>
                     <Card title="prototype原型">
-                        <h4>函数都有一个属性：<b>prototype</b></h4>
+                        <h4>函数都有一个属性: <b>prototype</b></h4>
                         <p>Fn.protoype的属性是一个<b>对象(属性的合集)</b></p>
                         <p>默认的只有一个叫做constructor的属性，指向这个函数本身。</p>
                         <Highlight>{note11Example2}</Highlight>
@@ -39,7 +39,7 @@ const Note11 = () => (
                         <p>这个属性引用了创建这个对象的函数的prototype</p>
                         <Highlight>{note11Example4}</Highlight>
                         <p>每个对象都有一个隐藏的属性——“__proto__”，这个属性引用了创建这个对象的函数的prototype</p>
-                        <p> 即：fn.__proto__ === Fn.prototype</p>
+                        <p> 即: fn.__proto__ === Fn.prototype</p>
                     </Card>
                 </Col>
             </Row>
@@ -51,7 +51,7 @@ const Note11 = () => (
             <Row gutter={16}>
                 <Col span={12}>
                     <Card title="prototype原型">
-                        <h4>函数都有一个属性：<b>prototype</b></h4>
+                        <h4>函数都有一个属性: <b>prototype</b></h4>
                         <p>Fn.protoype的属性是一个<b>对象(属性的合集)</b></p>
                     </Card>
                 </Col>

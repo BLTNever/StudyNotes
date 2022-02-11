@@ -63,7 +63,7 @@ const Interview5 = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>数据转换：数组-树</Title>
+                <Title level={3}>数据转换: 数组-树</Title>
                 <Text>一维数组转成树的结构</Text>
                 <Collapse ghost>
                     <Panel header="" key="1">
@@ -81,11 +81,11 @@ const Interview5 = () => {
                 <Collapse ghost>
                     <Panel header="" key="1">
                         <Space direction="vertical">
-                            <Text mark>遍历方式：1.前序遍历、2.中序遍历、3.后序遍历、4.层次遍历</Text>
+                            <Text mark>遍历方式: 1.前序遍历、2.中序遍历、3.后序遍历、4.层次遍历</Text>
                             <ul>
-                                <li>前序：根 -&gt; 左 -&gt; 右</li>
-                                <li>中序：左 -&gt; 根 -&gt; 右</li>
-                                <li>后序：左 -&gt; 右 -&gt; 根</li>
+                                <li>前序: 根 -&gt; 左 -&gt; 右</li>
+                                <li>中序: 左 -&gt; 根 -&gt; 右</li>
+                                <li>后序: 左 -&gt; 右 -&gt; 根</li>
                             </ul>
                             <Row>
                                 <Col span={12}><Card><Highlight language="javascript">{traversal1}</Highlight></Card></Col>

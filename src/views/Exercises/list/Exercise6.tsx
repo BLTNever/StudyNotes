@@ -35,7 +35,7 @@ const Note6 = () => (
             <Row gutter={16}>
                 <Col span={12}>
                     <Card title="函数防抖(debounce)">
-                        <h4>思路：</h4>
+                        <h4>思路: </h4>
                         <p>把目标方法fn包装在setTimeout里。fn是某个事件的回调函数</p>
                         <p>如果fn一直执行，通过clearTimeout将事件内的连续动作删掉</p>
                         <Highlight language="javascript">

@@ -34,7 +34,7 @@ const AlgoArray = () => {
                 </Collapse>
             </Wrap>
             <Wrap>
-                <Title level={3}>数据转换：数组-树{T.EASY}</Title>
+                <Title level={3}>数据转换: 数组-树{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="一维数组转成树的结构" key="1">
                         <Space direction="vertical">
@@ -110,7 +110,7 @@ const AlgoArray = () => {
             <Wrap>
                 <Title level={3}>1995.统计特殊四元组{T.EASY}</Title>
                 <Collapse ghost>
-                    <Panel header="给你一个 下标从 0 开始 的整数数组 nums ，返回满足下述条件的 不同 四元组 (a, b, c, d) 的 数目 ：
+                    <Panel header="给你一个 下标从 0 开始 的整数数组 nums ，返回满足下述条件的 不同 四元组 (a, b, c, d) 的 数目 : 
                             nums[a] + nums[b] + nums[c] == nums[d],
                             且 a < b < c < d" key="1">
                         <Highlight language="javascript">{eg.countQuadruplets}</Highlight>
@@ -130,7 +130,7 @@ const AlgoArray = () => {
             <Wrap>
                 <Title level={3}>2011.执行操作后的变量值{T.EASY}</Title>
                 <Collapse ghost>
-                    <Panel header="存在一种仅支持 4 种操作和 1 个变量 X 的编程语言：
+                    <Panel header="存在一种仅支持 4 种操作和 1 个变量 X 的编程语言: 
                         ++X 和 X++ 使变量 X 的值 加 1
                         --X 和 X-- 使变量 X 的值 减 1
                         最初，X 的值是 0
@@ -174,7 +174,7 @@ const AlgoArray = () => {
                 <Title level={3}>2037.使每位学生都有座位的最少移动次数{T.EASY}{T.SORT}</Title>
                 <Collapse ghost>
                     <Panel header="一个房间里有 n 个座位和 n 名学生，房间用一个数轴表示。给你一个长度为 n 的数组 seats ，其中 seats[i] 是第 i 个座位的位置。同时给你一个长度为 n 的数组 students ，其中 students[j] 是第 j 位学生的位置。
-                            你可以执行以下操作任意次：
+                            你可以执行以下操作任意次: 
                             增加或者减少第 i 位学生的位置，每次变化量为 1 （也就是将第 i 位学生从位置 x 移动到 x + 1 或者 x - 1）
                             请你返回使所有学生都有座位坐的 最少移动次数 ，并确保没有两位学生的座位相同。
                             请注意，初始时有可能有多个座位或者多位学生在 同一 位置。" key="1">
@@ -256,7 +256,7 @@ const AlgoArray = () => {
                 <Title level={3}>2094.找出 3 位偶数{T.EASY}{T.BF}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个整数数组 digits ，其中每个元素是一个数字（0 - 9）。数组中可能存在重复元素。
-                        你需要找出 所有 满足下述条件且 互不相同 的整数：
+                        你需要找出 所有 满足下述条件且 互不相同 的整数: 
                         该整数由 digits 中的三个元素按 任意 顺序 依次连接 组成。
                         该整数不含 前导零
                         该整数是一个 偶数
@@ -365,7 +365,7 @@ const AlgoArray = () => {
             <Wrap>
                 <Title level={3}>380.O(1) 时间插入、删除和获取随机元素{T.MEDIUM}{T.HASH}</Title>
                 <Collapse ghost>
-                    <Panel header="实现RandomizedSet 类：" key="1">
+                    <Panel header="实现RandomizedSet 类: " key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.randomizedSet}</Highlight>
                         </Space>

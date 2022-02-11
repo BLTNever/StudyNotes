@@ -47,6 +47,7 @@ const Record = () => {
         pagination: false,
         columns: columns,
         bordered: false,
+        sticky: true,
         rowKey: 'Q',
         scroll: {
             x: 1500,
@@ -87,3 +88,22 @@ const Record = () => {
 export default Record
 
 
+// eslint-disable-next-line no-extend-native
+// Function.prototype.call = function (_context: Window, ...args: any) {
+//     if (typeof this !== 'function') throw new Error('not function')
+//     let obj = _context
+//     obj.fn = this
+//     const res = obj.fn(...args)
+//     delete obj.fn
+//     return res
+// }
+
+// // eslint-disable-next-line no-extend-native
+// Function.prototype.apply = function (_context: Window, ...args: any) {
+//     if (typeof this !== 'function') throw new Error('not function')
+//     let obj = _context
+//     obj.fn = this
+//     const res = obj.fn(args)
+//     delete obj.fn
+//     return res
+// }

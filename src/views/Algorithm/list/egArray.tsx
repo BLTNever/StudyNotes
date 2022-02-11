@@ -9,7 +9,7 @@ const arr = [
     { id: 5, parentId: 3},
     { id: 6, parentId: 3},
 ]
-转化为树的形式：
+转化为树的形式: 
 root = {
     id: 1,
     children: [{
@@ -228,7 +228,7 @@ console.log(removeElement([3, 2, 3, 2], 3))
 
 export const searchInsert = `
 function searchInsert(nums: number[], target: number) {
-    // 解法1 ： 遍历ans  当target 小于等于当前值的话 返回当前下标
+    // 解法1 :  遍历ans  当target 小于等于当前值的话 返回当前下标
     const ans = nums.length
     for (let i = 0; i < ans; i++) {
         if (target <= nums[i]) {
@@ -527,7 +527,7 @@ function timeRequiredToBuy(tickets: number[], k: number) {
     // 解法2
     let i = 0 // 当前购买人
     let ans = 0 // 买票时间累积
-    while (tickets[k] !== 0) {  // 设置停止范围：模拟购票，第 k 个人买完停止
+    while (tickets[k] !== 0) {  // 设置停止范围: 模拟购票，第 k 个人买完停止
         if (tickets[i] > 0) {   // 剔除已经买完票的人
             tickets[i]--        // 购票次数 -1
             ans++               // 累积买票人的时间
@@ -653,27 +653,27 @@ console.log(findEvenNumbers([2, 2, 8, 8, 2]))
 
 export const game = `
 function game(guess: number[], answer: number[]) {
-    // 解法一： 遍历 找相等
+    // 解法一:  遍历 找相等
     let ans = 0
     for (let i = 0; i < answer.length; i++) {
         if (guess[i] === answer[i]) ans++
     }
     return ans
-    // 解法二：过滤相等的 length
+    // 解法二: 过滤相等的 length
     return answer.filter((item, index) => item === guess[index]).length
 }
 `
 
 export const minCount = `
 function minCount(coins: number[]) {
-    // 解法一： 遍历
+    // 解法一:  遍历
     // 求 最少次数，那就是 n / 2 或 n / 2 + 1, 通过Math.ceil 向上取整
     let ans = 0
     for (let n of coins) {
         ans += Math.ceil(n / 2)
     }
     return ans
-    // 解法二： reduce
+    // 解法二:  reduce
     // accumulator + Math.ceil(currentValue / 2)
     return coins.reduce((accumulator, currentValue) => { return accumulator + Math.ceil(currentValue / 2) }, 0)
 }
@@ -831,8 +831,8 @@ export const generateMatrix = `
 function generateMatrix(n: number) {
     let matrix = Array(n).fill(0).map(() => Array(n).fill(0)) // 创建一个 n * n 的数组
     // 矩阵的的范围为 n * n ，所以四条边界是 从 0 到 n - 1
-    // 矩阵四边：top -> right, top -> bottom, right -> left, bottom -> top
-    // 模拟路线：逆时针矩阵， topLeft -> topRight, topRight -> bottomRight, rightBottom -> leftBottom, leftBottom -> leftTop
+    // 矩阵四边: top → right, top → bottom, right → left, bottom → top
+    // 模拟路线: 逆时针矩阵， topLeft → topRight, topRight → bottomRight, rightBottom → leftBottom, leftBottom → leftTop
     // 一层一层遍历到最后
     // 矩阵数组从 top 到 bottom 储存
     let left = 0                // left 界限值从 0 开始
@@ -841,26 +841,26 @@ function generateMatrix(n: number) {
     let bottom = n - 1          // bottom 界限值从 n - 1 开始
     let num = 1
     while (num <= n * n) {
-        for (let i = left; i <= right; i++) {  // 输入 Top_Array, 设定边界值从 topLeft -> topRight
-            matrix[top][i] = num               // 指针从 topLeft -> topRight 记录数据, 存入 top 下标的数组中
+        for (let i = left; i <= right; i++) {  // 输入 Top_Array, 设定边界值从 topLeft → topRight
+            matrix[top][i] = num               // 指针从 topLeft → topRight 记录数据, 存入 top 下标的数组中
             num++
         }
-        top++                                  // topLeft -> topRight 数据记录完成，top 向上移动
-        for (let i = top; i <= bottom; i++) {  // 输入 Right_Array, 设定边界值从 rightTop -> rightBottom
-            matrix[i][right] = num             // 指针从 rightTop -> rightBottom 记录数据, 存入 top++ 后下标的数组中
+        top++                                  // topLeft → topRight 数据记录完成，top 向上移动
+        for (let i = top; i <= bottom; i++) {  // 输入 Right_Array, 设定边界值从 rightTop → rightBottom
+            matrix[i][right] = num             // 指针从 rightTop → rightBottom 记录数据, 存入 top++ 后下标的数组中
             num++
         }
-        right--                                // rightTop -> rightBottom 数据记录完成， right 向左移动
-        for (let i = right; i >= left; i--) {  // 输入 Bottom_Array, 设定边界值从 bottomRight -> bottomLeft
-            matrix[bottom][i] = num            // 指针从 bottomRight -> bottomLeft 记录数据, 存入 bottom 下标的数组中
+        right--                                // rightTop → rightBottom 数据记录完成， right 向左移动
+        for (let i = right; i >= left; i--) {  // 输入 Bottom_Array, 设定边界值从 bottomRight → bottomLeft
+            matrix[bottom][i] = num            // 指针从 bottomRight → bottomLeft 记录数据, 存入 bottom 下标的数组中
             num++
         }
-        bottom--                               // bottomRight -> bottomLeft 数据记录完成，bottom 向上移动
-        for (let i = bottom; i >= top; i--) {  // 输入 Left_Array, 设定边界值 leftBottom -> leftTop
-            matrix[i][left] = num              // 指针从 leftBottom -> leftTop 记录数据, 存入 left 下标的数组中
+        bottom--                               // bottomRight → bottomLeft 数据记录完成，bottom 向上移动
+        for (let i = bottom; i >= top; i--) {  // 输入 Left_Array, 设定边界值 leftBottom → leftTop
+            matrix[i][left] = num              // 指针从 leftBottom → leftTop 记录数据, 存入 left 下标的数组中
             num++
         }
-        left++                                 // leftBottom -> leftTop 数据记录完成，left 向右移动（开始内圈循环）
+        left++                                 // leftBottom → leftTop 数据记录完成，left 向右移动（开始内圈循环）
     }
     return matrix
 }
@@ -903,7 +903,7 @@ console.log(relativeSortArray([2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19], [2, 1, 4, 3, 9
 
 export const mergeSort = `
 /**
- * flat 拍平 sort排序 时间复杂度： O(nlogn)
+ * flat 拍平 sort排序 时间复杂度:  O(nlogn)
  * @param arr 
  */
  function mergeSort(arr: number[][]) {
@@ -967,7 +967,7 @@ function pairSums(nums: number[], target: number) {
     return res
 }
 /**
- * 哈希 - 重点： 使用过一次要删掉，防止重复使用
+ * 哈希 - 重点:  使用过一次要删掉，防止重复使用
  * @param nums 
  * @param target 
  * @returns 
@@ -994,7 +994,7 @@ function pairSums(nums: number[], target: number) {
 
 export const sortArray = `
 /**
- * 快速排序 - 时间复杂度：O(NlogN),空间复杂度：O(logN) 
+ * 快速排序 - 时间复杂度: O(NlogN),空间复杂度: O(logN) 
  */
 function sortArray(nums: number[]): number[] {
     if (nums.length <= 1) return nums
@@ -1012,7 +1012,7 @@ function sortArray(nums: number[]): number[] {
     return sortArray(left).concat([pivot], sortArray(right))
 }
 /**
- * 选择排序-时间复杂度：O(N^2)，空间复杂度：O(1)
+ * 选择排序-时间复杂度: O(N^2)，空间复杂度: O(1)
  */
 function sortArray(nums: number[]) {
     let n = nums.length
@@ -1026,7 +1026,7 @@ function sortArray(nums: number[]) {
     return nums
 }
 /**
- * 冒泡排序-时间复杂度：O(N^2)，空间复杂度：O(1)
+ * 冒泡排序-时间复杂度: O(N^2)，空间复杂度: O(1)
  */
 function sortArray(nums: number[]) {
     let n = nums.length

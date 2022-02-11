@@ -15,19 +15,19 @@ const Note15 = () => (
             <Collapse ghost>
                 <Panel header="代码运行在模块作用域。只加载一次（同步加载），一次之后就会被缓存下来。输出值的拷贝。运行时加载" key="1">
                     <Space direction="vertical">
-                        <Text mark>重复加载：加载之后的文件的 module 会被缓存到 Module 上</Text>
-                        <Text mark>循环引用：commonjs导出的是一个值拷贝，会对加载结果进行缓存。遇到循环加载时，返回的是当前已经执行的部分的值，而不是代码全部执行后的值</Text>
+                        <Text mark>重复加载: 加载之后的文件的 module 会被缓存到 Module 上</Text>
+                        <Text mark>循环引用: commonjs导出的是一个值拷贝，会对加载结果进行缓存。遇到循环加载时，返回的是当前已经执行的部分的值，而不是代码全部执行后的值</Text>
                         <ul>
-                            <li><Text>定义模块：一个文件就是一个模块，拥有单独的作用域。普通方式定义的变量、函数、对象都属于该模块内。所有代码都运行在模块作用域，不会污染全局作用域。</Text></li>
-                            <li><Text>模块输出：模块只有一个出口，module.exports对象，需要把模块输出的内容放入该对象中</Text></li>
-                            <li><Text>模块加载：加载模块使用require方法，该方法读取一个文件并执行，返回文件内部的module.exports对象</Text></li>
+                            <li><Text>定义模块: 一个文件就是一个模块，拥有单独的作用域。普通方式定义的变量、函数、对象都属于该模块内。所有代码都运行在模块作用域，不会污染全局作用域。</Text></li>
+                            <li><Text>模块输出: 模块只有一个出口，module.exports对象，需要把模块输出的内容放入该对象中</Text></li>
+                            <li><Text>模块加载: 加载模块使用require方法，该方法读取一个文件并执行，返回文件内部的module.exports对象</Text></li>
                         </ul>
                         <Text mark>CommonJS规范加载模块是同步的，也就是说，只有加载完成，才能执行后面的操作。</Text>
                         <Text>模块加载的顺序，按照其在代码中出现的顺序。</Text>
                         <Text mark>CommonJS模块的加载机制是，输入的是被输出的值的拷贝。也就是说，一旦输出一个值，模块内部的变化就影响不到这个值</Text>
                         <Text>模块可以多次加载，但是只会在第一次加载时运行一次，然后运行结果就被缓存了，以后再加载，就直接读取缓存结果。要想让模块再次运行，必须清除缓存。</Text>
                         <Text>require方法有一个main属性，可以用来判断模块是直接执行，还是被调用执行。</Text>
-                        <Text mark>循环加载：会直接从缓存读取exports属性</Text>
+                        <Text mark>循环加载: 会直接从缓存读取exports属性</Text>
                         <Text>CommonJS经node.js应运而生</Text>
                     </Space>
                 </Panel>
@@ -85,8 +85,8 @@ const Note15 = () => (
                             <li>模块的设计思想是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量</li>
                             <li>import语句导入模块，export语句导出模块，是异步的；</li>
                         </ul>
-                        <Text mark>重复引用：多次引用的对象是同一个</Text>
-                        <Text mark>循环引用：循环加载时，ES6模块是动态引用。只要两个模块之间存在某个引用，代码就能够执行（解决原理）</Text>
+                        <Text mark>重复引用: 多次引用的对象是同一个</Text>
+                        <Text mark>循环引用: 循环加载时，ES6模块是动态引用。只要两个模块之间存在某个引用，代码就能够执行（解决原理）</Text>
                         <Row gutter={24}>
                             <Col span={12}>
                                 <Card title="export & 使用 * 整体加载"><Highlight language="javascript">{example3}</Highlight></Card>
@@ -124,8 +124,8 @@ const Note15 = () => (
                         <ul>
                             <li><Text>CMD采用异步方式加载模块</Text></li>
                             <li><Text>CMD推崇就近依赖，只有在用到某个模块的时候再去require</Text></li>
-                            <li><Text>定义模块：define(id?, dependencies?, factory)</Text></li>
-                            <li><Text>加载模块：require([module], callback)</Text></li>
+                            <li><Text>定义模块: define(id?, dependencies?, factory)</Text></li>
+                            <li><Text>加载模块: require([module], callback)</Text></li>
                         </ul>
                         <Highlight language="javascript">{AMD}</Highlight>
                     </Space>
@@ -151,8 +151,8 @@ const Note15 = () => (
                 <Panel header="最明显的区别就是在于模块定义的时候，对依赖处理的不同" key="1">
                     <Space direction="vertical">
                         <ul>
-                            <li><Text>AMD推崇前置依赖：定义模块时候就需要声明其依赖的模块</Text></li>
-                            <li><Text>CMD推崇就近依赖：只有在用到某个模块的时候再去require</Text></li>
+                            <li><Text>AMD推崇前置依赖: 定义模块时候就需要声明其依赖的模块</Text></li>
+                            <li><Text>CMD推崇就近依赖: 只有在用到某个模块的时候再去require</Text></li>
                             <li><Text>AMD在加载完定义（define）好的模块就就会去执行，执行完成后，遇到require的时候才会执行主逻辑代码（提前加载）</Text></li>
                             <li><Text>CDM在加载完定义（define）的模块时，仅作下载不执行，遇到require执行对应的模块（按需加载）</Text></li>
                         </ul>
@@ -174,10 +174,10 @@ const Note15 = () => (
                             <li><Text>JS引擎在遇到EsModule模块时，会生成一个只读的引用，等到代码执行的时候，再根据引用，到被加载的模块里取值。EsModule是动态引用</Text></li>
                         </ul>
                         <ul>
-                            <li><Text>运行时加载：CommonJs模块就是对象，输入时先加载整个模块，生成一个对象，再从对象上读取方法</Text></li>
-                            <li><Text>编译时加载：EsModule模块不是对象，通过export命令输出指定代码。import采用静态命令的形式，import的时候指定加载某个输出值，而不是加载整个模块</Text></li>
+                            <li><Text>运行时加载: CommonJs模块就是对象，输入时先加载整个模块，生成一个对象，再从对象上读取方法</Text></li>
+                            <li><Text>编译时加载: EsModule模块不是对象，通过export命令输出指定代码。import采用静态命令的形式，import的时候指定加载某个输出值，而不是加载整个模块</Text></li>
                             <li><Text>EsModule的对外接口只是一种静态定义，在代码静态解析阶段就会生成</Text></li>
-                            <li><Text>循环引用：CommonJs的循环引用是通过传递未完成的export对象解决的。EsModule传递的是引用</Text></li>
+                            <li><Text>循环引用: CommonJs的循环引用是通过传递未完成的export对象解决的。EsModule传递的是引用</Text></li>
                         </ul>
                     </Space>
                 </Panel>
@@ -207,7 +207,7 @@ const Note15 = () => (
                 <Panel header="放大模式" key="2">
                     <Space direction="vertical">
                         <p>放大模式的好处就是，可以不用考虑代码加载的先后顺序。</p>
-                        <p><b>宽放大模式</b>： 实参部分的window.wall || (window.wall = {`{}`})</p>
+                        <p><b>宽放大模式</b>:  实参部分的window.wall || (window.wall = {`{}`})</p>
                         <h4>多出来的分号; 是为了防止多个文件合并的时候首尾相接的问题</h4>
                         <Highlight language="javascript">{example7}</Highlight>
                     </Space>

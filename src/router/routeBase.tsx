@@ -65,7 +65,6 @@ export const AlgoBase = lazy(() => import(/* webpackChunkName: "AlgoBase" */'@vi
 export const AlgoBinaryTree = lazy(() => import(/* webpackChunkName: "AlgoBase" */'@views/Algorithm/list/AlgoBinaryTree'))
 
 // Examination
-
 export const NativeMethod = lazy(() => import(/* webpackChunkName: "NativeMethod" */'@views/Examination/list/nativeMethod'))
 export const Program = lazy(() => import(/* webpackChunkName: "Program" */'@views/Examination/list/program'))
 export const ExaminationFramework = lazy(() => import(/* webpackChunkName: "Framework" */'@views/Examination/list/framework'))
@@ -74,3 +73,10 @@ export const Program5 = lazy(() => import(/* webpackChunkName: "Program5" */'@vi
 export const Program6 = lazy(() => import(/* webpackChunkName: "Program6" */'@views/Examination/list/Program6'))
 export const Program7 = lazy(() => import(/* webpackChunkName: "Program7" */'@views/Examination/list/Program7'))
 export const Program8 = lazy(() => import(/* webpackChunkName: "Program8" */'@views/Examination/list/Program8'))
+
+
+// Native 
+export const ReactNative = lazy(() => import(/* webpackChunkName: "ReactNative" */'@views/Native/list/ReactNative'))
+export const Flutter = lazy(() => import(/* webpackChunkName: "Flutter" */'@views/Native/list/Flutter'))
+export const Electron = lazy(() => import(/* webpackChunkName: "Electron" */'@views/Native/list/Electron'))
+

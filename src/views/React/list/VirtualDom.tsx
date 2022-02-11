@@ -4,12 +4,8 @@ import Highlight from '@components/HighLight'
 import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Tooltip, Tag } from 'antd'
 
 import { Wrap } from '@components/Base'
-import PreviewImg from '@components/previewImg'
-import VirtualDomImg from '@images/react-event.jpg'
-import VirtualDomImg2 from '@images/react-event2.jpg'
-import VirtualDomImg3 from '@images/react-event3.jpg'
 
-import { _useState } from './example'
+import { _useState, createDom } from './example'
 const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
 const VirtualDom = () => (
@@ -21,8 +17,8 @@ const VirtualDom = () => (
                     <Space direction="vertical">
                         <Title level={4}>React16之前组件渲染更新的时候，分为2个阶段</Title>
                         <ul>
-                            <li>调和阶段（Reconciler）： React会自顶向下通过递归，遍历新数据生成的Virtual DOM，然后通过Diff算法，找到需要变更的元素（patch），放到更新队列里</li>
-                            <li>渲染阶段（Renderer）：遍历更新队列，调用宿主环境的API，实际更新渲染对应元素。例例如WEB、Native、WebGL</li>
+                            <li>调和阶段（Reconciler）:  React会自顶向下通过递归，遍历新数据生成的Virtual DOM，然后通过Diff算法，找到需要变更的元素（patch），放到更新队列里</li>
+                            <li>渲染阶段（Renderer）: 遍历更新队列，调用宿主环境的API，实际更新渲染对应元素。例例如WEB、Native、WebGL</li>
                         </ul>
                         <Text>在调和阶段，由于采用递归的遍历方式（Stack Reconciler），任务一旦开始，就无法中断，JS将一直占用主线程，直到整颗Virtual DOM树计算完成，才把执行权交给渲染引擎</Text>
                     </Space>
@@ -34,7 +30,7 @@ const VirtualDom = () => (
                         <Text>如果把渲染更新过程拆分成多个子任务，每次只做一小部分，做完看是否有剩余时间，如果有，继续执行下一部分</Text>
                         <Text>如果没有，挂起当前任务，将事件控制权交给主线程，等主线程不忙的时候再继续执行。</Text>
                         <Text>这种策略叫做 Cooperative Scheduling（合作式调度），操作系统常用
-                            <Tooltip title="操作系统常用任务调度策略：先来先服务（FCFS）调度算法、短作业（进程）优先调度算法（SJ/PF）、最高优先权优先调度算法（FPF）、高响应比优先调度算法（HRN）、时间片轮转法（RR）、多级队列反馈法">
+                            <Tooltip title="操作系统常用任务调度策略: 先来先服务（FCFS）调度算法、短作业（进程）优先调度算法（SJ/PF）、最高优先权优先调度算法（FPF）、高响应比优先调度算法（HRN）、时间片轮转法（RR）、多级队列反馈法">
                                 <Tag color="#2db7f5">任务调度策略</Tag>
                             </Tooltip>之一。</Text>
                         <ul>
@@ -81,7 +77,7 @@ const VirtualDom = () => (
                                 第一部分从 ReactDOM.render() 方法开始，把接收的 React Element 转换为 Fiber 节点，并为其设置优先级，创建 Update，加入到更新队列，这部分主要是做一些初始数据的准备。
                             </li>
                             <li>
-                                第二部分主要是三个函数：scheduleWork、requestWork、performWork，即安排工作、申请工作、正式工作三部曲，React 16 新增的异步调用的功能则在这部分实现，这部分就是 Schedule 阶段，前面介绍的 Cooperative Scheduling 就是在这个阶段，只有在这个解决获取到可执行的时间片，第三部分才会继续执行。具体是如何调度的，后面文章再介绍，这是 React 调度的关键过程。
+                                第二部分主要是三个函数: scheduleWork、requestWork、performWork，即安排工作、申请工作、正式工作三部曲，React 16 新增的异步调用的功能则在这部分实现，这部分就是 Schedule 阶段，前面介绍的 Cooperative Scheduling 就是在这个阶段，只有在这个解决获取到可执行的时间片，第三部分才会继续执行。具体是如何调度的，后面文章再介绍，这是 React 调度的关键过程。
                             </li>
                             <li>
                                 第三部分是一个大循环，遍历所有的 Fiber 节点，通过 Diff 算法计算所有更新工作，产出 EffectList 给到 commit 阶段使用，这部分的核心是 beginWork 函数，这部分基本就是FiberReconciler ，包括reconciliation 和 commit阶段。
@@ -95,7 +91,7 @@ const VirtualDom = () => (
                         <Title level={4}>二、Fiber Reconciler</Title>
                         <Text mark>Fiber Reconciler是React里的调和器，这也是任务调度完成之后，如何去执行每个任务，如何去更新每一个节点的过程，对应上面的第三部分。</Text>
 
-                        <Text mark>Reconciler过程：</Text>
+                        <Text mark>Reconciler过程: </Text>
                         <ul>
                             <li>（可中断）render/reconciliation 通过构造 WorkInProgress Tree 得出 Change。</li>
                             <li>（不可中断）commit 应用这些DOM change。</li>
@@ -143,7 +139,7 @@ const VirtualDom = () => (
                         <Text>Fiber Tree 一个重要的特点是链表结构，将递归遍历编程循环遍历，然后配合 requestIdleCallback API, 实现任务拆分、中断与恢复。</Text>
                         <Text>通过Fiber Node的父节点、子节点、兄弟节点构成了链表结构</Text>
 
-                        <Text>WorkInProgress Tree：反映了要刷新到屏幕的未来状态</Text>
+                        <Text>WorkInProgress Tree: 反映了要刷新到屏幕的未来状态</Text>
                         <Text>WorkInProgress Tree 构造完毕，得到的就是新的 Fiber Tree，然后喜新厌旧（把 current 指针指向WorkInProgress Tree，丢掉旧的 Fiber Tree）就好了</Text>
                         <Text>每个 Fiber上都有个alternate属性，也指向一个 Fiber，创建 WorkInProgress 节点时优先取alternate，没有的话就创建一个</Text>
                         <Text>创建 WorkInProgress Tree 的过程也是一个 Diff 的过程，Diff 完成之后会生成一个 Effect List，这个 Effect List 就是最终 Commit 阶段用来处理副作用的阶段</Text>
@@ -184,18 +180,18 @@ const VirtualDom = () => (
                             <li><Text>useEffect 也一样具有Capture Value的特性</Text></li>
                             <li><Text>利用useRef可以绕过Capture Value特性，ref在render中保持了唯一的引用，对ref的取值和赋值拿到的都是最终状态</Text> </li>
                             <li>
-                                <Text>回收机制：组件被销毁时，通过useEffect注册的监听事件也要被销毁，通过useEffect的return返回值做到</Text>
+                                <Text>回收机制: 组件被销毁时，通过useEffect注册的监听事件也要被销毁，通过useEffect的return返回值做到</Text>
                             </li>
-                            <li><Text>优化：通过useEffect的第二个参数告诉React用到哪些外部变量，制定变量更新是才会再次执行useEffect</Text></li>
+                            <li><Text>优化: 通过useEffect的第二个参数告诉React用到哪些外部变量，制定变量更新是才会再次执行useEffect</Text></li>
                             <li><Text>通过useReducer节耦useEffect的更新与操作，但是是绕过了diff算法</Text></li>
-                            <li><Text mark>性能：useEffect在渲染结束时执行，所以不会阻塞浏览器渲染进程</Text></li>
+                            <li><Text mark>性能: useEffect在渲染结束时执行，所以不会阻塞浏览器渲染进程</Text></li>
                             <li><Text mark>符合React fiber的特性，Fiber会根据情况暂停或插入执行不同组件的Render，如果代码遵循Capture Value的特性，在Fiber环境下能保证值的安全访问，弱化生命周期也能解决执行中断的问题</Text></li>
                         </ul>
                         <Title level={4}>effect渲染流程</Title>
                         <ul>
-                            <li><Text mark>mount阶段：执行了mountEffect，执行pushEffect,创建一个新的effect，跟之前的effect通过next链接成一个环形链表，用于顺序执行</Text></li>
+                            <li><Text mark>mount阶段: 执行了mountEffect，执行pushEffect,创建一个新的effect，跟之前的effect通过next链接成一个环形链表，用于顺序执行</Text></li>
                             <li>
-                                update阶段：
+                                update阶段: 
                                 <ul>
                                     <li><Text mark>1. 调用dispatchAction，创建一个update，绑定到hooks.queue上，通过链表next指向</Text></li>
                                     <li><Text mark>2. 执行到updateEffectImpl</Text></li>
@@ -216,7 +212,7 @@ const VirtualDom = () => (
                         <Text>fiber解决的是调度问题</Text>
                         <Text mark>用户交互属于高优先级，尽快响应，diff操作优先级低</Text>
                         <Text mark>fiber将diff递归操作变成遍历操作，类似链表操作，返回子节点</Text>
-                        <Text>浏览器API：requestIdleCallback方法将在浏览器的空闲时段内调用函数做异步diff。这使开发者能够在主事件循环上执行后台和低优先级工作，而不会影响延迟关键事件，如动画和输入响应。</Text>
+                        <Text>浏览器API: requestIdleCallback方法将在浏览器的空闲时段内调用函数做异步diff。这使开发者能够在主事件循环上执行后台和低优先级工作，而不会影响延迟关键事件，如动画和输入响应。</Text>
                         <ul>
                             <li><Text>每一个fiber都分配一个expirationTime属性</Text></li>
                             <li><Text>使用lane取代expirationTime？？？</Text></li>
@@ -239,47 +235,51 @@ const VirtualDom = () => (
 
         <Wrap>
             <Title level={3}>VirtualDom</Title>
-            <Collapse defaultActiveKey="" ghost>
-                <Panel header="VirtualDom" key="1">
+            <Text>VirtualDom: 使用 JavaScript对象去描述DOM</Text>
+            <ul>
+                <li>1. 维护一个使用JS对象去表示的Virtual DOM,与真实DOM 一一对应</li>
+                <li>2. 更新时，前后两个Virtual DOM 做diff, 生成变更（Mutation）</li>
+                <li>3. 把变更应用于真实DOM，生成新的真实DOM</li>
+            </ul>
+            <Collapse ghost>
+                <Panel header="createDom" key="1">
                     <Space direction="vertical">
-                        <Text>VirtualDom：使用 JavaScript对象去描述DOM</Text>
-                        <ul>
-                            <li>1. 维护一个使用JS对象去表示的Virtual DOM,与真实DOM 一一对应</li>
-                            <li>2. 更新时，前后两个Virtual DOM 做diff, 生成变更（Mutation）</li>
-                            <li>3. 把变更应用于真实DOM，生成新的真实DOM</li>
-                        </ul>
-
-                        <Card title="性能">
-                            <ul>
-                                <li><Text>VirtualDom和diff 算法是为了解决由命令式编程变成转变为声明式编程、数据驱动带来的性能问题</Text></li>
-                                <li><Text mark>直接操作DOM的性能不会低于VirtualDom和diff算法，甚至还会优于</Text></li>
-                                <li><Text>diff算法比较过程也会消耗性能。直接操作DOM 不需要比较过程</Text></li>
-                                <li><Text>VirtualDom和diff算法的强处，是在数据不论怎么变化，都以最小的代价更新DOM。在内存中用心的数据刷新一个VirtualDom，然后新旧VirtualDom对比，更新到DOM树上</Text></li>
-                                <li><Text>意义在于覆盖底层DOM操作，以声明式的方法描述目的。代码维护性高。</Text></li>
-                            </ul>
-                        </Card>
-
-                        <Card title="VirtualDom的作用">
-                            <ul>
-                                <li>Virtual DOM 在牺牲部分性能前提下，增加了可维护性</li>
-                                <li>实现了对DOM的集中操作，在数据改变时，线修改VirtualDom，再反映到真实DOM中，以最小的代价更新DOM</li>
-                                <li>可以使用函数式UI</li>
-                                <li>可以渲染DOM意外的端，跨平台使用，例如RN</li>
-                                <li>更好的使用SSR，同构渲染</li>
-                                <li>组件的高度抽象化</li>
-                            </ul>
-                        </Card>
-
-                        <Card title="VirtualDom的缺点">
-                            <ul>
-                                <li>首次渲染，多了一层VirtualDom的计算，比innerHTML慢</li>
-                                <li>需要在内存中维护一份VirtualDom的备份</li>
-                                <li>VirtualDom需要花费事件去处理计算</li>
-                            </ul>
-                        </Card>
+                        <Highlight>{createDom}</Highlight>
                     </Space>
                 </Panel>
-                <Panel header="DIFF" key="2">
+                <Panel header="性能" key="2">
+                    <Space direction="vertical">
+                        <ul>
+                            <li><Text>VirtualDom和diff 算法是为了解决由命令式编程变成转变为声明式编程、数据驱动带来的性能问题</Text></li>
+                            <li><Text mark>直接操作DOM的性能不会低于VirtualDom和diff算法，甚至还会优于</Text></li>
+                            <li><Text>diff算法比较过程也会消耗性能。直接操作DOM 不需要比较过程</Text></li>
+                            <li><Text>VirtualDom和diff算法的强处，是在数据不论怎么变化，都以最小的代价更新DOM。在内存中用心的数据刷新一个VirtualDom，然后新旧VirtualDom对比，更新到DOM树上</Text></li>
+                            <li><Text>意义在于覆盖底层DOM操作，以声明式的方法描述目的。代码维护性高。</Text></li>
+                        </ul>
+                    </Space>
+                </Panel>
+                <Panel header="VirtualDom的作用" key="3">
+                    <Space direction="vertical">
+                        <ul>
+                            <li>Virtual DOM 在牺牲部分性能前提下，增加了可维护性</li>
+                            <li>实现了对DOM的集中操作，在数据改变时，线修改VirtualDom，再反映到真实DOM中，以最小的代价更新DOM</li>
+                            <li>可以使用函数式UI</li>
+                            <li>可以渲染DOM意外的端，跨平台使用，例如RN</li>
+                            <li>更好的使用SSR，同构渲染</li>
+                            <li>组件的高度抽象化</li>
+                        </ul>
+                    </Space>
+                </Panel>
+                <Panel header="VirtualDom的缺点" key="4">
+                    <Space direction="vertical">
+                        <ul>
+                            <li>首次渲染，多了一层VirtualDom的计算，比innerHTML慢</li>
+                            <li>需要在内存中维护一份VirtualDom的备份</li>
+                            <li>VirtualDom需要花费事件去处理计算</li>
+                        </ul>
+                    </Space>
+                </Panel>
+                <Panel header="DIFF" key="5">
                     <Space direction="vertical">
                         <Text mark>更新React 16 Fiber 之后，react的数据结构从树改成了链表结构，diff算法随之修改</Text>
 

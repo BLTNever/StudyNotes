@@ -102,7 +102,7 @@ const AlgoMath = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>剑指 Offer 17.打印从1到最大的n位数{T.EASY}(❌：暂时使用Math.pow的解法，DFS暂缓)</Title>
+                <Title level={3}>剑指 Offer 17.打印从1到最大的n位数{T.EASY}(❌: 暂时使用Math.pow的解法，DFS暂缓)</Title>
                 <Collapse ghost>
                     <Panel header={`输入数字 n，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。
                             示例 1:
@@ -130,8 +130,8 @@ const AlgoMath = () => {
                 <Title level={3}>剑指 Offer II 001.整数除法{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header={`给定两个整数 a 和 b ，求它们的除法的商 a/b ，要求不得使用乘号 '*'、除号 '/' 以及求余符号 '%' 。
-                            注意：
-                            整数除法的结果应当截去（truncate）其小数部分，例如：truncate(8.345) = 8 以及 truncate(-2.7335) = -2
+                            注意: 
+                            整数除法的结果应当截去（truncate）其小数部分，例如: truncate(8.345) = 8 以及 truncate(-2.7335) = -2
                             假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−231, 231−1]。本题中，如果除法结果溢出，则返回 231 − 1`} key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.divide}</Highlight>
@@ -143,7 +143,7 @@ const AlgoMath = () => {
             <Wrap>
                 <Title level={3}>面试题 16.17.连续数列{T.EASY}</Title>
                 <Collapse ghost>
-                    <Panel header="给定一个整数数组，找出总和最大的连续数列，并返回总和。进阶：如果你已经实现复杂度为 O(n) 的解法，尝试使用更为精妙的分治法求解" key="1">
+                    <Panel header="给定一个整数数组，找出总和最大的连续数列，并返回总和。进阶: 如果你已经实现复杂度为 O(n) 的解法，尝试使用更为精妙的分治法求解" key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.maxSubArray}</Highlight>
                         </Space>
@@ -154,7 +154,7 @@ const AlgoMath = () => {
             <Wrap>
                 <Title level={3}>18.四数之和{T.MEDIUM}</Title>
                 <Collapse ghost>
-                    <Panel header={`给你一个由 n 个整数组成的数组 nums ，和一个目标值 target 。请你找出并返回满足下述全部条件且不重复的四元组 [nums[a], nums[b], nums[c], nums[d]] （若两个四元组元素一一对应，则认为两个四元组重复）：
+                    <Panel header={`给你一个由 n 个整数组成的数组 nums ，和一个目标值 target 。请你找出并返回满足下述全部条件且不重复的四元组 [nums[a], nums[b], nums[c], nums[d]] （若两个四元组元素一一对应，则认为两个四元组重复）: 
                         0 <= a, b, c, d < n
                         a、b、c 和 d 互不相同
                         nums[a] + nums[b] + nums[c] + nums[d] == target

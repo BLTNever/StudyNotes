@@ -119,7 +119,7 @@ const AlgoString = () => {
                 <Title level={3}>1961.检查字符串是否为数组前缀{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个字符串 s 和一个字符串数组 words ，请你判断 s 是否为 words 的 前缀字符串 。
-                            字符串 s 要成为 words 的 前缀字符串 ，需要满足：s 可以由 words 中的前 k（k 为 正数 ）个字符串按顺序相连得到，且 k 不超过 words.length 。
+                            字符串 s 要成为 words 的 前缀字符串 ，需要满足: s 可以由 words 中的前 k（k 为 正数 ）个字符串按顺序相连得到，且 k 不超过 words.length 。
                             如果 s 是 words 的 前缀字符串 ，返回 true ；否则，返回 false " key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.isPrefixString}</Highlight>
@@ -181,7 +181,7 @@ const AlgoString = () => {
                 <Title level={3}>2042.检查句子中的数字是否递增{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="句子是由若干 token 组成的一个列表，token 间用 单个 空格分隔，句子没有前导或尾随空格。每个 token 要么是一个由数字 0-9 组成的不含前导零的 正整数 ，要么是一个由小写英文字母组成的 单词 。
-                            示例，'a puppy has 2 eyes 4 legs' 是一个由 7 个 token 组成的句子：'2' 和 '4' 是数字，其他像 'puppy' 这样的 tokens 属于单词。
+                            示例，'a puppy has 2 eyes 4 legs' 是一个由 7 个 token 组成的句子: '2' 和 '4' 是数字，其他像 'puppy' 这样的 tokens 属于单词。
                             给你一个表示句子的字符串 s ，你需要检查 s 中的 全部 数字是否从左到右严格递增（即，除了最后一个数字，s 中的 每个 数字都严格小于它 右侧 的数字）。
                             如果满足题目要求，返回 true ，否则，返回 false 。。"key="1">
                         <Space direction="vertical">
@@ -195,11 +195,11 @@ const AlgoString = () => {
                 <Title level={3}>2047.句子中的有效单词数{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header={`句子仅由小写字母（'a' 到 'z'）、数字（'0' 到 '9'）、连字符（'-'）、标点符号（'!'、'.' 和 ','）以及空格（' '）组成。每个句子可以根据空格分解成 一个或者多个 token ，这些 token 之间由一个或者多个空格 ' ' 分隔。
-                            如果一个 token 同时满足下述条件，则认为这个 token 是一个有效单词：
+                            如果一个 token 同时满足下述条件，则认为这个 token 是一个有效单词: 
                             仅由小写字母、连字符和/或标点（不含数字）。
                             至多一个 连字符 '-' 。如果存在，连字符两侧应当都存在小写字母（"a-b" 是一个有效单词，但 "-ab" 和 "ab-" 不是有效单词）。
                             至多一个 标点符号。如果存在，标点符号应当位于 token 的 末尾 。
-                            这里给出几个有效单词的例子："a-b."、"afad"、"ba-c"、"a!" 和 "!" 。
+                            这里给出几个有效单词的例子: "a-b."、"afad"、"ba-c"、"a!" 和 "!" 。
                             给你一个字符串 sentence ，请你找出并返回 sentence 中 有效单词的数目 。`} key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.countValidWords}</Highlight>
@@ -263,7 +263,7 @@ const AlgoString = () => {
                 <Title level={3}>859.亲密字符串{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header={`给你两个字符串 s 和 goal ，只要我们可以通过交换 s 中的两个字母得到与 goal 相等的结果，就返回 true ；否则返回 false 。
-                            交换字母的定义是：取两个下标 i 和 j （下标从 0 开始）且满足 i != j ，接着交换 s[i] 和 s[j] 处的字符。
+                            交换字母的定义是: 取两个下标 i 和 j （下标从 0 开始）且满足 i != j ，接着交换 s[i] 和 s[j] 处的字符。
                             例如，在 "abcd" 中交换下标 0 和下标 2 的元素可以生成 "cbad" 。`} key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.buddyStrings}</Highlight>
@@ -303,13 +303,13 @@ const AlgoString = () => {
                 <Title level={3}>2116.判断一个括号字符串是否有效{T.MEDIUM}❌不是太理解{T.COUNT}</Title>
                 <Collapse ghost>
                     <Panel header={<div>
-                        <p>一个括号字符串是只由 `&apos;(`&apos; 和 `&apos;)`&apos; 组成的 非空 字符串。如果一个字符串满足下面 任意 一个条件，那么它就是有效的：</p>
+                        <p>一个括号字符串是只由 `&apos;(`&apos; 和 `&apos;)`&apos; 组成的 非空 字符串。如果一个字符串满足下面 任意 一个条件，那么它就是有效的: </p>
                         <ul>
                             <li>字符串为 ().</li>
                             <li>它可以表示为 AB（A 与 B 连接），其中A 和 B 都是有效括号字符串。</li>
                             <li>它可以表示为 (A) ，其中 A 是一个有效括号字符串。</li>
                         </ul>
-                        <p>给你一个括号字符串 s 和一个字符串 locked ，两者长度都为 n 。locked 是一个二进制字符串，只包含 `&apos;0`&apos; 和 `&apos;1`&apos; 。对于 locked 中 每一个 下标 i ：</p>
+                        <p>给你一个括号字符串 s 和一个字符串 locked ，两者长度都为 n 。locked 是一个二进制字符串，只包含 `&apos;0`&apos; 和 `&apos;1`&apos; 。对于 locked 中 每一个 下标 i : </p>
                         <ul>
                             <li>如果 locked[i] 是 `&apos;1`&apos; ，你 不能 改变 s[i] 。</li>
                             <li>`如果 locked[i] 是 `&apos;0`&apos; ，你 可以 将 s[i] 变为 `&apos;(`&apos; 或者 `&apos;)`&apos;`</li>

@@ -19,14 +19,14 @@ const Interview6 = () => {
             <Wrap>
                 <Title level={3}>css/html/适配</Title>
                 <Collapse ghost>
-                    <Panel header="BFC理解：" key="1">
+                    <Panel header="BFC理解: " key="1">
                         <Space direction="vertical">
                             <ul>
-                                <li><Text>常见定位方案：1.普通流-从上往下。2.浮动-向左或向右，文本环绕。3.绝对定位-脱离普通流不会对其他元素造成影响</Text></li>
-                                <li><Text>BFC：Block Formatting Contexts (块级格式化上下文)，属于普通流。</Text></li>
+                                <li><Text>常见定位方案: 1.普通流-从上往下。2.浮动-向左或向右，文本环绕。3.绝对定位-脱离普通流不会对其他元素造成影响</Text></li>
+                                <li><Text>BFC: Block Formatting Contexts (块级格式化上下文)，属于普通流。</Text></li>
                                 <li><Text>BFC是一种独立的容器， 容器内的元素在布局上不会影响外面的元素</Text></li>
-                                <li><Text>BFC触发：body元素、浮动float元素除none以外、绝对定位元素、display为inline-block，table-cell，flex、overflow除hidden以外的元素</Text></li>
-                                <li><Text>BFC特性以及应用：同一个BFC下元素上下边距折叠、清除浮动、组织被float元素覆盖</Text></li>
+                                <li><Text>BFC触发: body元素、浮动float元素除none以外、绝对定位元素、display为inline-block，table-cell，flex、overflow除hidden以外的元素</Text></li>
+                                <li><Text>BFC特性以及应用: 同一个BFC下元素上下边距折叠、清除浮动、组织被float元素覆盖</Text></li>
                             </ul>
                         </Space>
                     </Panel>
@@ -43,10 +43,10 @@ const Interview6 = () => {
                                 <li><Text mark>flex，grid</Text></li>
                             </ul>
 
-                            <Text>1. rem原理：</Text>
+                            <Text>1. rem原理: </Text>
                             <Text>rem是一个相对单位，通过设置根元素html的font-size大小计算元素宽高</Text>
                             <Text>设置font-size 10px</Text>
-                            <Text mark>rem 与 em 的区别：rem 参考根元素的font-size，em参考自己的font-size，也可能是继承得来的</Text>
+                            <Text mark>rem 与 em 的区别: rem 参考根元素的font-size，em参考自己的font-size，也可能是继承得来的</Text>
 
                             <Text>2. vm、vh:</Text>
                             <Text>将视口分为100份</Text>

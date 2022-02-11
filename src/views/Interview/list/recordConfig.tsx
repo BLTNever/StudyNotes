@@ -28,22 +28,22 @@ const popover3 = <ul>
     <li>2. 不要滥用 Contex: 粗粒度地订阅 Context</li>
 </ul>
 const es5Extends = `
-function Human(name) {    // 创建一个 Human 构造函数
+function Person(name) {    // 创建一个 Person 构造函数
     this.name = name
 }
-Human.prototype.run = function () {
-    console.log('I can run')
+Person.prototype.run = function () {
+    console.log('run')
 }
   
 function Man(name) {    // 创建一个 Man 构造函数
-    Human.call(this, name)
-    this.gender = '男'
+    Person.call(this, name)
+    this.gender = 'man'
 }
 Man.prototype.fight = function () {
-    console.log('I can fight')
+    console.log('fight')
 }
   
-Man.prototype.__proto__ = Human.prototype    // 让 Man 的原型对象的 proto 指向 Human 的原型对象
+Man.prototype.__proto__ = Person.prototype    // 让 Man 的原型对象的 proto 指向 Person 的原型对象
 `
 
 const promiseAsync1 = `
@@ -71,7 +71,7 @@ export const dataReact = [
             <li>virtual Dom是一种编程方式，它以对象的形式保存在内存中，它描述了我们dom的必要信息。</li>
             <li>并且用类似react-dom等模块与真实dom同步，这一过程也叫协调(reconciler)，这种方式可以声明式的渲染相应的ui状态，让我们从dom操作中解放出来</li>
             <li>在react中是以fiber树的形式存放组件树的相关信息，在更新时可以增量渲染相关dom，所以fiber也是virtual Dom实现的一部分</li>
-            <li><Link to="react/Source">Virtual Dom</Link></li>
+            <li><Link to="/react/Detail#virtualDom">Virtual Dom</Link></li>
         </ul>
     },
     {
@@ -166,7 +166,7 @@ export const dataRedux = [
     {
         Q: 'redux 异步中间件有什么什么作用', K: <Tag color="volcano">redux</Tag>,
         ans: <ul>
-            <li>{'自定义拦截 action -> reducer 的过程。变为 action -> middlewares -> reducer'}</li>
+            <li>自定义拦截 action → reducer 的过程。变为 action → middlewares → reducer</li>
             <li>这种机制可以让我们改变数据流，实现如异步 action ，action 过滤，日志输出，异常报告等功能</li>
         </ul>
     },]
@@ -339,7 +339,7 @@ export const dataDom = [
             <li>TLS 握手: 生成对称密钥</li>
             <li>服务器返回资源</li>
             <li>解析 —— HTML（对 HTML 文档进行解析，生成解析树（DOM树）），CSS（CSS文件都被解析成一个样式表对象（StyleSheet object）），JS</li>
-            <li>{`渲染 —— 构建 DOM 树 -> 渲染 -> 布局 -> 绘制`}</li>
+            <li>渲染 —— 构建 DOM 树 → 渲染 → 布局 → 绘制</li>
         </ul>,
     },
     {
@@ -363,6 +363,7 @@ export const dataDom = [
                         <li>当分配对象时先从from对象分配</li>
                         <li>当开始垃圾回收时会检查from空间的存活对象，这些存活对象会被复制到to空间中，非活对象的空间被释放。完成复制后，from和to会进行角色交换。</li>
                         <li>当一个对象多次复制后依然存活，那么它将被认为是存活周期较长的对象，随后它将被移动到老生代中，采用新的算法管理。对象从新生代移动到老生代的过程称为晋升</li>
+                        <li>从初始的根对象（window，global）的指针开始，这个根指针对象被称为根集（root set），从这个根集向下搜索其子节点，被搜索到的子节点说明该节点的引用对象可达，并为其留下标记，然后递归这个搜索的过程，直到所有子节点都被遍历结束，那么没有被标记的对象节点，说明该对象没有被任何地方引用，可以证明这是一个需要被释放内存的对象，可以被垃圾回收器回收。</li>
                     </ul>
                 </li>
             </ul>
@@ -407,7 +408,7 @@ export const dataDom = [
     {
         Q: '渲染合成层是什么', K: <><Tag color="green">渲染合成层</Tag><Tag color="#f50">浏览器</Tag></>,
         ans: <ul>
-            <p>浏览器渲染（webkit）: {`构建DOM树 -> 构建CSS树 -> 构建Render树 -> 布局Render树 -> 绘制Render树 -> 渲染层合并`}</p>
+            <p>浏览器渲染（webkit）: 构建DOM树 → 构建CSS树 → 构建Render树 → 布局Render树 → 绘制Render树 → 渲染层合并</p>
             <li>合成层（Compositing Layer）: 合成就是将页面的各个部分分成多个层、单独光栅化（浏览器根据文档的结构、每个元素的样式、页面的几何形状和绘制顺序转换为屏幕上的像素的过程）它们并在合成器线程中合成为一个页面的技术</li>
             <li>如何提升为合成层: 设置 transform: translateZ(0)、backface-visibility: hidden 、will-change（opacity、transform、top、left、bottom、right）、video、canvas、iframe 等元素</li>
             <li>隐式合成: 一个或多个非合成元素应出现在堆叠顺序上的合成元素之上，会被提升为合成层</li>
@@ -589,23 +590,11 @@ export const dataWebpack = [
             <li>作用: 当 Javascript 项目达到一定体积时，将代码分成模块会更易于管理。但是，当这样做时，我们最终可能会导入实际上未使用的代码</li>
             <li>tree-shaking的消除原理是依赖于ES6的模块特性（只能作为模块顶层的语句出现、import 的模块名只能是字符串常量、import binding 是 immutable的）</li>
             <li>开启Tree Shaking: 1.使用 ESM 规范编写代码、2.配置 optimization.usedExports 为 true</li>
-            <li>原理: uglify完成了javascript的DCE（dead code elimination）
-                <ul>
-                    <li>Make 阶段，收集模块导出变量并记录到模块依赖关系图 ModuleGraph 变量中</li>
-                    <li>Seal 阶段，遍历 ModuleGraph 标记模块导出变量有没有被使用</li>
-                    <li>生成产物时，若变量没有被其它模块使用则删除对应的导出语句</li>
-                </ul>
-            </li>
-            <li>副作用: uglify不进行程序流分析，所以不能排除有可能有副作用的代码（未引用的类）</li>
         </ul>,
     },
     {
         Q: 'uglify原理的是什么', K: <><Tag color="volcano">uglify</Tag><Tag color="blue">webpack</Tag></>,
         ans: <ul>
-            <li>解释: Tree Shaking 是一种通过消除最终文件中未使用的代码来优化体积的方法</li>
-            <li>作用: 当 Javascript 项目达到一定体积时，将代码分成模块会更易于管理。但是，当这样做时，我们最终可能会导入实际上未使用的代码</li>
-            <li>tree-shaking的消除原理是依赖于ES6的模块特性（只能作为模块顶层的语句出现、import 的模块名只能是字符串常量、import binding 是 immutable的）</li>
-            <li>开启Tree Shaking: 1.使用 ESM 规范编写代码、2.配置 optimization.usedExports 为 true</li>
             <li>原理: uglify完成了javascript的DCE（dead code elimination）
                 <ul>
                     <li>Make 阶段，收集模块导出变量并记录到模块依赖关系图 ModuleGraph 变量中</li>
@@ -638,8 +627,8 @@ export const dataWebpack = [
     {
         Q: 'webpack工作流程是怎样的', K: <Tag color="blue">webpack</Tag>,
         ans: <ul>
-            <Link to="/interview/webpack">详解</Link>
-            <a href="https://zhuanlan.zhihu.com/p/363928061">详解2</a>
+            <p><Link to="/interview/webpack">详解</Link></p>
+            <a target="_blank" href="https://zhuanlan.zhihu.com/p/363928061">详解2</a>
             <li>1. 初始化参数: 从配置文件和shell语句中读取并合并参数，得出最终参数</li>
             <li>2. 开始编译: 从第一步得到的参数<b>初始化Compiler对象</b>，<b>加载所有配置的插件（Plugins）</b>，执行<b>Compiler对象的run方法</b>开始执行编译</li>
             <li>3. 确定入口: 根据<b>配置中的Entry找到所有的入口文件</b></li>

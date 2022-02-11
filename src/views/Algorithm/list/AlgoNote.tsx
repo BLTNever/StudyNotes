@@ -53,7 +53,7 @@ const AlgoNote = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>数据转换：数组-树</Title>
+                <Title level={3}>数据转换: 数组-树</Title>
                 <Collapse ghost>
                     <Panel header="一维数组转成树的结构" key="1">
                         <Space direction="vertical">
@@ -125,12 +125,12 @@ const AlgoNote = () => {
             <Wrap>
                 <Title level={3}>树的遍历有几种方式，实现层次遍历</Title>
                 <Collapse ghost>
-                    <Panel header="遍历方式：1.前序遍历、2.中序遍历、3.后序遍历、4.层次遍历" key="1">
+                    <Panel header="遍历方式: 1.前序遍历、2.中序遍历、3.后序遍历、4.层次遍历" key="1">
                         <Space direction="vertical">
                             <ul>
-                                <li>前序：根 -&gt; 左 -&gt; 右</li>
-                                <li>中序：左 -&gt; 根 -&gt; 右</li>
-                                <li>后序：左 -&gt; 右 -&gt; 根</li>
+                                <li>前序: 根 -&gt; 左 -&gt; 右</li>
+                                <li>中序: 左 -&gt; 根 -&gt; 右</li>
+                                <li>后序: 左 -&gt; 右 -&gt; 根</li>
                             </ul>
                             <Row>
                                 <Col span={12}><Card><Highlight language="javascript">{traversal1}</Highlight></Card></Col>

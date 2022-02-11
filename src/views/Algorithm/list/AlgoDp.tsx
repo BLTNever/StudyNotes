@@ -58,7 +58,7 @@ const AlgoDp = () => {
             <Wrap id="fib1">
                 <Title level={3}>509.斐波那契数{T.EASY}{T.DP}</Title>
                 <Collapse ghost>
-                    <Panel header="斐波那契数，通常用 F(n) 表示，形成的序列称为 斐波那契数列 。该数列由 0 和 1 开始，后面的每一项数字都是前面两项数字的和。也就是：
+                    <Panel header="斐波那契数，通常用 F(n) 表示，形成的序列称为 斐波那契数列 。该数列由 0 和 1 开始，后面的每一项数字都是前面两项数字的和。也就是: 
                             F(0) = 0，F(1) = 1
                             F(n) = F(n - 1) + F(n - 2)，其中 n > 1
                             给你 n ，请计算 F(n) 。" key="1">
@@ -84,7 +84,7 @@ const AlgoDp = () => {
             <Wrap>
                 <Title level={3}>剑指 Offer 10- I.斐波那契数列{T.EASY}{T.DP}</Title>
                 <Collapse ghost>
-                    <Panel header="写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项（即 F(N)）。答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1" key="1">
+                    <Panel header="写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项（即 F(N)）。答案需要取模 1e9+7（1000000007），如计算初始结果为: 1000000008，请返回 1" key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.fib}</Highlight>
                         </Space>
@@ -96,7 +96,7 @@ const AlgoDp = () => {
                 <Title level={3}>剑指 Offer 10- II.青蛙跳台阶问题{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header={`一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。
-                            答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。`} key="1">
+                            答案需要取模 1e9+7（1000000007），如计算初始结果为: 1000000008，请返回 1。`} key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.numWays}</Highlight>
                         </Space>

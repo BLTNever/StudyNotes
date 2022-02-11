@@ -499,7 +499,7 @@ function Promise(executor) {
     }
     
     /**
-     * resolve中的值几种情况：
+     * resolve中的值几种情况: 
      * 1.普通值
      * 2.promise对象
      * 3.thenable对象/函数
@@ -673,7 +673,7 @@ function curry(...rest) {
 }
 alert(curry(1)(1, 2, 3)(2))
 
-// 或者使用arguments（注意：箭头函数没有arguments）
+// 或者使用arguments（注意: 箭头函数没有arguments）
 function curry() {
     let args = Array.prototype.slice.call(arguments)
     const add = function () {

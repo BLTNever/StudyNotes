@@ -17,8 +17,8 @@ const ExecuteStack = () => (
             <Title level={3}>JS代码执行过程</Title>
             <ul>
                 <li><Text mark>1. JS执行过程分为代码编译阶段、代码执行阶段</Text></li>
-                <li><Text>2. 代码编译阶段：由编译器完成，将代码翻译成可执行代码，这个阶段确定<Text mark>作用域规则</Text></Text></li>
-                <li><Text>3. 代码执行阶段：由引擎完成，执行可执行代码，这个阶段创建<Text mark>执行上下文</Text></Text></li>
+                <li><Text>2. 代码编译阶段: 由编译器完成，将代码翻译成可执行代码，这个阶段确定<Text mark>作用域规则</Text></Text></li>
+                <li><Text>3. 代码执行阶段: 由引擎完成，执行可执行代码，这个阶段创建<Text mark>执行上下文</Text></Text></li>
             </ul>
         </Wrap>
 
@@ -31,7 +31,7 @@ const ExecuteStack = () => (
                         <Title level={4}>执行上下文的类型:</Title>
                         <ul>
                             <li>
-                                <Text>1. 全局执行上下文:这是默认或者说基础的上下文，任何不在函数内部的代码都在全局上下文中。它会执行两件事：</Text>
+                                <Text>1. 全局执行上下文:这是默认或者说基础的上下文，任何不在函数内部的代码都在全局上下文中。它会执行两件事: </Text>
                                 <ul>
                                     <li><Text>1.1 创建一个全局的 window 对象（浏览器的情况下）</Text></li>
                                     <li><Text>1.2 设置 this 的值等于这个全局对象。一个程序中只会有一个全局执行上下文。</Text></li>
@@ -56,7 +56,7 @@ const ExecuteStack = () => (
         </Wrap>
 
         <Wrap>
-            <PageHeader title="怎么创建执行上下文？" subTitle="创建执行上下文有两个阶段：1) 创建阶段 和 2) 执行阶段" />
+            <PageHeader title="怎么创建执行上下文？" subTitle="创建执行上下文有两个阶段: 1) 创建阶段 和 2) 执行阶段" />
             <Collapse defaultActiveKey="" ghost>
                 <Panel header="创建阶段" key="1">
                     <Row gutter={24}>

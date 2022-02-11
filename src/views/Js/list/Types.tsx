@@ -66,7 +66,7 @@ const Types = () => (
                 <Panel header="区别" key="1">
                     <Row gutter={24}>
                         <Col span={12}>
-                            <Card title="基本类型：">
+                            <Card title="基本类型: ">
                                 <Text> 1、占用空间固定，保存在栈中（当一个方法执行时，每个方法都会建立自己的内存栈，在这个方法内定义的变量将会逐个放入这块栈内存里，随着方法的执行结束，这个方法的内存栈也将自然销毁了。因此，所有在方法中定义的变量都是放在栈内存中的；栈中存储的是基础变量以及一些对象的引用变量，<b>基础变量的值是存储在栈中，而引用变量存储在栈中的是指向堆中的数组或者对象的地址，这就是为何修改引用类型总会影响到其他指向这个地址的引用变量。</b>）</Text>
                                 <Text>2、<b>保存与复制的是值本身</b></Text>
                                 <Text>3、它们是完全独立的拷贝，互不干涉。</Text>
@@ -75,7 +75,7 @@ const Types = () => (
                             </Card>
                         </Col>
                         <Col span={12}>
-                            <Card title="引用类型：">
+                            <Card title="引用类型: ">
                                 <Text>1、占用空间不固定，保存在堆中（当我们在程序中创建一个对象时，这个对象将被保存到运行时数据区中，以便反复利用（因为对象的创建成本通常较大），这个运行时数据区就是堆内存。堆内存中的对象不会随方法的结束而销毁，即使方法结束后，这个对象还可能被另一个引用变量所引用（方法的参数传递时很常见），则这个对象依然不会被销毁，只有当一个对象没有任何引用变量引用它时，系统的垃圾回收机制才会在核实的时候回收它。）</Text>
                                 <Text>2、保存与复制的是指向对象的一个指针</Text>
                                 <Text>3、使用instanceof检测数据类型</Text>
@@ -89,12 +89,12 @@ const Types = () => (
                 <Panel header="图示" key="2">
                     <Row gutter={16}>
                         <Col span={12}>
-                            <Card title="实例：">
+                            <Card title="实例: ">
                                 <Highlight language="javascript">{valueType}</Highlight>
                             </Card>
                         </Col>
                         <Col span={12}>
-                            <Card title="引用传递图示：">
+                            <Card title="引用传递图示: ">
                                 <PreviewImg src={refCopy} />
                             </Card>
                         </Col>
@@ -113,8 +113,8 @@ const Types = () => (
 
                 <Panel header="函数参数" key="4">
                     <Space direction="vertical">
-                        <Text><b>基本类型输入：</b>当我们将基本类型数据传入函数，函数会将这些数据拷贝赋值给函数的参数变量。</Text>
-                        <Text><b>引用类型输入：</b>传入的是一个引用。对该变量的操作将会影响到原本的对象。这样的编程手法将产生附带影响，使得代码的逻辑复杂和可读性变低。</Text>
+                        <Text><b>基本类型输入: </b>当我们将基本类型数据传入函数，函数会将这些数据拷贝赋值给函数的参数变量。</Text>
+                        <Text><b>引用类型输入: </b>传入的是一个引用。对该变量的操作将会影响到原本的对象。这样的编程手法将产生附带影响，使得代码的逻辑复杂和可读性变低。</Text>
                         <Text>
                             我们想要达到的效果是&nbsp;
                                 <Popover content={pureFn} title="纯函数">
@@ -180,10 +180,10 @@ const Types = () => (
                 <Panel header="隐式类型转换" key="2">
                     <Space direction="vertical">
                         <Title level={4}>“+” 运算符</Title>
-                        <Text>1. 字符串相加：&quot;hello&quot; + &quot;world&quot;; // &quot;hello world&quot;</Text>
-                        <Text>2. 字符串数字相加：&quot;2&quot; + 3 or 2 + &quot;3&quot;; // &quot;23&quot;</Text>
-                        <Text>3. 数字加数字加字符串：1 + 2 + &quot;3&quot;; // &quot;33&quot;; 1 + &quot;2&quot; + &quot;3&quot;; // &quot;123&quot; (“+”的运算方向是从左到右)</Text>
-                        <Text>4. 数字+布尔值：3 + true; // 4 (在遇到算数运算符(- 、* 、/ 和 %)的时候会在运算之前将参与运算的双方转换成数字。 Number(true) === 1)</Text>
+                        <Text>1. 字符串相加: &quot;hello&quot; + &quot;world&quot;; // &quot;hello world&quot;</Text>
+                        <Text>2. 字符串数字相加: &quot;2&quot; + 3 or 2 + &quot;3&quot;; // &quot;23&quot;</Text>
+                        <Text>3. 数字加数字加字符串: 1 + 2 + &quot;3&quot;; // &quot;33&quot;; 1 + &quot;2&quot; + &quot;3&quot;; // &quot;123&quot; (“+”的运算方向是从左到右)</Text>
+                        <Text>4. 数字+布尔值: 3 + true; // 4 (在遇到算数运算符(- 、* 、/ 和 %)的时候会在运算之前将参与运算的双方转换成数字。 Number(true) === 1)</Text>
 
                         <Title level={4}>条件判断运算 == </Title>
                         <Text>
@@ -218,7 +218,7 @@ const Types = () => (
             <Collapse defaultActiveKey="" ghost>
                 <Panel header="==VS===" key="1">
                     <Space direction="vertical">
-                        <Title level={4}>Escript中有四种相等算法：</Title>
+                        <Title level={4}>Escript中有四种相等算法: </Title>
                         <ul>
                             <li><Text>抽象相等比较 (==)</Text></li>
                             <li><Text>严格相等比较 (===): 用于Array.prototype.indexOf, Array.prototype.lastIndexOf, 和case-matching</Text></li>
@@ -226,11 +226,11 @@ const Types = () => (
                             <li><Text>同值: 用于所有其他地方</Text></li>
                         </ul>
 
-                        <Title level={4}>JavaScript提供三种不同的值比较操作：</Title>
+                        <Title level={4}>JavaScript提供三种不同的值比较操作: </Title>
                         <ul>
                             <li><Text>===严格相等（&quot;triple equals&quot; 或 &quot;identity&quot;）:===将进行相同的比较，而不进行类型转换 (如果类型不同, 只是总会返回 false )</Text></li>
                             <li><Text>==宽松相等 (&quot;double equals&quot;): ==将执行类型转换</Text></li>
-                            <li><Text>以及 Object.is （ECMAScript 2015/ ES6 新特性）：Object.is的行为方式与三等号相同，但是对于NaN和-0和+0进行特殊处理，所以最后两个不相同，而Object.is（NaN，NaN）将为 true</Text></li>
+                            <li><Text>以及 Object.is （ECMAScript 2015/ ES6 新特性）: Object.is的行为方式与三等号相同，但是对于NaN和-0和+0进行特殊处理，所以最后两个不相同，而Object.is（NaN，NaN）将为 true</Text></li>
                         </ul>
                     </Space>
                 </Panel>

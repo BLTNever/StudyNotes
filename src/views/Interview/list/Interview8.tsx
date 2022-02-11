@@ -26,14 +26,14 @@ const Interview6 = () => {
                             <Text>interface可以继承interface和type，使用extends关键字。type也可以继承interface和type，使用&符号</Text>
 
                             <Title level={4}>TS的优势</Title>
-                            <Text mark>静态类型的优势：</Text>
+                            <Text mark>静态类型的优势: </Text>
                             <ul>
                                 <li><Text>杜绝手误导致变量名写错</Text></li>
                                 <li><Text>自动完成</Text></li>
                                 <li><Text>重构支持</Text></li>
                                 <li><Text>类型充当文档以及注释</Text></li>
                             </ul>
-                            <Text mark>静态类型的不足：</Text>
+                            <Text mark>静态类型的不足: </Text>
                             <ul>
                                 <li><Text>类型标注麻烦</Text></li>
                                 <li><Text>类型系统不够强</Text></li>

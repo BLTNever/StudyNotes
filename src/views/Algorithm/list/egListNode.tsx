@@ -112,17 +112,17 @@ function reverseList (head) {
 }
 
 /**
- * 递归 1 -> 2 -> 3 -> 4 -> 5 -> null
+ * 递归 1 → 2 → 3 → 4 → 5 → null
  * @param head 
  * @returns 
  */
  function reverseList (head) {
     if(!head || !head.next) return head
     let next = reverseList(head.next) // 递，最终拿到 next 是 5, 注意 此时 head 是 4 
-    head.next.next = head             // 归，4.next是5，4.next.next === 5.next，5.next指向了 4 进行了反转
-    head.next = null                  // head的next已经改变了指向，如果不断开之前的会造成死循环
+    head.next.next = head             // 归，4.next是5，4.next.next === 5.next，5.next指向了 4, 形成一个环 4 → 5， 5 → 4
+    head.next = null                  // head的next已经改变了指向，如果不断开之前的会造成死循环, 最后一个刚好指向null 
 
-    return next
+    return next                       // 返回最后一个节点(一直被递归传递)
 }
 `
 
@@ -199,18 +199,18 @@ function reverseList(start, end) {
     let pre = start                 // start 目前指向 dummy 节点，dummy.next指向 head 头节点
     let cur = start.next            // cur 指向 head 头节点
     const first = cur               // ？？？ 先保存一下 cur 指针？指向 head?
-    // k === 3的情况下，反转 1 -> 2 -> 3的区间
-    // end 传进来 end.next(3 -> 4) 记下反转区块 后面的那个节点
-    // 反转前 0(dummy、pre、start) -> 1(cur、first、head) -> 2 -> 3 -> 4(end)
-    // 反转后 0 <- 1 <- 2 <- 3(pre、cur) <- 4(end)
+    // k === 3的情况下，反转 1 → 2 → 3的区间
+    // end 传进来 end.next(3 → 4) 记下反转区块 后面的那个节点
+    // 反转前 0(dummy、pre、start) → 1(cur、first、head) → 2 → 3 → 4(end)
+    // 反转后 0 ← 1 ← 2 ← 3(pre、cur) ← 4(end)
     while (cur !== end) {
         const next = cur.next
         cur.next = pre
         pre = cur
         cur = next
     }
-    start.next = pre                // start 指向 反转之后的 尾 节点  0(start) -> 3(pre) -> 2 -> 1
-    first.next = cur                // ？？？返回反转之后的 头 节点  1(first) -> 4(cur) -> 3 - > 2 -> 1
+    start.next = pre                // start 指向 反转之后的 尾 节点  0(start) → 3(pre) → 2 → 1
+    first.next = cur                // ？？？返回反转之后的 头 节点  1(first) → 4(cur) → 3 - > 2 → 1
     return first
 }
 function reverseKGroup(head, k) {
@@ -386,12 +386,12 @@ function deleteDuplicates(head: any) {
 
 export const deleteNode2 = `
 function deleteNode(node: ListNode) {
-    // 1 -> 5 -> 2 -> 3
+    // 1 → 5 → 2 → 3
     // 删除第二个节点 5
     // 把第二个节点的值变成第三个节点的值, 题目得知 node 肯定不是尾节点
-    // 1 -> 2 -> 2 -> 3
+    // 1 → 2 → 2 → 3
     // 把第二个节点的指针 next 指向第三个节点的 next
-    // 1 -> 2 -> 3
+    // 1 → 2 → 3
     node.val = node.next.val
     node.next = node.next.next
 }
@@ -506,10 +506,10 @@ function partition(head: ListNode, x: number) {
     return a.next
 
     // Fiber链表解法
-    // React Fiber：>= 目标值节点放入tag链表并从原链表删除。拼接原链表最后节点和tag
-    // Reconcile阶段：找到所有 >= 目标值的节点，放入tag链表。记忆指针，可随时中断或继续迭代
-    // Commit阶段：对tag链表中节点作影响性能的操作，如DOM。操作时机，先操作谁，可自定策略
-    // 好处：长期占用主线程的分散的影响性能操作 → 可中断地收集tag集中到一起 → 自定优先级操作
+    // React Fiber: >= 目标值节点放入tag链表并从原链表删除。拼接原链表最后节点和tag
+    // Reconcile阶段: 找到所有 >= 目标值的节点，放入tag链表。记忆指针，可随时中断或继续迭代
+    // Commit阶段: 对tag链表中节点作影响性能的操作，如DOM。操作时机，先操作谁，可自定策略
+    // 好处: 长期占用主线程的分散的影响性能操作 → 可中断地收集tag集中到一起 → 自定优先级操作
     let dummy = new ListNode(0)
     let p = dummy
     let tag = new ListNode(0)
@@ -545,31 +545,31 @@ function reverseBetween1(head: ListNode, left: number, right: number) {
     let dummy = new ListNode(0)
     dummy.next = head
     // left = 2 right = 4
-    // dummy(pre) -> 1 -> 2 -> 3 -> 4 -> 5
+    // dummy(pre) → 1 → 2 → 3 → 4 → 5
     let pre = dummy
-    // dummy -> 1(pre) -> 2 -> 3 -> 4 -> 5 
+    // dummy → 1(pre) → 2 → 3 → 4 → 5 
     for (let i = 0; i < left - 1; i++) {            // 走 left - 1 步，找到 left 位置节点前面一位的节点
         pre = pre.next
     }
-    // dummy -> 1(pre、rightNode) -> 2 -> 3 -> 4 -> 5 
+    // dummy → 1(pre、rightNode) → 2 → 3 → 4 → 5 
     let rightNode = pre
-    // dummy -> 1(pre) -> 2 -> 3 -> 4(rightNode) -> 5 
+    // dummy → 1(pre) → 2 → 3 → 4(rightNode) → 5 
     for (let i = 0; i < right - left + 1; i++) {   // 走 right - left + 1 步，找到 right 节点
         rightNode = rightNode.next
     }
     // 截取链表
-    // dummy -> 1(pre) -> 2(leftNode) -> 3 -> 4(rightNode) -> 5(cur)
+    // dummy → 1(pre) → 2(leftNode) → 3 → 4(rightNode) → 5(cur)
     let leftNode = pre.next                        // 找到 left 节点
     let cur = rightNode.next                       // 记录 right 节点后面的位置
     // 切断链接
-    // dummy -> 1(pre)    2(leftNode) -> 3 -> 4(rightNode)   5(cur)
+    // dummy → 1(pre)   2(leftNode) → 3 → 4(rightNode)   5(cur)
     pre.next = null
     rightNode.next = null
     // 反转
-    // dummy -> 1(pre)    2(leftNode) <- 3 <- 4(rightNode)   5(cur)
+    // dummy → 1(pre)   2(leftNode) ← 3 ← 4(rightNode)   5(cur)
     reversetList(leftNode)
     // 链接回原来的链表
-    // dummy -> 1(pre) -> 4(rightNode) -> 3 -> 2(leftNode) -> 5(cur)
+    // dummy → 1(pre) → 4(rightNode) → 3 → 2(leftNode) → 5(cur)
     pre.next = rightNode
     leftNode.next = cur
     return dummy.next
@@ -582,24 +582,24 @@ function reverseBetween2(head: ListNode, left: number, right: number) {
     dummy.next = head
     let pre = dummy
     // left: 2   right: 4
-    // dummy(pre) -> 1 -> 2 -> 3 -> 4 -> 5
-    // dummy -> 1(pre) -> 2 -> 3 -> 4 -> 5
+    // dummy(pre) → 1 → 2 → 3 → 4 → 5
+    // dummy → 1(pre) → 2 → 3 → 4 → 5
     for (let i = 0; i < left - 1; i++) {
         pre = pre.next
     }
-    // dummy -> 1(pre) -> 2(cur) -> 3 -> 4 -> 5
+    // dummy → 1(pre) → 2(cur) → 3 → 4 → 5
     let cur = pre.next
     for (let i = 0; i < right - left + 1; i++) {    // 循环 right - left 次
-        // dummy -> 1(pre) -> 2(cur) -> 3(next) -> 4 -> 5
+        // dummy → 1(pre) → 2(cur) → 3(next) → 4 → 5
         let next = cur.next
-        // dummy -> 1(pre) -> 2(cur)    3(next) -> 4 -> 5 
-        //                    2(cur) -> 4 -> 5 
+        // dummy → 1(pre) → 2(cur)   3(next) → 4 → 5 
+        //                  2(cur) → 4 → 5 
         cur.next = next.next
-        // dummy -> 1(pre) -> 2(cur) <- 3(next)    4 -> 5 
-        //                    2(cur) -> 4 -> 5 
+        // dummy → 1(pre) → 2(cur) ← 3(next)   4 → 5 
+        //                  2(cur) → 4 → 5 
         next.next = pre.next
-        // dummy -> 1(pre) -> 3(next) -> 2(cur)    4 -> 5 
-        //                    2(cur) -> 4 -> 5 
+        // dummy → 1(pre) → 3(next) → 2(cur)   4 → 5 
+        //                    2(cur) → 4 → 5 
         pre.next = next
     }
     return dummy.next
@@ -653,6 +653,55 @@ function _copyRandomList(head: ListNode, map = new Map()) {
 `
 
 export const sortList = `
+// 解1:
+function sortList(head: ListNode): ListNode {
+    if (!head || !head.next) return head
+    let slow = head                             // 定义快慢指针 找到中间的节点
+    let fast = head
+    while (fast && fast.next) {                // 快指针一次2步，慢指针一次1步
+        slow = slow.next
+        fast = fast.next
+        if(fast.next) fast = fast.next
+    }
+    let left = head                             // 左链表
+    let right = slow.next                       // 右链表
+    slow.next = null                            // 左链表断掉
+    left = sortList(left)                       // 分别对左右链表排序
+    right = sortList(right)
+
+    let cur = null                              // 排序后的链表头节点
+    let next = null                             // 排序链表的指针
+    while (left || right) {
+        const leftVal = left?.val ?? null
+        const rightVal = right?.val ?? null
+        let node = null                         // 用来记录每个节点
+        if (leftVal === null) {                 // 左链表没值了 接上右链表
+            node = right
+            right = right.next
+        } else if (rightVal === null) {         // 右链表没值了接上左链表
+            node = left
+            left = left.next
+        } else {
+            if (leftVal < rightVal) {         // 对比左右链表的值
+                node = left
+                left = left.next
+            } else {
+                node = right
+                right = right.next
+            }
+        }
+        if (next) {                             // 如果next指针已经指向cur链表中某个节点
+            next.next = node                    // next.next指到对比后的node节点
+            next = node                         // 指针移动
+        }
+        if (!cur) {                             // 首次对比
+            cur = node                          // cur 和 next 记录节点
+            next = node
+        }
+    }
+    return cur
+}
+// 解2:
 function merge(head1: ListNode, head2: ListNode) {
     const dummyHead = new ListNode(0)
     let cur = dummyHead
@@ -701,3 +750,38 @@ function sortList(head: ListNode) {
     return toSortList(head, null)
 }
 `
+
+export const reorderList = `
+function reorderList(head: ListNode) {
+    let slow = head
+    let fast = head
+    while (fast && fast.next) {       // 把链表拆成2段
+        slow = slow.next
+        fast = fast.next
+        if (fast.next) {
+            fast = fast.next
+        }
+    }
+    let mid = slow.next
+    slow.next = null
+    let prev = null
+    while (mid) {                     // 翻转后半段链表
+        const next = mid.next
+        mid.next = prev
+        prev = mid
+        mid = next
+    }
+    let A = head                
+    let B = prev
+    // A: 1 → 2 → 3
+    // B: 6 → 5 → 4
+    while (A && B) {                // 拼接左右 2个链表
+        let next = A.next           // 先保存 A节点 的next指针:  next(2)
+        A.next = B                  // A节点的next指针指向 B:  1(A) → 6(B) → 5 → 4
+        B = B.next                  // 移动指针 B 到下一位:  6 → 5(B) → 4 
+        A.next.next = next          // A.next.next 链接之道前保存的 next 节点:  1(A) → 6 → 2(next) → 1
+        A = next                    // 移动 A 指针位置:  1 → 6 → 2(A) → 1
+    }
+
+    return head
+}`

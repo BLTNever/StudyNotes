@@ -93,8 +93,8 @@ const Program = () => {
                         <Title level={3}>高频事件触发，N秒内只执行一次，稀释函数的执行频率</Title>
                         <Text mark>每次触发事件都会判断是否有在等待执行的延时函数</Text>
                         <Row gutter={24}>
-                            <Col span={8}><Card title="时间戳：立即执行"><Highlight language="javascript">{eg.throttle11}</Highlight></Card></Col>
-                            <Col span={8}><Card title="计时器：最后一次会延时执行"><Highlight language="javascript">{eg.throttle12}</Highlight></Card></Col>
+                            <Col span={8}><Card title="时间戳: 立即执行"><Highlight language="javascript">{eg.throttle11}</Highlight></Card></Col>
+                            <Col span={8}><Card title="计时器: 最后一次会延时执行"><Highlight language="javascript">{eg.throttle12}</Highlight></Card></Col>
                             <Col span={8}><Card title="结合写法"><Highlight language="javascript">{eg.throttle13}</Highlight></Card></Col>
                         </Row>
 

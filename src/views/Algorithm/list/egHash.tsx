@@ -119,3 +119,55 @@ class MyHashSet {
         return this.set.has(key)
     }
 }`
+
+
+export const MyHashMap = `
+class MyHashMap {
+    private BASE = 769
+    private list: any = new Array(this.BASE).fill(0).map(() => new Array(undefined))
+
+    public put(key: any, value: any) {
+        const hash = this.hash(key)
+        for (let item of this.list[hash]) {
+            if (item[0] === key) {
+                item[1] = value
+                return
+            }
+        }
+        this.list[hash].push([key, value])
+    }
+    public get(key: any) {
+        const hash = this.hash(key)
+        for (let item of this.list[hash]) {
+            if (item[0] === key) return item[1]
+        }
+        return -1
+    }
+    public remove(key: any) {
+        const hash = this.hash(key)
+        for (let [index, item] of Object.entries(this.list[hash])) {
+            if (item[0] === key) {
+                this.list[hash].splice(index, 1)
+                return
+            }
+        }
+    }
+    private hash(key: any) {
+        return key % this.BASE
+    }
+}`
+
+export const subdomainVisits = `
+function subdomainVisits(cpdomains: string[]) {
+    let map = new Map()
+    for (let item of cpdomains) {
+        const [count, domain] = item.split(' ')
+        let domains = domain.split('.')
+        for (let i = 0; i < domains.length; i++) {
+            const temp = domains.slice(i).join('.')
+            if (!map.has(temp)) map.set(temp, Number(count))
+            else map.set(temp, map.get(temp) + Number(count))
+        }
+    }
+    return Array.from(map).map(item => item[1] + ' ' + item[0])
+}`

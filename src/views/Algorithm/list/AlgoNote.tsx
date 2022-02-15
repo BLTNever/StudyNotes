@@ -19,25 +19,7 @@ const { Paragraph, Title, Text, Link } = Typography
 
 
 const AlgoNote = () => {
-    const orderFn = () => {
-        console.group("%c 二叉树遍历", "background: #333; color: yellow")
-        console.log('data>>>', nodes)
-        console.log('前序递归>>>', BSTree.preOrderRec1(nodes))
-        console.log('前序非递归>>>', BSTree.preOrderRec2(nodes))
-        console.log('中序递归>>>', BSTree.inOrderRec1(nodes))
-        console.log('中序非递归>>>', BSTree.inOrderRec2(nodes))
-        console.log('后序递归>>>', BSTree.postOrderRec1(nodes))
-        console.log('后序非递归>>>', BSTree.postOrderRec2(nodes))
-        console.log('层次遍历>>>', BSTree.levelOrder(nodes))
-        console.groupEnd()
-    }
 
-
-    useEffect(() => {
-        const arr = [1, 2, 7, 3, 4, 1, 2, 3, 5, 6, 2, 1, 3, 4, 2, 3, 2, 3, 1, 3]
-        // orderFn()
-        // findShortestSubArray(arr)
-    }, [])
     return (
         <>
             <Wrap>
@@ -122,6 +104,17 @@ const AlgoNote = () => {
                 </Collapse>
             </Wrap>
 
+            <Wrap>
+                <Title level={3}>长桥</Title>
+                <Collapse ghost>
+                    <Panel header="entry:['html','html''html','span','span','div','div','div','html','p'],outPut: [{html: 4}, {div:3},{span:2},{p:1}],排序输出 " key="1">
+
+                    </Panel>
+                    <Panel header="记忆化函数, 4 + 2 output:4 + 2 = 6, 3 + 1 output: 3 + 1 = 4,4 + 2 output: 6" key="1">
+
+                    </Panel>
+                </Collapse>
+            </Wrap>
             <Wrap>
                 <Title level={3}>树的遍历有几种方式，实现层次遍历</Title>
                 <Collapse ghost>

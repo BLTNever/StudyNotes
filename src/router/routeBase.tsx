@@ -14,14 +14,14 @@ export const Operators = lazy(() => import(/* webpackChunkName: "Operators" */'@
 export const Closure = lazy(() => import(/* webpackChunkName: "Closure" */'@views/Js/list/Closure'))
 export const Async = lazy(() => import(/* webpackChunkName: "Async" */'@views/Js/list/Async'))
 export const Prototype = lazy(() => import(/* webpackChunkName: "Prototype" */'@views/Js/list/Prototype'))
-export const Moudles = lazy(() => import(/* webpackChunkName: "Moudles" */'@views/Js/list/Moudles'))
+export const Modules = lazy(() => import(/* webpackChunkName: "Modules" */'@views/Js/list/Modules'))
 export const Reg = lazy(() => import(/* webpackChunkName: "Reg" */'@views/Js/list/Reg'))
 
 
 // React 
 export const ReactSource = lazy(() => import(/* webpackChunkName: "Source" */'@views/React/list/Source'))
 export const ReactEvent = lazy(() => import(/* webpackChunkName: "ReactEvent" */'@views/React/list/ReactEvent'))
-export const Detail = lazy(() => import(/* webpackChunkName: "VirtualDom" */'@views/React/list/VirtualDom'))
+export const Detail = lazy(() => import(/* webpackChunkName: "Detail" */'@views/React/list/Detail'))
 export const Redux = lazy(() => import(/* webpackChunkName: "Redux" */'@views/React/list/Redux'))
 
 

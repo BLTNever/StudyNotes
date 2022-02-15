@@ -641,7 +641,7 @@ function flat(arr, depth = 1) {
         // 去掉depth就是Infinity
         if(Array.isArray(item) && depth > 0) {
             result = [...result, ...flat(arr, depth - 1)]
-        } esle result.push(item)
+        } else result.push(item)
     })
 }
 // reduce 递归

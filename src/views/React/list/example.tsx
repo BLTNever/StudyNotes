@@ -106,7 +106,109 @@ function memo(OldComponent) {
 `
 
 export const _createStore = `
+/**
+ * 
+ * @param reducer:Fucntion 通过传入当前state、action，计算出下一个state， 返回出来
+ * @param preloadedState:any 默认state initial state
+ * @param enhancer:Function  增加Store的功能，例如applyMiddleware()
+ * @returns 
+ */
+function createStore(reducer, preloadedState, enhancer) {
+    // 当第二个参数没有传preloadedState，而直接传function的话，就会直接把这个function当成enhancer
+    if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
+        enhancer = preloadedState
+        preloadedState = undefined
+    }
 
+    // 当第三个参数传了但是不是function也会报错
+    if (typeof enhancer !== 'undefined') {
+        if (typeof enhancer !== 'function') {
+            // ... throw new Error()
+        }
+        // 如果第三个参数是(enhancer)函数也是我们的applyMiddleware，那就会直接返回这个
+        // 实际就是把createStore这件事在applyMiddleware里面做
+        return enhancer(createStore)(reducer, preloadedState)
+    }
+
+    if (typeof reducer !== 'function') {
+        // ... throw new Error()
+    }
+
+    let currentReducer = reducer
+    let currentState = preloadedState // 默认State
+    let currentListeners = [] // 储存订阅的回调函数， dispatch
+    let nextListeners = currentListeners
+    let isDispatching = false
+
+    function getState() {
+        return currentState
+    }
+
+    // *这个函数的作用就是，如果发现nextListeners，nextListeners指向同一个堆栈的话，就浅复制一份，这样改nextListeners就不会改到currentListeners
+    function ensureCanMutateNextListeners() {
+        if (nextListeners === nextListeners) {
+            nextListeners = currentListeners.slice()
+        }
+    }
+
+    function subscribe(listener) {
+        if (typeof listener !== 'function') {
+            throw new Error('Expected listener to be a function.')
+        }
+        let isSubscribed = true
+
+        ensureCanMutateNextListeners()
+        // 直接将监听的函数放进nextListeners里
+        nextListeners.push(listener)
+
+        return function unsubscribe() {
+            // 如果已经移除了就直接返回
+            if (!isSubscribed) {
+                return
+            }
+
+            isSubscribed = false
+
+            ensureCanMutateNextListeners()
+            // 没有移除的话，先找到位置，通过splice移除
+            const index = nextListeners.indexOf(listener)
+            nextListeners.splice(index, 1)
+        }
+    }
+
+    function dispatch(action) {
+        if (!isPlainObject(action)) {
+            // ... throw new Error()
+        }
+        if (typeof action.type === 'undefined') {
+            // ... throw new Error()
+        }
+        // 防止多次dispatch请求同时改状态，一定是前面的dispatch结束之后，才dispatch下一个
+        if (isDispatching) {
+            // ... throw new Error()
+        }
+
+        try {
+            isDispatching = true
+            currentState = currentReducer(currentState, action)
+        } finally {
+            isDispatching = false
+        }
+        // 在dispatch的时候，又将nextListeners 赋值回currentListeners，
+        const listeners = currentListeners = nextListeners
+        for (let i = 0; i < listeners.length; i++) {
+            const listener = listeners[i]
+            listener()
+        }
+        return action
+    }
+
+    return {
+        dispatch,
+        subscribe,
+        getState,
+    }
+}
 `
 
 
@@ -183,109 +285,7 @@ function _combineReducers(reducers) {
 `
 
 
-// /**
-//  * 
-//  * @param reducer:Fucntion 通过传入当前state、action，计算出下一个state， 返回出来
-//  * @param preloadedState:any 默认state initial state
-//  * @param enhancer:Function  增加Store的功能，例如applyMiddleware()
-//  * @returns 
-//  */
-//  function createStore(reducer, preloadedState, enhancer) {
-//     // 当第二个参数没有传preloadedState，而直接传function的话，就会直接把这个function当成enhancer
-//     if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
-//         enhancer = preloadedState
-//         preloadedState = undefined
-//     }
 
-//     // 当第三个参数传了但是不是function也会报错
-//     if (typeof enhancer !== 'undefined') {
-//         if (typeof enhancer !== 'function') {
-//             // ... throw new Error()
-//         }
-//         // 如果第三个参数是(enhancer)函数也是我们的applyMiddleware，那就会直接返回这个
-//         // 实际就是把createStore这件事在applyMiddleware里面做
-//         return enhancer(createStore)(reducer, preloadedState)
-//     }
-
-//     if (typeof reducer !== 'function') {
-//         // ... throw new Error()
-//     }
-
-//     let currentReducer = reducer
-//     let currentState = preloadedState // 默认State
-//     let currentListeners = [] // 储存订阅的回调函数， dispatch
-//     let nextListeners = currentListeners
-//     let isDispatching = false
-
-//     function getState() {
-//         return currentState
-//     }
-
-//     // *这个函数的作用就是，如果发现nextListeners，nextListeners指向同一个堆栈的话，就浅复制一份，这样改nextListeners就不会改到currentListeners
-//     function ensureCanMutateNextListeners() {
-//         if (nextListeners === nextListeners) {
-//             nextListeners = currentListeners.slice()
-//         }
-//     }
-
-//     function subscribe(listener) {
-//         if (typeof listener !== 'function') {
-//             throw new Error('Expected listener to be a function.')
-//         }
-//         let isSubscribed = true
-
-//         ensureCanMutateNextListeners()
-//         // 直接将监听的函数放进nextListeners里
-//         nextListeners.push(listener)
-
-//         return function unsubscribe() {
-//             // 如果已经移除了就直接返回
-//             if (!isSubscribed) {
-//                 return
-//             }
-
-//             isSubscribed = false
-
-//             ensureCanMutateNextListeners()
-//             // 没有移除的话，先找到位置，通过splice移除
-//             const index = nextListeners.indexOf(listener)
-//             nextListeners.splice(index, 1)
-//         }
-//     }
-
-//     function dispatch(action) {
-//         if (!isPlainObject(action)) {
-//             // ... throw new Error()
-//         }
-//         if (typeof action.type === 'undefined') {
-//             // ... throw new Error()
-//         }
-//         // 防止多次dispatch请求同时改状态，一定是前面的dispatch结束之后，才dispatch下一个
-//         if (isDispatching) {
-//             // ... throw new Error()
-//         }
-
-//         try {
-//             isDispatching = true
-//             currentState = currentReducer(currentState, action)
-//         } finally {
-//             isDispatching = false
-//         }
-//         // 在dispatch的时候，又将nextListeners 赋值回currentListeners，
-//         const listeners = currentListeners = nextListeners
-//         for (let i = 0; i < listeners.length; i++) {
-//             const listener = listeners[i]
-//             listener()
-//         }
-//         return action
-//     }
-
-//     return {
-//         dispatch,
-//         subscribe,
-//         getState,
-//     }
-// }
 
 export const createDom = `
 import {

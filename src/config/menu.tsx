@@ -1,8 +1,8 @@
 import React from 'react'
 import {
-    HomeOutlined, createFromIconfontCN, SolutionOutlined, CalculatorOutlined
+    HomeOutlined, createFromIconfontCN, SolutionOutlined, CalculatorOutlined,
+    GlobalOutlined, TrademarkOutlined, LaptopOutlined, MobileOutlined,
 } from '@ant-design/icons'
-
 
 const IconFont = createFromIconfontCN({
     scriptUrl: [
@@ -15,7 +15,7 @@ const IconFont = createFromIconfontCN({
 const menu = [
     {
         id: '10000',
-        name: 'HOME',
+        name: 'TODO LIST',
         icon: <HomeOutlined />,
         children: [],
         route: '/home'
@@ -35,23 +35,23 @@ const menu = [
             { id: '28000', name: '异步', route: '/js/Async' },
             // { id: '21100', name: '网络', route: '/js/Network' },
             { id: '21200', name: '原型', route: '/js/Prototype' },
-            { id: '21400', name: '模块化', route: '/js/Moudles' },
+            { id: '21400', name: '模块化', route: '/js/Modules' },
             { id: '21500', name: '正则', route: '/js/Reg' },
         ]
     },
     {
         id: '60000',
-        name: '浏览器',
-        icon: <IconFont type="icon-web" />,
-        route: 'brower',
+        name: 'Browsers',
+        icon: <GlobalOutlined />,
+        route: 'browser',
         children: [
-            { id: '61000', name: '事件委托', route: '/brower/Delegate' },
+            { id: '61000', name: '事件委托', route: '/browser/Delegate' },
         ]
     },
     {
         id: '30000',
         name: 'React/redux',
-        icon: <SolutionOutlined />,
+        icon: <TrademarkOutlined />,
         route: 'react',
         children: [
             { id: '34000', name: 'react理念/模型', route: '/react/Source' },
@@ -83,7 +83,7 @@ const menu = [
     {
         id: '50000',
         name: 'Examination',
-        icon: <CalculatorOutlined />,
+        icon: <LaptopOutlined />,
         route: 'examination',
         children: [
             { id: '51000', name: '原生方法实现', route: '/examination/nativeMethod' },
@@ -115,7 +115,7 @@ const menu = [
     {
         id: '50000',
         name: 'Native',
-        icon: <SolutionOutlined />,
+        icon: <MobileOutlined />,
         route: 'native',
         children: [
             { id: '51000', name: 'ReactNative', route: '/native/reactNative' },

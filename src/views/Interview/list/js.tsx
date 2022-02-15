@@ -119,7 +119,7 @@ const Interview1 = () => (
                             <li><Text>3. CSP : 建立白名单，允许哪些外部资源可以加载和执行</Text></li>
                         </ul>
                         <Text>
-                            CSP（Content Security Policy即内容安全策略）如何开启: 
+                            CSP（Content Security Policy即内容安全策略）如何开启:
                             <ul>
                                 <li>设置 HTTP Header 中的 Content-Security-Policy</li>
                                 <li>设置 meta 标签的方式{`< meta http-equiv=“Content-Security-Policy”>`}</li>
@@ -210,3 +210,4 @@ const Interview1 = () => (
 )
 
 export default Interview1
+

@@ -80,12 +80,27 @@ const AlgoHash = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>146. LRU 缓存{T.MEDIUM}</Title>
+                <Title level={3}>146. LRU 缓存{T.MEDIUM}{T.DOUBLY_NODE}</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
                         <li>请你设计并实现一个满足  LRU (最近最少使用) 缓存 约束的数据结构</li>
                         <li>LRUCache(int capacity)、int get(int key)、void put(int key, int value)如果插入操作导致关键字数量超过 capacity ，则应该 逐出 最久未使用的关键字</li>
                         <li>函数 get 和 put 必须以 O(1) 的平均时间复杂度运行</li>
+                    </ul>} key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.MyHashMap}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>464. 我能赢吗{T.MEDIUM}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>在 &quot;100 game&quot; 这个游戏中，两名玩家轮流选择从 1 到 10 的任意整数，累计整数和，先使得累计整数和 达到或超过  100 的玩家，即为胜者</li>
+                        <li>如果我们将游戏规则改为 “玩家 不能 重复使用整数” 呢？</li>
+                        <li>给定两个整数 maxChoosableInteger （整数池中可选择的最大数）和 desiredTotal（累计和），若先出手的玩家是否能稳赢则返回 true ，否则返回 false 。假设两位玩家游戏时都表现 最佳</li>
                     </ul>} key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.MyHashMap}</Highlight>
@@ -100,67 +115,60 @@ const AlgoHash = () => {
 
 export default AlgoHash
 
-class ListNode {
-    public key: any
-    public value: any
-    public prev: ListNode | null
-    public next: ListNode | null
-    public constructor(key?: any, value?: any) {
-        this.key = key
-        this.value = value
-        this.prev = null
-        this.next = null
-    }
-}
-class LRUCache {
-    private hash: Object
-    private count: number
-    private capacity: number
-    private dummyHead: ListNode
-    private dummyTail: ListNode
-    private constructor(capacity: number) {
-        this.capacity = capacity
-        this.hash = {}
-        this.dummyHead = new ListNode()
-        this.dummyTail = new ListNode()
-        this.count = 0
-        this.dummyHead.next = this.dummyTail
-        this.dummyTail.prev = this.dummyHead
-    }
-    public put(key: any, value: any) {
-        let node = this.hash[key]
-        if (node !== null) {
-            node.value = value
-            this.moveToHead(node)
-        } else {
+/**
+ * 
+ * @param maxChoosableInteger 整数池中可选择的最大数
+ * @param desiredTotal 累计和
+ */
+function canIWin(maxChoosableInteger: number, desiredTotal: number) {
+    // 累积和 小于 最大数，直接拿就可以赢
+    if (desiredTotal <= maxChoosableInteger) return true
+    // [1, maxChoosableInteger]区间的和
+    let sum = (1 + maxChoosableInteger) * maxChoosableInteger / 2
+    // 整数池中的和加起来也小于累计和， 肯定输
+    if (sum < desiredTotal) return false
 
-            if (this.count > this.capacity) {
-                // this.removeNode()
+    // let dp = {}
+    // function dfs(total: number, state: number) {
+    //     if (dp[state] !== undefined) return dp[state]
+    //     for (let i = 1; i <= maxChoosableInteger; i++) {
+    //         let cur = 1 << i
+    //         if (state && cur) continue                       // 已经抽过这个数
+    //         if (i >= total) return (dp[state] = true)        // 直接获胜
+    //         if (!dfs(total - i, state || cur)) return (dp[state] = true) // 可以让对方输
+
+    //     }
+    //     return (dp[state] = false)                      // 没有任何让对方输的方法
+    // }
+    // return dfs(desiredTotal, 0)
+    let map = new Map()
+    function dfs(total: number, state: number) {
+        if (total <= 0) return false
+        console.log('map>>>', map)
+        console.log('state>>>', state)
+        if (map.has(state)) return map.get(state) === 1
+        for (let i = 1; i <= maxChoosableInteger; i++) {
+            let cur = 1 << i
+            console.log('cur>>>', cur)
+            if (state && cur) continue
+            console.log(total, i)
+            // if (i >= total) return true
+            if (!dfs(total - i, state || cur)) {
+                map.set(state, 1)
+                return true
             }
         }
+        map.set(state, -1)
+        return false
     }
-    public get(key: any) {
-
-    }
-    private moveToHead(node: any) {
-
-    }
-    private addNode() {
-
-    }
-    private removeNode(node: any) {
-        let _prev = node.prev            // 暂存node的钱去节点 1(_prev) ⇆ 2(node) ⇆ 3
-        let _next = node.next            // 暂存node的后继节点 1 ⇆ 2(node) ⇆ 3(_next)
-        _prev.next = _prev               // 
-        _next.prev = _next
-    }
+    return dfs(desiredTotal, 0)
 }
+
 
 
 
 try {
-    const cpdomains = ["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"]
-    // console.log(subdomainVisits(cpdomains))
+    console.log(canIWin(10, 40))
 } catch (error) { }
 
 

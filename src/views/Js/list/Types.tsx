@@ -5,6 +5,7 @@ import { Card, Col, Row, Popover, Collapse, Typography, PageHeader, Space, Tag, 
 
 import { Wrap } from '@components/Base'
 import PreviewImg from '@components/previewImg'
+import coercion from '@images/coercion.jpg';
 
 // import type from '@images/type.jpg'
 import refCopy from '@images/refCopy.jpg'
@@ -42,20 +43,23 @@ const Types = () => (
                             <li><Tag>Symbol</Tag>(ECMAScript2015)为字面量基本类型。</li>
                             <li><Tag>null</Tag>(特殊类型)</li>
                             <li><Tag>undefined</Tag>(特殊类型)</li>
+                            <li><Tag>BigInt</Tag>(特殊的数字类型，支持任意长度的整数)</li>
                         </ul>
                     </Space>
                 </Panel>
-
                 <Panel header="引用类型" key="2">
                     <Space direction="vertical">
                         <ul>
-                            <li><Text>引用类型将内容存储在<b>堆</b>中，堆所对应的栈中记录的是<b>指针(堆的地址)</b>,外部访问时先引出地址，再通过地址去找到值所存放的位置。引用类型赋值是<b>地址引用</b>。</Text></li>
-                            <li> <Text>引用类型通过引用来传递</Text></li>
-                            <li><Text>
+                            <li>引用类型将内容存储在<b>堆</b>中，堆所对应的栈中记录的是<b>指针(堆的地址)</b>,外部访问时先引出地址，再通过地址去找到值所存放的位置。引用类型赋值是<b>地址引用</b></li>
+                            <li>引用类型通过引用来传递</li>
+                            <li>
                                 引用类型是指object即广义的对象类型，可由多个简单类型的值的合成，可以看作是一个存放各种值的容器。比如<Tag>Array</Tag>、<Tag>Object</Tag>、<Tag>Regx</Tag>等
-                            </Text></li>
+                            </li>
                         </ul>
                     </Space>
+                </Panel>
+                <Panel header="类型转换图示: " key="6">
+                    <PreviewImg src={coercion} />
                 </Panel>
             </Collapse>
         </Wrap>
@@ -117,7 +121,7 @@ const Types = () => (
                         <Text><b>引用类型输入: </b>传入的是一个引用。对该变量的操作将会影响到原本的对象。这样的编程手法将产生附带影响，使得代码的逻辑复杂和可读性变低。</Text>
                         <Text>
                             我们想要达到的效果是&nbsp;
-                                <Popover content={pureFn} title="纯函数">
+                            <Popover content={pureFn} title="纯函数">
                                 <Tag color="orange">纯函数</Tag>
                             </Popover>&nbsp;,
                             比如Array.map和Array.filter是以纯函数的形式实现。虽然它们的参数是一个数组变量，但是通过深度拷贝并赋值给一个新的变量，然后在新的数组上操作，来防止原始数组被更改。
@@ -150,30 +154,30 @@ const Types = () => (
                         <Text><Popover content={booleanFn} title="Boolean()"><Tag color="orange">Boolean()</Tag></Popover>转换为Boolean</Text>
                         <Text>
                             <Popover content={numberFn} title="Number()"><Tag color="orange">Number()</Tag></Popover>转换为Number
-                            </Text>
+                        </Text>
                         <Text>
                             <Popover content={intFn} title="parseInt()">
                                 <Tag color="orange">parseInt()</Tag>
                             </Popover>转换为Number
-                            </Text>
+                        </Text>
                         <Text>
                             <Popover content={floatFn} title="parseFloat()">
                                 <Tag color="orange">parseFloat()</Tag>
                             </Popover>
-                                转换为Number
-                            </Text>
+                            转换为Number
+                        </Text>
                         <Text>
                             <Popover content={stringFn} title="String()">
                                 <Tag color="orange">String()</Tag>
                             </Popover>
-                                转换为String
-                            </Text>
+                            转换为String
+                        </Text>
                         <Text>
                             <Popover content={toStringFn} title="toString()">
                                 <Tag color="orange">toString()</Tag>
                             </Popover>
-                                转换为String
-                            </Text>
+                            转换为String
+                        </Text>
                     </Space>
                 </Panel>
 
@@ -290,3 +294,5 @@ const Types = () => (
 )
 
 export default Types
+
+

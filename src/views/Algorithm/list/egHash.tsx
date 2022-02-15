@@ -171,3 +171,113 @@ function subdomainVisits(cpdomains: string[]) {
     }
     return Array.from(map).map(item => item[1] + ' ' + item[0])
 }`
+
+export const LRUCache = `
+class DoublyNode {
+    public key: any
+    public value: any
+    public prev: DoublyNode | null
+    public next: DoublyNode | null
+    public constructor(key?: any, value?: any) {
+        this.key = key
+        this.value = value
+        this.prev = null
+        this.next = null
+    }
+}
+/**
+ *  哈希 + 双向链表
+ */
+class LRUCache {
+    private hash: Object
+    private count: number
+    private capacity: number
+    private dummyHead: DoublyNode
+    private dummyTail: DoublyNode
+    private constructor(capacity: number) {
+        this.capacity = capacity
+        this.hash = {}
+        this.dummyHead = new DoublyNode()
+        this.dummyTail = new DoublyNode()
+        this.count = 0
+        this.dummyHead.next = this.dummyTail
+        this.dummyTail.prev = this.dummyHead
+    }
+    public put(key: any, value: any) {
+        let node = this.hash[key]           // 取key下标的node节点
+        if (!node) {                        // 如果该节不存在
+            node.value = value              // 更新value值
+            this.moveToHead(node)           // 移动到头部
+        } else {
+            if (this.count === this.capacity) {
+                this.removeTail()           // 超出 capacity 值 从尾部删掉最久未使用的节点
+            }
+            const newNode = new DoublyNode(key, value)
+            this.hash[key] = newNode        // 添加到hash中
+            this.addNode(newNode)           // 添加到头部
+            this.count++
+        }
+    }
+    public get(key: any) {
+        const node = this.hash[key]
+        if (!node) return -1
+        this.moveToHead(node)
+        return node.value
+    }
+    private moveToHead(node: any) {
+        this.removeNode(node)               // 先删除
+        this.addNode(node)                  // 再添加到头部
+    }
+    private addNode(node: any) {
+        const _next = this.dummyHead.next ?? null   // 暂存 dummy节点的next值
+        node.prev = this.dummyHead          // node prev指针指向dummy. dummy ← node
+        node.next = _next                   // node next指针指向之前dummy指针的下一个节点 dummy ← node → _next
+        if (_next) _next.prev = node        // 暂存的next 指向 node.  dummy ← node ⇆ _next
+        this.dummyHead.next = node          // dummy指回node. dummy ⇆ node ⇆ _next
+    }
+    private removeNode(node: any) {
+        let _prev = node.prev            // 暂存node的钱去节点 _prev ← node
+        let _next = node.next            // 暂存node的后继节点 _prev ← node → _next
+        _prev.next = _prev               // _prev → _next
+        _next.prev = _next               // _prev ⇆ _next
+    }
+    private removeTail() {
+        const tailNode = this.dummyTail.prev  // 取出最后一个节点
+        this.removeNode(tailNode)             // 从链表中删除
+        delete this.hash[tailNode?.key]       // 从hash表中删除
+        this.count--
+    }
+}
+
+/**
+ * Map解 
+ */
+class LRUCache {
+    private hashMap: Map<number, number>
+    private capacity: number
+
+    private constructor(capacity: number) {
+        this.capacity = capacity
+        this.hashMap = new Map()
+    }
+    public put(key: any, value: any) {
+        if (this.hashMap.has(key)) {
+            this.hashMap.delete(key)
+            this.hashMap.set(key, value)
+        } else {
+            if (this.hashMap.size === this.capacity) {
+                const oldData = this.hashMap.keys().next().value
+                this.hashMap.delete(oldData)
+            }
+            this.hashMap.set(key, value)
+        }
+    }
+    public get(key: any) {
+        if (!this.hashMap.has(key)) return -1
+        const value: any = this.hashMap.get(key)
+        this.hashMap.delete(key)
+        this.hashMap.set(key, value)
+        return value
+    }
+
+}`

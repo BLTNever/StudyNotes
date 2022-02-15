@@ -853,7 +853,7 @@ export const dataProgram = [
             <li>基础<Highlight>{`return(...args) => timer && clear(timer); setTimeout(() => fn.apply(this, args), delay)`}</Highlight></li>
             <li>增加immediate参数: <Highlight>{`return(...args)=> timer && clear(timer);if(immediate && !timer) fn.apply(this, args); setTimeout(() => fn.apply...)`}</Highlight></li>
             <li>leading、trailing<Highlight>{`!leading && !trailing return null; return(...args)=> (leading && !timer) ? fn.apply(this,args) : lastArgs = args; timer = setTimeout(() => (trailing && lastArgs) fn.apply(this, args); timer = null)`}</Highlight></li>
-            <li><Link to="/examination/program#debouce/throttle">节流和防抖</Link></li>
+            <li><Link to="/examination/program#deboucethrottle">防抖</Link></li>
         </ul>
     },
     {
@@ -865,7 +865,7 @@ export const dataProgram = [
                 <li><Highlight>{`timerFn = { timer = setTimeout(()=> if(trail && last) {fn.apply(...); timer && timer = null;last = null; timerFn() }else wait = false) };`}</Highlight></li>
                 <li><Highlight>{`return (args)=> if(!wait){ wait = true;if(lead) fn.apply(...); timerFn()} else last = args`}</Highlight></li>
             </ul></li>
-            <li><Link to="/examination/nativeMethod#debouce/throttle">Array.flat</Link></li>
+            <li><Link to="/examination/nativeMethod#deboucethrottle">节流</Link></li>
         </ul>
     },
     {

@@ -177,7 +177,7 @@ const framework = () => {
                                 <li>Fiber的存在使异步可中断的更新成为了可能，作为工作单元，可以在时间片内执行工作，没时间了交还执行权给浏览器，下次时间片继续执行之前暂停之后返回的Fiber</li>
                                 <li>Fiber可以在reconcile的时候进行相应的diff更新，让最后的更新应用在真实节点上</li>
                             </ul>
-                            <Link href="/react/VirtualDom?callback='/interview/2'">详解</Link>
+                            <Link href="/react/Detail'">详解</Link>
                             <Text mark> React16之前的版本有一个主要的问题 —— 虚拟 dom 的 diff 操作是同步完成的。</Text>
                             <Text>js在单线程环境里运行，操作很多时，便会造成阻塞</Text>
                             <Text>fiber将diff操作变成可中断的，只有当浏览器空闲时再做diff。避免diff更新长时间占据浏览器线程。fiber就是用的这个思路</Text>

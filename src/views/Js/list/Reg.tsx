@@ -6,7 +6,6 @@ const columns = [
     { title: "KEY", dataIndex: "K", width: 120, fixed: 'left', },
     Table.EXPAND_COLUMN,
     { title: "DESC", dataIndex: "describe", },
-    Table.SELECTION_COLUMN
 ]
 
 const dataSource = [
@@ -25,7 +24,7 @@ const Reg = () => {
         pagination: false,
         columns: columns,
         bordered: false,
-        rowKey: 'Key',
+        rowKey: 'K',
         scroll: {
             x: 1500,
             y: 689

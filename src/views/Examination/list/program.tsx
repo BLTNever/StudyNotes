@@ -69,7 +69,7 @@ const Program = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
-            <Wrap id="debouce/throttle">
+            <Wrap id="deboucethrottle">
                 <Title level={3}>节流和防抖</Title>
                 <Collapse ghost>
                     <Panel header="防抖-基础版/immediate版" key="1">

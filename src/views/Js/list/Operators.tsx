@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import React from 'react';
- import Highlight from '@components/HighLight'
-;
+import Highlight from '@components/HighLight'
+    ;
 
 import { Card, Col, Row, Tag, Popover, Table, Divider, Collapse, Typography, PageHeader, Space } from 'antd';
 import coercion from '@images/coercion.jpg';
@@ -18,42 +18,6 @@ const { Column } = Table
 
 const Operator = () => (
     <>
-        <Wrap>
-            <PageHeader title="值类型" subTitle="值类型分为基本类型和引用类型" />
-            <Collapse defaultActiveKey="" ghost>
-                <Panel header="基本类型" key="1">
-                    <Space direction="vertical">
-                        <Text>基本类型将内容直接存储在<Text mark>栈</Text>中(大小固定位置连续的存储空间)，记录的是该数据类型的值，即直接访问，基本类型赋值是<Text mark>复制(copy)</Text></Text>
-                        <Text>基本类型在赋值的时候是通过值传递的方式。</Text>
-                        <ul>
-                            <li><Tag>String</Tag>为字符串基本类型。</li>
-                            <li><Tag>Number</Tag>为数值基本类型。</li>
-                            <li><Tag>Boolean</Tag>为布尔基本类型。</li>
-                            <li><Tag>Symbol</Tag>(ECMAScript2015)为字面量基本类型。</li>
-                            <li><Tag>null</Tag>(特殊类型)</li>
-                            <li><Tag>undefined</Tag>(特殊类型)</li>
-                        </ul>
-                    </Space>
-                </Panel>
-
-                <Panel header="引用类型" key="2">
-                    <Space direction="vertical">
-                        <ul>
-                            <li><Text>引用类型将内容存储在<b>堆</b>中，堆所对应的栈中记录的是<b>指针(堆的地址)</b>,外部访问时先引出地址，再通过地址去找到值所存放的位置。引用类型赋值是<b>地址引用</b>。</Text></li>
-                            <li> <Text>引用类型通过引用来传递</Text></li>
-                            <li><Text>
-                                引用类型是指object即广义的对象类型，可由多个简单类型的值的合成，可以看作是一个存放各种值的容器。比如<Tag>Array</Tag>、<Tag>Object</Tag>、<Tag>Regx</Tag>等
-                            </Text></li>
-                        </ul>
-                    </Space>
-                </Panel>
-
-                <Panel header="类型转换图示: " key="6">
-                    <PreviewImg src={coercion} />
-                </Panel>
-            </Collapse>
-        </Wrap>
-
         <Wrap>
             <PageHeader title="运算符" subTitle="加、减、乘、除、取模" />
             <Collapse defaultActiveKey="" ghost>
@@ -93,8 +57,10 @@ const Operator = () => (
                     </Space>
                 </Panel>
                 <Panel header="乘性运算符" key="3">
+                    转成Number
                 </Panel>
                 <Panel header="除性运算符" key="4">
+                    转成Number
                 </Panel>
                 <Panel header="取模运算符" key="5">
                 </Panel>
@@ -142,9 +108,9 @@ const Operator = () => (
             <Collapse defaultActiveKey="" ghost>
                 <Panel header="左移运算<<和右移运算>>" key="1">
                     <Space direction="vertical">
-                        <Text mark>左移运算{"<<"}: 简洁记法——乘（{"例: 4<<3 4乘2的三次方，向下取整"}）</Text>
+                        <Text mark>左移运算{"<<"}: 简洁记法——乘（{"例: 4 << 3 4乘2的3次方，向下取整"}）</Text>
                         <Text>左移运算: 把数字中的所有数位向左移动指定的数量。例如，把数字 2（等于二进制中的 10）左移 5 位，结果为 64（等于二进制中的 1000000）</Text>
-                        <Text mark>右移运算{">>"}: 简洁记法——除（{"例: 4>>3 4除2的三次，方向下取整"}）</Text>
+                        <Text mark>右移运算{">>"}: 简洁记法——除（{"例: 4 >> 3 4除2的3次方，向下取整"}）</Text>
                         <Text> 右移运算: 把32位数字中的所有数位整体右移，同时保留该数的符号（正号或负号）。有符号右移运算符恰好与左移运算相反。例如，把64右移5位，将变为2</Text>
                     </Space>
                 </Panel>
@@ -158,7 +124,7 @@ const Operator = () => (
                             & 1010
                             -------
                             1000
-                       </pre>
+                        </pre>
                         <Text>由于奇数的二进制末位为1，偶数为0，跟1的位与运算后，分别为1和0，因此可以用位与运算来判断奇偶数。</Text>
                         <code>{`if(n & 1) {
                             console.log('n为奇数');

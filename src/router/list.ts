@@ -49,8 +49,8 @@ export const list = [
                 component: RouteBase.Prototype,
             },
             {
-                path: '/js/Moudles',
-                component: RouteBase.Moudles,
+                path: '/js/Modules',
+                component: RouteBase.Modules,
             },
             {
                 path: '/js/Reg',

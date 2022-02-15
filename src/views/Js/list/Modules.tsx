@@ -8,7 +8,7 @@ import { example1, example2, example3, example4, example5, example6, example7, A
 
 const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
-const Note15 = () => (
+const Modules = () => (
     <>
         <Wrap>
             <Title level={3}>CommonJS</Title>
@@ -218,4 +218,4 @@ const Note15 = () => (
 )
 
 
-export default Note15;
+export default Modules;

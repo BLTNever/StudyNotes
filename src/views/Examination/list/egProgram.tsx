@@ -71,8 +71,6 @@ export const queryUrlParams2 = `
 `
 
 export const observer = `
-
-
 type TEvent = () => void
 class EventBus {
     mapper: Map<string, TEvent[]>

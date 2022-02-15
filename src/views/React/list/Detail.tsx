@@ -24,6 +24,24 @@ const VirtualDom = () => (
                     </Space>
                 </Panel>
 
+                <Panel header="什么是fiber" key="3">
+                    <Space direction="vertical">
+                        <Text>Fiber代表一种<Text mark>工作单元</Text></Text>
+                        <Text>按照函数调用栈的方式，实现一个<Text mark>虚拟的堆栈帧</Text></Text>
+                        <Text>Fiber是一种数据结构（堆栈帧），也是一种解决可中断的调用任务的解决方案，特性就是<Text mark>时间分片（time slicing）</Text>和<Text mark>暂停（supense）</Text></Text>
+                        <Text>将可中断任务拆分成多个子任务，按照优先级来自由调度子任务，分段式更新，将同步渲染改为异步渲染</Text>
+
+                        <Title level={4}>Fiber需要解决的问题</Title>
+                        <ul>
+                            <li>1. 如何拆分子任务？</li>
+                            <li>2. 子任务多大合适？</li>
+                            <li>3. 如何判断是否还有剩余时间</li>
+                            <li>4. 有剩余时间怎么调度应该执行哪个一个任务</li>
+                            <li>5. 没有剩余时间的任务怎么办</li>
+                        </ul>
+                    </Space>
+                </Panel>
+
                 <Panel header="fiber做了什么" key="2">
                     <Space direction="vertical">
                         <Text>之前主要的问题是任务一旦执行，就无法中断，js线程一直占用主线程，导致卡顿。</Text>
@@ -39,24 +57,6 @@ const VirtualDom = () => (
                             <li>高优先级任务，如动画骨干由<Text mark>requestAnimationFrame</Text>处理</li>
                             <li>requestIdleCallback可以再多个空闲期调用空闲期回调，执行任务</li>
                             <li>requestIdleCallback方法提供deadline，任务执行限制时间，切分任务，避免长时间执行，阻塞UI渲染导致掉帧</li>
-                        </ul>
-                    </Space>
-                </Panel>
-
-                <Panel header="什么是fiber" key="3">
-                    <Space direction="vertical">
-                        <Text>Fiber代表一种<Text mark>工作单元</Text></Text>
-                        <Text>按照函数调用栈的方式，实现一个<Text mark>虚拟的堆栈帧</Text></Text>
-                        <Text>Fiber是一种数据结构（堆栈帧），也是一种解决可中断的调用任务的解决方案，特性就是<Text mark>时间分片（time slicing）</Text>和<Text mark>暂停（supense）</Text></Text>
-                        <Text>将可中断任务拆分成多个子任务，按照优先级来自由调度子任务，分段式更新，将同步渲染改为异步渲染</Text>
-
-                        <Title level={4}>Fiber需要解决的问题</Title>
-                        <ul>
-                            <li>1. 如何拆分子任务？</li>
-                            <li>2. 子任务多大合适？</li>
-                            <li>3. 如何判断是否还有剩余时间</li>
-                            <li>4. 有剩余时间怎么调度应该执行哪个一个任务</li>
-                            <li>5. 没有剩余时间的任务怎么办</li>
                         </ul>
                     </Space>
                 </Panel>
@@ -154,18 +154,12 @@ const VirtualDom = () => (
                 <Panel header="useState" key="3">
                     <Space direction="vertical">
                         <ul>
-                            <li><Text>1. setState只在合成事件和钩子函数中是“异步”的，在原生事件（addEventListener）和setTimeout中都是“同步”的</Text></li>
+                            <li>1. setState只在合成事件和钩子函数中是“异步”的，在原生事件（addEventListener）和setTimeout中都是“同步”的</li>
                             <li>
-                                <Text>2. setState的异步不是在内部实现的，代码执行的过程和结都是同步的，只是在合成事件和钩子函数中的调用顺序在更新之前，导致无法拿到更新后的结果，形成所谓的异步，可以通过setState(partialState, callback)在callback中拿到结果</Text>
+                                2. setState的异步不是在内部实现的，代码执行的过程和结都是同步的，只是在合成事件和钩子函数中的调用顺序在更新之前，导致无法拿到更新后的结果，形成所谓的异步，可以通过setState(partialState, callback)在callback中拿到结果
                             </li>
-                            <li>
-                                <Text>
-                                    3. setState的批量更新也是建立在异步（合成事件、钩子函数）之上，在原生事件和setTimeout中是无法批量更新的
-                                </Text>
-                            </li>
-                            <li>
-                                <Text>react更新是通过“事务”（Transacation）的，通过isBatchingUpdates: boolean控制，setTimout中事务无法管控</Text>
-                            </li>
+                            <li>3. setState的批量更新也是建立在异步（合成事件、钩子函数）之上，在原生事件和setTimeout中是无法批量更新的</li>
+                            <li>4. react更新是通过“事务”（Transacation）的，通过isBatchingUpdates: boolean控制，setTimout中事务无法管控 </li>
                         </ul>
                         <Highlight>{_useState}</Highlight>
                     </Space>
@@ -175,15 +169,15 @@ const VirtualDom = () => (
                     <Space direction="vertical">
                         <ul>
                             <li>
-                                <Text>每次Render的内容都会形成一个快照保存下来，当状态改变Rerender的时候，形成了N个Render状态，每个状态都拥有自己固定不变的Props和State，函数在每次渲染时也是独立的。这就是 Capture Value 特性</Text>
+                                每次Render的内容都会形成一个快照保存下来，当状态改变Rerender的时候，形成了N个Render状态，每个状态都拥有自己固定不变的Props和State，函数在每次渲染时也是独立的。这就是 Capture Value 特性
                             </li>
-                            <li><Text>useEffect 也一样具有Capture Value的特性</Text></li>
-                            <li><Text>利用useRef可以绕过Capture Value特性，ref在render中保持了唯一的引用，对ref的取值和赋值拿到的都是最终状态</Text> </li>
+                            <li>useEffect 也一样具有Capture Value的特性</li>
+                            <li>利用useRef可以绕过Capture Value特性，ref在render中保持了唯一的引用，对ref的取值和赋值拿到的都是最终状态 </li>
                             <li>
-                                <Text>回收机制: 组件被销毁时，通过useEffect注册的监听事件也要被销毁，通过useEffect的return返回值做到</Text>
+                                回收机制: 组件被销毁时，通过useEffect注册的监听事件也要被销毁，通过useEffect的return返回值做到
                             </li>
-                            <li><Text>优化: 通过useEffect的第二个参数告诉React用到哪些外部变量，制定变量更新是才会再次执行useEffect</Text></li>
-                            <li><Text>通过useReducer节耦useEffect的更新与操作，但是是绕过了diff算法</Text></li>
+                            <li>优化: 通过useEffect的第二个参数告诉React用到哪些外部变量，制定变量更新是才会再次执行useEffect</li>
+                            <li>通过useReducer节耦useEffect的更新与操作，但是是绕过了diff算法</li>
                             <li><Text mark>性能: useEffect在渲染结束时执行，所以不会阻塞浏览器渲染进程</Text></li>
                             <li><Text mark>符合React fiber的特性，Fiber会根据情况暂停或插入执行不同组件的Render，如果代码遵循Capture Value的特性，在Fiber环境下能保证值的安全访问，弱化生命周期也能解决执行中断的问题</Text></li>
                         </ul>
@@ -191,7 +185,7 @@ const VirtualDom = () => (
                         <ul>
                             <li><Text mark>mount阶段: 执行了mountEffect，执行pushEffect,创建一个新的effect，跟之前的effect通过next链接成一个环形链表，用于顺序执行</Text></li>
                             <li>
-                                update阶段: 
+                                update阶段:
                                 <ul>
                                     <li><Text mark>1. 调用dispatchAction，创建一个update，绑定到hooks.queue上，通过链表next指向</Text></li>
                                     <li><Text mark>2. 执行到updateEffectImpl</Text></li>

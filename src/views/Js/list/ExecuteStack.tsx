@@ -64,8 +64,8 @@ const ExecuteStack = () => (
                             <Card title="1、This绑定">
                                 <Space direction="vertical">
                                     <ul>
-                                        <li><Text>在全局执行上下文中，<Text mark>this 的值指向全局对象</Text>(在浏览器中，this引用 Window 对象)。</Text></li>
-                                        <li><Text>在函数执行上下文中，<Text mark>this 的值取决于该函数是如何被调用的</Text>。如果它被一个引用对象调用，那么 this 会被设置成那个对象，否则 this 的值被设置为全局对象或者 undefined（在严格模式下）</Text></li>
+                                        <li>在全局执行上下文中，<Text mark>this 的值指向全局对象</Text>(在浏览器中，this引用 Window 对象)</li>
+                                        <li>在函数执行上下文中，<Text mark>this 的值取决于该函数是如何被调用的</Text>。如果它被一个引用对象调用，那么 this 会被设置成那个对象，否则 this 的值被设置为全局对象或者 undefined（在严格模式下）</li>
                                     </ul>
                                 </Space>
                             </Card>
@@ -73,20 +73,24 @@ const ExecuteStack = () => (
                         <Col span={8}>
                             <Card title="2、创建词法环境">
                                 <Space direction="vertical">
-                                    <Text>
-                                        词法环境是一种规范类型，基于 ECMAScript 代码的词法嵌套结构来定义标识符和具体变量和函数的关联。一个词法环境由环境记录器和一个可能的引用外部词法环境的空值组成。
-                                    </Text>
-                                    <Text>在此阶段，完成对所有这些变量的分配，最后执行代码。</Text>
-                                    <Text>注意 — 在执行阶段，如果 JavaScript 引擎不能在源码中声明的实际位置找到 let 变量的值，它会被赋值为 undefined。</Text>
+                                    <ul>
+                                        <li>
+                                            词法环境是一种规范类型，基于 ECMAScript 代码的词法嵌套结构来定义标识符和具体变量和函数的关联。一个词法环境由环境记录器和一个可能的引用外部词法环境的空值组成。
+                                        </li>
+                                        <li>在此阶段，完成对所有这些变量的分配，最后执行代码。</li>
+                                        <li>注意 — 在执行阶段，如果 JavaScript 引擎不能在源码中声明的实际位置找到 let 变量的值，它会被赋值为 undefined。</li>
+                                    </ul>
                                 </Space>
                             </Card>
                         </Col>
                         <Col span={8}>
                             <Card title="3、创建变量环境">
                                 <Space direction="vertical">
-                                    <Text>它同样是一个词法环境，其环境记录器持有变量声明语句在执行上下文中创建的绑定关系</Text>
-                                    <Text>变量环境也是一个词法环境，所以它有着上面定义的词法环境的所有属性。</Text>
-                                    <Text>在 ES6 中，词法环境组件和变量环境的一个不同就是前者被用来存储函数声明和变量（let 和 const）绑定，而后者只用来存储 var 变量绑定。</Text>
+                                    <ul>
+                                        <li>它同样是一个词法环境，其环境记录器持有变量声明语句在执行上下文中创建的绑定关系</li>
+                                        <li>变量环境也是一个词法环境，所以它有着上面定义的词法环境的所有属性。</li>
+                                        <li>在 ES6 中，词法环境组件和变量环境的一个不同就是前者被用来存储函数声明和变量（let 和 const）绑定，而后者只用来存储 var 变量绑定。</li>
+                                    </ul>
                                 </Space>
                             </Card>
                         </Col>

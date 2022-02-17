@@ -7,6 +7,7 @@ import {
     dataOptimize, dataModule, dataWebpack, dataBase, dataAlgo,
     dataProgram,
 } from './recordConfig'
+import { render } from '@testing-library/react'
 // import useResize from '@hooks/useResize'
 
 const { TabPane } = Tabs
@@ -88,22 +89,35 @@ const Record = () => {
 export default Record
 
 
-// eslint-disable-next-line no-extend-native
-// Function.prototype.call = function (_context: Window, ...args: any) {
-//     if (typeof this !== 'function') throw new Error('not function')
-//     let obj = _context
-//     obj.fn = this
-//     const res = obj.fn(...args)
-//     delete obj.fn
-//     return res
-// }
+function convert(list: any[]) {
+    let map: any = {}
+    let tree = []
+    for (let node of list) {
+        map[node.id] = node
+        map[node.id].children = []
+        if (!node.parentId) {
+            tree.push(node)
+        } else {
+            if (node.parentId in map) {
+                map[node.parentId].children.push(node)
+            } else {
+                map.id = node.parentId
+                map.children = []
+            }
+        }
+    }
+    return tree
+}
 
-// // eslint-disable-next-line no-extend-native
-// Function.prototype.apply = function (_context: Window, ...args: any) {
-//     if (typeof this !== 'function') throw new Error('not function')
-//     let obj = _context
-//     obj.fn = this
-//     const res = obj.fn(args)
-//     delete obj.fn
-//     return res
-// }
+try {
+    const arr = [
+        { id: 1 },
+        { id: 7 },
+        { id: 2, parentId: 1 },
+        { id: 3, parentId: 1 },
+        { id: 4, parentId: 2 },
+        { id: 5, parentId: 3 },
+        { id: 6, parentId: 3 },
+    ]
+    console.log(convert(arr))
+} catch (error) { console.log(error) }

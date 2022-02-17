@@ -13,7 +13,7 @@ const { Panel } = Collapse
 const { Paragraph, Title, Text, Link } = Typography
 
 
-const Interview1 = () => (
+const Js = () => (
     <>
 
 
@@ -172,33 +172,16 @@ const Interview1 = () => (
             <Collapse ghost>
                 <Panel header="" key="1">
                     <Space direction="vertical">
-                        <Row>
-                            <Col span={8}>
-                                <Card title="var">
-                                    <ul>
-                                        <li>过程: var变量声明创建、初始化提升到顶部 -&gt; 执行代码 -&gt; 赋值</li>
-                                    </ul>
-                                </Card>
-                            </Col>
-                            <Col span={8}>
-                                <Card title="let">
-                                    <ul>
-                                        <li>过程: let声明变量创建时提升到顶部 -&gt; 初始化 -&gt; 执行代码 -&gt; 赋值</li>
-                                    </ul>
-                                </Card>
-                            </Col>
-                            <Col span={8}>
-                                <Card title="const">
-                                    <ul>
-                                        <li>过程: 创建 -&gt; 执行代码 -&gt; 初始化</li>
-                                    </ul>
-                                </Card>
-                            </Col>
-                        </Row>
                         <ul>
-                            <li>1. var声明的变量会提升，let const不会</li>
-                            <li>2. const和let具有块级作用域</li>
-                            <li>3. const创建后不可修改，var、let允许 重复声明</li>
+                            <li><Text mark>var: 创建 → 初始化提升到顶部 → 执行代码 → 赋值</Text></li>
+                            <li><Text mark>let: 创建(提升?) → 初始化(?存疑) → 执行代码 → 赋值</Text></li>
+                            <li><Text mark>const: 创建 → 执行代码 → 初始化必须赋值</Text></li>
+                        </ul>
+
+                        <ul>
+                            <li>1. var声明的变量会提升，let（ECMA会提升 只是有TDZ（暂时性死区））、const不会</li>
+                            <li>2. const和let具有块级作用域，存在暂时性死区</li>
+                            <li>3. const创建后不可修改，var允许重复声明，let不允许允许重复声明</li>
                             <li>4. const声明创建一个值的只读引用。只有变量标示不能重新分配（对象的引用内容是地址，内容是可以修改的）</li>
                             <li>5. 全局作用域中使用var或者不是用var声明的变量会挂载到Windows上，let跟const不会</li>
                         </ul>
@@ -209,5 +192,5 @@ const Interview1 = () => (
     </>
 )
 
-export default Interview1
+export default Js
 

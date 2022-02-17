@@ -383,7 +383,6 @@ class Promise {
     constructor(fn) {
         fn(this._resolve.bind(this))
     }
-
     then(onFulfilled) {
         if(this.state === 'pendding') { // resolve之前 添加到callback队列中
             this.callback.push(onFulfilled)
@@ -392,7 +391,6 @@ class Promise {
         }
         return this
     }
-
     _resolve(value) {
         this.state = 'fulfilled' // 改变状态
         this.value = value // 保存结果
@@ -402,8 +400,8 @@ class Promise {
 
 Promise.race = promises =>
     new Promise((resolve, reject) => {
-        promises.forEach(promise => {
-            promise.then(resolve, reject)
+        promises.forEach(p => {
+            p.then(resolve, reject)
         })
     })
 

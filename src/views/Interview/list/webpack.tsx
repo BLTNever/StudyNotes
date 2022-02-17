@@ -31,7 +31,7 @@ const Webpack = () => {
                         <Space direction="vertical">
                             <Text>webpack的运行流程是一个串行的过程</Text>
                             <ul>
-                                <li>1. 初始化阶段: 
+                                <li>1. 初始化阶段:
                                     <ul>
                                         <li>1.1 <b>初始化参数</b>: 从配置文件、 配置对象、Shell 参数中读取，与默认配置结合得出最终的参数</li>
                                         <li>1.2 <b>创建编译器对象</b>: 用上一步得到的参数创建 Compiler 对象</li>
@@ -40,13 +40,13 @@ const Webpack = () => {
                                         <li>1.5 <b>确定入口</b>: 根据配置中的 entry 找出所有的入口文件，调用 compilition.addEntry 将入口文件转换为 dependence 对象</li>
                                     </ul>
                                 </li>
-                                <li>2.构建阶段: 
+                                <li>2.构建阶段:
                                     <ul>
                                         <li>2.1 <b>编译模块(make)</b>: 根据 entry 对应的 dependence 创建 module 对象，调用 loader 将模块转译为标准 JS 内容，调用 JS 解释器将内容转换为 AST 对象，从中找出该模块依赖的模块，再 递归 本步骤直到所有入口依赖的文件都经过了本步骤的处理</li>
                                         <li>2.2 <b>完成模块编译</b>: 上一步递归处理所有能触达到的模块后，得到了每个模块被翻译后的内容以及它们之间的 <b>依赖关系图</b></li>
                                     </ul>
                                 </li>
-                                <li>3.生成阶段: 
+                                <li>3.生成阶段:
                                     <ul>
                                         <li>3.1 <b>输出资源(seal)</b>: 根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 Chunk，再把每个 Chunk 转换成一个单独的文件加入到输出列表，这步是可以修改输出内容的最后机会</li>
                                         <li>3.2 <b>写入文件系统(emitAssets)</b>: 在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统</li>
@@ -167,11 +167,40 @@ const Webpack = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
-
+            <Wrap>
+                <Title level={3}>hash、chunkhash、contenthash</Title>
+                <ul>
+                    <li><Text mark>hash: 所有chunk文件使用相同的hash，项目中任一文件内容发生变化都会影响所有chunk文件hash</Text></li>
+                    <li><Text mark>chunkhash: 根据不同的入口文件进行依赖文件解析，构建对应的chunk，生成对应的哈希值，任意文件改变只会影响其所属的chunk，不会影响其它chunk</Text></li>
+                    <li><Text mark>contenthash: 计算与文件内容本身有关</Text></li>
+                </ul>
+                <Collapse ghost>
+                    <Panel header="hash" key="1">
+                        <Space direction="vertical">
+                            <Highlight>{`output: { filename: "[name].[hash].js",  // 出口文件 },`}</Highlight>
+                            <p>当有多个chunk，形成多个bundle时，如果只有一个chunk和bundle内容发生改变，会导致其他所有的bundle的哈希值都发生改变，因为大家共用一个hash，这个时候chunkhash的作用就体现出来了</p>
+                            <p>表示所有文件哈希值相同，如果任意文件内容发生变化，则再次打包后，所有哈希值均改变且相同。即当任意module发生改变时，所有bundle的hash都改变且相同</p>
+                        </Space>
+                    </Panel>
+                    <Panel header="chunkhash" key="2">
+                        <Space direction="vertical">
+                            <Highlight>{`output: { filename: "[name].[chunkhash].js",  // 出口文件 },`}</Highlight>
+                            <p>根据不同的入口文件(Entry)进行依赖文件解析，构建对应的chunk，生成对应的哈希值</p>
+                            <p>当有多个chunk，形成多个bundle时，如果只有一个chunk和bundle内容发生改变，会导致其他所有的bundle的哈希值都发生改变，因为大家共用一个hash，这个时候chunkhash的作用就体现出来了</p>
+                        </Space>
+                    </Panel>
+                    <Panel header="contenthash" key="3">
+                        <Space direction="vertical">
+                            <Highlight>{`output: { filename: "[name].[contenthash].js",  // 出口文件 },`}</Highlight>
+                            <p>在打包时，我们会在js文件中导入CSS文件，因为他们是同一个入口文件，我们只改了JS代码，但是它的CSS在抽离生成CSS文件时hash也会跟着变，这个时候就需要contenthash来解决</p>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
             <Wrap>
                 <Title level={3}>webpack热更新</Title>
                 <Collapse ghost>
-                    <Panel header="" key="1">
+                    <Panel header="修改文件后 → 通知webpack → webpack编译模块后，通知HMR服务进行更新 → HMR Server使用webSockt通知HMR runtime需要更新，HMR运行时通过HTTP请求更新JSONP → HMR运行时替换更新模块，无法更新进行整体reload" key="1">
                         <Space direction="vertical">
                             <Text>webpack热更新</Text>
                             <Text>Hot Module Replacement热更新Server端和Client端的处理工作</Text>

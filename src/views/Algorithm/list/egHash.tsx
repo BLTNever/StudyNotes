@@ -11,6 +11,81 @@ function twoSum(nums: number[], target: number) {
 console.log(twoSum([2, 7, 11, 15], 18))
 `
 
+export const createTree = `
+const arr = [
+    { id: 1 },
+    { id: 2, parentId: 1},
+    { id: 3, parentId: 1},
+    { id: 4, parentId: 2},
+    { id: 5, parentId: 3},
+    { id: 6, parentId: 3},
+]
+转化为树的形式: 
+root = {
+    id: 1,
+    children: [
+        { id: 2, children: [{id: 4, children: [] }] }, 
+        { id: 3, children: [{id: 5, children: [] },{id: 6, children: [] }] }
+    ]
+}
+// 设置哈希表去操作
+let ans: any = null
+const mapper = {}
+function createTree(list: any) {
+    for (const item of list) {
+        mapper[item.id] = item // 在哈希表中通过id去存储每个item
+        item.children = [] // 给item初始化添加children
+        if (!item.parentId) { // 如果没有parentId设置为root节点
+            ans = item
+        } else {
+            // 通过parentId去哈希表里查找id === parentId的元素
+            if (!mapper[item.parentId]) { // 未找到 创建一条新的数据
+                mapper[item.parentId] = {
+                    id: item.parentId,
+                    children: [],
+                }
+            }
+            mapper[item.parentId].children.push(item) // 找到mapper存在key为parentId的元素，在children里push当前的元素
+        }
+    }
+    return ans
+}
+
+function createTree(list: any) {
+    if (!list?.length) return {}
+    let obj = null
+    let mapper = {}
+    for (let item of list) {
+        mapper[item.id] = item
+        item.children = []
+        if (!item.parentId) {
+            obj = item
+        } else {
+            if (mapper[item.parentId]) {
+                mapper[item.parentId].children.push(item)
+            } else {
+                mapper[item.parentId] = {
+                    id: item.parentId,
+                    children: []
+                }
+            }
+        }
+    }
+    return obj
+}
+
+// 递归的方法 需要传id进去
+function listToTree(list: any[], pId?: number): any {
+    const arr = list.filter((i: any) => i.pId === pId)
+    return arr.map((i: any) => {
+        return {
+            ...i,
+            children: listToTree(list, i.id)
+        }
+    })
+}
+`
+
 export const findShortSubArray = `
 /**
  *  1.用哈希表去记录每个元素出现的次数，用元素的值做key, value存储[值第一次出现的下标start，值最后出现的下标end， 出现的次数count]

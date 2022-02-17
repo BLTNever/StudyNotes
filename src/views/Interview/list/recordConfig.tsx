@@ -224,6 +224,13 @@ export const dataJs = [
         </>
     },
     {
+        Q: '变量提升和函数提升', K: <><Tag color="green">变量、函数提升</Tag><Tag color="geekblue">JS</Tag></>,
+        ans: <>
+            <p>Javascript引擎会创建一个执行上下文，执行上下文往往意味着创建解析，变量提升与函数提升</p>
+            <p>声明了同名的一个变量和函数，函数提升的优先级大于变量</p>
+        </>
+    },
+    {
         Q: '什么是立即执行函数', K: <><Tag color="magenta">立即执行函数</Tag><Tag color="geekblue">JS</Tag></>,
         ans: <>
             <p>声明一个匿名函数,马上调用这个匿名函数</p>
@@ -651,6 +658,20 @@ export const dataWebpack = [
             <li>Loader 最核心的只能是实现内容转换器 —— 将各式各样的资源转化为标准 JavaScript 内容格式</li>
         </ul>,
     },
+    {
+        Q: 'hash、chunkhash、contenthash', K: <Tag color="blue">webpack</Tag>,
+        ans: <ul>
+            <p><Link to="/interview/webpack">详解</Link></p>
+            <a target="_blank" href="https://zhuanlan.zhihu.com/p/363928061">详解2</a>
+            <li>1. 初始化参数: 从配置文件和shell语句中读取并合并参数，得出最终参数</li>
+            <li>2. 开始编译: 从第一步得到的参数<b>初始化Compiler对象</b>，<b>加载所有配置的插件（Plugins）</b>，执行<b>Compiler对象的run方法</b>开始执行编译</li>
+            <li>3. 确定入口: 根据<b>配置中的Entry找到所有的入口文件</b></li>
+            <li>4. 编译模块: 从入口文件开始，<b>调用所有配置的Loader对模块进行翻译</b>，再找出该模块依赖的模块，再<b>递归</b>本步骤，直到所有入口依赖的文件都经过本步骤的处理</li>
+            <li>5. 完成模块编译: 在第四部经过Loader翻译完所有模块后，得到<b>每个模块被翻译后的最终内容和它们之间的依赖关系</b></li>
+            <li>6. 输出资源: <b>根据Entry和模块之间的依赖关系</b>，组装成一个个包含多个模块的Chunk，再把<b>每个Chunk转换成一个单独的文件加入输出列表</b>，这步是可以修改输出内容的最后机会</li>
+            <li>7. 输出完成: 在确定好输出内容后，<b>根据配置确定输出的路径和文件名，把文件写入到文件系统</b></li>
+        </ul>,
+    },
 ]
 export const dataBase = [
     {
@@ -818,6 +839,14 @@ export const dataAlgo = [
             <li><Link to="/algorithm/binaryTree#minDepth">111.二叉树的最小深度</Link></li>
         </ul>
     },
+    {
+        Q: '返回1 - n的所有对称数字', K: <Tag color="orange">filter、keys()</Tag>,
+        ans: <div><Highlight>{`[...Array.from(Array(n).keys())].filter(n => String(n).length > 1 && String(n) === String(n).split('').reverse().join(''))`}</Highlight></div>
+    },
+    {
+        Q: '移动0，把数组中的0移动后面，减少操作，不实用额外数组', K: <Tag color="orange">splice、i--、j++</Tag>,
+        ans: <div><Highlight>{`for(let i = 0, j = 0; i < len - j; i++) n === 0 && nums.push(0); nums.splice(i, 1);i--;j++`}</Highlight></div>
+    },
 ]
 
 
@@ -834,7 +863,7 @@ export const dataProgram = [
         ans: <ul>
             <li>单入参: <Highlight>{`return (n) => Number.isInteger(n) ? curry.call(this, ans + n) : ans`}</Highlight></li>
             <li>多入参: <Highlight>{`rest = [...rest].reduce(); return (...args) => args.length ? curry.call(this, rest += [...args].reduce()) : rest`}</Highlight></li>
-            <li>不需要()执行（alert下才能调用）: <Highlight>{`rest = [...rest]; add = (...args) => rest.push(...args); return curry.call(this, rest)); add.toString = () => rest.reduce(); return add`}</Highlight></li>
+            <li>不需要()执行（alert下才能调用）: <Highlight>{`rest = [...rest]; add = (...args) => rest.push(...args), return curry.call(this, rest)); add.toString = () => rest.reduce(); return add`}</Highlight></li>
             <li><Link to="/examination/program#curry">柯里化</Link></li>
         </ul>
     },
@@ -894,6 +923,30 @@ export const dataProgram = [
             <li><Link to="/examination/program#template">实现一个模板引擎</Link></li>
         </ul >
     },
+    {
+        Q: '判断是否合法url', K: <Tag color="volcano">new URL</Tag>,
+        ans: <Highlight>{`try{ const link = new URL(url); return true }catch(error){ return false }`}</Highlight>
+    },
+    {
+        Q: '数组转树状结构', K: <Tag color="volcano">哈希</Tag>,
+        ans: <Highlight>{`for(let node of list){ map[id] = node; map[id].child = []; if(!id){ res.push(node) }else { if(pId in map) {map[pId].child.push(node)}else { map[pId] = {id: pId,child: []} } } }`}</Highlight>
+    },
+    {
+        Q: 'Promise.all', K: <Tag color="volcano">Promise、遍历、length--</Tag>,
+        ans: <Highlight>{`return new Promise(resolve => { forEach( p.then(r => len === 1 ? resolve(res) : res[i] = r) )})`}</Highlight>
+    },
+    {
+        Q: 'Promise.race', K: <Tag color="volcano">Promise、遍历</Tag>,
+        ans: <Highlight>{`return new Promise(resolve => { forEach(p =>  p.then(r => resolve(r)) )})`}</Highlight>
+    },
+    {
+        Q: '已知数据格式，实现一个函数 fn 找出链条中所有的父级 id', K: <Tag color="volcano">dfs</Tag>,
+        ans: <ul>
+            <li><Highlight>{`dfs(list, temp = []){ for(let n of list){ if(id === value) return temp else if(child) { res = dfs(child, temp.concat(id)) }} return [] }`}</Highlight></li>
+            <li><Link to="/examination/program#findParent">找出数据链路中的所有父级</Link></li>
+        </ul>
+    },
 ]
+
 
 

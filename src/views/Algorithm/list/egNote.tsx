@@ -300,3 +300,35 @@ var a = { b: 1, c: 2, d: { e: 3 } }
 var b = { b: 1, d: { e: 3 }, c: 2 }
 console.log(isEqual(a, b))
 `
+export const statistics = `
+function statistics(list: string[]) {
+    if (!list.length) return list
+    let map = new Map()
+    for (let char of list) {
+        if (map.has(char)) {
+            let data = map.get(char)
+            data[char]++
+            map.set(char, data)
+        } else {
+            map.set(char, { [char]: 1 })
+        }
+    }
+    return [...Array.from(map.values())].sort((a: any, b: any) => {
+        const A = Object.keys(a)[0]
+        const B = Object.keys(b)[0]
+        return b[B] - a[A]
+    })
+}
+console.log(statistics(['html', 'html', 'html', 'span', 'span', 'div', 'div', 'div', 'html', 'p']))`
+
+export const memory = `
+function memory(a: number, b: number) {
+    let sumMap = new Map()
+    const key = a+'+'+b
+    if (sumMap.has(key)) return sumMap.get(key)
+    else {
+        const sum = a + b
+        sumMap.set(key, sum)
+        return sum
+    }
+}`

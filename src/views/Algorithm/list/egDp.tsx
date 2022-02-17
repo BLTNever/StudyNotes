@@ -5,12 +5,10 @@ export const climbStairs = `
  * 爬楼梯可以通过拆分成多个子问题
  * 爬到n - 1的方法数量。再爬1层就到n阶
  * 爬到n - 2的方法数量。再爬2层就到n阶
- * @param n number
  */
  function climbStairs(n: number) {
     if (n <= 2) return n // 1阶台阶（1）跟2阶台阶（1+1、2），直接返回n
     let dp = [] // 数组的指针对应的是台阶数，值存出台阶数需要的方法数，0阶不需要爬，且n为正整数。
-
     // dp[0] = 1 // 也可以根据数组指针式从0开始定义，没有方法数。（从斐波那契数列来说可以设置dp[0]为0，然后从dp[2]开始）
     dp[1] = 1 // 定义第一阶的爬楼梯方法数
     dp[2] = 2 // 定义第二阶的爬楼梯方法数
@@ -21,10 +19,8 @@ export const climbStairs = `
     }
     return dp[n]
 }
-
 /**
  * 动态规划 非数组双指针
- * @param n 
  */
 function climbStairs(n: number) {
     if (n <= 2) return n
@@ -37,7 +33,14 @@ function climbStairs(n: number) {
     }
     return cur
 }
-
+/**
+ * 递归
+ */
+function climbStairs(n) {
+    if (n === 1) return 1;
+    if (n === 2) return 2;
+    return climbStairs(n - 1) + climbStairs(n - 2);
+}
 `
 
 export const fib = `
@@ -190,3 +193,92 @@ function minCostClimbingStairs(cost: number[]) {
     return cur
 }
 `
+
+export const backPack1 = `
+function backPack(m: number, A: number[], V: number[]) {
+    let dp = new Array(m + 1).fill(0)       // 初始化0，没有物品， 价值为0
+    for (let i = 0; i < A.length; i++) {    // 外层循环物品
+        for (let j = m; j >= 0; j--) {      // 内存循环背包
+            if (j - A[i] >= 0) {
+                dp[j] = Math.max(dp[j], dp[j - A[i] + V[i]])
+            }
+        }
+    }
+    return dp[m]
+}`
+export const backPack2 = `
+function backPack(m: number, A: number[], V: number[]) {
+    let dp = new Array(m + 1).fill(0)             // 初始化0，没有物品， 价值为0
+    for (let i = 0; i < m; i++) {                 // 外层循环背包
+        for (let j = 0; j < A.length; j++) {      // 内存循环物品
+            if (j - A[i] >= 0) {
+                dp[j] = Math.max(dp[i], dp[i - A[j] + V[j]])
+            }
+        }
+    }
+    return dp[m]
+}`
+export const backPackTemp = `
+target: 背包
+nums: 物品
+let dp = new Array(target + 1).fill(0)
+dp[0] = 1               // 根据情况是否设置初始值
+for (let i = 1; i < target; i++) {               // 外层循环背包
+    for (let j = 0; j < nums.length; j++) {      // 内存循环物品
+        // 公式
+        if (j - A[i] >= 0) {
+            dp[j] = Math.max(dp[i], dp[i - A[j] + V[j]])
+        }
+    }
+}
+`
+
+export const coinChange = `
+/**
+ *  - 假设给出的不同面额的硬币是[1, 2, 5]，目标是 120，问最少需要的硬币个数？
+    - 我们要分解子问题，分层级找最优子结构，看到这又要晕了哈，憋急~~ 下面马上举例。
+    - 这里我们使用「自顶向下」思想来考虑这个题目，然后用「自底向上」的方法来解题，
+    体验算法的冰火两重天。
+    - dp[i]: 表示总金额为 i 的时候最优解法的硬币数
+    - 我们想一下：求总金额 120 有几种方法？下面这个思路关键了 !!!
+    一共有 3 种方式，因为我们有 3 种不同面值的硬币。
+        1.拿一枚面值为 1 的硬币 + 总金额为 119 的最优解法的硬币数量
+            这里我们只需要假设总金额为 119 的最优解法的硬币数有人已经帮我们算好了，
+            不需要纠结于此。(虽然一会也是我们自己算，哈哈)
+            即：dp[119] + 1
+        2.拿一枚面值为 2 的硬币 + 总金额为 118 的最优解法的硬币数
+            这里我们只需要假设总金额为 118 的最优解法的硬币数有人已经帮我们算好了
+            即：dp[118] + 1
+        3.拿一枚面值为 5 的硬币 + 总金额为 115 的最优解法的硬币数
+            这里我们只需要假设总金额为 115 的最优解法的硬币数有人已经帮我们算好了
+            即：dp[115] + 1
+    
+    - 所以，总金额为 120 的最优解法就是上面这三种解法中最优的一种，也就是硬币数最少
+        的一种，我们下面试着用代码来表示一下：
+        
+    - dp[120] = Math.min(dp[119] + 1, dp[118] + 1, dp[115] + 1);
+        
+    - 推导出「状态转移方程」：
+        dp[i] = Math.min(dp[i - coin] + 1, dp[i - coin] + 1, ...)
+        其中 coin 有多少种可能，我们就需要比较多少次，那么我们到底需要比较多少次呢？
+        当然是 coins 数组中有几种不同面值的硬币，就是多少次了~ 遍历 coins 数组，
+        分别去对比即可
+        
+    - 上面方程中的 dp[119]，dp[118]，dp[115] 我们继续用这种思想去分解，
+        这就是动态规划了，把这种思想，思考问题的方式理解了，这一类型的题目
+        问题都不会太大。
+ * @param coins 硬币面值 数组
+ * @param amount 总金额
+ */
+function coinChange(coins: number[], amount: number) {
+    let dp = new Array(amount + 1).fill(0)
+    dp[0] = 0
+    for (let i = 0; i <= amount; i++) {
+        for (let coin of coins) {
+            if (i - coin >= 0) {
+                dp[i] = Math.min(dp[i], dp[i - coin] + 1)
+            }
+        }
+    }
+    return dp[amount] === Infinity ? -1 : dp[amount]
+}`

@@ -25,6 +25,7 @@ const AlgoDp = () => {
     return (
         <>
             <Wrap id="DP">
+                <Title level={3}>DP模版</Title>
                 <ul>
                     <li>1. 确定DP数组以及下标的意义</li>
                     <li>2. 确定递推公式</li>
@@ -32,6 +33,11 @@ const AlgoDp = () => {
                     <li>4. 确定遍历顺序</li>
                     <li>5. 举例推导DP数组</li>
                 </ul>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>背包模版</Title>
+                <Highlight>{eg.backPackTemp}</Highlight>
             </Wrap>
             <Wrap id="climbStairs">
                 <Title level={3}>70.爬楼梯{T.EASY}{T.DP}</Title>
@@ -104,12 +110,69 @@ const AlgoDp = () => {
                 </Collapse>
             </Wrap>
 
+            <Wrap>
+                <Title level={3}>不完全背包问题{T.EASY}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>由若干个物品和容量为 m 的背包</li>
+                        <li>给定数组 A 表示每个物品的大小，数组 V 表示米格物品的价值</li>
+                        <li>每个物品使用一次，最多装入背包的价值是多大</li>
+                    </ul>} key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.backPack1}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+
+            <Wrap>
+                <Title level={3}>完全背包问题{T.EASY}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>给定无限个物品，每个物品数量有无限个，第 i 个的物品的体积是A[i],价值是V[i]</li>
+                        <li>容量为 m 的背包</li>
+                        <li>最多装入背包的价值是多大</li>
+                    </ul>} key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.backPack2}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>322. 零钱兑换{T.MEDIUM}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。</li>
+                        <li>计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 </li>
+                        <li>你可以认为每种硬币的数量是无限的</li>
+                    </ul>} key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.coinChange}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
         </>
     )
 }
 
 export default AlgoDp
 
+
+function backPack(m: number, A: number[], V: number[]) {
+    let dp = new Array(m + 1).fill(0)             // 初始化0，没有物品， 价值为0
+    for (let i = 0; i < m; i++) {                 // 外层循环背包
+        for (let j = 0; j < A.length; j++) {      // 内存循环物品
+            if (j - A[i] >= 0) {
+                dp[j] = Math.max(dp[i], dp[i - A[j] + V[j]])
+            }
+        }
+    }
+    return dp[m]
+}
 
 try {
     // console.log(minCostClimbingStairs([1, 100, 1, 1, 1, 100, 1, 1, 100, 1]))

@@ -202,10 +202,10 @@ class EventEmit {
 export const debounce = `
 // 函数防抖 —— 持续触发，只有在最后一次触发事件后延时执行
 function debounce(fn, delay) {
-    let timer = null
+    let timer = null                    // 创建标记存放定时器的返回值
     return (...args) => {
-        if(timer) clearTimeout(timer)
-        timer = setTimeout(() => {
+        if(timer) clearTimeout(timer)   // 用户操作后，再次操作，清掉定时器
+        timer = setTimeout(() => {      // 创建一个新的定时器
             fn.apply(this, [...args])
         }, delay)
     }
@@ -292,15 +292,15 @@ function throttle(fn, interval) {
 export const throttle12 = `
 // 写法1 第一次立即执行
 function throttle(fn, interval) {
-    let waiting = false
+    let waiting = false                 // 通过闭包保存一个标记
     let lastArgs = null
     return (...args) =>{
-        if(!waiting) {
-            waiting = true
-            fn.apply(this, args)
+        if(!waiting) {                  // 进入后判断是否false，为true 就去记录一下输入的参数
+            waiting = true              // 标记改成 true，这样当持续操作的话，会阻止掉
+            fn.apply(this, args)        // 需要刚开始操作就执行一次的话 需要调用fn一次
             setTimeout(() => {
-                waiting = false
                 if(lastArgs) fn.apply(this, lastArgs)
+                waiting = false         // setTimeou执行完，标记改成false， 意思可以进行一下轮的循环了
             }, interval)
         }else {
             lastArgs = args
@@ -891,3 +891,84 @@ const html = \`<!DOCTYPE html>
 </html>\`
 console.log(render(html, { arr: [1, 2, 3] }))
 `
+
+export const lazyMan = `
+class LazyMan {
+    private name: string
+    private queue: any[]
+
+    public constructor(name: string) {
+        this.name = name
+        this.queue = []
+        console.log(My name is {name})
+        setTimeout(() => { this.next() }, 0)
+    }
+    public sleep(time: number) {
+        const fn = () => {
+            setTimeout(() => {
+                console.log(time)
+                console.log(睡眠{time}秒)
+                this.next()
+            }, time * 1000)
+        }
+        this.queue.push(fn)
+        return this
+    }
+    public sleepFirst(time: number) {
+        const fn = () => {
+            setTimeout(() => {
+                console.log(先睡{time}秒)
+                this.next()
+            }, time * 1000)
+        }
+        this.queue.unshift(fn)
+        return this
+    }
+    public eat(food: string) {
+        const fn = () => {
+            console.log({this.name} eating {food})
+            this.next()
+        }
+        this.queue.push(fn)
+        return this
+    }
+    private next() {
+        const fn = this.queue.shift()
+        fn && fn()
+    }
+}
+function lazyMan(name: string) {
+    return new LazyMan(name)
+}
+lazyMan('Tony').sleepFirst(3).eat('lunch').sleep(10).eat('dinner');`
+
+
+export const findParent =`
+function findParent(data: any[], value: number) {
+    const dfs = (list: any[], temp = []) => {
+        for (let node of list) {
+            if (node.id === value) {
+                return temp
+            } else if (node.child.length) {
+                console.log('temp>>>', temp)
+                const res: any = dfs(node.child, temp.concat(node.id))
+                console.log("res>>>", res)
+                if (res.length) return res
+            }
+        }
+        return []
+    }
+    return dfs(data)
+}
+
+const data = [
+    {
+        id: 1,
+        child: [{ id: 11, child: [{ id: 111, child: [{ id: 1111, child: [] }] }, { id: 112, child: [] },] }]
+    },
+    {
+        id: 2,
+        child: [{ id: 21, child: [{ id: 211, child: [{ id: 2111, child: [] }] }, { id: 212, child: [] },] }]
+    }
+]
+console.log(findParent(data, 2111))`

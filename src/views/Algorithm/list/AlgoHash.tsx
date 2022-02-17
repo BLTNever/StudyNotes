@@ -25,6 +25,17 @@ const AlgoHash = () => {
     return (
         <>
             <Wrap>
+                <Title level={3}>数据转换: 数组-树{T.EASY}</Title>
+                <Collapse ghost>
+                    <Panel header="一维数组转成树的结构" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.createTree}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
                 <Title level={3}>1. 两数之和{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="给一个整数数组nums和一个整数目标值target，在数组中找出两数之和为target的那两个数，返回他们在数组中下标" key="1">

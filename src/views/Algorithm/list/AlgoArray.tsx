@@ -24,22 +24,19 @@ const AlgoArray = () => {
     }, [])
     return (
         <>
-
+            <Wrap>
+                <Title level={3}>旋转数组/字符串</Title>
+                <Collapse ghost>
+                    <Panel header="给定一个数组/字符串，将数组/字符串中的元素向右移动 k 个位置，其中 k 是非负数" key="1">
+                        <Space><Highlight language="javascript">{eg.rotate}</Highlight></Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
             <Wrap>
                 <Title level={3}>53.最大子数组和</Title>
                 <Collapse ghost>
                     <Panel header="给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和" key="1">
                         <Space><Highlight language="javascript">{eg.maxSubArray}</Highlight></Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-            <Wrap>
-                <Title level={3}>数据转换: 数组-树{T.EASY}</Title>
-                <Collapse ghost>
-                    <Panel header="一维数组转成树的结构" key="1">
-                        <Space direction="vertical">
-                            <Highlight language="javascript">{eg.createTree}</Highlight>
-                        </Space>
                     </Panel>
                 </Collapse>
             </Wrap>
@@ -438,9 +435,35 @@ const AlgoArray = () => {
 }
 export default AlgoArray
 
+function findMiddleArray(nums1: number[], nums2: number[]) {
+    let m = nums1.length
+    let n = nums2.length
+    let mid = (m + n) / 2
+    console.log(mid)
+    let k = m + n - 1
+    m = m - 1
+    n = n - 1
+    while (m >= 0 || n >= 0) {
+        if (m < 0) {
+            nums1[k--] = nums2[n--]
+            continue
+        }
+        if (n < 0) {
+            nums1[k--] = nums1[m--]
+            continue
+        }
+        if (nums1[m] < nums2[n]) {
+            nums1[k--] = nums2[n--]
+        } else {
+            nums1[k--] = nums1[m--]
+        }
+    }
+
+    return (nums1[Math.floor(mid)] * nums1[Math.ceil(mid)]) / 2
+}
 
 try {
-    // console.log(findDuplicate([3, 9, 3, 4, 2]))
+    console.log(findMiddleArray([1, 2, 3], [4, 5, 6, 7]))
 } catch (error) {
     console.log(error)
 }

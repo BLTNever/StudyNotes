@@ -7,6 +7,7 @@ import { Card, Col, Row, Collapse, Typography, Space } from 'antd'
 import { Wrap } from '@components/Base'
 
 import * as eg from './egProgram'
+import { render } from '@testing-library/react'
 
 
 const { Panel } = Collapse
@@ -93,8 +94,8 @@ const Program = () => {
                         <Title level={3}>高频事件触发，N秒内只执行一次，稀释函数的执行频率</Title>
                         <Text mark>每次触发事件都会判断是否有在等待执行的延时函数</Text>
                         <Row gutter={24}>
-                            <Col span={8}><Card title="时间戳: 立即执行"><Highlight language="javascript">{eg.throttle11}</Highlight></Card></Col>
                             <Col span={8}><Card title="计时器: 最后一次会延时执行"><Highlight language="javascript">{eg.throttle12}</Highlight></Card></Col>
+                            <Col span={8}><Card title="时间戳: 立即执行"><Highlight language="javascript">{eg.throttle11}</Highlight></Card></Col>
                             <Col span={8}><Card title="结合写法"><Highlight language="javascript">{eg.throttle13}</Highlight></Card></Col>
                         </Row>
 
@@ -109,7 +110,7 @@ const Program = () => {
                 </Collapse>
             </Wrap>
 
-            <Wrap  id="curry">
+            <Wrap id="curry">
                 <Title level={3}>柯里化</Title>
                 <Collapse ghost>
                     <Panel header="curry(1,2)(3,4)(5)() 需要调用一次执行" key="1">
@@ -159,9 +160,70 @@ const Program = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
+
+            <Wrap id="lazyman">
+                <Title level={3}>设计LazyMan类</Title>
+                <Collapse ghost>
+                    <Panel header="使用 fs.readFile() 来读取文件拿到模板字符串；字符串拼接替换；使用new Function(str)执行；with(data)传入数据" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.lazyMan}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap id="findParent">
+                <Title level={3}>找出数据链路中的所有父级</Title>
+                <Collapse ghost>
+                    <Panel header="已知数据格式，实现一个函数 fn 找出链条中所有的父级 id" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.findParent}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>输入 int 型，返回整数逆序后的字符串</Title>
+                <Collapse ghost>
+                    <Panel header="必须使用递归函数调用，不能用全局变量， 输入函数必须只有一个参数传入，必须返回字符串" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.findParent}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
         </>
     )
 }
 
 export default Program
 
+// function _reverse(num: number) {
+//     let a = num / 10
+//     let b = num % 10
+//     if(a < 1) {
+//         return num
+//     }else {
+//         a
+//     }
+// }
+// function deepCopy(target: any, cache = new Set()) {
+//     if (typeof target !== 'object' || cache.has(target)) return target
+
+//     if (Array.isArray(target)) {
+//         for (let item of target) {
+//             cache.add(item)
+//             return item
+//         }
+//     } else {
+//         return [...Object.keys(target), ...Object.getOwnPropertySymbols(target)].reduce((res, key) => {
+//             cache.add(target[key])
+//             res[key] = deepCopy(target[key], cache)
+//             return res
+//         }, target.constructor !== Object ? Object.create(target.constructor.prototype) : {})
+//     }
+// }
+try {
+    //
+} catch (error) { }

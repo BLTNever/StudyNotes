@@ -445,3 +445,50 @@ try {
     console.log(error)
 }
 
+function merge(A: number[], m: number, B: number[], n: number) {
+    // [i--] i-- 返回 i ,指向 i 的下标，然后 i - 1 
+    // [--i] --i 返回 i -= 1, 指向 i - 1 的下标
+    // let k = m + n - 1
+    // while (k >= 0) {
+    //     if (n === 0) return  // 已经合并完成
+    //     if (m < 1) {
+    //         A[k--] = B[--n]
+    //         continue
+    //     }
+    //     if (n < 1) {
+    //         A[k--] = A[--m]
+    //         continue
+    //     }
+
+    //     if (A[m - 1] > B[n - 1]) {
+    //         A[k--] = A[--m]
+    //     } else {
+    //         A[k--] = B[--n]
+    //     }
+    // }
+    // 双指针 额外空间
+    let a = m - 1
+    let b = n - 1
+    let k = m + n - 1
+    while (a >= 0 || b >= 0) {
+        console.log(a, b)
+        if (a < 0) {
+            A[k--] = B[b--] // A 空， 把 B 依次放进去
+            continue
+        }
+        if (b < 0) {
+            A[k--] = A[a--] // B 空， 把 A 依次放进去
+            continue
+        }
+        // A，B从末尾开始比较，大的数 先加到 A 数组中， 从后往前
+        if (A[a] > B[b]) {
+            A[k--] = A[a--]
+        } else {
+            A[k--] = B[b--]
+        }
+    }
+    return A
+}
+const A = [1, 2, 3]
+const B = [2, 5, 6]
+console.log(merge(A, 3, B, 3))

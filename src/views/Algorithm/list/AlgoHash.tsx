@@ -73,7 +73,7 @@ const AlgoHash = () => {
                 <Collapse ghost>
                     <Panel header="给你一个 计数配对域名 组成的数组 cpdomains ，解析得到输入中每个子域名对应的 计数配对域名 ，并以数组形式返回。可以按 任意顺序 返回答案。" key="1">
                         <Space direction="vertical">
-                            <Highlight language="javascript">{eg.MyHashMap}</Highlight>
+                            <Highlight language="javascript">{eg.subdomainVisits}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -88,7 +88,7 @@ const AlgoHash = () => {
                         <li>函数 get 和 put 必须以 O(1) 的平均时间复杂度运行</li>
                     </ul>} key="1">
                         <Space direction="vertical">
-                            <Highlight language="javascript">{eg.MyHashMap}</Highlight>
+                            <Highlight language="javascript">{eg.LRUCache}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -114,6 +114,7 @@ const AlgoHash = () => {
 }
 
 export default AlgoHash
+
 
 /**
  * 

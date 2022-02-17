@@ -110,7 +110,7 @@ const AlgoNote = () => {
                     <Panel header="entry:['html','html''html','span','span','div','div','div','html','p'],outPut: [{html: 4}, {div:3},{span:2},{p:1}],排序输出 " key="1">
 
                     </Panel>
-                    <Panel header="记忆化函数, 4 + 2 output:4 + 2 = 6, 3 + 1 output: 3 + 1 = 4,4 + 2 output: 6" key="1">
+                    <Panel header="记忆化函数, 4 + 2 output:4 + 2 = 6, 3 + 1 output: 3 + 1 = 4,4 + 2 output: 6" key="2">
 
                     </Panel>
                 </Collapse>
@@ -143,3 +143,76 @@ const AlgoNote = () => {
 }
 
 export default AlgoNote
+
+
+const arr = [{ a: 1 }, { b: 2 }, { c: 3 }, { d: 4 },]
+function _sort(arr: any) {
+    return arr.sort((a: any, b: any) => {
+        const key1 = Object.keys(a)[0]
+        const key2 = Object.keys(b)[0]
+        return b[key2] - a[key1]
+    })
+}
+console.log(_sort(arr))
+
+function insert(nums: number[]) {
+    let len = nums.length
+    for (let i = 1; i < len; i++) {
+        let temp = nums[i]
+        for (let j = i - 1; j >= 0; j--) {
+            if (nums[j] > temp) {
+                nums[j + 1] = nums[j]
+                nums[j] = temp
+            } else {
+                break
+            }
+        }
+    }
+    return nums
+}
+
+function bubble(nums: number[]) {
+    let len = nums.length
+    for (let i = len - 1; i >= 0; i--) {
+        for (let j = 0; j < i; j++) {
+            if (nums[j] > nums[j + 1]) {
+                [nums[j], nums[j + 1]] = [nums[j + 1], nums[j]]
+            }
+        }
+    }
+}
+
+function select(nums: number[]) {
+    let len = nums.length
+    let min = 0
+    for (let i = 0; i < len; i++) {
+        min = i
+        for (let j = i; j < len; j++) {
+            if (nums[j] < nums[min]) {
+                min = j
+            }
+        }
+        if (i !== min) {
+            [nums[i], nums[min]] = [nums[min], nums[i]]
+        }
+    }
+    return nums
+}
+
+function quick(nums: number[]): number[] {
+    let len = nums.length
+    if (len <= 1) return nums
+    let mid = len >> 1
+    let pivot = nums.splice(mid, 1)[0]
+    let left = []
+    let right = []
+    for (const n of nums) {
+        if (n < pivot) {
+            left.push(n)
+        } else {
+            right.push(n)
+        }
+    }
+    return quick(left).concat([pivot], quick(right))
+}
+console.log(insert([2, 3, 4, 1, 2, 4, 5]))

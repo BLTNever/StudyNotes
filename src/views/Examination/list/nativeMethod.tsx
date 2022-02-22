@@ -103,7 +103,7 @@ const NativeMethod = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
-            
+
             <Wrap id="array">
                 <Title level={3}>Array</Title>
                 <Collapse ghost>
@@ -129,9 +129,14 @@ const NativeMethod = () => {
             <Wrap id="string">
                 <Title level={3}>String</Title>
                 <Collapse ghost>
-                    <Panel header="trim" key="1">
+                    <Panel header="trim" key="1" extra="replace(/^\s*|\s*$/g, '')">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg._trim}</Highlight>
+                        </Space>
+                    </Panel>
+                    <Panel header="indexOf" key="2" extra="val === str.slice(i, i + val.length)">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg._indexOf}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -167,5 +172,4 @@ export default NativeMethod
 try {
     // console.log(flat(arr))
 } catch (error) { }
-
 

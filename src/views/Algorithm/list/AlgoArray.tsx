@@ -430,88 +430,32 @@ const AlgoArray = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
+
+            <Wrap>
+                <Title level={3}>4. 寻找两个正序数组的中位数{T.HARD}{T.DICHOTOMY}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>给定两个大小分别为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的 中位数</li>
+                        <li>算法的时间复杂度应该为 O(log (m+n)) </li>
+                    </ul>} key="1">
+                        <Space direction="vertical">
+                            <a href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/" target="_blank">题</a>
+                            <Highlight language="javascript">{eg.findMedianSortedArrays}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
         </>
     )
 }
 export default AlgoArray
 
-function findMiddleArray(nums1: number[], nums2: number[]) {
-    let m = nums1.length
-    let n = nums2.length
-    let mid = (m + n) / 2
-    console.log(mid)
-    let k = m + n - 1
-    m = m - 1
-    n = n - 1
-    while (m >= 0 || n >= 0) {
-        if (m < 0) {
-            nums1[k--] = nums2[n--]
-            continue
-        }
-        if (n < 0) {
-            nums1[k--] = nums1[m--]
-            continue
-        }
-        if (nums1[m] < nums2[n]) {
-            nums1[k--] = nums2[n--]
-        } else {
-            nums1[k--] = nums1[m--]
-        }
-    }
 
-    return (nums1[Math.floor(mid)] * nums1[Math.ceil(mid)]) / 2
-}
 
 try {
-    console.log(findMiddleArray([1, 2, 3], [4, 5, 6, 7]))
+    // console.log(findMiddleArray([1, 2, 3], [4, 5, 6, 7]))
 } catch (error) {
     console.log(error)
 }
 
-function merge(A: number[], m: number, B: number[], n: number) {
-    // [i--] i-- 返回 i ,指向 i 的下标，然后 i - 1 
-    // [--i] --i 返回 i -= 1, 指向 i - 1 的下标
-    // let k = m + n - 1
-    // while (k >= 0) {
-    //     if (n === 0) return  // 已经合并完成
-    //     if (m < 1) {
-    //         A[k--] = B[--n]
-    //         continue
-    //     }
-    //     if (n < 1) {
-    //         A[k--] = A[--m]
-    //         continue
-    //     }
 
-    //     if (A[m - 1] > B[n - 1]) {
-    //         A[k--] = A[--m]
-    //     } else {
-    //         A[k--] = B[--n]
-    //     }
-    // }
-    // 双指针 额外空间
-    let a = m - 1
-    let b = n - 1
-    let k = m + n - 1
-    while (a >= 0 || b >= 0) {
-        console.log(a, b)
-        if (a < 0) {
-            A[k--] = B[b--] // A 空， 把 B 依次放进去
-            continue
-        }
-        if (b < 0) {
-            A[k--] = A[a--] // B 空， 把 A 依次放进去
-            continue
-        }
-        // A，B从末尾开始比较，大的数 先加到 A 数组中， 从后往前
-        if (A[a] > B[b]) {
-            A[k--] = A[a--]
-        } else {
-            A[k--] = B[b--]
-        }
-    }
-    return A
-}
-const A = [1, 2, 3]
-const B = [2, 5, 6]
-console.log(merge(A, 3, B, 3))

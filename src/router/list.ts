@@ -115,20 +115,20 @@ export const list = [
                 component: RouteBase.InterviewFramework,
             },
             {
-                path: '/interview/3',
-                component: RouteBase.Interview3,
+                path: '/interview/cache',
+                component: RouteBase.Cache,
             },
             {
-                path: '/interview/3-1',
-                component: RouteBase.Interview31,
+                path: '/interview/http',
+                component: RouteBase.Http,
             },
             {
                 path: '/interview/webpack',
                 component: RouteBase.Webpack,
             },
             {
-                path: '/interview/5',
-                component: RouteBase.Interview5,
+                path: '/interview/performance',
+                component: RouteBase.Performance,
             },
             {
                 path: '/interview/6',

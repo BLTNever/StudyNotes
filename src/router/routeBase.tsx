@@ -28,10 +28,10 @@ export const Redux = lazy(() => import(/* webpackChunkName: "Redux" */'@views/Re
 // Interview
 export const Js = lazy(() => import(/* webpackChunkName: "Js" */'@views/Interview/list/js'))
 export const InterviewFramework = lazy(() => import(/* webpackChunkName: "framework" */'@views/Interview/list/framework'))
-export const Interview3 = lazy(() => import(/* webpackChunkName: "Interview3" */'@views/Interview/list/Interview3'))
-export const Interview31 = lazy(() => import(/* webpackChunkName: "Interview3-1" */'@views/Interview/list/Interview3-1'))
+export const Cache = lazy(() => import(/* webpackChunkName: "Cache" */'@views/Interview/list/Cache'))
+export const Http = lazy(() => import(/* webpackChunkName: "Http" */'@views/Interview/list/Http'))
 export const Webpack = lazy(() => import(/* webpackChunkName: "webpack" */'@views/Interview/list/webpack'))
-export const Interview5 = lazy(() => import(/* webpackChunkName: "Interview5" */'@views/Interview/list/Interview5'))
+export const Performance = lazy(() => import(/* webpackChunkName: "Performance" */'@views/Interview/list/Performance'))
 export const Interview6 = lazy(() => import(/* webpackChunkName: "Interview6" */'@views/Interview/list/Interview6'))
 export const frontend = lazy(() => import(/* webpackChunkName: "frontend" */'@views/Interview/list/frontend'))
 export const Interview8 = lazy(() => import(/* webpackChunkName: "Interview8" */'@views/Interview/list/Interview8'))

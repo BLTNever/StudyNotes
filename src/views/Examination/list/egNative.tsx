@@ -683,3 +683,17 @@ function flat(arr, depth = 1) {
     return result.reverse()
 }
 `
+
+export const _indexOf = `
+function indexOf(str: string, val: string) {
+    const strLen = str.length
+    const valLen = val.length
+    for (let i = 0; i < strLen; i++) {
+        let matchLen = i + valLen
+        let matchStr = str.slice(i, matchLen)
+        if (matchLen > strLen) return -1
+        if (matchStr === val) return i
+    }
+    return -1
+}
+`

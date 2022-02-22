@@ -687,6 +687,30 @@ export const dataBase = [
             <li>同一进程下的线程共享全局变量、静态变量等数据</li>
             <li>进程之间的通信需要以通信的方式（Inter Process Communication，IPC）进行</li>
         </ul>,
+        description: <div>
+            <p>进程是资源分配的基本单位；线程是程序执行的基本单位</p>
+            <p>进程拥有自己的资源空间，每启动一个进程，系统就为它分配地址空间</p>
+            <p>线程与CPU资源分配无关，多个线程共享同一进程的资源，使用相同地址空间</p>
+            <p>一个进程可以包含若干线程</p>
+            <p>系统通信: </p>
+            <ul>
+                <li>进程通信: 通过管道、套接字、信号交互、共享内存、消息队列进行通信</li>
+                <li>线程通信: 线程本身共享内存，指针指向同一个内容</li>
+            </ul>
+            <p>node通信: </p>
+            <ul>
+                <li>node中提供child_process模块来创建子进程（child_process.fork()）</li>
+                <li>cluster.fork()是child_process.fork()的上层实现，cluster的好处是可以监听共享端口</li>
+                <li>node进程的通信主要是通在主从（子）进程之间进行通信，子进程之间无法直接通信，只能通过主进程转发</li>
+                <li>主进程与子进程的通信是通过IPC（Inter Process Communication）进行通信，IPC基于底层libuv根据不同操作系统实现（Windows: 命名管道name pie, linux: Unix Domain Socket）</li>
+            </ul>
+            <p>node中cluster是怎样开启多进程的，并且一个端口可以被多个进程监听吗</p>
+            <ul>
+                <li>通过require(&apos;os&apos;).cpus().length获取当前机器上CPU的核数，然后根据CPU核数cluster.fork()创建相应数量的子进程</li>
+                <li>操作系统中，不同的进程去共享相同端口是不允许的</li>
+                <li>cluster模块中通过主进程自身TCP Server绑定端口，并将TCP Server的具柄通过IPC通道传递给子进程，相当于子进程接管了TCP Server</li>
+            </ul>
+        </div>
     },
     {
         Q: 'https加密过程', K: <Tag color="purple">https</Tag>,

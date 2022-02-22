@@ -153,7 +153,7 @@ function _sort(arr: any) {
         return b[key2] - a[key1]
     })
 }
-console.log(_sort(arr))
+// console.log(_sort(arr))
 
 function insert(nums: number[]) {
     let len = nums.length
@@ -215,7 +215,7 @@ function quick(nums: number[]): number[] {
     }
     return quick(left).concat([pivot], quick(right))
 }
-console.log(insert([2, 3, 4, 1, 2, 4, 5]))
+// console.log(insert([2, 3, 4, 1, 2, 4, 5]))
 function test() {
     return [...Array.from(Array(1000).keys())].filter((n:number) => {
         return String(n).length > 1 && String(n) === String(n).split('').reverse().join('')
@@ -223,5 +223,5 @@ function test() {
 }
 
 try {
-    console.log(test())
+    // console.log(test())
 } catch (error) { console.log(error) }

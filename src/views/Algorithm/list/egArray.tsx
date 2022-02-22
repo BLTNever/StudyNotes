@@ -121,10 +121,10 @@ function maxSubArray(nums: number[]) {
     let ans = nums[0]
     let sum = 0
 
-    for (let num of nums) {
-        // if (sum > 0) sum += num
-        // else sum = num
-        sum = Math.max((sum + num), num)
+    for (let n of nums) {
+        // if (sum > 0) sum += n
+        // else sum = n
+        sum = Math.max((sum + n), n)
         ans = Math.max(sum, ans)
     }
     return ans
@@ -1050,3 +1050,37 @@ function rotate(nums: number[], k: number) {
     const step = k % len
     return nums.slice(-step).concat(nums.slice(0, len - step))
 }`
+
+export const findMedianSortedArrays = `
+/**
+ * O(m + n)的解法， O(log(m+n))暂时不理解
+ */
+function findMiddleArray(nums1: number[], nums2: number[]) {
+    let m = nums1.length
+    let n = nums2.length
+    let t = (m + n)
+    let k = m + n - 1
+    m = m - 1
+    n = n - 1
+    while (m >= 0 || n >= 0) {
+        if (m < 0) {
+            nums1[k--] = nums2[n--]
+            continue
+        }
+        if (n < 0) {
+            nums1[k--] = nums1[m--]
+            continue
+        }
+        if (nums1[m] < nums2[n]) {
+            nums1[k--] = nums2[n--]
+        } else {
+            nums1[k--] = nums1[m--]
+        }
+    }
+    if (t % 2 === 0) {
+        return (nums1[t / 2 - 1] + nums1[t / 2]) / 2
+    } else {
+        return nums1[~~(t / 2)]
+    }
+}
+`

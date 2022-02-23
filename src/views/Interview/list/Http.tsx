@@ -222,6 +222,7 @@ const Http = () => {
 
             <Wrap id="WebAssembly">
                 <Title level={3}>WebAssembly/wasm 是一个可移植、体积小、加载快并且兼容 Web 的全新格式</Title>
+                <a href="https://github.com/mcuking/Awesome-WebAssembly-Applications">wasm应用</a>
                 <Collapse ghost>
                     <Panel header="wasm是什么" key="1">
                         <ul>

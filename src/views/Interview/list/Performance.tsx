@@ -184,8 +184,8 @@ const Performance = () => {
                 <Title level={3}>SSR</Title>
                 <Space direction="vertical">
                     <ul>
-                        <li>同构: 一份代码既可以跑在浏览器端，也可以跑在服务端。这得益于 NodeJS 在服务端的流行</li>
-                        <li>配置降级方案， 从SSR到CSR</li>
+                        <li>同构: 一份代码既可以跑在浏览器端,也可以跑在服务端。这得益于 NodeJS 在服务端的流行</li>
+                        <li>配置降级方案,从SSR降到到CSR</li>
                         <li>静态化页面: cdn + 服务器缓存 + 服务端渲染</li>
                         <li>动态化页面: 客户端缓存 + 动态获取</li>
                     </ul>

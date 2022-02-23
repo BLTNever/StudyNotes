@@ -89,11 +89,11 @@ export const list = [
         ]
     },
     {
-        path: '/brower',
+        path: '/browser',
         // component: RouteBase.Js,
         children: [
             {
-                path: '/brower/Delegate',
+                path: '/browser/Delegate',
                 component: RouteBase.Delegate,
             },
 

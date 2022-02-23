@@ -188,7 +188,18 @@ const Program = () => {
                 <Collapse ghost>
                     <Panel header="必须使用递归函数调用，不能用全局变量， 输入函数必须只有一个参数传入，必须返回字符串" key="1">
                         <Space direction="vertical">
-                            <Highlight language="javascript">{eg.findParent}</Highlight>
+                            <Highlight language="javascript">{eg.reverseNum}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>红绿灯问题</Title>
+                <Collapse ghost>
+                    <Panel header="红灯三秒亮一次，绿灯一秒亮一次，黄灯2秒亮一次；如何让三个灯不断交替重复亮灯？（用 Promse 实现）" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.light}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -199,15 +210,8 @@ const Program = () => {
 
 export default Program
 
-// function _reverse(num: number) {
-//     let a = num / 10
-//     let b = num % 10
-//     if(a < 1) {
-//         return num
-//     }else {
-//         a
-//     }
-// }
+
+
 // function deepCopy(target: any, cache = new Set()) {
 //     if (typeof target !== 'object' || cache.has(target)) return target
 

@@ -972,3 +972,37 @@ const data = [
     }
 ]
 console.log(findParent(data, 2111))`
+
+export const reverseNum = `
+function reverseNum(num: number): string {
+    if (num < 0) return reverseNum(-num) + '-';
+    else if (num === 0) return '';
+    let temp = String(num % 10);
+    temp += reverseNum(parseInt(String(num / 10), 10))
+    return temp;
+}`
+
+export const light = `
+function red() { console.log('red') }
+function green() { console.log('green') }
+function yellow() { console.log('red') }
+
+function light(fn: () => void, time: number) {
+    return new Promise<void>((resolve, reject) => {
+        setTimeout(() => {
+            fn()
+            resolve()
+        }, time);
+    })
+}
+function step() {
+    Promise.resolve().then(() => {
+        light(red, 3000)
+    }).then(() => {
+        light(green, 2000)
+    }).then(() => {
+        light(yellow, 3000)
+    }).then(() => {
+        step()
+    })
+}`

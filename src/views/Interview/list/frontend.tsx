@@ -15,13 +15,7 @@ const Frontend = () => {
             <Wrap>
                 <Title level={3}>DOM渲染流程</Title>
                 <Text>*关键渲染路径</Text>
-                <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li>4. 根据 Render Object Tree 计算节点的几何信息并以此进行布局</li>
-                    <li>5. 绘制页面需要先构建 Render Layer Tree 以便用正确的顺序展示页面，这棵树的生成与 Render Object Tree 的构建同步进行。然后还要构建 Graphics Layer Tree 来避免不必要的绘制和使用硬件加速渲染，最终才能在屏幕上展示页面</li>
-                </ul>
+               
                 <Collapse ghost>
                     <Panel header="DOM Tree" key="1" extra="1. 处理 HTML 并构建 DOM Tree">
                         <ul>

@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Menu } from 'antd'
@@ -11,12 +11,19 @@ const MyMenu = (props: any) => {
     const [selectedKeys, setSelectedKeys] = useState<Array<string>>([])
     const [openKeys, setOpenKeys] = useState<Array<string>>([])
     const { mode, theme, pathname } = props
-
+    const setTitle = useCallback((route: string, path: string) => {
+        if (!route.length || !path.length) return
+        const list = menuList.filter(i => i.route === route)[0]?.children || []
+        if (!list.length) return
+        const { name } = list.filter(i => i.route === pathname)[0] || {}
+        document.title = name
+    }, [pathname, menuList])
     useEffect(() => {
-        if (pathname?.length) {
-            setOpenKeys([pathname.split('/').filter(Boolean)[0]])
-            setSelectedKeys([pathname])
-        }
+        if (!pathname?.length) return
+        const [openKey] = pathname.split('/').filter(Boolean)
+        setOpenKeys([openKey])
+        setSelectedKeys([pathname])
+        setTitle(openKey, pathname)
     }, [pathname])
     const renderMenu = (list: any[]) => {
         return list.map((item) => {

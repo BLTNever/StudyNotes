@@ -50,12 +50,22 @@ const Performance = () => {
                                         <li></li>
                                     </ul>
                                 </li>
-                                <li>上报:
+                                <li>信息上报:
                                     <ul>
+                                        <p>方式1:</p>
                                         <li>收集信息后保存在内存中,之后在requestIdleCallback或离开页面前</li>
                                         <li>浏览器标签页被隐藏或显示的时候会触发visibilitychange事件(当 visibleStateState 属性的值转换为 hidden 时，Safari不会按预期触发visibilitychange； 因此，在这种情况下，您还需要包含代码以侦听 pagehide 事件)(出于兼容性原因，请确保使用  document.addEventListener 而不是window.addEventListener来注册回调。 Safari 14.0仅支持前者)</li>
                                         <li>浏览器unload(卸载的时候)</li>
                                         <li>Navigator.sendBeacon(): 请求与当前页面线程脱钩，作为浏览器进程的任务，因此可以保证会把数据发出去，不拖延卸载流程</li>
+                                    </ul>
+                                    <ul>
+                                        <p>方式2:</p>
+                                        <li>使用 POST 一个 1 x 1 的 gif 对其进行上报</li>
+                                        <li>1. 没有跨域问题</li>
+                                        <li>2. 发 POST 请求之后不需要获取和处理数据、服务器也不需要发送数据</li>
+                                        <li>3. 不会携带当前域名 cookie</li>
+                                        <li>4. 不会阻塞页面加载，影响用户的体验，只需 new Image 对象</li>
+                                        <li>5. 相比于 BMP/PNG 体积最小，可以节约 41% / 35% 的网络资源小</li>
                                     </ul>
                                 </li>
                             </ul>

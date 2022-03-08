@@ -35,7 +35,7 @@ const Vite = () => {
                                 <li>客户端强缓存：请求过的模块会被以 http 头 max-age=31536000,immutable 设置为强缓存，如果模块发生变化则用附加的版本 query 使其失效</li>
                                 <li>产物优化：相比于 Webpack ，Vite 直接锚定高版本浏览器，不需要在 build 产物中插入过多运行时与模板代码</li>
                                 <li>内置更好的分包实现：不需要用户干预，默认启用一系列智能分包规则，尽可能减少模块的重复打包</li>
-                                <li>更好的静态资源处理：Vite 尽量避免直接处理静态资源，而是选择遵循 ESM 方式提供服务，例如引入图片 import img from 'xxx.png' 语句，执行后 img 变量只是一个路径字符串</li>
+                                <li>更好的静态资源处理：Vite 尽量避免直接处理静态资源，而是选择遵循 ESM 方式提供服务，例如引入图片 import img from &apos;xxx.png&apos; 语句，执行后 img 变量只是一个路径字符串</li>
                             </ul>
                         </Space>
                     </Panel>

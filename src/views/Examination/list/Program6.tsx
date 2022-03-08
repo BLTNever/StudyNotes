@@ -37,7 +37,7 @@ const Interview6 = () => {
                             <ul>
                                 <li><Text mark>rem</Text></li>
                                 <li><Text mark>vm、vh</Text></li>
-                                <li><Text mark>calc（）</Text></li>
+                                <li><Text mark>calc()</Text></li>
                                 <li><Text mark>media queries 媒体查询</Text></li>
                                 <li><Text mark>百分比布局</Text></li>
                                 <li><Text mark>flex，grid</Text></li>
@@ -51,7 +51,7 @@ const Interview6 = () => {
                             <Text>2. vm、vh:</Text>
                             <Text>将视口分为100份</Text>
 
-                            <Text>3. calc（）:</Text>
+                            <Text>3. calc():</Text>
                             <Text>calc动态计算长度</Text>
 
                             <Text>移动端1px</Text>

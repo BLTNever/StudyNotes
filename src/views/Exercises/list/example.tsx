@@ -460,7 +460,7 @@ export const eventPublish = `
 class EventPublish {
     constructor () {
         // 储存事件的数据结构
-        // 为查找迅速， 使用对象（字典）
+        // 为查找迅速， 使用对象(字典)
         this._cache = {}
     }
 

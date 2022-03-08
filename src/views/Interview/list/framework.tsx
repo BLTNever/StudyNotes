@@ -48,7 +48,7 @@ const framework = () => {
                             <Text mark>React封装自己的一套事件机制，目的是为了实现全浏览器的一致性，抹平不同浏览器之间的差异性</Text>
                             <Paragraph>
                                 <blockquote>
-                                    <Text>事件流包括三个阶段: 事件捕获、目标阶段和事件冒泡（window -&gt; document -&gt; html -&gt; body ... -&gt; target）</Text>
+                                    <Text>事件流包括三个阶段: 事件捕获、目标阶段和事件冒泡(window -&gt; document -&gt; html -&gt; body ... -&gt; target)</Text>
                                     <Text>React合成事件的工作原理大致可以分为两个阶段: 1. 事件绑定 2.事件触发</Text>
                                     <Text>在React17之前，React是把事件委托在document上的，React17及以后版本不再把事件委托在document上，而是委托在挂载的容器上</Text>
                                     <Text>React合成事件一套机制: React并不是将click事件直接绑定在dom上面，而是采用事件冒泡的形式冒泡到document上面，然后React将事件封装给SyntheticEvent函数处理、运行和处理。</Text>
@@ -124,10 +124,10 @@ const framework = () => {
                 <Collapse ghost>
                     <Panel header="由 React 控制的事件处理过程 setState 不会同步更新 this.state; 在 React 控制之外的情况，setState 会同步更新 this.state" key="1">
                         <Space direction="vertical"><ul>
-                            <li>setState只在合成事件和钩子函数中是“异步”的，在原生事件（addEventListener）和setTimeout中都是“同步”的</li>
+                            <li>setState只在合成事件和钩子函数中是“异步”的，在原生事件(addEventListener)和setTimeout中都是“同步”的</li>
                             <li>setState的异步不是在内部实现的，代码执行的过程和结都是同步的，只是在合成事件和钩子函数中的调用顺序在更新之前，导致无法拿到更新后的结果，形成所谓的异步，可以通过setState(partialState, callback)在callback中拿到结果</li>
-                            <li>setState的批量更新也是建立在异步（合成事件、钩子函数）之上，在原生事件和setTimeout中是无法批量更新的</li>
-                            <li>react更新是通过“事务”（Transacation）的，通过isBatchingUpdates: boolean控制，setTimout中事务无法管控</li>
+                            <li>setState的批量更新也是建立在异步(合成事件、钩子函数)之上，在原生事件和setTimeout中是无法批量更新的</li>
+                            <li>react更新是通过“事务”(Transacation)的，通过isBatchingUpdates: boolean控制，setTimout中事务无法管控</li>
                             <li>batchedUpdates: 在一个上下文中同时触发多次更新，这些更新会合并成一次更新</li>
                         </ul>
                         </Space>
@@ -158,7 +158,7 @@ const framework = () => {
                         <Space direction="vertical">
                             <ul>
                                 <li>大量的同步计算任务在主线程运行阻塞了浏览器的 UI 渲染。默认情况下，JS 运算、页面布局和页面绘制都是运行在浏览器的主线程当中，他们之间是互斥的关系。</li>
-                                <li>如果 JS 运算持续占用主线程或者占用主线程时间过长（以60Hz刷新频率来算，一帧耗时16毫秒），页面就没法得到及时的更新，出现卡顿。</li>
+                                <li>如果 JS 运算持续占用主线程或者占用主线程时间过长(以60Hz刷新频率来算，一帧耗时16毫秒)，页面就没法得到及时的更新，出现卡顿。</li>
                             </ul>
                         </Space>
                     </Panel>
@@ -238,8 +238,8 @@ const framework = () => {
                         <Space direction="vertical">
                             <Text>hooks代替class Components</Text>
                             <ul>
-                                <li><Text>1. 很难复用逻辑（只能用HOC，或者render props），会导致组件树层级很深</Text></li>
-                                <li><Text>2. 会产生巨大的组件（指很多代码必须写在类里面）</Text></li>
+                                <li><Text>1. 很难复用逻辑(只能用HOC，或者render props)，会导致组件树层级很深</Text></li>
+                                <li><Text>2. 会产生巨大的组件(指很多代码必须写在类里面)</Text></li>
                                 <li><Text>3. 类组件很难理解，比如方法需要bind，this指向不明确</Text></li>
                             </ul>
                         </Space>
@@ -252,14 +252,14 @@ const framework = () => {
                     <Panel header="react hooks 优化思路" key="1">
                         <Space direction="vertical">
                             <ul>
-                                <li>1. 减少render次数: 在React中最小号事件的就是reconction（diff），如果不render，就不会reconction</li>
+                                <li>1. 减少render次数: 在React中最小号事件的就是reconction(diff)，如果不render，就不会reconction</li>
                                 <li>2. 减少计算的量: 减少重复计算，对于函数组件来说，每次render都会重新开始执行函数调用</li>
                             </ul>
                             <Text code>具体方法: </Text>
                             <ul>
                                 <li>memo: 在props不变的情况，通过记忆渲染结果的方法，提高组件的性能，可以传入第二个参数，做自定义比较函数</li>
-                                <li>useCallback: 在依赖项发生变化才会更新（useCallback返回的是函数，缓存函数）</li>
-                                <li>useMemo: 在依赖项发生变化才会更新（usememo返回的是函数运行的结果，缓存计算的值）</li>
+                                <li>useCallback: 在依赖项发生变化才会更新(useCallback返回的是函数，缓存函数)</li>
+                                <li>useMemo: 在依赖项发生变化才会更新(usememo返回的是函数运行的结果，缓存计算的值)</li>
                                 <li>合理拆分组件: 控制更小粒度的更新</li>
                             </ul>
                             <Text mark>react class Components 优化思路</Text>
@@ -303,7 +303,7 @@ const framework = () => {
                                 <li><Text mark>通过NativeModule和C++Bridge作为中间系统跨语言调用各个平台相关组件</Text></li>
                                 <li><Text mark>然后由各个系统的UI系统进行渲染</Text></li>
                                 <li><Text mark>JavaScript层负责<b>控制</b>渲染，不负责渲染</Text></li>
-                                <li><Text mark>RN里编译并集成了一个JS引擎（JavaScriptCore）</Text></li>
+                                <li><Text mark>RN里编译并集成了一个JS引擎(JavaScriptCore)</Text></li>
                                 <li><Text mark>数据传递: 利用C++实现一个桥，RN与原生端通过C++Bridge双向通讯</Text></li>
                             </ul>
                         </Space>
@@ -342,7 +342,7 @@ const framework = () => {
                                             <li>1. 视图在createViewInstance中创建</li>
                                             <li>2. 通过@ReactProp注解导出属性的设置方法</li>
                                             <li>3. 注册ViewManager</li>
-                                            <li>4. 创建Javascript模块并定义javascript和Java之间的接口层（通过requireNativeComponent(模块名称)）</li>
+                                            <li>4. 创建Javascript模块并定义javascript和Java之间的接口层(通过requireNativeComponent(模块名称))</li>
                                         </ul>
                                         <PreviewImg src={nativetojs} />
                                     </Card>
@@ -360,7 +360,7 @@ const framework = () => {
                                             <li>1. 视图在createViewInstance中创建</li>
                                             <li>2. 通过@ReactProp注解导出属性的设置方法</li>
                                             <li>3. 注册ViewManager</li>
-                                            <li>4. 创建Javascript模块并定义javascript和Java之间的接口层（通过requireNativeComponent(模块名称)）</li>
+                                            <li>4. 创建Javascript模块并定义javascript和Java之间的接口层(通过requireNativeComponent(模块名称))</li>
                                         </ul>
                                     </Card>
                                 </Col>
@@ -369,13 +369,13 @@ const framework = () => {
                             <Title>Hybrid &lt;---&gt; 原生</Title>
                             <Text mark>通过JSBridge完成h5与Native的双向通讯</Text>
                             <ul>
-                                <li>JS上下文注入: Native获取javascript环境上下文，在上面挂载对象或者方法（iOS: UIWebview JavascriptCore、WKWebView scriptMessageHandler注入；Android: addJavascriptInterface注入）</li>
-                                <li>弹窗拦截: 通过修改webview对象的方法，拦截固定规则参数（alert、confirm、prompt）</li>
-                                <li>URL Schema: 拦截Url 请求，解析这个scheme协议（iOS: UIWebView的delegate函数；Android: shouldOverrideUrlLoading）</li>
+                                <li>JS上下文注入: Native获取javascript环境上下文，在上面挂载对象或者方法(iOS: UIWebview JavascriptCore、WKWebView scriptMessageHandler注入；Android: addJavascriptInterface注入)</li>
+                                <li>弹窗拦截: 通过修改webview对象的方法，拦截固定规则参数(alert、confirm、prompt)</li>
+                                <li>URL Schema: 拦截Url 请求，解析这个scheme协议(iOS: UIWebView的delegate函数；Android: shouldOverrideUrlLoading)</li>
                             </ul>
 
                             <Title>Flutter &lt;---&gt; 原生</Title>
-                            <Text mark>Flutter Plugin: 通过Platform Channels与Flutter（dart）层通讯并暴露API</Text>
+                            <Text mark>Flutter Plugin: 通过Platform Channels与Flutter(dart)层通讯并暴露API</Text>
                         </Space>
                     </Panel>
                 </Collapse>

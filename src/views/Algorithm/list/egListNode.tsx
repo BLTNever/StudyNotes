@@ -183,12 +183,12 @@ export const deleteDuplicates = `
  */
  function deleteDuplicates(head: any) {
     if (!head) return head
-    let node = head // 最后要返回头节点，所以要先保存head，后面的循环会改变head的位置
-    while (node && node.next) { //  判断是否为node跟node.next是否为null就结束
-        if (node.val === node.next.val) { // 如果node.val等于下一个节点的val
-            node.next = node.next.next // 修改next指针的位置为next.next
+    let cur = head                      // 最后要返回头节点，所以要先保存head，后面的循环会改变head的位置
+    while (cur && cur.next) {           // 判断是否为cur跟cur.next是否为null就结束
+        if (cur.val === cur.next.val) { // 如果cur.val等于下一个节点的val
+            cur.next = cur.next.next    // 修改next指针的位置为next.next
         } else {
-            node = node.next // 不相等 指针移动到下一位置继续循环
+            cur = cur.next              // 不相等 指针移动到下一位置继续循环
         }
     }
     return head
@@ -273,7 +273,7 @@ function reverseKGroup(head, k) {
             tail = tail.next
             if (!tail) return hair.next        // tail移动为空说明 nodeList.lengt % k 不为0，不用翻转了 直接返回
         }
-        const next = tail.next;                //  暂存需要翻转的 子链表 的下一个节点（子链表链接回原链表的“尾部”）
+        const next = tail.next;                //  暂存需要翻转的 子链表 的下一个节点(子链表链接回原链表的“尾部”)
         // !!!const next = tail.next; 记得加分号。不然 [head, tail] 就变成右值了
         [head, tail] = reverseList(head, tail) // 反转 k 长度的子链表
         // 把子链表重新接回原链表
@@ -452,6 +452,15 @@ function reversePrint(head: any | null): number[] {
 `
 
 export const detectCycle = `
+/**
+ * 假设从头结点到环形入口节点 的节点数为x
+ * 环形入口节点到 fast指针与slow指针相遇节点 节点数为y
+ * 从相遇节点 再到环形入口节点节点数为 z
+ * 相遇时：slow指针走过的节点数为: x + y, fast指针走过的节点数为: x + y + n (y + z)
+ * fast指针是一步走两个节点，slow指针一步走一个节点: (x + y) * 2 = x + y + n (y + z)
+ * 两边消掉一个(x+y): x + y = n (y + z)
+ * 我们要求x : 那么公式就是 x = n (y + z) - y
+ */
 function detectCycle(head: ListNode) {
     if (!head) return null
     // 快慢指针 时间复杂度O(n) 空间复杂度 O(1)

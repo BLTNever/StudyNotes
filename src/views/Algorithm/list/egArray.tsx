@@ -94,6 +94,16 @@ function removeDuplicates(nums: number[]) {
     if (!len) return 0
 
     // 解法1 双指针
+    let ans = 0                      // 写指针
+    for (let i = 1; i < len; i++) {  // 读指针
+        if (nums[ans] !== nums[i]) {
+            ans++                    // 写指针前进一步
+            nums[ans] = nums[i]      // 读指针的内容写入到写指针的位置
+        }
+    }
+    return ans + 1
+   
+    // 解法2
     let fast = 1
     let slow = 1
     while (fast < len) {
@@ -103,16 +113,6 @@ function removeDuplicates(nums: number[]) {
         fast++
     }
     return slow
-  
-    // 解法2
-    let ans = 0                      // 写指针
-    for (let i = 1; i < len; i++) {  // 读指针
-        if (nums[ans] !== nums[i]) {
-            ans++                    // 写指针前进一步
-            nums[ans] = nums[i]      // 读指针的内容写入到写指针的位置
-        }
-    }
-    return ans + 1
 }
 `
 export const maxSubArray = `
@@ -218,14 +218,9 @@ export const findMiddleIndex = `
 function findMiddleIndex(nums: number[]) {
     if (nums.length === 1) return 0
     const total = nums.reduce((a, b) => a + b, 0)
-    // let sum = 0
-    // for (let i = 0; i < nums.length; i++) {
-    //     if (2 * sum + nums[i] === total) return i
-    //     sum += nums[i]
-    // }
-
+   
     let left = 0                                // left 初始化为0
-    let right = total - nums[0]                 // right初始化为除了第一位元素 之外的所有元素和（遍历从第一位开始）
+    let right = total - nums[0]                 // right初始化为除了第一位元素 之外的所有元素和(遍历从第一位开始)
     for (let i = 0; i < nums.length; i++) {
         if (left === right) return i            // 找到中间值
         if (i === nums.length - 1) return -1    // 防止出现越界，
@@ -233,6 +228,14 @@ function findMiddleIndex(nums: number[]) {
         right -= nums[i + 1]                    // 设置i === nums.length - 1防止超出数组范围
     }
     return -1
+
+    // ohter
+    let sum = 0
+    for (let i = 0; i < nums.length; i++) {
+        if (2 * sum + nums[i] === total) return i
+        sum += nums[i]
+    }
+
 }
 `
 
@@ -613,7 +616,7 @@ function minArray(numbers: number[]) {
     return Math.min(...numbers)
 
     // 二分法
-    // 1. 找出中间数字，（left + (right - left),是为了防止 left 跟 right 过大造成相加 溢出）
+    // 1. 找出中间数字，(left + (right - left),是为了防止 left 跟 right 过大造成相加 溢出)
     // 2. middle数 小于 right, 说明最小值在左半区，设置 middle 为 right 边界
     // 3. middle数 大于 right，说明最小值在右半区，设置 middle + 1 为 left 边界
     // 4. middle数 等于 right, right--
@@ -781,7 +784,7 @@ function generateMatrix(n: number) {
             matrix[i][left] = num              // 指针从 leftBottom → leftTop 记录数据, 存入 left 下标的数组中
             num++
         }
-        left++                                 // leftBottom → leftTop 数据记录完成，left 向右移动（开始内圈循环）
+        left++                                 // leftBottom → leftTop 数据记录完成，left 向右移动(开始内圈循环)
     }
     return matrix
 }
@@ -990,7 +993,7 @@ export const findDuplicate = `
  * 定义快慢指针，快指针一次走2步，慢指针一次走1步
  * 当快慢指针相遇时，将快指针放到起始位，并调整为1次1步
  * 当两指针再次相遇时，就会在环入口处相遇
- * 暴力法 根据V8对 sort 的实现，length <= 10 采用插入排序（时间复杂度O(n^2),空间复杂度O(1)）,>10 快速排序（时间复杂度O(nlogn), 空间复杂度O(logn)）
+ * 暴力法 根据V8对 sort 的实现，length <= 10 采用插入排序(时间复杂度O(n^2),空间复杂度O(1)),>10 快速排序(时间复杂度O(nlogn), 空间复杂度O(logn))
  */
 function findDuplicate(nums: number[]) {
     // 快慢指针解1

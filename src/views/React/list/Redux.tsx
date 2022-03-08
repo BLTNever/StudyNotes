@@ -83,7 +83,7 @@ const Redux = () => {
                 <Collapse ghost>
                     <Panel header="将redux应用在react中" key="1">
                         <ul>
-                            <li>创建一个Provider，将store传入Provider，作为当前context的值，便于组件通过context获取Redux store（{`<Provider store={createStore(reducers)}>`}）</li>
+                            <li>创建一个Provider，将store传入Provider，作为当前context的值，便于组件通过context获取Redux store({`<Provider store={createStore(reducers)}>`})</li>
                             <li>store订阅一个组件更新的统一逻辑
                                 <ul>
                                     <li>concat(mapStateToProps, mapDispatchToProps)(Child)</li>
@@ -102,7 +102,7 @@ const Redux = () => {
                         <ul>
                             <li>提供Subscrption类，实现订阅更新的逻辑</li>
                             <li>提供Provider，将store传入Provider，便于下层组件从context或者props中获取store；并订阅store的变化，便于在store变化的时候执行被订阅到react-redux内的更新函数</li>
-                            <li>提供selector，负责将获取store中的stat和dispacth一些action的函数（或者直接就是dispatch）或者组件自己的props，从中选择出组件需要的值，作为selector的返回值</li>
+                            <li>提供selector，负责将获取store中的stat和dispacth一些action的函数(或者直接就是dispatch)或者组件自己的props，从中选择出组件需要的值，作为selector的返回值</li>
                             <li>提供connect高阶组件，主要做了两件事:
                                 <ul>
                                     <li>执行selector，获取到要注入到组件中的值，将它们注入到组件的props</li>

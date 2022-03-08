@@ -12,11 +12,10 @@ function longestCommonPrefix(strs: string[]) {
     for (let i = 1; i < strs.length; i++) {
         let j = 0
         for (; j < ans.length && j < strs[i].length; j++) {
-            if (ans[j] !== strs[i][j]) {
-                break
-            }
+            if (ans[j] !== strs[i][j]) break
         }
         ans = strs[i].slice(0, j)
+        if(!ans.length) return ans
     }
     return ans
 }
@@ -33,6 +32,15 @@ function isValid(s: string) {
         '[': ']',
         '{': '}',
     }
+    // 解1
+    for(let key of s) {
+        if(map[stack[stack.length - 1]] === key) {
+            stack.pop()
+        }else {
+            stack.push(key)
+        }
+    }
+    // 解2
     for (let key of s) {
         if (key in map) {
             stack.push(key) // 括号左侧的值保存起来
@@ -195,7 +203,7 @@ function minTimeToType(word: string): number {
     let now = 97
     for (let i of word) {
         let step = i.charCodeAt(0) - now // 计算当前位置 跟上一个位置移动的距离
-        ans += Math.min(Math.abs(step), 26 - Math.abs(step)) // 比较顺时针跟逆时针 移动的距离大小（上一步比当前步位置大的时候可能为负，所以需要取正）
+        ans += Math.min(Math.abs(step), 26 - Math.abs(step)) // 比较顺时针跟逆时针 移动的距离大小(上一步比当前步位置大的时候可能为负，所以需要取正)
         now = i.charCodeAt(0) // 存一下当前的位置 为下一步计算作准备
     }
     return ans + word.length // 添加 键入 的时间
@@ -511,7 +519,7 @@ export const getSmallestString = `
  * 贪心
  */
 function getSmallestString(n: number, k: number) {
-    let res = Array(n).fill('a')                    // 创建一个 n 长度的数组res， 填充 'a'（满足题干的字典序最小 ）
+    let res = Array(n).fill('a')                    // 创建一个 n 长度的数组res， 填充 'a'(满足题干的字典序最小 )
     let remain = k - n                              // res 每个都是 'a'(1), 从后往前修改，剩余的值就是 k - n
     let cur = n - 1                                 // 尾部创建一个指针
     while (remain) {                                // 差值 remain 为 0 循环结束

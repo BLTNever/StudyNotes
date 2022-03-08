@@ -17,10 +17,10 @@ const VirtualDom = () => (
                     <Space direction="vertical">
                         <Title level={4}>React16之前组件渲染更新的时候，分为2个阶段</Title>
                         <ul>
-                            <li>调和阶段（Reconciler）:  React会自顶向下通过递归，遍历新数据生成的Virtual DOM，然后通过Diff算法，找到需要变更的元素（patch），放到更新队列里</li>
-                            <li>渲染阶段（Renderer）: 遍历更新队列，调用宿主环境的API，实际更新渲染对应元素。例例如WEB、Native、WebGL</li>
+                            <li>调和阶段(Reconciler):  React会自顶向下通过递归，遍历新数据生成的Virtual DOM，然后通过Diff算法，找到需要变更的元素(patch)，放到更新队列里</li>
+                            <li>渲染阶段(Renderer): 遍历更新队列，调用宿主环境的API，实际更新渲染对应元素。例例如WEB、Native、WebGL</li>
                         </ul>
-                        <Text>在调和阶段，由于采用递归的遍历方式（Stack Reconciler），任务一旦开始，就无法中断，JS将一直占用主线程，直到整颗Virtual DOM树计算完成，才把执行权交给渲染引擎</Text>
+                        <Text>在调和阶段，由于采用递归的遍历方式(Stack Reconciler)，任务一旦开始，就无法中断，JS将一直占用主线程，直到整颗Virtual DOM树计算完成，才把执行权交给渲染引擎</Text>
                     </Space>
                 </Panel>
 
@@ -28,7 +28,7 @@ const VirtualDom = () => (
                     <Space direction="vertical">
                         <Text>Fiber代表一种<Text mark>工作单元</Text></Text>
                         <Text>按照函数调用栈的方式，实现一个<Text mark>虚拟的堆栈帧</Text></Text>
-                        <Text>Fiber是一种数据结构（堆栈帧），也是一种解决可中断的调用任务的解决方案，特性就是<Text mark>时间分片（time slicing）</Text>和<Text mark>暂停（supense）</Text></Text>
+                        <Text>Fiber是一种数据结构(堆栈帧)，也是一种解决可中断的调用任务的解决方案，特性就是<Text mark>时间分片(time slicing)</Text>和<Text mark>暂停(supense)</Text></Text>
                         <Text>将可中断任务拆分成多个子任务，按照优先级来自由调度子任务，分段式更新，将同步渲染改为异步渲染</Text>
 
                         <Title level={4}>Fiber需要解决的问题</Title>
@@ -47,12 +47,12 @@ const VirtualDom = () => (
                         <Text>之前主要的问题是任务一旦执行，就无法中断，js线程一直占用主线程，导致卡顿。</Text>
                         <Text>如果把渲染更新过程拆分成多个子任务，每次只做一小部分，做完看是否有剩余时间，如果有，继续执行下一部分</Text>
                         <Text>如果没有，挂起当前任务，将事件控制权交给主线程，等主线程不忙的时候再继续执行。</Text>
-                        <Text>这种策略叫做 Cooperative Scheduling（合作式调度），操作系统常用
-                            <Tooltip title="操作系统常用任务调度策略: 先来先服务（FCFS）调度算法、短作业（进程）优先调度算法（SJ/PF）、最高优先权优先调度算法（FPF）、高响应比优先调度算法（HRN）、时间片轮转法（RR）、多级队列反馈法">
+                        <Text>这种策略叫做 Cooperative Scheduling(合作式调度)，操作系统常用
+                            <Tooltip title="操作系统常用任务调度策略: 先来先服务(FCFS)调度算法、短作业(进程)优先调度算法(SJ/PF)、最高优先权优先调度算法(FPF)、高响应比优先调度算法(HRN)、时间片轮转法(RR)、多级队列反馈法">
                                 <Tag color="#2db7f5">任务调度策略</Tag>
                             </Tooltip>之一。</Text>
                         <ul>
-                            <li>浏览器是一帧一帧执行的，在两个执行帧之间，主线程通常会有一小段空闲时间，<Text mark>requestIdleCallback可以在这个空闲期（Idle Period）调用空闲期回调（Idle Callback）</Text>，执行一些任务</li>
+                            <li>浏览器是一帧一帧执行的，在两个执行帧之间，主线程通常会有一小段空闲时间，<Text mark>requestIdleCallback可以在这个空闲期(Idle Period)调用空闲期回调(Idle Callback)</Text>，执行一些任务</li>
                             <li>低优先级任务由requestIdleCallback处理</li>
                             <li>高优先级任务，如动画骨干由<Text mark>requestAnimationFrame</Text>处理</li>
                             <li>requestIdleCallback可以再多个空闲期调用空闲期回调，执行任务</li>
@@ -93,8 +93,8 @@ const VirtualDom = () => (
 
                         <Text mark>Reconciler过程: </Text>
                         <ul>
-                            <li>（可中断）render/reconciliation 通过构造 WorkInProgress Tree 得出 Change。</li>
-                            <li>（不可中断）commit 应用这些DOM change。</li>
+                            <li>(可中断)render/reconciliation 通过构造 WorkInProgress Tree 得出 Change。</li>
+                            <li>(不可中断)commit 应用这些DOM change。</li>
                         </ul>
 
 
@@ -105,11 +105,11 @@ const VirtualDom = () => (
                         </ul>
                         <Text>render/reconciliation生命周期</Text>
                         <ul>
-                            <li>[UNSAFE_]componentWillMount（弃用）</li>
-                            <li>[UNSAFE_]componentWillReceiveProps（弃用）</li>
+                            <li>[UNSAFE_]componentWillMount(弃用)</li>
+                            <li>[UNSAFE_]componentWillReceiveProps(弃用)</li>
                             <li>getDerivedStateFromProps</li>
                             <li>shouldComponentUpdate</li>
-                            <li>[UNSAFE_]componentWillUpdate（弃用）</li>
+                            <li>[UNSAFE_]componentWillUpdate(弃用)</li>
                             <li>render</li>
                         </ul>
 
@@ -132,15 +132,15 @@ const VirtualDom = () => (
                 <Panel header="Fiber Tree和WorkInProgress Tree" key="5">
                     <Space direction="vertical">
                         <Text>
-                            React 在 render 第一次渲染时，会通过 React.createElement 创建一颗 Element 树，可以称之为。<Text mark>Virtual DOM Tree</Text>，由于要记录上下文信息，加入了 Fiber，每一个 Element 会对应一个 Fiber Node，将 Fiber Node 链接起来的结构成为<Text mark>Fiber Tree</Text>。它反映了用于渲染 UI 的应用程序的状态。这棵树通常被称为<Text mark>current 树（当前树，记录当前页面的状态）</Text>
+                            React 在 render 第一次渲染时，会通过 React.createElement 创建一颗 Element 树，可以称之为。<Text mark>Virtual DOM Tree</Text>，由于要记录上下文信息，加入了 Fiber，每一个 Element 会对应一个 Fiber Node，将 Fiber Node 链接起来的结构成为<Text mark>Fiber Tree</Text>。它反映了用于渲染 UI 的应用程序的状态。这棵树通常被称为<Text mark>current 树(当前树，记录当前页面的状态)</Text>
                         </Text>
 
-                        <Text>在后续的更新过程中（setState），每次重新渲染都会重新创建 Element, 但是 Fiber 不会，Fiber 只会使用对应的 Element 中的数据来更新自己必要的属性</Text>
+                        <Text>在后续的更新过程中(setState)，每次重新渲染都会重新创建 Element, 但是 Fiber 不会，Fiber 只会使用对应的 Element 中的数据来更新自己必要的属性</Text>
                         <Text>Fiber Tree 一个重要的特点是链表结构，将递归遍历编程循环遍历，然后配合 requestIdleCallback API, 实现任务拆分、中断与恢复。</Text>
                         <Text>通过Fiber Node的父节点、子节点、兄弟节点构成了链表结构</Text>
 
                         <Text>WorkInProgress Tree: 反映了要刷新到屏幕的未来状态</Text>
-                        <Text>WorkInProgress Tree 构造完毕，得到的就是新的 Fiber Tree，然后喜新厌旧（把 current 指针指向WorkInProgress Tree，丢掉旧的 Fiber Tree）就好了</Text>
+                        <Text>WorkInProgress Tree 构造完毕，得到的就是新的 Fiber Tree，然后喜新厌旧(把 current 指针指向WorkInProgress Tree，丢掉旧的 Fiber Tree)就好了</Text>
                         <Text>每个 Fiber上都有个alternate属性，也指向一个 Fiber，创建 WorkInProgress 节点时优先取alternate，没有的话就创建一个</Text>
                         <Text>创建 WorkInProgress Tree 的过程也是一个 Diff 的过程，Diff 完成之后会生成一个 Effect List，这个 Effect List 就是最终 Commit 阶段用来处理副作用的阶段</Text>
                     </Space>
@@ -154,12 +154,12 @@ const VirtualDom = () => (
                 <Panel header="useState" key="3">
                     <Space direction="vertical">
                         <ul>
-                            <li>1. setState只在合成事件和钩子函数中是“异步”的，在原生事件（addEventListener）和setTimeout中都是“同步”的</li>
+                            <li>1. setState只在合成事件和钩子函数中是“异步”的，在原生事件(addEventListener)和setTimeout中都是“同步”的</li>
                             <li>
                                 2. setState的异步不是在内部实现的，代码执行的过程和结都是同步的，只是在合成事件和钩子函数中的调用顺序在更新之前，导致无法拿到更新后的结果，形成所谓的异步，可以通过setState(partialState, callback)在callback中拿到结果
                             </li>
-                            <li>3. setState的批量更新也是建立在异步（合成事件、钩子函数）之上，在原生事件和setTimeout中是无法批量更新的</li>
-                            <li>4. react更新是通过“事务”（Transacation）的，通过isBatchingUpdates: boolean控制，setTimout中事务无法管控 </li>
+                            <li>3. setState的批量更新也是建立在异步(合成事件、钩子函数)之上，在原生事件和setTimeout中是无法批量更新的</li>
+                            <li>4. react更新是通过“事务”(Transacation)的，通过isBatchingUpdates: boolean控制，setTimout中事务无法管控 </li>
                         </ul>
                         <Highlight>{_useState}</Highlight>
                     </Space>
@@ -218,8 +218,8 @@ const VirtualDom = () => (
                     <Space direction="vertical">
                         <Text>hooks代替class Components</Text>
                         <ul>
-                            <li><Text>1. 很难复用逻辑（只能用HOC，或者render props），会导致组件树层级很深</Text></li>
-                            <li><Text>2. 会产生巨大的组件（指很多代码必须写在类里面）</Text></li>
+                            <li><Text>1. 很难复用逻辑(只能用HOC，或者render props)，会导致组件树层级很深</Text></li>
+                            <li><Text>2. 会产生巨大的组件(指很多代码必须写在类里面)</Text></li>
                             <li><Text>3. 类组件很难理解，比如方法需要bind，this指向不明确</Text></li>
                         </ul>
                     </Space>
@@ -232,7 +232,7 @@ const VirtualDom = () => (
             <Text>VirtualDom: 使用 JavaScript对象去描述DOM</Text>
             <ul>
                 <li>1. 维护一个使用JS对象去表示的Virtual DOM,与真实DOM 一一对应</li>
-                <li>2. 更新时，前后两个Virtual DOM 做diff, 生成变更（Mutation）</li>
+                <li>2. 更新时，前后两个Virtual DOM 做diff, 生成变更(Mutation)</li>
                 <li>3. 把变更应用于真实DOM，生成新的真实DOM</li>
             </ul>
             <Collapse ghost>

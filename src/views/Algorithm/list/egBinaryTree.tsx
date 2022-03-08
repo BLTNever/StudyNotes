@@ -1,7 +1,7 @@
 
 export const preorderTraversal = `
 /**
- * 二叉树前序遍历（深度遍历）递归
+ * 二叉树前序遍历(深度遍历)递归
  * 1. 先处理根节点
  * 2. 左子树
  * 3. 右子树
@@ -19,11 +19,11 @@ function preorderTraversal(root: any) {
     return result
 }
 /**
- * 二叉树前序遍历（深度遍历）遍历
+ * 二叉树前序遍历(深度遍历)遍历
  * 前序遍历:  根 左 右
  * 压栈顺序: 初始化将 root 压入stack栈
  * → 从stack栈顶取出 root
- * → 将root的val压入result栈，node的 right、left 压入stack栈 （这样保证取出的顺序是 left、right）
+ * → 将root的val压入result栈，node的 right、left 压入stack栈 (这样保证取出的顺序是 left、right)
  * → 压入result栈的顺序是根 左 右
  * → 下一轮从 stack 栈顶取出的是 left ，val压入result栈 ...循环执行。 
  * @param root 
@@ -45,7 +45,7 @@ function _preorderTraversal(root: any) {
 
 export const inorderTraversal = `
 /**
- * 二叉树中序遍历（深度优先遍历）， 递归
+ * 二叉树中序遍历(深度优先遍历)， 递归
  * 1. 左子树
  * 2. 中根节点
  * 3. 右子树
@@ -64,14 +64,14 @@ function inorderTraversal(root: any) {
     return result
 }
 /**
- * 二叉树中序遍历（深度优先遍历）， 循环
+ * 二叉树中序遍历(深度优先遍历)， 循环
  * 1. 先处理左子树 压入栈中
  * 2. 中根节点
  * 3. 右子树
  * 中序遍历:  左 根 右
  * 压栈顺序:  → root存在。将root跟最底层left压入stack栈， 
- *          → 从stack栈顶取出left push到result栈，取出left的root push到result栈
- *          → 压入root的right到stack栈，取出 压入到result栈
+ *           → 从stack栈顶取出left push到result栈，取出left的root push到result栈
+ *           → 压入root的right到stack栈，取出 压入到result栈
  * @param root 
  */
 function _inorderTraversal(root: any) {
@@ -89,11 +89,31 @@ function _inorderTraversal(root: any) {
     }
     return result
 }
+function _inorderTraversal(root: TreeNode) {
+    if (!root) return
+    let stack = []
+    let res = []
+    while (root) {
+        stack.push(root)
+        root = root.left
+    }
+    while (stack.length) {
+        const node = stack.pop() // 栈顶的节点出栈
+        res.push(node.val)       // 在压入右子树之前，处理它的数值部分
+        node = node?.right       // 获取它的右子树
+        while (node) {           // 右子树存在，执行while循环
+            stack.push(node)     // 压入当前root
+            node = node.left     // 不断压入左子节点
+        }
+    }
+    return res
+}
+
 `
 
 export const postorderTraversal = `
 /**
- * 二叉树后序遍历 （递归）
+ * 二叉树后序遍历 (递归)
  * 1. 左子树
  * 2. 右子树
  * 3. 根节点
@@ -149,7 +169,6 @@ function _postorderTraversal(root: any) {
 `
 
 export const maxDepth = `
-
 /**
  * 二叉树最大深度
  * 定义一个ans 默认值0
@@ -158,6 +177,17 @@ export const maxDepth = `
  * @param root 
  */
 function maxDepth(root: any) {
+    if(!root) return 0
+    // 解1:
+    let left = maxDepth(root.left)
+    let right = maxDepth(root.right)
+    return Math.max(left, right) + 1
+    // 解2:
+    let ans = 0
+    if(root.left) ans = Math.max(maxDepth(root.left), ans)
+    if(root.right) ans = Math.max(maxDepth(root.right), ans)
+    return ans + 1
+    // 解3:
     let ans = 0
     function traversal(node: any, depth: number) {
         if (!node) return
@@ -182,7 +212,7 @@ function minDepth(root: any): number {
     if (!root) return 0
     if (!root.left && !root.right) return 1
 
-    let ans: number = Number.MAX_SAFE_INTEGER
+    let ans: number = 0
     if (root.left) ans = Math.min(ans, minDepth(root.left))
     if (root.right) ans = Math.min(ans, minDepth(root.right))
     return ans + 1 // 只要最根节点的left或right有一个有值 要在ans基础上 + 1
@@ -228,7 +258,7 @@ function levelOrder(root: any) {
 /**
  * 递归，时间复杂度O(n),空间复杂度O(n)
  */
- function helper(node: any, result: any, depth: number) {
+function helper(node: any, result: any, depth: number) {
     if (!node) return
     if (!Array.isArray(result[depth])) result[depth] = []
     result[depth].push(node.val)

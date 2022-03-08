@@ -21,6 +21,8 @@ export const DFS = (<Tag color='#2db7f5'>深度优先搜索</Tag>)
 export const DIVIDE_AND_CONQUER = (<Tag color='#ff9100'>分治</Tag>)
 export const RECURSION = (<Tag color='#ff9100'>递归</Tag>)
 export const DOUBLY_NODE = (<Tag color='#ff9100'>双链表</Tag>)
+export const SLOW_FAST_POINTER = (<Tag color='volcano'>快慢指针</Tag>)
+export const REG = (<Tag color='tomato'>正则</Tag>)
 
 export const EASY = (<Tag color='rgb(0, 175, 155)'>easy</Tag>)
 export const MEDIUM = (<Tag color='rgb(255, 184, 0)'>medium</Tag>)

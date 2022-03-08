@@ -530,7 +530,7 @@ function Promise(executor) {
             }
             // 如果x为对象或者函数
         } else if (x != null && ((typeof x === 'object') || (typeof x === 'function'))) {
-            try { // 是否是thenable对象（具有then方法的对象/函数）
+            try { // 是否是thenable对象(具有then方法的对象/函数)
                 let then = x.then
                 if (typeof then === 'function') {
                     then.call(x, y => {
@@ -671,7 +671,7 @@ function curry(...rest) {
 }
 alert(curry(1)(1, 2, 3)(2))
 
-// 或者使用arguments（注意: 箭头函数没有arguments）
+// 或者使用arguments(注意: 箭头函数没有arguments)
 function curry() {
     let args = Array.prototype.slice.call(arguments)
     const add = function () {

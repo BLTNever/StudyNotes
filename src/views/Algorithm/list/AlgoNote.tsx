@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import Highlight from '@components/HighLight'
 import { Card, Col, Row, Collapse, Typography, Space } from 'antd'
+import { Link } from 'react-router-dom'
 
 import { Wrap } from '@components/Base'
 
@@ -9,7 +10,7 @@ import * as eg from './egNote'
 import { findShortSubArray, createTree } from './egHash'
 
 const { Panel } = Collapse
-const { Paragraph, Title, Text, Link } = Typography
+const { Paragraph, Title, Text } = Typography
 
 
 const AlgoNote = () => {
@@ -65,7 +66,7 @@ const AlgoNote = () => {
             <Wrap>
                 <Title level={3}>Array解构赋值</Title>
                 <Collapse ghost>
-                    <Panel header="将目标数组（targetArray）通过ES6的解构格式（formater）" key="1">
+                    <Panel header="将目标数组(targetArray)通过ES6的解构格式(formater)" key="1">
                         <Space direction="vertical">
                             <Highlight>{eg.destructuring}</Highlight>
                         </Space>
@@ -79,20 +80,6 @@ const AlgoNote = () => {
                     <Panel header="对比数据是否相等" key="1">
                         <Space direction="vertical">
                             <Highlight>{eg._isEqual}</Highlight>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
-            <Wrap>
-                <Title level={3}>实现36进制转换</Title>
-                <Collapse ghost>
-                    <Panel header="" key="1">
-                        <Space direction="vertical">
-                            <Row>
-                                <Col span={12}><Card><Highlight>{eg.radix}</Highlight></Card></Col>
-                                <Col span={12}><Card><Highlight>{eg.radix2}</Highlight></Card></Col>
-                            </Row>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -115,113 +102,66 @@ const AlgoNote = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
+
+            <Wrap>
+                <Title level={3}>实现一个compose函数</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>{`const plus = (a, b) => a + b`}</li>
+                        <li>{`const multiply = (a, a) => a * a`}</li>
+                        <li>{`const plusOne = (a) => a + 1`}</li>
+                        <li>const fn = compose(plus, multiply, plusOne)</li>
+                        <li>{`fn(1, 2) => 10`}</li>
+                    </ul>} key="1">
+                        <Highlight>{eg.compose}</Highlight>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>判断链表是否相交</Title>
+                <Collapse ghost>
+                    <Panel header="1. hash、 2. 双指针" key="1">
+                        <Link to="/algorithm/listNode#getIntersectionNode">code</Link>
+                        <ul>
+                            <li>hash: {`while(A) { map.set(head.val, true) }; while(B) if(map.has(head.val)) return B`}</li>
+                            <li>双指针: {`while(A !== B) { A = A.next === null ? headB : A.next; B = B.next === null ? headA : B.next}`}</li>
+                        </ul>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
             <Wrap>
                 <Title level={3}>树的遍历有几种方式，实现层次遍历</Title>
                 <Collapse ghost>
                     <Panel header="遍历方式: 1.前序遍历、2.中序遍历、3.后序遍历、4.层次遍历" key="1">
                         <Space direction="vertical">
+                            <Link to="/algorithm/binaryTree">code</Link>
                             <ul>
-                                <li>前序: 根 -&gt; 左 -&gt; 右</li>
-                                <li>中序: 左 -&gt; 根 -&gt; 右</li>
-                                <li>后序: 左 -&gt; 右 -&gt; 根</li>
+                                <li>前序遍历: 根 左 右</li>
+                                <li>中序遍历: 左 根 右</li>
+                                <li>后序遍历: 左 右 根</li>
+                                <li>层次遍历: 遍历每一层</li>
                             </ul>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>实现36进制转换</Title>
+                <Collapse ghost>
+                    <Panel header="" key="1">
+                        <Space direction="vertical">
                             <Row>
-                                <Col span={12}><Card><Highlight>{eg.traversal1}</Highlight></Card></Col>
-                                <Col span={12}><Card><Highlight>{eg.traversal2}</Highlight></Card></Col>
-                            </Row>
-                            <Row>
-                                <Col span={12}><Card><Highlight>{eg.traversal3}</Highlight></Card></Col>
-                                <Col span={12}><Card><Highlight>{eg.traversal4}</Highlight></Card></Col>
+                                <Col span={12}><Card><Highlight>{eg.radix}</Highlight></Card></Col>
+                                <Col span={12}><Card><Highlight>{eg.radix2}</Highlight></Card></Col>
                             </Row>
                         </Space>
-
                     </Panel>
                 </Collapse>
             </Wrap>
         </>
     )
 }
-
 export default AlgoNote
-
-
-const arr = [{ a: 1 }, { b: 2 }, { c: 3 }, { d: 4 },]
-function _sort(arr: any) {
-    return arr.sort((a: any, b: any) => {
-        const key1 = Object.keys(a)[0]
-        const key2 = Object.keys(b)[0]
-        return b[key2] - a[key1]
-    })
-}
-// console.log(_sort(arr))
-
-function insert(nums: number[]) {
-    let len = nums.length
-    for (let i = 1; i < len; i++) {
-        let temp = nums[i]
-        for (let j = i - 1; j >= 0; j--) {
-            if (nums[j] > temp) {
-                nums[j + 1] = nums[j]
-                nums[j] = temp
-            } else {
-                break
-            }
-        }
-    }
-    return nums
-}
-
-function bubble(nums: number[]) {
-    let len = nums.length
-    for (let i = len - 1; i >= 0; i--) {
-        for (let j = 0; j < i; j++) {
-            if (nums[j] > nums[j + 1]) {
-                [nums[j], nums[j + 1]] = [nums[j + 1], nums[j]]
-            }
-        }
-    }
-}
-
-function select(nums: number[]) {
-    let len = nums.length
-    let min = 0
-    for (let i = 0; i < len; i++) {
-        min = i
-        for (let j = i; j < len; j++) {
-            if (nums[j] < nums[min]) {
-                min = j
-            }
-        }
-        if (i !== min) {
-            [nums[i], nums[min]] = [nums[min], nums[i]]
-        }
-    }
-    return nums
-}
-
-function quick(nums: number[]): number[] {
-    let len = nums.length
-    if (len <= 1) return nums
-    let mid = len >> 1
-    let pivot = nums.splice(mid, 1)[0]
-    let left = []
-    let right = []
-    for (const n of nums) {
-        if (n < pivot) {
-            left.push(n)
-        } else {
-            right.push(n)
-        }
-    }
-    return quick(left).concat([pivot], quick(right))
-}
-// console.log(insert([2, 3, 4, 1, 2, 4, 5]))
-function test() {
-    return [...Array.from(Array(1000).keys())].filter((n:number) => {
-        return String(n).length > 1 && String(n) === String(n).split('').reverse().join('')
-    })
-}
-
-try {
-    // console.log(test())
-} catch (error) { console.log(error) }

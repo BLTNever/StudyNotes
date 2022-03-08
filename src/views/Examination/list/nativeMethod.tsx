@@ -47,7 +47,7 @@ const NativeMethod = () => {
                             <Highlight language="javascript">{eg.createNew}</Highlight>
                         </Space>
                     </Panel>
-                    <Panel header="instanceof（测构造函数的 prototype 属性是否出现在某个实例对象的原型链上）" key="8">
+                    <Panel header="instanceof(测构造函数的 prototype 属性是否出现在某个实例对象的原型链上)" key="8">
                         <Space direction="vertical">
                             <Text>instanceof 用于判断左侧值是否是右侧值的实例，所以左侧必须是一个对象，而右侧是一个类</Text>
                             <Text>instanceof 会查找原型链，知道 null 之前如果还不是这个对象的实例则会返回 false，否则返回 true</Text>

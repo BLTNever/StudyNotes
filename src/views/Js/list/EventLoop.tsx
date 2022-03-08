@@ -22,23 +22,23 @@ const EventLoop = () => (
             <Collapse defaultActiveKey="" ghost>
                 <Panel header="什么是事件循环？" key="1">
                     <Space direction="vertical">
-                        <Text>JavaScript是单线程的，但是JavaScript的宿主环境不是单线程的，如浏览器（引入web workers之前）、nodejs</Text>
+                        <Text>JavaScript是单线程的，但是JavaScript的宿主环境不是单线程的，如浏览器(引入web workers之前)、nodejs</Text>
                         <Text>为了利用多核CPU的计算能力，HTML5提出Web Worker标准，允许JavaScript脚本创建多个线程，但是子线程完全受主线程控制，且不得操作DOM。所以，这个新标准并没有改变JavaScript单线程的本质。</Text>
                         <Text>单线程在程序执行时，所走的程序路径按照连续顺序排下来，前面的必须处理好，后面的才会执行。</Text>
 
                         <Text>所有任务可以分成两种: </Text>
                         <ul>
-                            <li><Text mark>同步任务（synchronous）</Text>:在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务</li>
-                            <li><Text mark>异步任务（asynchronous）</Text>:不进入主线程、而进入"任务队列"（task queue）的任务，只有"任务队列"通知主线程，某个异步任务可以执行了，该任务才会进入主线程执行</li>
+                            <li><Text mark>同步任务(synchronous)</Text>:在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务</li>
+                            <li><Text mark>异步任务(asynchronous)</Text>:不进入主线程、而进入"任务队列"(task queue)的任务，只有"任务队列"通知主线程，某个异步任务可以执行了，该任务才会进入主线程执行</li>
                         </ul>
-                        <Text>异步执行的运行机制:（同步执行也是如此，因为它可以被视为没有异步任务的异步执行）</Text>
+                        <Text>异步执行的运行机制:(同步执行也是如此，因为它可以被视为没有异步任务的异步执行)</Text>
                         <ul>
-                            <li> 所有同步任务都在主线程上执行，形成一个<Text mark>执行栈（execution context stack）</Text></li>
-                            <li>主线程之外，还存在一个<Text mark>"任务队列"（task queue</Text>）。只要异步任务有了运行结果，就在"任务队列"之中放置一个事件</li>
+                            <li> 所有同步任务都在主线程上执行，形成一个<Text mark>执行栈(execution context stack)</Text></li>
+                            <li>主线程之外，还存在一个<Text mark>"任务队列"(task queue</Text>)。只要异步任务有了运行结果，就在"任务队列"之中放置一个事件</li>
                             <li>一旦"执行栈"中的所有同步任务执行完毕，系统就会读取"任务队列"，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行</li>
                             <li>主线程不断重复上面的第三步</li>
                         </ul>
-                        <Text>只要主线程空了，就会去读取"任务队列"，这就是JavaScript的运行机制。这个过程会不断重复。所以整个的这种运行机制又称为Event Loop（事件循环）</Text>
+                        <Text>只要主线程空了，就会去读取"任务队列"，这就是JavaScript的运行机制。这个过程会不断重复。所以整个的这种运行机制又称为Event Loop(事件循环)</Text>
 
                         <Link href="http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!" target="_blank">
                             查看EventLoop执行
@@ -51,10 +51,10 @@ const EventLoop = () => (
                         <Col span={12}>
                             <Card title="同步、异步">
                                 <ul>
-                                    <li>1. 主线程运行的时候会生成堆（heap）和栈（stack）</li>
+                                    <li>1. 主线程运行的时候会生成堆(heap)和栈(stack)</li>
                                     <li>2. js从上到下解析方法，将其中的<Text mark>同步任务按照执行顺序</Text>排列到<Text mark>执行栈</Text>中</li>
                                     <li>3. 当程序调用外部的API时，比如ajax、setTimeout等，会将此类异步任务挂起，继续执行执行栈中的任务，等异步任务返回结果后，再按照执行顺序排列到事件队列中</li>
-                                    <li>4. 主线程先将执行栈中的同步任务清空，然后检查<Text mark>事件队列（QUEUE）</Text>中是否有任务，如果有，就将第一个事件对应的回调推到执行栈中执行，若在执行过程中遇到异步任务，则继续将这个异步任务排列到事件队列中</li>
+                                    <li>4. 主线程先将执行栈中的同步任务清空，然后检查<Text mark>事件队列(QUEUE)</Text>中是否有任务，如果有，就将第一个事件对应的回调推到执行栈中执行，若在执行过程中遇到异步任务，则继续将这个异步任务排列到事件队列中</li>
                                     <li>5. js引擎存在monitoring process进程，主线程每次将执行栈清空后，就去事件队列中检查是否有任务，如果有，就每次取出一个推到执行栈中执行，这个过程是循环往复的... ...，这个过程被称为“Event Loop 事件循环”</li>
                                 </ul>
                             </Card>
@@ -69,16 +69,16 @@ const EventLoop = () => (
 
                 <Panel header="执行栈与任务队列" key="3">
                     <Space direction="vertical">
-                        <Title level={4}>执行栈（execution context stack），也可以叫执行上下文栈: JavaScript执行栈，顾名思义，是由执行上下文组成，当函数调用时，创建并插入一个执行上下文，通常称为执行栈帧（frame），存储着函数参数和局部变量，当该函数执行结束时，弹出该执行栈帧</Title>
-                        <Title level={4}>任务队列（task queue）: 存储待处理消息及对应的回调函数或事件处理程序（除了IO设备（ajax获取服务器数据）的事件以外，还包括一些用户产生的事件（mouseover、click、scroll、keyup等）和定时器等）</Title>
+                        <Title level={4}>执行栈(execution context stack)，也可以叫执行上下文栈: JavaScript执行栈，顾名思义，是由执行上下文组成，当函数调用时，创建并插入一个执行上下文，通常称为执行栈帧(frame)，存储着函数参数和局部变量，当该函数执行结束时，弹出该执行栈帧</Title>
+                        <Title level={4}>任务队列(task queue): 存储待处理消息及对应的回调函数或事件处理程序(除了IO设备(ajax获取服务器数据)的事件以外，还包括一些用户产生的事件(mouseover、click、scroll、keyup等)和定时器等)</Title>
                     </Space>
                 </Panel>
 
                 <Panel header="Macrotask 和 Microtask" key="4">
                     <Space direction="vertical">
                         <ul>
-                            <li><Text mark>Macrotask</Text>（宏任务）: <Text code>setTimeout、setInterval、setImmediate、 I/O、script(整体代码)、 UI rendering</Text></li>
-                            <li><Text mark>Microtask</Text>（微任务）: <Text code>process.nextTick、Promises、Object.observe（废弃）、MutationObserver</Text></li>
+                            <li><Text mark>Macrotask</Text>(宏任务): <Text code>setTimeout、setInterval、setImmediate、 I/O、script(整体代码)、 UI rendering</Text></li>
+                            <li><Text mark>Microtask</Text>(微任务): <Text code>process.nextTick、Promises、Object.observe(废弃)、MutationObserver</Text></li>
                         </ul>
                         <Text mark>同一次事件循环中，微任务永远在宏任务之前执行?? 因为代码块也是宏任务</Text>
                         <Link href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" target="_blank">

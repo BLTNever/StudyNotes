@@ -30,7 +30,7 @@ const AlgoBase = () => {
             <Wrap>
                 <Title level={4}>基础排序操作</Title>
                 <Collapse ghost>
-                    <Panel header="sort排序: V8对 sort 的实现，length <= 10 采用插入排序（时间复杂度O(n^2),空间复杂度O(1)）,>10 快速排序（时间复杂度O(nlogn), 空间复杂度O(logn)）" key="1">
+                    <Panel header="sort排序: V8对 sort 的实现，length <= 10 采用插入排序(时间复杂度O(n^2),空间复杂度O(1)),>10 快速排序(时间复杂度O(nlogn), 空间复杂度O(logn))" key="1">
                         <Highlight language="javascript">{eg.sort}</Highlight>
                     </Panel>
                     <Panel header={<ul>
@@ -40,7 +40,7 @@ const AlgoBase = () => {
                         <Highlight language="javascript">{eg.bubbleSort}</Highlight>
                     </Panel>
                     <Panel header={<ul>
-                        <li>选择排序: 在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到「已排序序列的末尾」</li>
+                        <li>选择排序: 在未排序序列中找到最小(大)元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小(大)元素，然后放到「已排序序列的末尾」</li>
                         <li>{`i = 0; min = i; j = i; min > j, min = j; i !== min && [i, min] = [min, i]`}</li>
                     </ul>} key="3">
                         <Highlight language="javascript">{eg.selectSort}</Highlight>

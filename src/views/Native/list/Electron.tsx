@@ -62,8 +62,8 @@ const Electron = () => {
                     <Panel header="上下文隔离" key="4">
                         <Space direction="vertical">
                             <ul>
-                                <li>在Electron中，Node中模块在其中也可以使用（配置nodeIntegration为true）</li>
-                                <li>这样的话，在一个复杂项目中，就可以造成污染，重名等问题。于是Electron特意增加了上下文隔离这一概念（开启上下文隔离的条件是contextIsolation属性设置为true，且增加preload的路径）</li>
+                                <li>在Electron中，Node中模块在其中也可以使用(配置nodeIntegration为true)</li>
+                                <li>这样的话，在一个复杂项目中，就可以造成污染，重名等问题。于是Electron特意增加了上下文隔离这一概念(开启上下文隔离的条件是contextIsolation属性设置为true，且增加preload的路径)</li>
                                 <li>一旦开启该条件，渲染页面的js中无法引入Electron和Node的各种模块。因此，如果想在其中使用，需要配置preload.js，使用contextBridge来暴露全局接口到渲染页面的脚本中，在渲染脚本中直接通过window.darkMode来调用preload.js中的toggle和system函数。</li>
                                 <li><Highlight>{eg.contextBridge}</Highlight></li>
                             </ul>

@@ -47,16 +47,16 @@ export const numberFn = (
 )
 export const stringFn = (
     <>
-        <p>调用String（）函数，并将被转换的数据作为参数传递给函数</p>
-        <p>使用String（）函数做强制类型转换时，对于Number和Boolean实际上就是调用的toString（）方法。</p>
-        <p>但是对于null和undefined就不会调用toString（）方法，它会将null直接转换为“null”；</p>
+        <p>调用String()函数，并将被转换的数据作为参数传递给函数</p>
+        <p>使用String()函数做强制类型转换时，对于Number和Boolean实际上就是调用的toString()方法。</p>
+        <p>但是对于null和undefined就不会调用toString()方法，它会将null直接转换为“null”；</p>
         <p>将undefined直接转换为“undefined”</p>
     </>
 )
 export const toStringFn = (
     <>
-        <p>调用被转换数据类型的toString（）方法</p>
+        <p>调用被转换数据类型的toString()方法</p>
         <p>该方法不会影响原变量，它会将转换的结果返回</p>
-        <p>注意: null和undefined这两个值没有toString（）方法，如果调用他们的方法会报错。</p>
+        <p>注意: null和undefined这两个值没有toString()方法，如果调用他们的方法会报错。</p>
     </>
 )

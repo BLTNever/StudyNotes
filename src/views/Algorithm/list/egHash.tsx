@@ -240,8 +240,11 @@ function subdomainVisits(cpdomains: string[]) {
         let domains = domain.split('.')
         for (let i = 0; i < domains.length; i++) {
             const temp = domains.slice(i).join('.')
-            if (!map.has(temp)) map.set(temp, Number(count))
-            else map.set(temp, map.get(temp) + Number(count))
+            if (!map.has(temp)) {
+                map.set(temp, Number(count))
+            } else {
+                map.set(temp, map.get(temp) + Number(count))
+            }
         }
     }
     return Array.from(map).map(item => item[1] + ' ' + item[0])

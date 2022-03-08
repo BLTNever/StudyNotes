@@ -13,7 +13,7 @@ const Modules = () => (
         <Wrap>
             <Title level={3}>CommonJS</Title>
             <Collapse ghost>
-                <Panel header="代码运行在模块作用域。只加载一次（同步加载），一次之后就会被缓存下来。输出值的拷贝。运行时加载" key="1">
+                <Panel header="代码运行在模块作用域。只加载一次(同步加载)，一次之后就会被缓存下来。输出值的拷贝。运行时加载" key="1">
                     <Space direction="vertical">
                         <Text mark>重复加载: 加载之后的文件的 module 会被缓存到 Module 上</Text>
                         <Text mark>循环引用: commonjs导出的是一个值拷贝，会对加载结果进行缓存。遇到循环加载时，返回的是当前已经执行的部分的值，而不是代码全部执行后的值</Text>
@@ -33,7 +33,7 @@ const Modules = () => (
                 </Panel>
                 <Panel header="commonjs实现原理" key="2">
                     <Space direction="vertical">
-                        <Text>每个模块文件上存在 module（记录当前模块信息），exports（当前模块导出的属性），require（引入模块的方法）三个变量</Text>
+                        <Text>每个模块文件上存在 module(记录当前模块信息)，exports(当前模块导出的属性)，require(引入模块的方法)三个变量</Text>
                         <ul>
                             <li>1.在编译的过程中，Commonjs 对 js 的代码块进行了首尾包装</li>
                             <li>2.在 Commonjs 规范下模块中，会形成一个包装函数，我们写的代码将作为包装函数的执行上下文，使用的 require ，exports ，module 本质上是通过形参的方式传递到包装函数中的</li>
@@ -75,7 +75,7 @@ const Modules = () => (
         <Wrap>
             <Title level={3}>EsModule</Title>
             <Collapse ghost>
-                <Panel header="静态化-只读。编译时就确定模块的依赖关系、以及输入输出的变量。输出的是值的引用（变量地址）" key="1">
+                <Panel header="静态化-只读。编译时就确定模块的依赖关系、以及输入输出的变量。输出的是值的引用(变量地址)" key="1">
                     <Space direction="vertical">
                         <ul>
                             <li>一个模块就是一个独立的文件。该文件内部的所有变量，外部无法获取</li>
@@ -86,7 +86,7 @@ const Modules = () => (
                             <li>import语句导入模块，export语句导出模块，是异步的；</li>
                         </ul>
                         <Text mark>重复引用: 多次引用的对象是同一个</Text>
-                        <Text mark>循环引用: 循环加载时，ES6模块是动态引用。只要两个模块之间存在某个引用，代码就能够执行（解决原理）</Text>
+                        <Text mark>循环引用: 循环加载时，ES6模块是动态引用。只要两个模块之间存在某个引用，代码就能够执行(解决原理)</Text>
                         <Row gutter={24}>
                             <Col span={12}>
                                 <Card title="export & 使用 * 整体加载"><Highlight language="javascript">{example3}</Highlight></Card>
@@ -101,7 +101,7 @@ const Modules = () => (
         </Wrap>
 
         <Wrap>
-            <Title level={3}>AMD（Asynchronous Module Definition）（RequireJS）</Title>
+            <Title level={3}>AMD(Asynchronous Module Definition)(RequireJS)</Title>
             <Collapse ghost>
                 <Panel header="非同步加载模块，允许指定回调函数。运行时加载。依赖前置" key="1">
                     <Space direction="vertical">
@@ -117,7 +117,7 @@ const Modules = () => (
         </Wrap>
 
         <Wrap>
-            <Title level={3}>CMD（Common Module Definition）（SeaJS）</Title>
+            <Title level={3}>CMD(Common Module Definition)(SeaJS)</Title>
             <Collapse ghost>
                 <Panel header="异步加载。就近依赖" key="1">
                     <Space direction="vertical">
@@ -134,7 +134,7 @@ const Modules = () => (
         </Wrap>
 
         <Wrap>
-            <Title level={3}>UMD（Universal Module Definition） 通用模块规范</Title>
+            <Title level={3}>UMD(Universal Module Definition) 通用模块规范</Title>
             <Collapse ghost>
                 <Panel header="兼容了commonjs和amd规范，这意味着无论是在commonjs规范的项目中，还是amd规范的项目中，都可以直接引用umd规范的模块使用" key="1">
                     <Space direction="vertical">
@@ -153,8 +153,8 @@ const Modules = () => (
                         <ul>
                             <li><Text>AMD推崇前置依赖: 定义模块时候就需要声明其依赖的模块</Text></li>
                             <li><Text>CMD推崇就近依赖: 只有在用到某个模块的时候再去require</Text></li>
-                            <li><Text>AMD在加载完定义（define）好的模块就就会去执行，执行完成后，遇到require的时候才会执行主逻辑代码（提前加载）</Text></li>
-                            <li><Text>CDM在加载完定义（define）的模块时，仅作下载不执行，遇到require执行对应的模块（按需加载）</Text></li>
+                            <li><Text>AMD在加载完定义(define)好的模块就就会去执行，执行完成后，遇到require的时候才会执行主逻辑代码(提前加载)</Text></li>
+                            <li><Text>CDM在加载完定义(define)的模块时，仅作下载不执行，遇到require执行对应的模块(按需加载)</Text></li>
                         </ul>
                         <Highlight language="javascript">{AMD}</Highlight>
                     </Space>
@@ -170,7 +170,7 @@ const Modules = () => (
                 <Panel header="Commonjs模块输出的值的拷贝，EsModule模块输出的是值得引用；CommonJs模块是运行时加载，EsModule是编译时输出" key="1">
                     <Space direction="vertical">
                         <ul>
-                            <li><Text>CommonJS输出的是值的拷贝（浅拷贝），一旦输出一个值，模块内部的变化就影响不到这个值</Text></li>
+                            <li><Text>CommonJS输出的是值的拷贝(浅拷贝)，一旦输出一个值，模块内部的变化就影响不到这个值</Text></li>
                             <li><Text>JS引擎在遇到EsModule模块时，会生成一个只读的引用，等到代码执行的时候，再根据引用，到被加载的模块里取值。EsModule是动态引用</Text></li>
                         </ul>
                         <ul>
@@ -200,7 +200,7 @@ const Modules = () => (
             <Collapse ghost>
                 <Panel header="立即执行函数" key="1">
                     <Space direction="vertical">
-                        <Title level={4}>使用立即执行函数（Immediately-Invoked Function Expression, IIFE）</Title>
+                        <Title level={4}>使用立即执行函数(Immediately-Invoked Function Expression, IIFE)</Title>
                         <Highlight language="javascript">{example6}</Highlight>
                     </Space>
                 </Panel>

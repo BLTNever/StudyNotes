@@ -36,12 +36,43 @@ const Performance = () => {
                         </Space>
                     </Panel>
 
-                    <Panel header="信息收集" key="2" extra="">
+                    <Panel header="信息收集上报" key="2" extra="">
                         <Space direction="vertical">
+                            <ul>
+                                <li>常见错误类型: JS错误 - SyntaxError、TypeError、ReferenceError、RangeError、网络错误 - ResourceError、HttpError</li>
+                                <li>收集错误:
+                                    <ul>
+                                        <li>window.onerror: 常规运行错误、异步错误</li>
+                                        <li>window.addEventListener(error): 文件加载错误</li>
+                                        <li>window.addEventListener(unhandledrejection): Promise错误</li>
+                                        <li>componentDidCatch: React错误</li>
+                                        <li>Vue.config.errorHandler: Vue错误</li>
+                                        <li></li>
+                                    </ul>
+                                </li>
+                                <li>上报:
+                                    <ul>
+                                        <li>收集信息后保存在内存中,之后在requestIdleCallback或离开页面前</li>
+                                        <li>浏览器标签页被隐藏或显示的时候会触发visibilitychange事件(当 visibleStateState 属性的值转换为 hidden 时，Safari不会按预期触发visibilitychange； 因此，在这种情况下，您还需要包含代码以侦听 pagehide 事件)(出于兼容性原因，请确保使用  document.addEventListener 而不是window.addEventListener来注册回调。 Safari 14.0仅支持前者)</li>
+                                        <li>浏览器unload(卸载的时候)</li>
+                                        <li>Navigator.sendBeacon(): 请求与当前页面线程脱钩，作为浏览器进程的任务，因此可以保证会把数据发出去，不拖延卸载流程</li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </Space>
                     </Panel>
 
-                    <Panel header="性能指标" key="3" extra="">
+                    <Panel header="采集聚合" key="3" extra="">
+                        <Space direction="vertical">
+                            <ul>
+                                <li>错误标识(SDK配合):定位单个错误条目，单个错误事件的能力</li>
+                                <li>错误过滤(SDK配合):</li>
+                                <li>避免重复上报</li>
+                            </ul>
+                        </Space>
+                    </Panel>
+
+                    <Panel header="性能指标" key="7" extra="">
                         <Space direction="vertical">
                             <ul>
                                 <li>FP (First Paint) 首次绘制: 标记浏览器渲染任何在视觉上不同于导航前屏幕内容之内容的时间点</li>
@@ -52,7 +83,7 @@ const Performance = () => {
                                 <li>L (onLoad):当依赖的资源, 全部加载完毕之后才会触发 </li>
                                 <li>TTI (Time to Interactive) 可交互时间: 指标用于标记应用已进行视觉渲染并能可靠响应用户输入的时间点 </li>
                                 <li>TBT (Total Blocking Time) 页面阻塞总时长: TBT汇总所有加载过程中阻塞用户操作的时长，在FCP和TTI之间任何long task中阻塞部分都会被汇总</li>
-                                <li>FID (First Input Delay) 首次输入延迟: 指标衡量的是从用户首次与您的网站进行交互（即当他们单击链接，点击按钮等）到浏览器实际能够访问之间的时间</li>
+                                <li>FID (First Input Delay) 首次输入延迟: 指标衡量的是从用户首次与您的网站进行交互(即当他们单击链接，点击按钮等)到浏览器实际能够访问之间的时间</li>
                                 <li>CLS (Cumulative Layout Shift) 累积布局偏移: 总结起来就是一个元素初始时和其hidden之间的任何时间如果元素偏移了, 则会被计算进</li>
                                 <li>SI (Speed Index):指标用于显示页面可见部分的显示速度, 单位是时间</li>
                             </ul>
@@ -65,7 +96,7 @@ const Performance = () => {
                 <Title level={3}>性能优化</Title>
                 <ul>
                     <li><Text mark>减少资源大小: 代码压缩、图片压缩、文件切割</Text></li>
-                    <li><Text mark>减少请求时间: 服务器优化（服务端渲染、chunked encoding数据分块传输）、利用缓存（cacheContol、localStorage）、优化网络（http2.0、CDN、减少重定向、域名分割资源分配在不同域名下）</Text></li>
+                    <li><Text mark>减少请求时间: 服务器优化(服务端渲染、chunked encoding数据分块传输)、利用缓存(cacheContol、localStorage)、优化网络(http2.0、CDN、减少重定向、域名分割资源分配在不同域名下)</Text></li>
                     <li><Text mark>代码层面: 减少DOM操作、使用外部JS，CSS文件以便方便缓存、首屏之外文件按需/延迟加载、合并声明、减少全局变量、合理使用requestAnimationFrame动画代替setTimeout</Text></li>
                     <li><Text mark>SSR: 解决请求慢或渲染慢的问题</Text></li>
                 </ul>
@@ -83,10 +114,10 @@ const Performance = () => {
                                 <li>文件压缩: GZIP压缩文件，http缓存文件，优化不必要的代码</li>
                                 <li>JS文件加载:
                                     <ul>
-                                        <li>预加载（preload & prefetch）</li>
-                                        <li>async和defer（defer在DOM Loaded后执行，下载不阻塞DOM渲染，执行会）</li>
-                                        <li>按需加载（script.onload、script.readyState）</li>
-                                        <li>切割JS文件（webpack.splitChunks）、JS压缩（gzip）</li>
+                                        <li>预加载(preload & prefetch)</li>
+                                        <li>async和defer(defer在DOM Loaded后执行，下载不阻塞DOM渲染，执行会)</li>
+                                        <li>按需加载(script.onload、script.readyState)</li>
+                                        <li>切割JS文件(webpack.splitChunks)、JS压缩(gzip)</li>
                                     </ul>
                                 </li>
                                 <li>CSS优化:  避免使用import、放在head媒体查询、link添加preload、动态添加link、不使用用CSS计算、避免使用通配/高级选择器</li>
@@ -99,7 +130,7 @@ const Performance = () => {
                                 <li>静态资源部署到CDN:
                                     <ul>
                                         <li>服务器资源缓存在CDN服务器上</li>
-                                        <li>请求资源的时候向CDN边缘节点发起请求（就近服务器）</li>
+                                        <li>请求资源的时候向CDN边缘节点发起请求(就近服务器)</li>
                                         <li>CDN边缘计算</li>
                                         <li><Link to="/inerview/Http#CDN">详解</Link></li>
                                     </ul>
@@ -141,7 +172,7 @@ const Performance = () => {
                             </ul>
                         </Space>
                     </Panel>
-                    <Panel header="CRP（关键渲染路径Critical Rendering Path）优化" key="4">
+                    <Panel header="CRP(关键渲染路径Critical Rendering Path)优化" key="4">
                         <Space direction="vertical">
                             <ul>
                                 <li>*关键资源的数量: 阻止网页首次渲染的资源</li>
@@ -160,20 +191,20 @@ const Performance = () => {
                         <Space direction="vertical">
                             <ul>
                                 <li><Text>合并操作</Text></li>
-                                <li><Text>避免浏览器 <Tooltip title="元素样式的改变并不影响它在文档流中的位置"><Tag color="#2db7f5">重绘（修改样式）</Tag></Tooltip>和
+                                <li><Text>避免浏览器 <Tooltip title="元素样式的改变并不影响它在文档流中的位置"><Tag color="#2db7f5">重绘(修改样式)</Tag></Tooltip>和
                                     <Tooltip title="当 Render Tree 中部分或全部元素的尺寸、结构、或某些属性发生改变时，浏览器重新渲染部分或全部文档的过程">
-                                        <Tag color="#108ee9">回流（重新渲染）</Tag>
+                                        <Tag color="#108ee9">回流(重新渲染)</Tag>
                                     </Tooltip>
                                 </Text>
                                 </li>
                                 <li><Text>重排元素设置为position absolute或fixed脱离文档流</Text></li>
-                                <li><Text>事件委托: 利用JS事件冒泡机制把原本需要绑定在子元素的响应事件（click，keydown）委托给父元素。减少内存占用，减少事件注册</Text></li>
-                                <li><Text>高频操作使用函数防抖（debounce）、函数节流（throttle）</Text></li>
-                                <li><Text>尽量使用 transition 和 animation来实现CSS动画，而不是JS实现动画（运行在主线程对动画的流畅度有影响）</Text></li>
-                                <li><Text>DOM增删操作要少（虚拟长列表、DOM Diff）</Text></li>
+                                <li><Text>事件委托: 利用JS事件冒泡机制把原本需要绑定在子元素的响应事件(click，keydown)委托给父元素。减少内存占用，减少事件注册</Text></li>
+                                <li><Text>高频操作使用函数防抖(debounce)、函数节流(throttle)</Text></li>
+                                <li><Text>尽量使用 transition 和 animation来实现CSS动画，而不是JS实现动画(运行在主线程对动画的流畅度有影响)</Text></li>
+                                <li><Text>DOM增删操作要少(虚拟长列表、DOM Diff)</Text></li>
                                 <li><Text>在内存中构建DOM，完成后再添加到文档中，document fragment</Text></li>
                                 <li><Text>设置display: none， 先隐藏再操作再显示</Text></li>
-                                <li><Text>CSS硬件加速（GPU加速）translateZ/translate3d </Text></li>
+                                <li><Text>CSS硬件加速(GPU加速)translateZ/translate3d </Text></li>
                             </ul>
                         </Space>
                     </Panel>

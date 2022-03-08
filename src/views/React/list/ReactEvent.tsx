@@ -24,8 +24,8 @@ const ReactEvent = () => (
                         <Text>react事件没有绑定到具体的dom节点上，而是绑定在document上，基于浏览器的冒泡事件机制统一在document上触发</Text>
                         <Text>原生事件由于合成事件执行， 在合成事件内阻止冒泡只是阻止合成事件</Text>
                         <ul>
-                            <li>原生事件（阻止冒泡）会阻止合成事件的执行</li>
-                            <li>合成事件（阻止冒泡）不会阻止原生事件执行</li>
+                            <li>原生事件(阻止冒泡)会阻止合成事件的执行</li>
+                            <li>合成事件(阻止冒泡)不会阻止原生事件执行</li>
                         </ul>
 
                         <Card title="意义">
@@ -80,7 +80,7 @@ const ReactEvent = () => (
                 </Panel>
                 <Panel header="关键步骤" key="2">
                     <Space direction="vertical">
-                        <Text>react拿到将要挂载组件的虚拟dom（react element对象），然后处理react dom的props，判断属性内是否有声明为事件的属性</Text>
+                        <Text>react拿到将要挂载组件的虚拟dom(react element对象)，然后处理react dom的props，判断属性内是否有声明为事件的属性</Text>
                         <Text>例如onClick、onChange，拿到事件类型click、change和对应的事件处理程序fn。执行下面第三部</Text>
                         <ul>
                             <li>1. 完成事件注册</li>
@@ -101,7 +101,7 @@ const ReactEvent = () => (
                 <Panel header="流程" key="1">
                     <Space direction="vertical">
                         <ul>
-                            <li>1. 进入统一的事件分发函数（dispatchEvent）</li>
+                            <li>1. 进入统一的事件分发函数(dispatchEvent)</li>
                             <li>2. 结合原生事件找到当前节点对应的ReactDOMComponent对象</li>
                             <li>
                                 3. 合成事件的开始
@@ -109,10 +109,10 @@ const ReactEvent = () => (
                                     <li>3.1 根据当前事件类型生成指定的合成对象</li>
                                     <li>3.2 封装原生事件和冒泡机制</li>
                                     <li>3.3 查找当前元素以及他素有的父级</li>
-                                    <li>3.4 在listenerBank查找事件回调并合成到 event（合成事件结束）</li>
+                                    <li>3.4 在listenerBank查找事件回调并合成到 event(合成事件结束)</li>
                                 </ul>
                             </li>
-                            <li>4. 批量处理合成事件内的回调事件（事件触发完成end）</li>
+                            <li>4. 批量处理合成事件内的回调事件(事件触发完成end)</li>
                         </ul>
                     </Space>
                 </Panel>

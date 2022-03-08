@@ -21,7 +21,7 @@ const Frontend = () => {
                         <ul>
                             <li>1. 编码: HTML 原始字节数据转换为文件指定编码的字符串</li>
                             <li>2. 词法分析(标记化)：对输入字符串进行逐字扫描，根据 构词规则 识别单词和符号，分割成一个个我们可以理解的词汇(学名叫 Token )的过程</li>
-                            <li>3. 语法分析（解析器）：对 Tokens 应用 HTML 的语法规则，进行配对标记、确立节点关系和绑定属性等操作，从而构建 DOM Tree 的过程</li>
+                            <li>3. 语法分析(解析器)：对 Tokens 应用 HTML 的语法规则，进行配对标记、确立节点关系和绑定属性等操作，从而构建 DOM Tree 的过程</li>
                         </ul>
                     </Panel>
                     <Panel header="CSSOM Tree" key="2" extra="2. 处理 CSS 并构建 CSSOM Tree">
@@ -35,8 +35,8 @@ const Frontend = () => {
                     <Panel header="Render Object Tree" key="3" extra="3. 将DOMTree和CSSOMTree合并成RenderObjectTree,根据RenderObjectTree计算节点的几何信息并以此进行布局">
                         <ul>
                             <li>创建 Render Object</li>
-                            <li>布局（重排）: 重新计算位置（转换成实际大小），布局是从 Root Render Object 开始递归的（先计算子节点，再计算父节点）</li>
-                            <li>数值类型: 所有相对的测量值（rem、em、百分比...）都必须转换成屏幕上的绝对像素,百分比，则需要乘以父节点宽或高的最大值</li>
+                            <li>布局(重排): 重新计算位置(转换成实际大小)，布局是从 Root Render Object 开始递归的(先计算子节点，再计算父节点)</li>
+                            <li>数值类型: 所有相对的测量值(rem、em、百分比...)都必须转换成屏幕上的绝对像素,百分比，则需要乘以父节点宽或高的最大值</li>
                             <li>盒模型: box-sizing,</li>
                         </ul>
                     </Panel>

@@ -71,7 +71,7 @@ const Types = () => (
                     <Row gutter={24}>
                         <Col span={12}>
                             <Card title="基本类型: ">
-                                <Text> 1、占用空间固定，保存在栈中（当一个方法执行时，每个方法都会建立自己的内存栈，在这个方法内定义的变量将会逐个放入这块栈内存里，随着方法的执行结束，这个方法的内存栈也将自然销毁了。因此，所有在方法中定义的变量都是放在栈内存中的；栈中存储的是基础变量以及一些对象的引用变量，<b>基础变量的值是存储在栈中，而引用变量存储在栈中的是指向堆中的数组或者对象的地址，这就是为何修改引用类型总会影响到其他指向这个地址的引用变量。</b>）</Text>
+                                <Text> 1、占用空间固定，保存在栈中(当一个方法执行时，每个方法都会建立自己的内存栈，在这个方法内定义的变量将会逐个放入这块栈内存里，随着方法的执行结束，这个方法的内存栈也将自然销毁了。因此，所有在方法中定义的变量都是放在栈内存中的；栈中存储的是基础变量以及一些对象的引用变量，<b>基础变量的值是存储在栈中，而引用变量存储在栈中的是指向堆中的数组或者对象的地址，这就是为何修改引用类型总会影响到其他指向这个地址的引用变量。</b>)</Text>
                                 <Text>2、<b>保存与复制的是值本身</b></Text>
                                 <Text>3、它们是完全独立的拷贝，互不干涉。</Text>
                                 <Text>4、使用typeof检测数据的类型</Text>
@@ -80,7 +80,7 @@ const Types = () => (
                         </Col>
                         <Col span={12}>
                             <Card title="引用类型: ">
-                                <Text>1、占用空间不固定，保存在堆中（当我们在程序中创建一个对象时，这个对象将被保存到运行时数据区中，以便反复利用（因为对象的创建成本通常较大），这个运行时数据区就是堆内存。堆内存中的对象不会随方法的结束而销毁，即使方法结束后，这个对象还可能被另一个引用变量所引用（方法的参数传递时很常见），则这个对象依然不会被销毁，只有当一个对象没有任何引用变量引用它时，系统的垃圾回收机制才会在核实的时候回收它。）</Text>
+                                <Text>1、占用空间不固定，保存在堆中(当我们在程序中创建一个对象时，这个对象将被保存到运行时数据区中，以便反复利用(因为对象的创建成本通常较大)，这个运行时数据区就是堆内存。堆内存中的对象不会随方法的结束而销毁，即使方法结束后，这个对象还可能被另一个引用变量所引用(方法的参数传递时很常见)，则这个对象依然不会被销毁，只有当一个对象没有任何引用变量引用它时，系统的垃圾回收机制才会在核实的时候回收它。)</Text>
                                 <Text>2、保存与复制的是指向对象的一个指针</Text>
                                 <Text>3、使用instanceof检测数据类型</Text>
                                 <Text>4、使用new()方法构造出的对象是引用型</Text>
@@ -232,9 +232,9 @@ const Types = () => (
 
                         <Title level={4}>JavaScript提供三种不同的值比较操作: </Title>
                         <ul>
-                            <li><Text>===严格相等（&quot;triple equals&quot; 或 &quot;identity&quot;）:===将进行相同的比较，而不进行类型转换 (如果类型不同, 只是总会返回 false )</Text></li>
+                            <li><Text>===严格相等(&quot;triple equals&quot; 或 &quot;identity&quot;):===将进行相同的比较，而不进行类型转换 (如果类型不同, 只是总会返回 false )</Text></li>
                             <li><Text>==宽松相等 (&quot;double equals&quot;): ==将执行类型转换</Text></li>
-                            <li><Text>以及 Object.is （ECMAScript 2015/ ES6 新特性）: Object.is的行为方式与三等号相同，但是对于NaN和-0和+0进行特殊处理，所以最后两个不相同，而Object.is（NaN，NaN）将为 true</Text></li>
+                            <li><Text>以及 Object.is (ECMAScript 2015/ ES6 新特性): Object.is的行为方式与三等号相同，但是对于NaN和-0和+0进行特殊处理，所以最后两个不相同，而Object.is(NaN，NaN)将为 true</Text></li>
                         </ul>
                     </Space>
                 </Panel>
@@ -242,7 +242,7 @@ const Types = () => (
                 <Panel header="==和===的异同点" key="2">
                     <Space direction="vertical">
                         <ul>
-                            <li><Text>比较双方都是对象时，只有指向同一个对象才会相等（包含==/===），引用地址的比较</Text></li>
+                            <li><Text>比较双方都是对象时，只有指向同一个对象才会相等(包含==/===)，引用地址的比较</Text></li>
                             <li><Text>===要求比较双方类型相同并且值相等</Text></li>
                             <li><Text>==在比较双方类型不同的时候通常会进行隐式类型转换</Text></li>
                             <li><Text>null == undefined, null/undefined不进行隐式类型转换</Text></li>
@@ -258,7 +258,7 @@ const Types = () => (
                             <li><Text>typeof <b className="orange">Boolean</b> =&gt; &quot;boolean&quot;</Text></li>
                             <li><Text>typeof <b className="orange">Number</b> =&gt; &quot;number&quot;</Text></li>
                             <li><Text>typeof <b className="orange">String</b> =&gt; &quot;string&quot;</Text></li>
-                            <li><Text>typeof <b className="orange">Symbol(（ECMAScript6新增)</b> =&gt; &quot;symbol&quot;</Text></li>
+                            <li><Text>typeof <b className="orange">Symbol((ECMAScript6新增)</b> =&gt; &quot;symbol&quot;</Text></li>
                             <li><Text>typeof <b className="orange">Function</b> =&gt;function&quot;</Text></li>
                             <li><Text>typeof <b className="orange">Undefined</b> =&gt; &quot;undefined&quot;</Text></li>
                             <li><Text>typeof <b className="orange">Null</b> =&gt; &quot;object&quot;</Text></li>

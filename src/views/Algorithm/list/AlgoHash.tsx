@@ -60,7 +60,7 @@ const AlgoHash = () => {
             <Wrap>
                 <Title level={3}>705. 设计哈希集合{T.EASY}</Title>
                 <Collapse ghost>
-                    <Panel header="不使用任何内建的哈希表库设计一个哈希集合（HashSet）" key="1">
+                    <Panel header="不使用任何内建的哈希表库设计一个哈希集合(HashSet)" key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.MyHashSet}</Highlight>
                         </Space>
@@ -71,7 +71,7 @@ const AlgoHash = () => {
             <Wrap>
                 <Title level={3}>706. 设计哈希映射{T.EASY}</Title>
                 <Collapse ghost>
-                    <Panel header="不使用任何内建的哈希表库设计一个哈希映射（HashMap）" key="1">
+                    <Panel header="不使用任何内建的哈希表库设计一个哈希映射(HashMap)" key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.MyHashMap}</Highlight>
                         </Space>
@@ -83,6 +83,7 @@ const AlgoHash = () => {
                 <Title level={3}>811. 子域名访问计数{T.MEDIUM}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个 计数配对域名 组成的数组 cpdomains ，解析得到输入中每个子域名对应的 计数配对域名 ，并以数组形式返回。可以按 任意顺序 返回答案。" key="1">
+                        <a href="https://leetcode-cn.com/problems/subdomain-visit-count/" target="_blank"></a>
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.subdomainVisits}</Highlight>
                         </Space>
@@ -111,7 +112,7 @@ const AlgoHash = () => {
                     <Panel header={<ul>
                         <li>在 &quot;100 game&quot; 这个游戏中，两名玩家轮流选择从 1 到 10 的任意整数，累计整数和，先使得累计整数和 达到或超过  100 的玩家，即为胜者</li>
                         <li>如果我们将游戏规则改为 “玩家 不能 重复使用整数” 呢？</li>
-                        <li>给定两个整数 maxChoosableInteger （整数池中可选择的最大数）和 desiredTotal（累计和），若先出手的玩家是否能稳赢则返回 true ，否则返回 false 。假设两位玩家游戏时都表现 最佳</li>
+                        <li>给定两个整数 maxChoosableInteger (整数池中可选择的最大数)和 desiredTotal(累计和)，若先出手的玩家是否能稳赢则返回 true ，否则返回 false 。假设两位玩家游戏时都表现 最佳</li>
                     </ul>} key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.MyHashMap}</Highlight>

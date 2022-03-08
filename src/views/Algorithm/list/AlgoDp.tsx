@@ -90,7 +90,7 @@ const AlgoDp = () => {
             <Wrap>
                 <Title level={3}>剑指 Offer 10- I.斐波那契数列{T.EASY}{T.DP}</Title>
                 <Collapse ghost>
-                    <Panel header="写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项（即 F(N)）。答案需要取模 1e9+7（1000000007），如计算初始结果为: 1000000008，请返回 1" key="1">
+                    <Panel header="写一个函数，输入 n ，求斐波那契(Fibonacci)数列的第 n 项(即 F(N))。答案需要取模 1e9+7(1000000007)，如计算初始结果为: 1000000008，请返回 1" key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.fib}</Highlight>
                         </Space>
@@ -102,7 +102,7 @@ const AlgoDp = () => {
                 <Title level={3}>剑指 Offer 10- II.青蛙跳台阶问题{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header={`一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。
-                            答案需要取模 1e9+7（1000000007），如计算初始结果为: 1000000008，请返回 1。`} key="1">
+                            答案需要取模 1e9+7(1000000007)，如计算初始结果为: 1000000008，请返回 1。`} key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.numWays}</Highlight>
                         </Space>

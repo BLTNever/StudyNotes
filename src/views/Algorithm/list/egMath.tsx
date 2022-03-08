@@ -3,7 +3,7 @@ export const reverseNum = `
 function reverse(x) {
     if (!x) return 0
     let result = 0
-    while (x !== 0) { // 遍历（x / 10）数字x
+    while (x !== 0) { // 遍历(x / 10)数字x
         // 拿到x的个位数 作为result的新的个位数
         result = result * 10 + x % 10
         if (result > 2 ** 32 - 1 || result < -(2 ** 31)) return 0

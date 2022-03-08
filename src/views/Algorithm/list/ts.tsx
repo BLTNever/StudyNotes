@@ -26,11 +26,11 @@ const TS = () => {
                     <Panel header="访问修饰符" key="1">
                         <Space direction="vertical">
                             <Title level={4}>访问修饰符</Title>
-                            <Text code>ts中修饰符分为三种:  public公有（默认）；protected: 保护（父类+子类）；private私有（本类）</Text>
+                            <Text code>ts中修饰符分为三种:  public公有(默认)；protected: 保护(父类+子类)；private私有(本类)</Text>
                             <ul>
                                 <li><Text>当属性或方法被标记为protected，只允许在子类中访问</Text></li>
                                 <li><Text>当属性或方法被标记为private，则不能在声明它的类的外部访问</Text></li>
-                                <li><Text>当构造函数（constructor）被标记为private，该类不允许被实例化，只允许被继承</Text></li>
+                                <li><Text>当构造函数(constructor)被标记为private，该类不允许被实例化，只允许被继承</Text></li>
                                 <li><Text>只读属性关键字readonly，只允许只读</Text></li>
                             </ul>
 

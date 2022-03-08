@@ -33,7 +33,7 @@ const ExecuteStack = () => (
                             <li>
                                 <Text>1. 全局执行上下文:这是默认或者说基础的上下文，任何不在函数内部的代码都在全局上下文中。它会执行两件事: </Text>
                                 <ul>
-                                    <li><Text>1.1 创建一个全局的 window 对象（浏览器的情况下）</Text></li>
+                                    <li><Text>1.1 创建一个全局的 window 对象(浏览器的情况下)</Text></li>
                                     <li><Text>1.2 设置 this 的值等于这个全局对象。一个程序中只会有一个全局执行上下文。</Text></li>
                                 </ul>
                             </li>
@@ -44,7 +44,7 @@ const ExecuteStack = () => (
                 </Panel>
                 <Panel header="执行栈" key="2">
                     <Space direction="vertical">
-                        <Text>执行栈，也就是在其它编程语言中所说的“调用栈”，是一种拥有 <Text mark>LIFO（后进先出）</Text>数据结构的栈，被用来存储代码运行时创建的所有执行上下文。</Text>
+                        <Text>执行栈，也就是在其它编程语言中所说的“调用栈”，是一种拥有 <Text mark>LIFO(后进先出)</Text>数据结构的栈，被用来存储代码运行时创建的所有执行上下文。</Text>
                         <Text>当 JavaScript 引擎第一次遇到你的脚本时，它会创建一个全局的执行上下文并且压入当前执行栈。每当引擎遇到一个函数调用，它会为该函数创建一个新的执行上下文并压入栈的顶</Text>
                     </Space>
                 </Panel>
@@ -65,7 +65,7 @@ const ExecuteStack = () => (
                                 <Space direction="vertical">
                                     <ul>
                                         <li>在全局执行上下文中，<Text mark>this 的值指向全局对象</Text>(在浏览器中，this引用 Window 对象)</li>
-                                        <li>在函数执行上下文中，<Text mark>this 的值取决于该函数是如何被调用的</Text>。如果它被一个引用对象调用，那么 this 会被设置成那个对象，否则 this 的值被设置为全局对象或者 undefined（在严格模式下）</li>
+                                        <li>在函数执行上下文中，<Text mark>this 的值取决于该函数是如何被调用的</Text>。如果它被一个引用对象调用，那么 this 会被设置成那个对象，否则 this 的值被设置为全局对象或者 undefined(在严格模式下)</li>
                                     </ul>
                                 </Space>
                             </Card>
@@ -89,7 +89,7 @@ const ExecuteStack = () => (
                                     <ul>
                                         <li>它同样是一个词法环境，其环境记录器持有变量声明语句在执行上下文中创建的绑定关系</li>
                                         <li>变量环境也是一个词法环境，所以它有着上面定义的词法环境的所有属性。</li>
-                                        <li>在 ES6 中，词法环境组件和变量环境的一个不同就是前者被用来存储函数声明和变量（let 和 const）绑定，而后者只用来存储 var 变量绑定。</li>
+                                        <li>在 ES6 中，词法环境组件和变量环境的一个不同就是前者被用来存储函数声明和变量(let 和 const)绑定，而后者只用来存储 var 变量绑定。</li>
                                     </ul>
                                 </Space>
                             </Card>
@@ -111,7 +111,7 @@ const ExecuteStack = () => (
             <Collapse defaultActiveKey="" ghost>
                 <Panel header="词法环境类型" key="1">
                     <Space direction="vertical">
-                        <Text>1. <b>全局环境(在全局执行上下文中):</b>是没有外部环境引用的词法环境。全局环境的外部环境引用是 null。它拥有内建的 Object/Array/等、在环境记录器内的原型函数（关联全局对象，比如 window 对象）还有任何用户定义的全局变量，并且 this的值指向全局对象。。</Text>
+                        <Text>1. <b>全局环境(在全局执行上下文中):</b>是没有外部环境引用的词法环境。全局环境的外部环境引用是 null。它拥有内建的 Object/Array/等、在环境记录器内的原型函数(关联全局对象，比如 window 对象)还有任何用户定义的全局变量，并且 this的值指向全局对象。。</Text>
                         <Text>2. <b>在函数环境:</b>函数内部用户定义的变量存储在<Text mark>环境记录器</Text>中。并且引用的外部环境可能是全局环境，或者任何包含此内部函数的外部函数。</Text>
                     </Space>
                 </Panel>

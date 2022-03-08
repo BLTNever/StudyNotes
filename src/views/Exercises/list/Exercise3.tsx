@@ -54,7 +54,7 @@ const Exercise1 = () => (
                         <Highlight language="javascript">{inherit2}</Highlight>
                         <h5>优点: </h5>
                         <p>解决了子类构造函数向父类构造函数中传递参数</p>
-                        <p>可以实现多继承（call或者apply多个父类）</p>
+                        <p>可以实现多继承(call或者apply多个父类)</p>
                         <h5>缺点: </h5>
                         <p>方法都在构造函数中定义，无法复用</p>
                         <p>不能继承原型属性/方法，只能继承父类的实例属性和方法</p>

@@ -11,15 +11,15 @@ export const columns = [
     { title: "ANS", dataIndex: "ans", },
 ]
 const popover1 = <ul>
-    <li>1. 不要在渲染函数（render）中进行不必要的计算（数组排序、数据转换、订阅事件、创建事件处理器等）</li>
+    <li>1. 不要在渲染函数(render)中进行不必要的计算(数组排序、数据转换、订阅事件、创建事件处理器等)</li>
     <li>2. 减少不必要的嵌套</li>
-    <li>3. 虚拟列表（虚拟列表只渲染当前视口可见元素）</li>
+    <li>3. 虚拟列表(虚拟列表只渲染当前视口可见元素)</li>
     <li>4. 惰性渲染: 只在必要时才去渲染对应的节点</li>
     <li>5. 选择合适的样式方案</li>
 </ul>
 const popover2 = <ul>
     <li>1. 简化 props</li>
-    <li>2. 不变的事件处理器: 每次渲染时都会创建一个新的事件处理器（useCallback缓存函数），尽量给下级组件暴露一个静态的函数</li>
+    <li>2. 不变的事件处理器: 每次渲染时都会创建一个新的事件处理器(useCallback缓存函数)，尽量给下级组件暴露一个静态的函数</li>
     <li>3. 不可变数据</li>
     <li>4. 简化 state</li>
 </ul>
@@ -92,7 +92,7 @@ export const dataReact = [
     {
         Q: '为什么有时react两次setState，只执行一次', K: <><Tag color="blue">setState</Tag><Tag color="green">React</Tag></>,
         ans: <ul>
-            <li>连续多次调用setState，react会进行合并，只执行一次（batchedUpdates）</li>
+            <li>连续多次调用setState，react会进行合并，只执行一次(batchedUpdates)</li>
             <li>强制合并更新可以使用 ReactDOM.unstable_batchedUpdates 来强制 batch</li>
         </ul>
     },
@@ -204,18 +204,18 @@ export const dataJs = [
     {
         Q: '谈谈你对作用域的理解', K: <><Tag color="yellow">作用域</Tag><Tag color="geekblue">JS</Tag></>,
         ans: <ul>
-            <li>定义变量储存的区域。并规定了如何查找变量（标识符）。通俗的讲，作用域就是查找变量的地方</li>
+            <li>定义变量储存的区域。并规定了如何查找变量(标识符)。通俗的讲，作用域就是查找变量的地方</li>
             <li>在查找变量的时候，现在函数作用域中查找，没找到，再去全局作用域中查找，查找变量的链条，称为作用域链</li>
             <li>作用域规定了如何查找变量，也就是确定当前执行代码对变量的访问权限</li>
             <li>ES6之前只有全局作用域和函数作用域，ES6中加入了块级作用域</li>
-            <li>JavaScript采用词法作用域（lexical scoping），也就是静态作用域</li>
+            <li>JavaScript采用词法作用域(lexical scoping)，也就是静态作用域</li>
         </ul>
     },
     {
         Q: '谈谈变量提升', K: <><Tag color="green">变量提升</Tag><Tag color="geekblue">JS</Tag></>,
         ans: <>
             <p>JavaScript的源代码在运行的时候，会经过两个阶段: 编译和执行</p>
-            <p>编译: 词法解析、语法解析（生成 AST 程序语法树）、代码生成（AST转译可执行代码）、<b>变量提升</b>、LHS查询（ 指的是赋值操作的左端）、RHS查询（赋值操作的源头）、函数提升</p>
+            <p>编译: 词法解析、语法解析(生成 AST 程序语法树)、代码生成(AST转译可执行代码)、<b>变量提升</b>、LHS查询( 指的是赋值操作的左端)、RHS查询(赋值操作的源头)、函数提升</p>
             <ul>
                 <li>var: var变量声明创建、初始化提升到顶部 -&gt; 执行代码 -&gt; 赋值</li>
                 <li>let: let声明变量创建时提升到顶部 -&gt; 初始化 -&gt; 执行代码 -&gt; 赋值</li>
@@ -253,7 +253,7 @@ export const dataJs = [
     {
         Q: 'apply和call的作用及区别', K: <><Tag color="red">apply、call</Tag><Tag color="geekblue">JS</Tag></>,
         ans: <ul>
-            <li>1. call（）方法和apply（）方法的作用相同: 改变this指向</li>
+            <li>1. call()方法和apply()方法的作用相同: 改变this指向</li>
             <li>2. 区别在于接收参数的方式不同: apply-数组、call-逐个列举</li>
         </ul>,
         description: <>
@@ -263,7 +263,7 @@ export const dataJs = [
     },
     {
         Q: 'new操作符具体做了什么', K: <><Tag color="red">new</Tag><Tag color="geekblue">JS</Tag></>,
-        ans: <ul><li>1.创建一个空对象</li><li>2.链接到原型</li><li>3.绑定this值（让Func中的this指向obj，并执行Func的函数体。）</li>
+        ans: <ul><li>1.创建一个空对象</li><li>2.链接到原型</li><li>3.绑定this值(让Func中的this指向obj，并执行Func的函数体。)</li>
             <li>4.返回新对象</li></ul>,
         description: <Highlight>{createNew}</Highlight>
     },
@@ -280,8 +280,8 @@ export const dataJs = [
     {
         Q: '谈下事件循环机制', K: <><Tag color="lime">事件循环</Tag><Tag color="geekblue">JS</Tag></>,
         ans: <ul>
-            <li>JavaScript代码的执行过程中，除了依靠函数调用栈来搞定函数的执行顺序外，还依靠任务队列（task queue）来搞定另外一些代码的执行。整个执行过程，我们称为事件循环过程</li>
-            <li>一个线程中，事件循环是唯一的，但是任务队列可以拥有多个。任务队列又分为macro-task（宏任务）与micro-task（微任务），在最新标准中，它们被分别称为task与jobs</li>
+            <li>JavaScript代码的执行过程中，除了依靠函数调用栈来搞定函数的执行顺序外，还依靠任务队列(task queue)来搞定另外一些代码的执行。整个执行过程，我们称为事件循环过程</li>
+            <li>一个线程中，事件循环是唯一的，但是任务队列可以拥有多个。任务队列又分为macro-task(宏任务)与micro-task(微任务)，在最新标准中，它们被分别称为task与jobs</li>
             <li><Link to='/js/EventLoop'>详解</Link></li>
         </ul>
     },
@@ -307,7 +307,7 @@ export const dataJs = [
                 </ul>
             </li>
             <li>当我们调用g.next()，就相当于调用invoke()方法，执行gen$(_context)，进入switch语句，switch根据context的标识，执行对应的case块，return对应结果</li>
-            <li>当生成器函数运行到末尾（没有下一个yield或已经return），switch匹配不到对应代码块，就会return空值，这时g.next()返回{`{value: undefined, done: true}`}</li>
+            <li>当生成器函数运行到末尾(没有下一个yield或已经return)，switch匹配不到对应代码块，就会return空值，这时g.next()返回{`{value: undefined, done: true}`}</li>
         </ul>,
         description: <Highlight>{gen}</Highlight>
     },
@@ -324,28 +324,28 @@ export const dataDom = [
     {
         Q: '对DOM树的理解', K: <Tag color="#2db7f5">DOM</Tag>,
         ans: <ul>
-            <p>DOM（Document Object Model）即文档对象模型，是W3C制定的标准接口规范，是一种处理HTML和XML文件的标准API</p>
-            <li>元素（element）: 文档中的都有标签都是元素，元素可以看成是对象</li>
-            <li>节点（node）: 文档中都有的内容都是节点: 标签，属性，文本</li>
-            <li>文档（document）: 一个页面就是一个文档</li>
+            <p>DOM(Document Object Model)即文档对象模型，是W3C制定的标准接口规范，是一种处理HTML和XML文件的标准API</p>
+            <li>元素(element): 文档中的都有标签都是元素，元素可以看成是对象</li>
+            <li>节点(node): 文档中都有的内容都是节点: 标签，属性，文本</li>
+            <li>文档(document): 一个页面就是一个文档</li>
             <li>这三者的关系是: 文档包含节点，节点包含元素</li>
         </ul>
     },
     {
         Q: 'DOM事件模型', K: <Tag color="#2db7f5">DOM</Tag>,
-        ans: '事件冒泡（从下向上）、事件捕获（从上向下）'
+        ans: '事件冒泡(从下向上)、事件捕获(从上向下)'
     },
     {
         Q: '描述下浏览器从输入网址到页面展现的整个过程', K: <Tag color="#f50">浏览器</Tag>,
         ans: <ul>
             <a href="https://github.com/skyline75489/what-happens-when-zh_CN">详细解释</a>
             <li>解析URL</li>
-            <li>检查 HSTS 列表: 浏览器检查自带的“预加载 HSTS（HTTP严格传输安全）”列表，这个列表里包含了那些请求浏览器只使用HTTPS进行连接的网站（预防 downgrade attack 的威胁）</li>
+            <li>检查 HSTS 列表: 浏览器检查自带的“预加载 HSTS(HTTP严格传输安全)”列表，这个列表里包含了那些请求浏览器只使用HTTPS进行连接的网站(预防 downgrade attack 的威胁)</li>
             <li>DNS查询: 浏览器检查域名是否在缓存当中，如果没有向DNS服务器发送一条查询请求，返回网址的IP地址</li>
             <li>TCP与服务器建立连接</li>
             <li>TLS 握手: 生成对称密钥</li>
             <li>服务器返回资源</li>
-            <li>解析 —— HTML（对 HTML 文档进行解析，生成解析树（DOM树）），CSS（CSS文件都被解析成一个样式表对象（StyleSheet object）），JS</li>
+            <li>解析 —— HTML(对 HTML 文档进行解析，生成解析树(DOM树))，CSS(CSS文件都被解析成一个样式表对象(StyleSheet object))，JS</li>
             <li>渲染 —— 构建 DOM 树 → 渲染 → 布局 → 绘制</li>
         </ul>,
     },
@@ -358,19 +358,19 @@ export const dataDom = [
             <ul>
                 <p>Chrome 垃圾回收算法: </p>
                 <li>
-                    <p>主垃圾回收器（生存时间久的对象） - Mark-Sweep & Mark-Compact（内存不足以分配时才会采用）: 主要负责老生代的垃圾回收。</p>
+                    <p>主垃圾回收器(生存时间久的对象) - Mark-Sweep & Mark-Compact(内存不足以分配时才会采用): 主要负责老生代的垃圾回收。</p>
                     <ul>
                         <li>在标记阶段，遍历堆中所有对象，并标记或者的对象</li>
                         <li>在清理阶段，只清理没被标记的对象。没被标记的失活对象</li>
                     </ul>
                 </li>
                 <li>
-                    <p>副垃圾回收器（生存时间短的对象） - Scavenge: 主要负责新生代的垃圾回收。</p>
+                    <p>副垃圾回收器(生存时间短的对象) - Scavenge: 主要负责新生代的垃圾回收。</p>
                     <ul>
                         <li>当分配对象时先从from对象分配</li>
                         <li>当开始垃圾回收时会检查from空间的存活对象，这些存活对象会被复制到to空间中，非活对象的空间被释放。完成复制后，from和to会进行角色交换。</li>
                         <li>当一个对象多次复制后依然存活，那么它将被认为是存活周期较长的对象，随后它将被移动到老生代中，采用新的算法管理。对象从新生代移动到老生代的过程称为晋升</li>
-                        <li>从初始的根对象（window，global）的指针开始，这个根指针对象被称为根集（root set），从这个根集向下搜索其子节点，被搜索到的子节点说明该节点的引用对象可达，并为其留下标记，然后递归这个搜索的过程，直到所有子节点都被遍历结束，那么没有被标记的对象节点，说明该对象没有被任何地方引用，可以证明这是一个需要被释放内存的对象，可以被垃圾回收器回收。</li>
+                        <li>从初始的根对象(window，global)的指针开始，这个根指针对象被称为根集(root set)，从这个根集向下搜索其子节点，被搜索到的子节点说明该节点的引用对象可达，并为其留下标记，然后递归这个搜索的过程，直到所有子节点都被遍历结束，那么没有被标记的对象节点，说明该对象没有被任何地方引用，可以证明这是一个需要被释放内存的对象，可以被垃圾回收器回收。</li>
                     </ul>
                 </li>
             </ul>
@@ -379,7 +379,7 @@ export const dataDom = [
     {
         Q: '浏览器缓存策略是怎样的', K: <Tag color="#f50">浏览器</Tag>,
         ans: <ul>
-            <li>Web缓存:  是指一个 Web 资源（如 html 页面，图片，js，数据等）存在于 Web 服务器和客户端（浏览器）之间的副本。它可以减少网络延迟，加快页面打开速度，减少网络带宽消耗，降低服务器压力</li>
+            <li>Web缓存:  是指一个 Web 资源(如 html 页面，图片，js，数据等)存在于 Web 服务器和客户端(浏览器)之间的副本。它可以减少网络延迟，加快页面打开速度，减少网络带宽消耗，降低服务器压力</li>
             <li>HTTP缓存: 1. 强缓存，也称本地缓存；2. 弱缓存，也就是协商缓存
                 <ul>
                     <li>强缓存: 浏览器发送请求前，会先去缓存里查看是否命中强缓存，如果命中，则直接从缓存中读取资源，不会发送请求到服务器。否则，进入下一步。</li>
@@ -390,9 +390,9 @@ export const dataDom = [
         </ul>
     },
     {
-        Q: '浏览器架构（Chrome）', K: <Tag color="#f50">浏览器</Tag>,
+        Q: '浏览器架构(Chrome)', K: <Tag color="#f50">浏览器</Tag>,
         ans: <ul>
-            <li>浏览器内核（渲染引擎）: 渲染引擎Rendering Engine使用的是WebKit
+            <li>浏览器内核(渲染引擎): 渲染引擎Rendering Engine使用的是WebKit
                 <ul>
                     <li>GUI 渲染线程:
                         <ul>
@@ -415,9 +415,9 @@ export const dataDom = [
     {
         Q: '渲染合成层是什么', K: <><Tag color="green">渲染合成层</Tag><Tag color="#f50">浏览器</Tag></>,
         ans: <ul>
-            <p>浏览器渲染（webkit）: 构建DOM树 → 构建CSS树 → 构建Render树 → 布局Render树 → 绘制Render树 → 渲染层合并</p>
-            <li>合成层（Compositing Layer）: 合成就是将页面的各个部分分成多个层、单独光栅化（浏览器根据文档的结构、每个元素的样式、页面的几何形状和绘制顺序转换为屏幕上的像素的过程）它们并在合成器线程中合成为一个页面的技术</li>
-            <li>如何提升为合成层: 设置 transform: translateZ(0)、backface-visibility: hidden 、will-change（opacity、transform、top、left、bottom、right）、video、canvas、iframe 等元素</li>
+            <p>浏览器渲染(webkit): 构建DOM树 → 构建CSS树 → 构建Render树 → 布局Render树 → 绘制Render树 → 渲染层合并</p>
+            <li>合成层(Compositing Layer): 合成就是将页面的各个部分分成多个层、单独光栅化(浏览器根据文档的结构、每个元素的样式、页面的几何形状和绘制顺序转换为屏幕上的像素的过程)它们并在合成器线程中合成为一个页面的技术</li>
+            <li>如何提升为合成层: 设置 transform: translateZ(0)、backface-visibility: hidden 、will-change(opacity、transform、top、left、bottom、right)、video、canvas、iframe 等元素</li>
             <li>隐式合成: 一个或多个非合成元素应出现在堆叠顺序上的合成元素之上，会被提升为合成层</li>
         </ul>,
     },
@@ -465,7 +465,7 @@ export const dataOptimize = [
         Q: '前端性能优化手段', K: <><Tag color="yellow">方法</Tag><Tag color="#2db7f5">优化</Tag></>,
         ans: <ul>
             <li>加载优化: 减少资源大小、减少请求时间</li>
-            <li>渲染优化: CRP（关键渲染路径Critical Rendering Path）优化
+            <li>渲染优化: CRP(关键渲染路径Critical Rendering Path)优化
                 <ul>
                     <li>关键资源的数量: 可能阻止网页首次渲染的资源</li>
                     <li>关键路径长度: 获取所有关键资源所需的往返次数或总时间</li>
@@ -479,17 +479,17 @@ export const dataOptimize = [
     {
         Q: '重排和重绘是什么，有什么区别', K: <><Tag color="red">重绘重排</Tag><Tag color="#2db7f5">优化</Tag></>,
         ans: <ul>
-            <li>重排（Reflow）:
-                <ul><li>当涉及到DOM节点的布局属性发生变化时，就会重新计算该属性，浏览器会重新描绘相应的元素，此过程叫 回流（Reflow）</li></ul>
+            <li>重排(Reflow):
+                <ul><li>当涉及到DOM节点的布局属性发生变化时，就会重新计算该属性，浏览器会重新描绘相应的元素，此过程叫 回流(Reflow)</li></ul>
             </li>
-            <li>重绘（Repaint）:
-                <ul><li>当影响DOM元素可见性的属性发生变化（如 color） 时, 浏览器会重新描绘相应的元素, 此过程称为 重绘（Repaint）。因此重排必然会引起重绘</li></ul>
+            <li>重绘(Repaint):
+                <ul><li>当影响DOM元素可见性的属性发生变化(如 color) 时, 浏览器会重新描绘相应的元素, 此过程称为 重绘(Repaint)。因此重排必然会引起重绘</li></ul>
             </li>
             <li>区别: 重绘是部分节点发生变化，但不影响布局，只需要重新计算节点在屏幕中的绝对位置并渲染。重排是渲染树的一部分必须更新，而且节点发生变化，重构渲染树</li>
             <li>如何避免重绘重排:
                 <ul>
                     <li>合并样式修改</li>
-                    <li>批量操作DOM（脱离标准文档流操作）</li>
+                    <li>批量操作DOM(脱离标准文档流操作)</li>
                     <li>避免多次触发布局</li>
                 </ul>
             </li>
@@ -498,10 +498,10 @@ export const dataOptimize = [
     {
         Q: '如何减少白屏的时间', K: <><Tag color="gold">首屏优化</Tag><Tag color="#2db7f5">优化</Tag></>,
         ans: <ul>
-            <li>cdn分发（减少传输距离）。通过在多台服务器部署相同的副本，当用户访问时，服务器根据用户跟哪台服务器距离近，来决定哪台服务器去响应这个请求</li>
+            <li>cdn分发(减少传输距离)。通过在多台服务器部署相同的副本，当用户访问时，服务器根据用户跟哪台服务器距离近，来决定哪台服务器去响应这个请求</li>
             <li>后端在业务层的缓存。数据库查询缓存是可以设置缓存的，这个对于处于高频率的请求很有用。浏览器一般不会对content-type: application/json；的接口进行缓存，所以有时需要我们手动地为接口设置缓存。比如一个用户的签到状态，它的缓存时间可以设置到明天之前</li>
             <li>静态文件缓存方案。这个最常看到。现在流行的方式是文件hash+强缓存的一个方案。比如hash+ cache control: max-age=1年</li>
-            <li>前端的资源动态加载: 1.路由动态加载;2.组件动态加载;3.图片懒加载（img标签 loading=lazy;</li>
+            <li>前端的资源动态加载: 1.路由动态加载;2.组件动态加载;3.图片懒加载(img标签 loading=lazy;</li>
             <li>利用好script标签的async和defer，减少白屏时间可以优化关键渲染路径</li>
             <li>合并请求</li>
             <li>页面使用骨架屏</li>
@@ -543,7 +543,7 @@ export const dataModule = [
         Q: '前端模块化机制有哪些', K: <Tag color="cyan">模块化</Tag>,
         ans: <ul>
             <Link to="/js/Moudles">详解</Link>
-            <li>CommonJS:  代码运行在模块作用域。只加载一次（同步加载），一次之后就会被缓存下来。输出值的拷贝。运行时加载</li>
+            <li>CommonJS:  代码运行在模块作用域。只加载一次(同步加载)，一次之后就会被缓存下来。输出值的拷贝。运行时加载</li>
             <li>ES6模块化: 静态化。编译时就确定模块的依赖关系、以及输入输出的变量。输出的是值的引用</li>
             <li>AMD: 非同步加载模块，允许指定回调函数。运行时加载。依赖前置</li>
             <li>CMD: 异步加载。就近依赖</li>
@@ -595,21 +595,21 @@ export const dataWebpack = [
         ans: <ul>
             <li>解释: Tree Shaking 是一种通过消除最终文件中未使用的代码来优化体积的方法</li>
             <li>作用: 当 Javascript 项目达到一定体积时，将代码分成模块会更易于管理。但是，当这样做时，我们最终可能会导入实际上未使用的代码</li>
-            <li>tree-shaking的消除原理是依赖于ES6的模块特性（只能作为模块顶层的语句出现、import 的模块名只能是字符串常量、import binding 是 immutable的）</li>
+            <li>tree-shaking的消除原理是依赖于ES6的模块特性(只能作为模块顶层的语句出现、import 的模块名只能是字符串常量、import binding 是 immutable的)</li>
             <li>开启Tree Shaking: 1.使用 ESM 规范编写代码、2.配置 optimization.usedExports 为 true</li>
         </ul>,
     },
     {
         Q: 'uglify原理的是什么', K: <><Tag color="volcano">uglify</Tag><Tag color="blue">webpack</Tag></>,
         ans: <ul>
-            <li>原理: uglify完成了javascript的DCE（dead code elimination）
+            <li>原理: uglify完成了javascript的DCE(dead code elimination)
                 <ul>
                     <li>Make 阶段，收集模块导出变量并记录到模块依赖关系图 ModuleGraph 变量中</li>
                     <li>Seal 阶段，遍历 ModuleGraph 标记模块导出变量有没有被使用</li>
                     <li>生成产物时，若变量没有被其它模块使用则删除对应的导出语句</li>
                 </ul>
             </li>
-            <li>副作用: uglify不进行程序流分析，所以不能排除有可能有副作用的代码（未引用的类）</li>
+            <li>副作用: uglify不进行程序流分析，所以不能排除有可能有副作用的代码(未引用的类)</li>
         </ul>,
     },
     {
@@ -618,18 +618,25 @@ export const dataWebpack = [
             <li>解释: babel是一个主要用于将ES2015+版本的代码编译成向下兼容js版本的编译器</li>
             <li>如何做:
                 <ul>
-                    <li>第一步-解析（parser）: 把源代码编译成AST（babel/parser）
+                    <li>第一步-解析(parser): 把源代码编译成AST(babel/parser)
                         <ul>
                             <li>词法分析: 对输入的字符序列做标记化(tokenization)操作</li>
                             <li>语法分析: 处理标记与标记之间的关系，最终形成一颗完整的 AST 结构</li>
                         </ul>
                     </li>
-                    <li>第二步-转换（transformer）: 使用 @babel/traverse 对AST进行深度优先遍历，调用插件（plugin）对关注节点的处理函数，按需增删改AST节点</li>
-                    <li>第三步-生成（generator）: 默认使用 @babel/generator 将上一阶段处理后的 AST 转换为代码字符串</li>
+                    <li>第二步-转换(transformer): 使用 @babel/traverse 对AST进行深度优先遍历，调用插件(plugin)对关注节点的处理函数，按需增删改AST节点</li>
+                    <li>第三步-生成(generator): 默认使用 @babel/generator 将上一阶段处理后的 AST 转换为代码字符串</li>
                 </ul>
             </li>
-            <li>编写 Babel 插件: Babel 插件的写法是借助访问者模式（Visitor Pattern）对关注的节点定义处理函数</li>
+            <li>编写 Babel 插件: Babel 插件的写法是借助访问者模式(Visitor Pattern)对关注的节点定义处理函数</li>
         </ul>,
+    },
+    {
+        Q: 'babel和polyfill的区别', K: <><Tag color="volcano">babel</Tag><Tag color="blue">webpack</Tag></>,
+        ans: <ul>
+            <li>Babel 默认只转换新的 JavaScript 句法（syntax），而不转换新的 API</li>
+            <li>polyfill(垫片) 编译浏览器不支持的API和</li>
+        </ul>
     },
     {
         Q: 'webpack工作流程是怎样的', K: <Tag color="blue">webpack</Tag>,
@@ -637,7 +644,7 @@ export const dataWebpack = [
             <p><Link to="/interview/webpack">详解</Link></p>
             <a target="_blank" href="https://zhuanlan.zhihu.com/p/363928061">详解2</a>
             <li>1. 初始化参数: 从配置文件和shell语句中读取并合并参数，得出最终参数</li>
-            <li>2. 开始编译: 从第一步得到的参数<b>初始化Compiler对象</b>，<b>加载所有配置的插件（Plugins）</b>，执行<b>Compiler对象的run方法</b>开始执行编译</li>
+            <li>2. 开始编译: 从第一步得到的参数<b>初始化Compiler对象</b>，<b>加载所有配置的插件(Plugins)</b>，执行<b>Compiler对象的run方法</b>开始执行编译</li>
             <li>3. 确定入口: 根据<b>配置中的Entry找到所有的入口文件</b></li>
             <li>4. 编译模块: 从入口文件开始，<b>调用所有配置的Loader对模块进行翻译</b>，再找出该模块依赖的模块，再<b>递归</b>本步骤，直到所有入口依赖的文件都经过本步骤的处理</li>
             <li>5. 完成模块编译: 在第四部经过Loader翻译完所有模块后，得到<b>每个模块被翻译后的最终内容和它们之间的依赖关系</b></li>
@@ -664,7 +671,7 @@ export const dataWebpack = [
             <p><Link to="/interview/webpack">详解</Link></p>
             <a target="_blank" href="https://zhuanlan.zhihu.com/p/363928061">详解2</a>
             <li>1. 初始化参数: 从配置文件和shell语句中读取并合并参数，得出最终参数</li>
-            <li>2. 开始编译: 从第一步得到的参数<b>初始化Compiler对象</b>，<b>加载所有配置的插件（Plugins）</b>，执行<b>Compiler对象的run方法</b>开始执行编译</li>
+            <li>2. 开始编译: 从第一步得到的参数<b>初始化Compiler对象</b>，<b>加载所有配置的插件(Plugins)</b>，执行<b>Compiler对象的run方法</b>开始执行编译</li>
             <li>3. 确定入口: 根据<b>配置中的Entry找到所有的入口文件</b></li>
             <li>4. 编译模块: 从入口文件开始，<b>调用所有配置的Loader对模块进行翻译</b>，再找出该模块依赖的模块，再<b>递归</b>本步骤，直到所有入口依赖的文件都经过本步骤的处理</li>
             <li>5. 完成模块编译: 在第四部经过Loader翻译完所有模块后，得到<b>每个模块被翻译后的最终内容和它们之间的依赖关系</b></li>
@@ -677,7 +684,7 @@ export const dataBase = [
     {
         Q: '进程和线程的区别', K: <Tag color="gold">计算机基础</Tag>,
         ans: <ul>
-            <li>1.进程是资源（CPU、内存等）分配的基本单位；线程是进程的一个实体，是独立运行和独立调度的基本单位（CPU上真正运行的是线程</li>
+            <li>1.进程是资源(CPU、内存等)分配的基本单位；线程是进程的一个实体，是独立运行和独立调度的基本单位(CPU上真正运行的是线程</li>
             <li></li>
         </ul>,
     },
@@ -685,7 +692,7 @@ export const dataBase = [
         Q: '进程、线程通信方式', K: <Tag color="blue">计算机基础</Tag>,
         ans: <ul>
             <li>同一进程下的线程共享全局变量、静态变量等数据</li>
-            <li>进程之间的通信需要以通信的方式（Inter Process Communication，IPC）进行</li>
+            <li>进程之间的通信需要以通信的方式(Inter Process Communication，IPC)进行</li>
         </ul>,
         description: <div>
             <p>进程是资源分配的基本单位；线程是程序执行的基本单位</p>
@@ -699,10 +706,10 @@ export const dataBase = [
             </ul>
             <p>node通信: </p>
             <ul>
-                <li>node中提供child_process模块来创建子进程（child_process.fork()）</li>
+                <li>node中提供child_process模块来创建子进程(child_process.fork())</li>
                 <li>cluster.fork()是child_process.fork()的上层实现，cluster的好处是可以监听共享端口</li>
-                <li>node进程的通信主要是通在主从（子）进程之间进行通信，子进程之间无法直接通信，只能通过主进程转发</li>
-                <li>主进程与子进程的通信是通过IPC（Inter Process Communication）进行通信，IPC基于底层libuv根据不同操作系统实现（Windows: 命名管道name pie, linux: Unix Domain Socket）</li>
+                <li>node进程的通信主要是通在主从(子)进程之间进行通信，子进程之间无法直接通信，只能通过主进程转发</li>
+                <li>主进程与子进程的通信是通过IPC(Inter Process Communication)进行通信，IPC基于底层libuv根据不同操作系统实现(Windows: 命名管道name pie, linux: Unix Domain Socket)</li>
             </ul>
             <p>node中cluster是怎样开启多进程的，并且一个端口可以被多个进程监听吗</p>
             <ul>
@@ -716,8 +723,8 @@ export const dataBase = [
         Q: 'https加密过程', K: <Tag color="purple">https</Tag>,
         ans: <ul>
             <li>https经由http进行通信，但利用了SSL/TLS来加密数据包</li>
-            <li>1. 客户端请求服务器，服务器返回一个CA证书（包含网站信息、CA证书由CA机构的公钥私钥加密），证书中包含公钥A，服务器保留私钥A</li>
-            <li>2. 客户端接收到CA证书之后，验证合法性（递归判断，判断到系统内置或浏览器配置好的根证书）</li>
+            <li>1. 客户端请求服务器，服务器返回一个CA证书(包含网站信息、CA证书由CA机构的公钥私钥加密)，证书中包含公钥A，服务器保留私钥A</li>
+            <li>2. 客户端接收到CA证书之后，验证合法性(递归判断，判断到系统内置或浏览器配置好的根证书)</li>
             <li>3. 客户端生成一个用于对称加密的私钥B，通过公钥A去加密私钥B，传给服务器</li>
             <li>4. 服务器用私钥A解开用公钥A加密的私钥B</li>
             <li>5. 后续服务器和客户端的通讯都通过密钥B来加密解密</li>
@@ -727,7 +734,7 @@ export const dataBase = [
         Q: 'http2.0做了哪些改进', K: <Tag color="purple">https</Tag>,
         ans: <ul>
             <li>多路复用: 允许同一与名下同时通过单一的 HTTP/2 连接发起多重的请求-响应消息</li>
-            <li>二进制分帧: 将所有传输的信息分割为更小的消息和帧（frame）,并对它们采用二进制格式的编码</li>
+            <li>二进制分帧: 将所有传输的信息分割为更小的消息和帧(frame),并对它们采用二进制格式的编码</li>
             <li>服务端推送: 服务端推送是一种在客户端请求之前发送数据的机制</li>
             <li>头部压缩</li>
         </ul>,
@@ -740,6 +747,15 @@ export const dataBase = [
             <li>服务端推送: 服务端推送是一种在客户端请求之前发送数据的机制</li>
             <li>头部压缩</li>
         </ul>,
+    },
+    {
+        Q: '大文件上传/下载', K: <Tag color="geekblue">Blob</Tag>,
+        ans: <ul>
+            <li>Blob 对象表示一个不可变、原始数据的类文件对象。它的数据可以按文本或二进制的格式进行读取，也可以转换成 ReadableStream 来用于数据操作</li>
+            <li>利用 Blob.prototype.slice 切片</li>
+            <li>获取切片md5 作为唯一标识</li>
+            <li>利用Buffer.concat([b1,b2])合并切片</li>
+        </ul>
     },
     {
         Q: '什么场景下会用策略模式', K: <Tag color="geekblue">设计模式</Tag>,
@@ -756,12 +772,13 @@ export const dataBase = [
         </ul>,
     },
     {
-        Q: '什么是高阶组件，请举例说明', K: <Tag color="purple">高阶组件（HOC）</Tag>,
+        Q: '什么是高阶组件，请举例说明', K: <Tag color="purple">高阶组件(HOC)</Tag>,
         ans: <ul>
             <li>一个函数 接受一个或多个函数作为参数或者返回一个函数 就可称之为 高阶函数</li>
             <li>例: 函数防抖，函数节流，bind函数，函数柯里化，map，Promise的then函数</li>
         </ul>
     },
+
 ]
 
 export const dataAlgo = [
@@ -887,7 +904,7 @@ export const dataProgram = [
         ans: <ul>
             <li>单入参: <Highlight>{`return (n) => Number.isInteger(n) ? curry.call(this, ans + n) : ans`}</Highlight></li>
             <li>多入参: <Highlight>{`rest = [...rest].reduce(); return (...args) => args.length ? curry.call(this, rest += [...args].reduce()) : rest`}</Highlight></li>
-            <li>不需要()执行（alert下才能调用）: <Highlight>{`rest = [...rest]; add = (...args) => rest.push(...args), return curry.call(this, rest)); add.toString = () => rest.reduce(); return add`}</Highlight></li>
+            <li>不需要()执行(alert下才能调用): <Highlight>{`rest = [...rest]; add = (...args) => rest.push(...args), return curry.call(this, rest)); add.toString = () => rest.reduce(); return add`}</Highlight></li>
             <li><Link to="/examination/program#curry">柯里化</Link></li>
         </ul>
     },

@@ -463,7 +463,7 @@ const ajax = {
         let xhr = new XMLHttpRequest()
         // opent(method, url, async) merhod:请求方法， url: 地址， async: 请求是异步还是同步处理
         xhr.open('POST', url, true)
-        // Content-Type: text/* 开头（html、text、plain）, application/*开头（json、x-www-form-form-urlencoded）, multipart/form-data文件上传
+        // Content-Type: text/* 开头(html、text、plain), application/*开头(json、x-www-form-form-urlencoded), multipart/form-data文件上传
         xhr.setRequestHeader('Content-Type', 'application/json')
         xhr.onreadystatechange = function () {
             if(xhr.readyState === 4 && xhr.status === 200 || xhr.status === 304) {

@@ -32,7 +32,7 @@ const Program = () => {
                 <Collapse ghost>
                     <Panel header="观察者模式" key="1">
                         <Space direction="vertical">
-                            <Text mark>被观察者对象（subject）维护一组观察者（observer），subject状态发生变化时，通过observer的某些方法把变化通知到observer</Text>
+                            <Text mark>被观察者对象(subject)维护一组观察者(observer)，subject状态发生变化时，通过observer的某些方法把变化通知到observer</Text>
                             <Highlight language="javascript">{eg.observer}</Highlight>
                             <Highlight language="javascript">{eg.eventEmitter}</Highlight>
                         </Space>
@@ -59,7 +59,7 @@ const Program = () => {
                 <Title level={3}>深拷贝</Title>
                 <Space direction="vertical">
                     <Text>基本类型的变量不存在深拷贝浅拷贝</Text>
-                    <Text>引用类型的浅拷贝复制的是在栈中的地址，而非在堆中存的数据（例如直接赋值、Array的slice和concat等）</Text>
+                    <Text>引用类型的浅拷贝复制的是在栈中的地址，而非在堆中存的数据(例如直接赋值、Array的slice和concat等)</Text>
                     <Text>使用JSON.parse(JSON.stringify(obj))做深拷贝赋值会忽略掉undefined和函数表达式</Text>
                 </Space>
                 <Collapse ghost>
@@ -80,7 +80,7 @@ const Program = () => {
                             <Highlight language="javascript">{eg.debounce}</Highlight>
                         </Space>
                     </Panel>
-                    <Panel header="防抖--{leading（是否立即执行）,trailing（是否冷却后执行）}" key="2">
+                    <Panel header="防抖--{leading(是否立即执行),trailing(是否冷却后执行)}" key="2">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.debounce2}</Highlight>
                         </Space>
@@ -103,8 +103,8 @@ const Program = () => {
                     <Panel header="节流2" key="5">
                         <Highlight language="javascript">{eg.throttle2}</Highlight>
                     </Panel>
-                    <Panel header="节流-{leading（是否立即执行）,trailing（是否冷却后执行）}" key="6">
-                        <h4>throttle支持leading（是否立即执行）和trailing（是否冷却后执行）</h4>
+                    <Panel header="节流-{leading(是否立即执行),trailing(是否冷却后执行)}" key="6">
+                        <h4>throttle支持leading(是否立即执行)和trailing(是否冷却后执行)</h4>
                         <Highlight language="javascript">{eg.throttle3}</Highlight>
                     </Panel>
                 </Collapse>
@@ -197,7 +197,7 @@ const Program = () => {
             <Wrap>
                 <Title level={3}>红绿灯问题</Title>
                 <Collapse ghost>
-                    <Panel header="红灯三秒亮一次，绿灯一秒亮一次，黄灯2秒亮一次；如何让三个灯不断交替重复亮灯？（用 Promse 实现）" key="1">
+                    <Panel header="红灯三秒亮一次，绿灯一秒亮一次，黄灯2秒亮一次；如何让三个灯不断交替重复亮灯？(用 Promse 实现)" key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.light}</Highlight>
                         </Space>

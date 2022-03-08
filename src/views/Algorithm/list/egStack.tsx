@@ -135,8 +135,10 @@ function convertString(str: string): string {
     const res = str.replace(reg, (match, p1, p2) => p2.repeat(p1));
     return reg.test(res) ? convertString(res) : res;
 }
+/**
+ * 双栈
+ */
 function decodeString(s: string) {
-    // 双栈
     let numStack: number[] = []
     let strStack: string[] = []
     let result = ''                           // 暂存的字符串
@@ -144,23 +146,25 @@ function decodeString(s: string) {
     for (let char of s) {
         if (Number.isInteger(Number(char))) { // 遇到倍数
             num = num * 10 + Number(char)     // 通过num暂存，num可能是多位
-            // if (Number.isInteger(+s[i + 1])) { 
-            //     num = num + char
-            // }
-        } else if (char === '[') {            // 遇到 [ 证明需要把之前暂存的 str, num 数据入栈
+            continue
+        } 
+        if (char === '[') {            // 遇到 [ 证明需要把之前暂存的 str, num 数据入栈
             strStack.push(result)             // 入栈之后 记得把 result 跟 num 清空
             result = ''
             numStack.push(Number(num))
             num = 0
         } else if (char === ']') {            // 遇到 ], num 和 str 出栈
             const repeatNum = numStack.pop() || 1   // 取出倍数
-            result = strStack.pop() + result.repeat(repeatNum) // 取出 str栈顶 保存的str + []中需要 repeat 的str（ [] 中的字母已经拼接到 result上）
+            result = strStack.pop() + result.repeat(repeatNum) // 取出 str栈顶 保存的str + []中需要 repeat 的str( [] 中的字母已经拼接到 result上)
         } else {                             // 遇到字母 拼接到 result 上
             result += char
         }
     }
     return result
 }
+// 输入: s = "3[a2[c]]"
+// 输入: s = "2[abc]3[cd]ef"
+// 输入: s = "abc3[cd]xyz"
 console.log(decodeString("2[abc]3[cd]ef"))
 `
 
@@ -204,12 +208,12 @@ function calculate(s: string) {
 
     return stack.reduce((acc, cur) => acc + cur, 0)
 }
-console.log(calculate("42"))
+console.log(calculate("3+2*2"))
 `
 
 export const trap = `
 /**
- *  对于每一个柱子 i ，能接的水 = min(左（leftMax）右(rightMax)两边最高柱子）-当前柱子高度(height[i])
+ *  对于每一个柱子 i ，能接的水 = min(左(leftMax)右(rightMax)两边最高柱子)-当前柱子高度(height[i])
  * @param height 
  * @returns 
  */
@@ -286,20 +290,20 @@ export const checkValidString = `
  * @returns 
  */
 function checkValidString(s: string) {
-    let leftStack: number[] = []                    // 存左括号的栈
-    let starStack: number[] = []                    // 存星号的栈
+    let leftStack: number[] = []                         // 存左括号的栈
+    let starStack: number[] = []                         // 存星号的栈
     for (let i = 0; i < s.length; i++) {
-        if (s[i] === '(') leftStack.push(i)         // 遇到左括号，压入栈中
-        if (s[i] === '*') starStack.push(i)         // 遇到星号，压入栈中
-        else {                                      // 遇到右括号
-            if (leftStack.length) leftStack.pop()   // 如果leftStack有值，从栈顶取出来抵消一个
-            else if (starStack) starStack.pop()     // 如果starStack有值，从栈顶取出来抵消一个
-            else return false                       // 如果两个栈都空，证明匹配不上 return false
+        if (s[i] === '(') leftStack.push(i)             // 遇到左括号，压入栈中
+        if (s[i] === '*') starStack.push(i)             // 遇到星号，压入栈中
+        else {                                          // 遇到右括号
+            if (leftStack.length) leftStack.pop()       // 如果leftStack有值，从栈顶取出来抵消一个
+            else if (starStack.length) starStack.pop()  // 如果starStack有值，从栈顶取出来抵消一个
+            else return false                           // 如果两个栈都空，证明匹配不上 return false
         }
     }
-    if (leftStack < starStack) return false         // left栈大于star栈，说明最后也匹配不了
+    if (leftStack.length > starStack.length) return false     // left栈大于star栈，说明最后也匹配不了
     while (leftStack.length && starStack.length) {
-        if (leftStack.pop() > starStack.pop()) return false               // 每次从两个栈顶取出值， 如果 ( 的下标大于 * ，说明在*号右侧 返回false
+        if (leftStack.pop() > starStack.pop()) return false   // 每次从两个栈顶取出值， 如果 ( 的下标大于 * ，说明在*号右侧 返回false
     }
     return true
 }
@@ -307,7 +311,7 @@ function checkValidString(s: string) {
  * 贪心: 时间复杂度O(n),空间复杂度O(1)
  * 遇到左括号，未匹配的左括号数量加 1
  * 遇到右括号，需要有一个左括号和右括号匹配，因此未匹配的左括号数量减 1
- * 遇到星号，由于星号可以看成左括号、右括号或空字符串，因此未匹配的左括号数量可能加 11、减 11 或不变
+ * 遇到星号，由于星号可以看成左括号、右括号或空字符串，因此未匹配的左括号数量可能加 1、减 1 或不变
  * @param s 
  */
 function checkValidString(s: string) {

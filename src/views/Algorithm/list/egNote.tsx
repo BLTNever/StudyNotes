@@ -140,7 +140,6 @@ export const radix = `
 parseInt(str,radix)
 
 Number.toString(radix)
-
 // 把m进制的数字num转为n进制
 function main(num, m, n) {
     let s = num+''
@@ -332,3 +331,16 @@ function memory(a: number, b: number) {
         return sum
     }
 }`
+
+export const compose = `
+const plus = (a, b) => a + b
+const multiply = (a) => a * a
+const plusOne = (a) => a + 1
+function compose(...fns) {
+    return (...args) => {
+        return [...fns].reduce((acc, cur) => acc.length > 1 ? cur(...acc) : cur(acc), args)
+    }
+}
+const fn = compose(plus, multiply, plusOne)
+console.log(fn(1, 2))
+`

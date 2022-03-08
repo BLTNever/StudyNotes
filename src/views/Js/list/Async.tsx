@@ -76,7 +76,7 @@ const Async = () => (
                                 </ul>
                             </li>
                             <li>当我们调用g.next()，就相当于调用invoke()方法，执行gen$(_context)，进入switch语句，switch根据context的标识，执行对应的case块，return对应结果</li>
-                            <li>当生成器函数运行到末尾（没有下一个yield或已经return），switch匹配不到对应代码块，就会return空值，这时g.next()返回{`{value: undefined, done: true}`}</li>
+                            <li>当生成器函数运行到末尾(没有下一个yield或已经return)，switch匹配不到对应代码块，就会return空值，这时g.next()返回{`{value: undefined, done: true}`}</li>
                         </ul>
                     </Space>
                 </Panel>

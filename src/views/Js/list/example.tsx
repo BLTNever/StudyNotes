@@ -95,7 +95,7 @@ var b = a;
 a = 200;
 console.log(b) // 100
 
-// 引用类型: Object、 Array、 Function、 null（空指针）
+// 引用类型: Object、 Array、 Function、 null(空指针)
 // 可以扩展属性
 var men = {
     age: 20
@@ -108,7 +108,7 @@ typeof undefined // undefined
 typeof 'a211sdga2' // string
 typeof 1234 // number
 typeof true // boolean
-// typeof 区分不出来引用类型（除了函数）
+// typeof 区分不出来引用类型(除了函数)
 typeof {} // object
 typeof [] // object
 typeof null // object

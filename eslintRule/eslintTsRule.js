@@ -32,7 +32,7 @@ module.exports = {
      */
     '@typescript-eslint/ban-types': 'off',
     /**
-     * 类型断言必须使用 as Type，禁止使用 <Type>，禁止对对象字面量进行类型断言（断言成 any 是允许的）
+     * 类型断言必须使用 as Type，禁止使用 <Type>，禁止对对象字面量进行类型断言(断言成 any 是允许的)
      * @reason <Type> 容易被理解为 jsx
      */
     '@typescript-eslint/consistent-type-assertions': [
@@ -188,12 +188,12 @@ module.exports = {
         }
     ],
     /**
-     * 禁止在 optional chaining 之后使用 non-null 断言（感叹号）
+     * 禁止在 optional chaining 之后使用 non-null 断言(感叹号)
      * @reason optional chaining 后面的属性一定是非空的
      */
     '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
     /**
-     * 禁止使用 non-null 断言（感叹号）
+     * 禁止使用 non-null 断言(感叹号)
      * @reason 使用 non-null 断言时就已经清楚了风险
      */
     '@typescript-eslint/no-non-null-assertion': 'off',
@@ -230,7 +230,7 @@ module.exports = {
      */
     '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'off',
     /**
-     * 条件表达式禁止是永远为真（或永远为假）的
+     * 条件表达式禁止是永远为真(或永远为假)的
      * @reason 统一关闭 requires type information 的规则
      */
     '@typescript-eslint/no-unnecessary-condition': 'off',

@@ -43,7 +43,7 @@ const Js = () => (
                         <ul>
                             <li><Text mark>在 Javascript 中创建对象有两种方式: 对象字面量(const obj = {'{}'})和使用new表达式(const obj = new Object())</Text></li>
                             <li><Text mark>在JS中，每当创建一个函数对象 fn 时，该对象中都会内置一些属性，其中包括 <Text code>prototype</Text>和<Text code>__proto__</Text>， prototype 即原型对象，它记录着 fn 的一些属性和方法</Text></li>
-                            <li><Text>JS在创建对象（函数对象和普通对象）时都有一个__proto__的内置属性，用于指向创建它的函数的原型对象prototype</Text></li>
+                            <li><Text>JS在创建对象(函数对象和普通对象)时都有一个__proto__的内置属性，用于指向创建它的函数的原型对象prototype</Text></li>
                             <li><Text mark>proto是一个内部属性，不建议对其进行直接操作。 而是建议通过prototype来进行操作。</Text></li>
                             <li><Text mark>原型链: 当我们访问一个对象的属性的时候，引擎首先会在当前对象进行查找，如果找不到就会访问该对象的__proto__， 如果__proto__有了，就返回，如果没有则递归执行上述过程，直到__proto__ 为 null。</Text></li>
                             <li><Text mark>继承和原型这部分知识和new是强相关的</Text></li>
@@ -71,7 +71,7 @@ const Js = () => (
                         <Card title="2. 原型链继承: "><Highlight language="javascript">{extend4}</Highlight></Card>
                         <Card title="3. 构造函数原型链组合继承: "><Highlight language="javascript">{extend5}</Highlight></Card>
                         <Card title="4. 寄生式继承: "><Highlight language="javascript">{extend6}</Highlight></Card>
-                        <Card title="5. 寄生组合式继承（class实现）: "><Highlight language="javascript">{extend7}</Highlight></Card>
+                        <Card title="5. 寄生组合式继承(class实现): "><Highlight language="javascript">{extend7}</Highlight></Card>
                     </Space>
                     <Row><Col><Card><Highlight language="javascript">{createNew}</Highlight></Card></Col></Row>
                 </Panel>
@@ -85,7 +85,7 @@ const Js = () => (
                 <Panel header="模块化方案" key="1">
                     <Space direction="vertical">
                         <ul>
-                            <li> <Text>1. 匿名闭包: IIFE模式（立即执行函数）</Text></li>
+                            <li> <Text>1. 匿名闭包: IIFE模式(立即执行函数)</Text></li>
                             <li><Text>2. CommonJs: 浏览器中使用需要Browserify。CommonJs是同步的，CommonJs的加载机制是，输入的是被输出的值的拷贝。也就是说，一旦输出一个值，模块内部的变化就影响不到这个值</Text></li>
                             <li><Text>3. AMD: 采用非同步加载，推崇前置依赖: 定义模块时候就需要声明其依赖的模块。提前加载</Text></li>
                             <li><Text>4. CMD: 采用非同步加载，崇就近依赖: 只有在用到某个模块的时候再去require。按需加载</Text></li>
@@ -119,7 +119,7 @@ const Js = () => (
                             <li><Text>3. CSP : 建立白名单，允许哪些外部资源可以加载和执行</Text></li>
                         </ul>
                         <Text>
-                            CSP（Content Security Policy即内容安全策略）如何开启:
+                            CSP(Content Security Policy即内容安全策略)如何开启:
                             <ul>
                                 <li>设置 HTTP Header 中的 Content-Security-Policy</li>
                                 <li>设置 meta 标签的方式{`< meta http-equiv=“Content-Security-Policy”>`}</li>
@@ -179,10 +179,10 @@ const Js = () => (
                         </ul>
 
                         <ul>
-                            <li>1. var声明的变量会提升，let（ECMA会提升 只是有TDZ（暂时性死区））、const不会</li>
+                            <li>1. var声明的变量会提升，let(ECMA会提升 只是有TDZ(暂时性死区))、const不会</li>
                             <li>2. const和let具有块级作用域，存在暂时性死区</li>
                             <li>3. const创建后不可修改，var允许重复声明，let不允许允许重复声明</li>
-                            <li>4. const声明创建一个值的只读引用。只有变量标示不能重新分配（对象的引用内容是地址，内容是可以修改的）</li>
+                            <li>4. const声明创建一个值的只读引用。只有变量标示不能重新分配(对象的引用内容是地址，内容是可以修改的)</li>
                             <li>5. 全局作用域中使用var或者不是用var声明的变量会挂载到Windows上，let跟const不会</li>
                         </ul>
                     </Space>

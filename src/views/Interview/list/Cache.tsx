@@ -27,13 +27,13 @@ const Cache = () => {
                         <Space direction="vertical">
                             <ul>
                                 <li><Text mark>
-                                    1. 浏览器在发送请求时，首先会检查强制缓存（http1.0使用expires，1.1使用<Popover content={cacheControl}><Button>cache-control</Button></Popover>），如果缓存命中，则不需要发送请求。直接从缓存中获取资源数据
+                                    1. 浏览器在发送请求时，首先会检查强制缓存(http1.0使用expires，1.1使用<Popover content={cacheControl}><Button>cache-control</Button></Popover>)，如果缓存命中，则不需要发送请求。直接从缓存中获取资源数据
                                 </Text></li>
                                 <li><Text mark>
-                                    2. 若强缓存失效，则发送请求进去协商缓存,服务器通过浏览器请求头<b>last-modified（http1.0, 通过时间点来感知，可能1s内修改多次，此时就不能体现修改。在性能上Last-modified是优于Etag的，Last-Modified仅仅只是记录一个时间点）和etag（http1.1, 通过hash感知，在精度上优于Last-modified的，因为Etag是根据资源文件内容生成的唯一标示，因为能够准确感知到资源文件内容的变化）</b>字段进行检查，若是资源则返回新的资源数据，状态码200，否则返回304
+                                    2. 若强缓存失效，则发送请求进去协商缓存,服务器通过浏览器请求头<b>last-modified(http1.0, 通过时间点来感知，可能1s内修改多次，此时就不能体现修改。在性能上Last-modified是优于Etag的，Last-Modified仅仅只是记录一个时间点)和etag(http1.1, 通过hash感知，在精度上优于Last-modified的，因为Etag是根据资源文件内容生成的唯一标示，因为能够准确感知到资源文件内容的变化)</b>字段进行检查，若是资源则返回新的资源数据，状态码200，否则返回304
                                 </Text></li>
                                 <li><Text mark>
-                                    3. 当服务器返回304时说明页面使用了这个资源的缓存, 而文档的内容（从上次访问以来或是根据请求条件）并没有发生变化，则服务器应该返回这个304状态码
+                                    3. 当服务器返回304时说明页面使用了这个资源的缓存, 而文档的内容(从上次访问以来或是根据请求条件)并没有发生变化，则服务器应该返回这个304状态码
                                 </Text></li>
                                 <li>4. 如果前两步都没有命中，则直接从服务端获取资源</li>
                             </ul>
@@ -65,7 +65,7 @@ const Cache = () => {
                                 </li>
                                 <li>Push Cache: <Text mark>推送缓存是Http2中的内容</Text>
                                     <ul>
-                                        <li>当以上三种缓存都没有命中时，它才会被使用。它只在会话（Session）中存在。一旦会哈结束就被释放，并且缓存的时间也很短暂，在Chrome浏览器中只有五分钟左右，同时它也并非严格执行HTTP头中的缓存指令</li>
+                                        <li>当以上三种缓存都没有命中时，它才会被使用。它只在会话(Session)中存在。一旦会哈结束就被释放，并且缓存的时间也很短暂，在Chrome浏览器中只有五分钟左右，同时它也并非严格执行HTTP头中的缓存指令</li>
                                         <li>一旦链接被关闭，Push Cache就被释放</li>
                                         <li>多个页面可以使用同一个HTTP/2的连接，也就可以使用同一个Push Cache。这主要还是依赖浏览器的实现而定，出于对性能的考虑，有的浏览器会对相同域名但不同的tab标签使用同一个HTTP连接</li>
                                     </ul>
@@ -120,12 +120,12 @@ const Cache = () => {
                 <Collapse ghost>
                     <Panel header="service worker定义" extra="基于web worker,在web worker的基础上增加了离线缓存的能力, 服务器与浏览器之间的代理服务器" key="1">
                         <Space direction="vertical">
-                            <Text>一个服务器与浏览器之间的中间人角色，如果网站中注册了service worker那么它可以拦截当前网站所有的请求，进行判断（需要编写相应的判断程序），如果需要向服务器发起请求的就转给服务器，如果可以直接使用缓存的就直接返回缓存不再转给服务器。从而大大提高浏览体验</Text>
+                            <Text>一个服务器与浏览器之间的中间人角色，如果网站中注册了service worker那么它可以拦截当前网站所有的请求，进行判断(需要编写相应的判断程序)，如果需要向服务器发起请求的就转给服务器，如果可以直接使用缓存的就直接返回缓存不再转给服务器。从而大大提高浏览体验</Text>
                             <ul>
-                                <li>基于web worker（一个独立于JavaScript主线程的独立线程，在里面执行需要消耗大量资源的操作不会堵塞主线程）</li>
+                                <li>基于web worker(一个独立于JavaScript主线程的独立线程，在里面执行需要消耗大量资源的操作不会堵塞主线程)</li>
                                 <li>在web worker的基础上增加了离线缓存的能力</li>
-                                <li>本质上充当Web应用程序（服务器）与浏览器之间的代理服务器（可以拦截全站的请求，并作出相应的动作 → 由开发者指定的动作）</li>
-                                <li>创建有效的离线体验（将一些不常更新的内容缓存在浏览器，提高访问体验）</li>
+                                <li>本质上充当Web应用程序(服务器)与浏览器之间的代理服务器(可以拦截全站的请求，并作出相应的动作 → 由开发者指定的动作)</li>
+                                <li>创建有效的离线体验(将一些不常更新的内容缓存在浏览器，提高访问体验)</li>
                                 <li>由事件驱动的,具有生命周期</li>
                                 <li>可以访问cache和indexDB</li>
                                 <li>支持推送</li>
@@ -140,7 +140,7 @@ const Cache = () => {
                                     <ul>
                                         <li>为了避免 SW 缓存自己导致死锁无法升级,通常将 sw.js 本身的缓存直接交给 HTTP 服务器缓存</li>
                                         <li>每次进入页面时，浏览器都会进行sw的比对，当sw.js有变化时，就会重新安装加载</li>
-                                        <li>更新过程（Soft Update）由浏览器触发，在独立进程中进行的，只有逐字节比对不同时才会启动 更新算法（Update Algorithm）</li>
+                                        <li>更新过程(Soft Update)由浏览器触发，在独立进程中进行的，只有逐字节比对不同时才会启动 更新算法(Update Algorithm)</li>
                                         <li>旧的 service worker 还在运行，新的 service worker 完成安装后会进入 waiting 状态，直到所有已打开的页面都关闭</li>
                                         <li>新服务工作线程取得控制权后，将会触发其 activate 事件</li>
                                         <li>在新的 SW.js 里面监听 activate 事件，进行相关资源的删除操作</li>
@@ -169,10 +169,10 @@ const Cache = () => {
                         <Text mark>sw异常怎么处理</Text>
                         <ul>
                             <li>SW运行在worker上下文 → 不能访问DOM</li>
-                            <li>它设计为完全异步，同步API（如XHR和localStorage）不能在SW中使用</li>
+                            <li>它设计为完全异步，同步API(如XHR和localStorage)不能在SW中使用</li>
                             <li>出于安全考量，SWs只能由HTTPS承载</li>
                             <li>在Firefox浏览器的用户隐私模式，SW不可用</li>
-                            <li>其生命周期与页面无关（关联页面未关闭时，它也可以退出，没有关联页面时，它也可以启动）</li>
+                            <li>其生命周期与页面无关(关联页面未关闭时，它也可以退出，没有关联页面时，它也可以启动)</li>
                         </ul>
                     </Panel>
                     <Panel header="service worker使用" extra="navigator.serviceWorker.register('./serviceWorker.js', {scope: './'})" key="4">

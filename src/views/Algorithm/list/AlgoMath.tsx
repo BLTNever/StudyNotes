@@ -118,7 +118,7 @@ const AlgoMath = () => {
             <Wrap>
                 <Title level={3}>LCP 02.分式化简{T.EASY}</Title>
                 <Collapse ghost>
-                    <Panel header="输入的cont代表连分数的系数（cont[0]代表上图的a0，以此类推）。返回一个长度为2的数组[n, m]，使得连分数的值等于n / m，且n, m最大公约数为1。" key="1">
+                    <Panel header="输入的cont代表连分数的系数(cont[0]代表上图的a0，以此类推)。返回一个长度为2的数组[n, m]，使得连分数的值等于n / m，且n, m最大公约数为1。" key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.fraction}</Highlight>
                         </Space>
@@ -131,7 +131,7 @@ const AlgoMath = () => {
                 <Collapse ghost>
                     <Panel header={`给定两个整数 a 和 b ，求它们的除法的商 a/b ，要求不得使用乘号 '*'、除号 '/' 以及求余符号 '%' 。
                             注意: 
-                            整数除法的结果应当截去（truncate）其小数部分，例如: truncate(8.345) = 8 以及 truncate(-2.7335) = -2
+                            整数除法的结果应当截去(truncate)其小数部分，例如: truncate(8.345) = 8 以及 truncate(-2.7335) = -2
                             假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−231, 231−1]。本题中，如果除法结果溢出，则返回 231 − 1`} key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.divide}</Highlight>
@@ -154,7 +154,7 @@ const AlgoMath = () => {
             <Wrap>
                 <Title level={3}>18.四数之和{T.MEDIUM}</Title>
                 <Collapse ghost>
-                    <Panel header={`给你一个由 n 个整数组成的数组 nums ，和一个目标值 target 。请你找出并返回满足下述全部条件且不重复的四元组 [nums[a], nums[b], nums[c], nums[d]] （若两个四元组元素一一对应，则认为两个四元组重复）: 
+                    <Panel header={`给你一个由 n 个整数组成的数组 nums ，和一个目标值 target 。请你找出并返回满足下述全部条件且不重复的四元组 [nums[a], nums[b], nums[c], nums[d]] (若两个四元组元素一一对应，则认为两个四元组重复): 
                         0 <= a, b, c, d < n
                         a、b、c 和 d 互不相同
                         nums[a] + nums[b] + nums[c] + nums[d] == target

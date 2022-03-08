@@ -15,7 +15,7 @@ const Frontend = () => {
             <Wrap>
                 <Title level={3}>DOM渲染流程</Title>
                 <Text>*关键渲染路径</Text>
-               
+
                 <Collapse ghost>
                     <Panel header="DOM Tree" key="1" extra="1. 处理 HTML 并构建 DOM Tree">
                         <ul>
@@ -72,6 +72,52 @@ const Frontend = () => {
                 </Collapse>
             </Wrap>
 
+
+            <Wrap>
+                <Title level={3}>xss和csrf攻击</Title>
+                <Collapse ghost>
+                    <Panel header="xss跨站脚本攻击" key="1">
+                        <Space direction="vertical">
+                            <Text mark>攻击者想办法将可执行的代码注入页面</Text>
+                            <Text>XSS利用的是用户对指定网站的信任</Text>
+                            <ul>
+                                <li><Text>1. 转义字符</Text></li>
+                                <li><Text>2. js-xss</Text></li>
+                                <li><Text>3. CSP : 建立白名单，允许哪些外部资源可以加载和执行</Text></li>
+                            </ul>
+                            <Text>
+                                CSP(Content Security Policy即内容安全策略)如何开启:
+                                <ul>
+                                    <li>设置 HTTP Header 中的 Content-Security-Policy</li>
+                                    <li>设置 meta 标签的方式{`< meta http-equiv=“Content-Security-Policy”>`}</li>
+                                </ul>
+                            </Text>
+                        </Space>
+                    </Panel>
+                    <Panel header="CSRF跨站请求伪造" key="2">
+                        <Space direction="vertical">
+                            <Text mark>攻击者构造出一个后端请求地址，诱导用户点击或者通过某些途径自动发起请求。如果用户是在登录状态下的话，后端就以为是用户在操作，从而进行相应的逻辑</Text>
+                            <Text>CSRF利用的是网站对用户网页浏览器的信任</Text>
+
+                            <Title>如何防御: </Title>
+                            <ul>
+                                <li><Text>1. Get 请求不对数据进行修改</Text></li>
+                                <li><Text>2. 不让第三方网站访问到用户 Cookie</Text></li>
+                                <li><Text>3. 阻止第三方网站请求接口</Text></li>
+                                <li><Text>4. 请求时附带验证信息，比如验证码或者 Token</Text></li>
+                            </ul>
+
+                            <Title>如何攻击: </Title>
+                            <ul>
+                                <li><Text>1. 用户访问正常网站，浏览器中保留cookie</Text></li>
+                                <li><Text>2. 用户被诱使访问危险网站</Text></li>
+                                <li><Text>3. 在危险网站上放的图片src指向正常访问的链接</Text></li>
+                                <li><Text>进阶: 危险网站可以伪造一个表单并隐藏，并在自己网站的onload事件中，触发这个表单的提交事件，就可以改GET攻击为POST攻击</Text></li>
+                            </ul>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
 
 
             <Wrap>

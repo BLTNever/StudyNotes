@@ -34,7 +34,7 @@ export const Webpack = lazy(() => import(/* webpackChunkName: "webpack" */'@view
 export const Performance = lazy(() => import(/* webpackChunkName: "Performance" */'@views/Interview/list/Performance'))
 export const Interview6 = lazy(() => import(/* webpackChunkName: "Interview6" */'@views/Interview/list/Interview6'))
 export const frontend = lazy(() => import(/* webpackChunkName: "frontend" */'@views/Interview/list/frontend'))
-export const Interview8 = lazy(() => import(/* webpackChunkName: "Interview8" */'@views/Interview/list/Interview8'))
+export const Vite = lazy(() => import(/* webpackChunkName: "Vite" */'@views/Interview/list/Vite'))
 export const InterviewRecord = lazy(() => import(/* webpackChunkName: "InterviewRecord" */'@views/Interview/list/record'))
 
 // Exercises

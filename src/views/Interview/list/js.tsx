@@ -20,13 +20,12 @@ const Js = () => (
         <Wrap>
             <Title level={3}>闭包</Title>
             <Collapse ghost>
-                <Panel header="" key="1">
+                <Panel header="闭包就是指有权访问另一个函数作用域中的变量的函数" key="1">
                     <Space direction="vertical">
                         <ul>
                             <li>JS所有函数都是闭包，因为有全局环境，所有函数都可以访问全局变量</li>
                             <li>当函数可以记住并访问所在的词法作用域，即使函数是在当前词法作用域之外执行，这时就产生了闭包</li>
                             <li>闭包就是由函数创造的一个词法作用域，里面创建的变量被引用后，可以在这个词法环境之外自由使用。闭包通常用来创建内部变量，使得这些变量不能被外部随意修改，同时又可以通过指定的函数接口来操作</li>
-                            <li>闭包就是指有权访问另一个函数作用域中的变量的函数。</li>
                         </ul>
                         <Link href="/js/Closure">考察作用域、执行上下文、AV/VO、执行环境、作用域链</Link>
                     </Space>
@@ -100,52 +99,6 @@ const Js = () => (
                             <li><Text>1. CommonJs模块输出的值的拷贝，EsModule模块输出的是值得引用</Text></li>
                             <li><Text>2. CommonJs模块是运行时加载，EsModule是编译时输出</Text></li>
                             <li><Text>3.循环引用: CommonJs的循环引用是通过传递未完成的export对象解决的。esModule传递的是引用</Text></li>
-                        </ul>
-                    </Space>
-                </Panel>
-            </Collapse>
-        </Wrap>
-
-        <Wrap>
-            <Title level={3}>xss和csrf攻击</Title>
-            <Collapse ghost>
-                <Panel header="xss跨站脚本攻击" key="1">
-                    <Space direction="vertical">
-                        <Text mark>攻击者想办法将可执行的代码注入页面</Text>
-                        <Text>XSS利用的是用户对指定网站的信任</Text>
-                        <ul>
-                            <li><Text>1. 转义字符</Text></li>
-                            <li><Text>2. js-xss</Text></li>
-                            <li><Text>3. CSP : 建立白名单，允许哪些外部资源可以加载和执行</Text></li>
-                        </ul>
-                        <Text>
-                            CSP(Content Security Policy即内容安全策略)如何开启:
-                            <ul>
-                                <li>设置 HTTP Header 中的 Content-Security-Policy</li>
-                                <li>设置 meta 标签的方式{`< meta http-equiv=“Content-Security-Policy”>`}</li>
-                            </ul>
-                        </Text>
-                    </Space>
-                </Panel>
-                <Panel header="CSRF跨站请求伪造" key="2">
-                    <Space direction="vertical">
-                        <Text mark>攻击者构造出一个后端请求地址，诱导用户点击或者通过某些途径自动发起请求。如果用户是在登录状态下的话，后端就以为是用户在操作，从而进行相应的逻辑</Text>
-                        <Text>CSRF利用的是网站对用户网页浏览器的信任</Text>
-
-                        <Title>如何防御: </Title>
-                        <ul>
-                            <li><Text>1. Get 请求不对数据进行修改</Text></li>
-                            <li><Text>2. 不让第三方网站访问到用户 Cookie</Text></li>
-                            <li><Text>3. 阻止第三方网站请求接口</Text></li>
-                            <li><Text>4. 请求时附带验证信息，比如验证码或者 Token</Text></li>
-                        </ul>
-
-                        <Title>如何攻击: </Title>
-                        <ul>
-                            <li><Text>1. 用户访问正常网站，浏览器中保留cookie</Text></li>
-                            <li><Text>2. 用户被诱使访问危险网站</Text></li>
-                            <li><Text>3. 在危险网站上放的图片src指向正常访问的链接</Text></li>
-                            <li><Text>进阶: 危险网站可以伪造一个表单并隐藏，并在自己网站的onload事件中，触发这个表单的提交事件，就可以改GET攻击为POST攻击</Text></li>
                         </ul>
                     </Space>
                 </Panel>

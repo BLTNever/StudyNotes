@@ -71,11 +71,12 @@ const menu = [
             { id: '45000', name: '性能优化', route: '/interview/performance' },
             { id: '41000', name: 'javascript', route: '/interview/js' },
             { id: '43000', name: 'http&CDN', route: '/interview/http' },
-            { id: '47000', name: '前端', route: '/interview/frontend' },
+            { id: '47000', name: '前端&工程化', route: '/interview/frontend' },
             { id: '43000', name: '缓存', route: '/interview/cache' },
-            { id: '48000', name: 'ts', route: '/interview/8' },
             { id: '42000', name: '框架', route: '/interview/framework' },
             { id: '44000', name: 'webpack', route: '/interview/webpack' },
+            { id: '44100', name: 'vite', route: '/interview/vite' },
+            { id: '48000', name: 'ts', route: '/interview/8' },
             { id: '46000', name: 'html/css/移动端适配', route: '/interview/6' },
 
         ]

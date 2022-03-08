@@ -139,8 +139,8 @@ export const list = [
                 component: RouteBase.frontend,
             },
             {
-                path: '/interview/8',
-                component: RouteBase.Interview8,
+                path: '/interview/vite',
+                component: RouteBase.Vite,
             },
             {
                 path: '/interview',

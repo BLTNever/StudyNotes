@@ -263,17 +263,32 @@ try {
 } catch (error) { }
 
 
-// function search(nums: number[], target: number) {
-//     let n = nums.length
-//     let [l, r] = [0, n - 1]
-//     while (l <= r) {
-//         const mid = l + ((r - l) >> 1)
-//         if (nums[mid] === target) return true
-//         if (nums[mid] >= nums[l]) {
-
-//         }else {
-
-//         }
-//     }
-// }
+function search(nums: number[], target: number) {
+    let n = nums.length
+    let [l, r] = [0, n - 1]
+    while (l <= r) {
+        const mid = l + ((r - l) >> 1)
+        if (nums[mid] === target) return true
+        // 若 mid element === left element:
+        //      此时说明具有重复值，移动left向右移动，用以去除重复干扰
+        if (nums[mid] === nums[l]) {
+            l++
+            continue
+        }
+        if (nums[mid] >= nums[l]) {
+            if (target >= nums[l] && target < nums[mid]) {
+                r = mid - 1
+            } else {
+                l = mid + 1
+            }
+        } else {
+            if (target <= nums[r] && target > nums[mid]) {
+                l = mid + 1
+            } else {
+                r = mid - 1
+            }
+        }
+    }
+    return false
+}
 

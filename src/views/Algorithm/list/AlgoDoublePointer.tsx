@@ -117,11 +117,12 @@ const AlgoDoublePointer = () => {
                         <li>给你 旋转后 的数组 nums 和一个整数 target , 如果 nums 中存在这个目标值 target , 则返回它的下标, 否则返回 -1 </li>
                     </ul>} key="1">
                         <Space direction="vertical">
-                            {/* <Highlight language="javascript">{eg.search}</Highlight> */}
+                            <Highlight language="javascript">{eg.search1}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
             </Wrap>
+            
             <Wrap>
                 <Title level={3}>16.最接近的三数之和{T.MEDIUM}{T.DOUBLE_POINTER}</Title>
                 <Collapse ghost>

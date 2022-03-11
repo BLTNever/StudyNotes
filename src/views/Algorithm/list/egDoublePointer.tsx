@@ -460,6 +460,7 @@ function findMin(nums: number[]) {
 
 export const search1 = `
 function search(nums: number[], target: number) {
+    // 双指针
     let n = nums.length
     let [l, r] = [0, n - 1]
     while (l <= r) {                  // l <= r, 在l === r的时候 l、r、mid 的值相等？
@@ -485,5 +486,8 @@ function search(nums: number[], target: number) {
     // 如果终止条件是 while(l < r)的时候，就需要 
     // return nums[l] === target ? l : -1
     return -1
+
+    // 暴力
+    return nums.indexOf(target)  === -1 ? -1 : nums.indexOf(target)
 }
 `

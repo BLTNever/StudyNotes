@@ -7,7 +7,6 @@ import {
     dataOptimize, dataModule, dataWebpack, dataBase, dataAlgo,
     dataProgram,
 } from './recordConfig'
-import { render } from '@testing-library/react'
 // import useResize from '@hooks/useResize'
 
 const { TabPane } = Tabs
@@ -73,7 +72,6 @@ const Record = () => {
 
     useEffect(() => {
         const { location: { hash } } = history
-
         if (hash.length) {
             const k = hash.slice(1)
             setKey(k)

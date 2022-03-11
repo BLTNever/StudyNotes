@@ -1,6 +1,6 @@
 
 export const debounce = `
-// 函数防抖 —— 持续触发，只有在最后一次触发事件后延时执行
+// 函数防抖 —— 持续触发,只有在最后一次触发事件后延时执行
 function debounce(fn, delay) {
     let timer = null
     return (...args) => {
@@ -58,7 +58,7 @@ function debounce(fn, wait, option = { leading: false, trailing: true }) {
         if (!timer && leading) fn.call(this, ...args)   // 第一次执行 同时是立即执行的话
         else lastArgs = args                              // 否-记录一下参数
 
-        if(timer) clearTimeout(timer)                     // 延时执行并且有记录的参数数据，通过setTimeout执行
+        if(timer) clearTimeout(timer)                     // 延时执行并且有记录的参数数据,通过setTimeout执行
       
         timer = setTimeout(() => {
             if(trailing && lastArgs){
@@ -108,7 +108,7 @@ function throttle(fn, interval) {
     }
 }
 /**
- * 计时器写法， 最后一次会延时执行
+ * 计时器写法, 最后一次会延时执行
  * @param fn 
  * @param interval 
  * @returns 
@@ -318,7 +318,7 @@ function Son(name) {
 }
 var son1 = new Son('111')
 var son2 = new Son('222')
-// 所有基本属性独立，子实例拷贝了父类的内容，没办法通过修改父类来达到所有子实例同时更新
+// 所有基本属性独立,子实例拷贝了父类的内容,没办法通过修改父类来达到所有子实例同时更新
 `
 export const extend4 = `
 // 原型链继承
@@ -337,7 +337,7 @@ Son.prototype.constructor = Son
 
 var son1 = new Son()
 
-// 实现了方法共享，但是只要某一个实例进行了修改，所有属性都会变化
+// 实现了方法共享,但是只要某一个实例进行了修改,所有属性都会变化
 `
 
 export const extend5 = `
@@ -359,7 +359,7 @@ Son.prototype.constructor = Son
 var son1 = new Son()
 
 // 通过调用Parent.call和new Parent单独拷贝了一份父类构造函数里定义的属性和方法
-// 通过把父类的实例赋值给子类prototype，子类的实例对象就可以共享父类原型上定义的属性和方法
+// 通过把父类的实例赋值给子类prototype,子类的实例对象就可以共享父类原型上定义的属性和方法
 `
 
 export const extend6 = `
@@ -376,7 +376,7 @@ var son1 = Object.create(Obj)
 var son2 = Object.create(Obj)
 
 
-// 通过Object.create(Obj),以Obj为原型构造对象，寄生式继承不需要构造函数，通过原型链继承共享了属性跟方法
+// 通过Object.create(Obj),以Obj为原型构造对象,寄生式继承不需要构造函数,通过原型链继承共享了属性跟方法
 `
 
 
@@ -403,7 +403,7 @@ var son2 = new Son('2222')
 
 
 // 使用Son.prototype = Object.create(Parent.prototype)代替 new Parent()
-// 通过创建一个新对象，然后赋值给Son.prototype，所以Son的原型最终指向就是父类的原型对象
+// 通过创建一个新对象,然后赋值给Son.prototype,所以Son的原型最终指向就是父类的原型对象
 `
 
 export const extend8 = `
@@ -429,7 +429,7 @@ function createNew(constructor, ...args) {
 
     const ret = constructor.call(obj, ..args) // 将构造函数的作用域指向这个新对象
 
-    return ret instanceof Object ? ret : obj // 无返回值或者非对象值，将obj作为新对象返回
+    return ret instanceof Object ? ret : obj // 无返回值或者非对象值,将obj作为新对象返回
 }
 
 function createNew2() {
@@ -461,7 +461,7 @@ const ajax = {
     },
     post: function(url, data, fn) {
         let xhr = new XMLHttpRequest()
-        // opent(method, url, async) merhod:请求方法， url: 地址， async: 请求是异步还是同步处理
+        // opent(method, url, async) merhod:请求方法, url: 地址, async: 请求是异步还是同步处理
         xhr.open('POST', url, true)
         // Content-Type: text/* 开头(html、text、plain), application/*开头(json、x-www-form-form-urlencoded), multipart/form-data文件上传
         xhr.setRequestHeader('Content-Type', 'application/json')
@@ -987,7 +987,7 @@ if ('serviceWorker' in navigator) {
     /* 当页面加载完成就创建一个serviceWorker */
     window.addEventListener('load', function () {
         /* 创建并指定对应的执行内容 */
-        /* scope 参数是可选的，可以用来指定你想让 service worker 控制的内容的子目录。 在这个例子里，我们指定了 '/'，表示 根网域下的所有内容。这也是默认值。 */
+        /* scope 参数是可选的,可以用来指定你想让 service worker 控制的内容的子目录。 在这个例子里,我们指定了 '/',表示 根网域下的所有内容。这也是默认值。 */
         navigator.serviceWorker.register('./serviceWorker.js', {scope: './'})
             .then(function (registration) {
                 console.log('ServiceWorker registration successful with scope: ', registration.scope);

@@ -10,7 +10,7 @@ export const list = [
     },
     {
         title: '前端基础理论',
-        subTitle: 'HTML、CSS深入理解，前端流程、mock、埋点、系统方案等',
+        subTitle: 'HTML、CSS深入理解,前端流程、mock、埋点、系统方案等',
         enter: 1,
         done: false,
         color: '#2db7f5',
@@ -26,7 +26,7 @@ export const list = [
     },
     {
         title: 'webpack',
-        subTitle: '基础配置，loader、plugin深入理解，执行流程，打包链路，异步加载原理，打包发布流程、云构建、线上发布、一键部署',
+        subTitle: '基础配置,loader、plugin深入理解,执行流程,打包链路,异步加载原理,打包发布流程、云构建、线上发布、一键部署',
         enter: 1,
         done: false,
         color: 'gold',
@@ -42,7 +42,7 @@ export const list = [
     },
     {
         title: '微前端',
-        subTitle: '实践、源码解读，做出完整的工程方案',
+        subTitle: '实践、源码解读,做出完整的工程方案',
         enter: 2,
         done: false,
         color: '#fa541c',
@@ -50,7 +50,7 @@ export const list = [
     },
     {
         title: 'RN、Flutter',
-        subTitle: '坑点总结、新特性学习，了解构建以及渲染的原理',
+        subTitle: '坑点总结、新特性学习,了解构建以及渲染的原理',
         enter: 1,
         done: false,
         color: 'cyan',

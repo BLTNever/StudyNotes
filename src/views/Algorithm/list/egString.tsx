@@ -1,9 +1,9 @@
 export const longestCommonPrefix = `
 /**
  * 1. 定义ans为strs数组中第一个
- * 2. 遍历strs，定义第二个指针j
- * 3. 遍历strs数组中的元素strs[j]，
- * 4. 对比ans的元素跟strs[i][j]是否相等，截取
+ * 2. 遍历strs,定义第二个指针j
+ * 3. 遍历strs数组中的元素strs[j],
+ * 4. 对比ans的元素跟strs[i][j]是否相等,截取
  */
 function longestCommonPrefix(strs: string[]) {
     if (!strs.length) return ''
@@ -61,7 +61,7 @@ function strStr(haystack: string, needle: string) {
     if (!haystackLen) return -1
     if (!needleLen) return 0
     for (let i = 0; i < haystackLen; i++) {
-        // 遍历haystack，找到跟needle开头相同的值，再截取needle.length长度相同值对比needle 
+        // 遍历haystack,找到跟needle开头相同的值,再截取needle.length长度相同值对比needle 
         if (haystack[i] === needle[0] && haystack.substr(i, needleLen) === needle) {
             return i
         }
@@ -73,16 +73,16 @@ console.log(strStr('a', ''))
 
 export const lengthOfLastWord = `
 function lengthOfLastWord(s: string) {
-    // split切割 过滤 多个空格情况， 取之后一个的length
+    // split切割 过滤 多个空格情况, 取之后一个的length
     const arr = s.split(' ').filter(Boolean)
     return arr[arr.length - 1].length
 
     // 遍历
     let end = s.length - 1 // 取最后一位下标
-    while (end >= 0 && s[end] === ' ') end--  // 往前遍历 end下标的数据是空， end向前移动一位 直到下标数据不为空
-    if (end < 0) return 0 // 如果end小于0 说明 s 中全是空格， 返回0
-    let start = end // 复制end不为空时的下标， 
-    while (start >= 0 && s[start] !== '') start-- // 往前遍历 如果start下标的数据 不为空， start 往前移动一位， 直到数据为空
+    while (end >= 0 && s[end] === ' ') end--  // 往前遍历 end下标的数据是空, end向前移动一位 直到下标数据不为空
+    if (end < 0) return 0 // 如果end小于0 说明 s 中全是空格, 返回0
+    let start = end // 复制end不为空时的下标, 
+    while (start >= 0 && s[start] !== '') start-- // 往前遍历 如果start下标的数据 不为空, start 往前移动一位, 直到数据为空
 
     return end - start
 }
@@ -117,7 +117,7 @@ export const getLucky = `
 /**
  * 字符串转化后的各位数字之和
  * 先把 s 中的字母通过charCodeAt转成对应的数字 
- * 遍历 k 次， 把str中的数字相加 
+ * 遍历 k 次, 把str中的数字相加 
  * @param s 
  * @param k 
  * @returns 
@@ -195,7 +195,7 @@ function minTimeToType(word: string): number {
     // let prev = 0
     // for (let i of word) {
     //     let cur = i.charCodeAt(0) - 97 // a 从 0 开始
-    //     ans += 1 + Math.min((cur - prev + 26) % 26, (prev - cur + 26) % 26) // 键入 需要 + 1S，当前值与上一个值互相减 + 26的余数比较大小
+    //     ans += 1 + Math.min((cur - prev + 26) % 26, (prev - cur + 26) % 26) // 键入 需要 + 1S,当前值与上一个值互相减 + 26的余数比较大小
     //     prev = cur
     // }
     // return ans 
@@ -203,7 +203,7 @@ function minTimeToType(word: string): number {
     let now = 97
     for (let i of word) {
         let step = i.charCodeAt(0) - now // 计算当前位置 跟上一个位置移动的距离
-        ans += Math.min(Math.abs(step), 26 - Math.abs(step)) // 比较顺时针跟逆时针 移动的距离大小(上一步比当前步位置大的时候可能为负，所以需要取正)
+        ans += Math.min(Math.abs(step), 26 - Math.abs(step)) // 比较顺时针跟逆时针 移动的距离大小(上一步比当前步位置大的时候可能为负,所以需要取正)
         now = i.charCodeAt(0) // 存一下当前的位置 为下一步计算作准备
     }
     return ans + word.length // 添加 键入 的时间
@@ -223,7 +223,7 @@ function minimumMoves(s: string) {
     if (s.indexOf('X') === -1) return 0
     let ans = 0
     for (let i = 0; i < s.length; i++) {
-        if (s[i] === 'X') { // 如果遇到s[i] === 'X'， 那后面2个就不用考虑
+        if (s[i] === 'X') { // 如果遇到s[i] === 'X', 那后面2个就不用考虑
             ans++
             i += 2 // 因为 i++之后 i已经增1 所以只需要 +=2 
         }
@@ -303,12 +303,12 @@ function checkAlmostEquivalent(word1: string, word2: string) {
     if (word1.length !== word2.length) return false
     // let map = {} // 建一个哈希表存储
     // for (let i of word1) { 
-    //     map[i] = map[i] || 0 // 如果map[i] 没有值，给个默认值0
+    //     map[i] = map[i] || 0 // 如果map[i] 没有值,给个默认值0
     //     map[i]++             // map中存在word1中已有的元素 +1
     // }
     // for (let i of word2) {
     //     map[i] = map[i] || 0
-    //     map[i]--             // map中存在word2中的元素，该元素 -1
+    //     map[i]--             // map中存在word2中的元素,该元素 -1
     // }
     // for (let key in map) {
     //     if ((Math.abs(map[key]) > 3)) return false  //  筛选出map 中值大于3的 证明不符合返回false
@@ -349,7 +349,7 @@ function replaceSpace(s: string) {
     }
     const len = arr.length          // 保存之前的长度
     console.log(arr)
-    arr.length += count * 2         // 更新长度，每个空格要多出2个位置
+    arr.length += count * 2         // 更新长度,每个空格要多出2个位置
     console.log(arr)
     let left = len - 1              // 设置左指针 在旧数组的尾部
     let right = arr.length - 1      // 设置右指针 在新数组长度的尾部
@@ -375,7 +375,7 @@ export const buddyStrings = `
 function buddyStrings(s: string, goal: string) {
     // 长度不同 返回false
     if (s.length !== goal.length) return false
-    // 如果 s 跟 goal 相等， s 转成数组之后去重 对比原来的长度。 不相等证明有重复的 返回 true, 否则 false 
+    // 如果 s 跟 goal 相等, s 转成数组之后去重 对比原来的长度。 不相等证明有重复的 返回 true, 否则 false 
     if (s === goal) return new Set(s.split('')).size !== s.length
 
     let [first, second] = [-1, -1]          // 定义 2 个变量
@@ -391,7 +391,7 @@ function buddyStrings(s: string, goal: string) {
             }
         }
     }
-    // 最终判断有 2 处 不同， 同时满足 first 和 second 在 s 和 goal 中交换之后是否相等
+    // 最终判断有 2 处 不同, 同时满足 first 和 second 在 s 和 goal 中交换之后是否相等
     return second !== -1 && s[first] === goal[second] && s[second] === goal[first]
 }
 console.log(buddyStrings('aa', 'aa'))
@@ -410,12 +410,12 @@ function lengthOfLongestSubstring(s: string) {
     let set = new Set()
     while (right < s.length) {
         if (!set.has(s[right])) {
-            // 遇到不重复的元素，添加元素，窗口右指针向右移动， 记录比较一下大小
+            // 遇到不重复的元素,添加元素,窗口右指针向右移动, 记录比较一下大小
             set.add(s[right])
             right++
             ans = Math.max(ans, set.size)
         } else {
-            // 遇到重复的元素，删除之前出现的元素，窗口左指针向右移动
+            // 遇到重复的元素,删除之前出现的元素,窗口左指针向右移动
             set.delete(s[left])
             left++
         }
@@ -424,8 +424,8 @@ function lengthOfLongestSubstring(s: string) {
 }
 /**
  * 数组解法
- * 判断 res 数组中是否包含了元素， 包含了删除该元素及之前的
- * 如果 res 数组中包含元素，不能使用 continue ,因为是连续元素， 所以要把之前的都删掉
+ * 判断 res 数组中是否包含了元素, 包含了删除该元素及之前的
+ * 如果 res 数组中包含元素,不能使用 continue ,因为是连续元素, 所以要把之前的都删掉
  * @param s 
  * @returns 
  */
@@ -500,13 +500,13 @@ function canBeValid(s: string, locked: string) {
     let r = 0
     for (let i = 0; i < n; i++) {
         if (locked[i] === '1' && s[i] === ')') {    // 从左往右遍历 ")", 遇到不可变的 ")" r++
-            r++                                     // 0 ~ i 的区间内，")"的次数是 r，那么最多有 _l = i + 1 - r 个 "("
+            r++                                     // 0 ~ i 的区间内,")"的次数是 r,那么最多有 _l = i + 1 - r 个 "("
             if (i + 1 - r < r) return false         // 如果 _l 小于 r, 返回false
         }
     }
     for (let i = n - 1; i >= 0; i--) {
         if (locked[i] === '1' && s[i] === '(') {    // 从右往左遍历 "(", 遇到不可变的 "(" l++
-            l++                                     // i ~ n - 1 的区间内，"("的次数是 l，那么最多有 _r = n - i - l 个 ")"
+            l++                                     // i ~ n - 1 的区间内,"("的次数是 l,那么最多有 _r = n - i - l 个 ")"
             if (n - i - l < l) return false         // 如果 _r 小于 l, 返回false
         }
     }
@@ -519,17 +519,17 @@ export const getSmallestString = `
  * 贪心
  */
 function getSmallestString(n: number, k: number) {
-    let res = Array(n).fill('a')                    // 创建一个 n 长度的数组res， 填充 'a'(满足题干的字典序最小 )
-    let remain = k - n                              // res 每个都是 'a'(1), 从后往前修改，剩余的值就是 k - n
+    let res = Array(n).fill('a')                    // 创建一个 n 长度的数组res, 填充 'a'(满足题干的字典序最小 )
+    let remain = k - n                              // res 每个都是 'a'(1), 从后往前修改,剩余的值就是 k - n
     let cur = n - 1                                 // 尾部创建一个指针
     while (remain) {                                // 差值 remain 为 0 循环结束
-        if (remain > 25) {                          // 'a'默认为1， 所以大于25的 直接用 'z' 替换 
+        if (remain > 25) {                          // 'a'默认为1, 所以大于25的 直接用 'z' 替换 
             res[cur] = 'z'
             remain -= 25                            // 差值 remain - 25
             cur--                                   // cur指针向前移动
         } else {                                    // 小于等于25的 
             res[cur] = String.fromCharCode(97 + remain) // 用 fromCharCode(97('a') + remain)找到对应的字母
-            remain = 0                              // 置空差值，退出循环
+            remain = 0                              // 置空差值,退出循环
         }
     }
 
@@ -537,14 +537,14 @@ function getSmallestString(n: number, k: number) {
 }
 /**
  * 贪心
- * 先设置n个a，再从后构造字符串
+ * 先设置n个a,再从后构造字符串
  */
 function getSmallestString(n: number, k: number) {
     k -= n                                          // 用和值k 记录与 n 个 'a'的差值
     let res = ''        
     let cur = 0                                     // 要转换成字母的数
-    for (let i = n - 1; i >= 0; i--, k -= cur) {    // 从尾部开始遍历， 每次减去 已经转换成字母的数
-        cur = Math.min(25, k)                       // 每次遍历对比 差值 k 跟 25，>=25,计作25，这样每次遍历都用k-cur
+    for (let i = n - 1; i >= 0; i--, k -= cur) {    // 从尾部开始遍历, 每次减去 已经转换成字母的数
+        cur = Math.min(25, k)                       // 每次遍历对比 差值 k 跟 25,>=25,计作25,这样每次遍历都用k-cur
         res = String.fromCharCode(97 + cur) + res   // 把cur 转成字母 与之前的 str 拼接
     }
     return res

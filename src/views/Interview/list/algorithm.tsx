@@ -101,7 +101,7 @@ class BSTree  {
         while (node || stack?.length) {
             if (node) {
                 stack.push(node)
-                node = node.left // 找到最左端的节点，路径上的节点全部入栈，包括叶子节点
+                node = node.left // 找到最左端的节点,路径上的节点全部入栈,包括叶子节点
             } else {
                 node = stack[stack.length - 1] // 获取栈顶节点
                 if (node.right && node.right !== ret) { // 如果node有有节点且从未访问过
@@ -196,10 +196,10 @@ function twoNum(nums: any, target: any) {
 `
 export const findShortSubArray = `
 /**
- *  1.用哈希表去记录每个元素出现的次数，用元素的值做key, value存储[值第一次出现的下标start，值最后出现的下标end， 出现的次数count]
- *  2.遍历这个哈希表的值，出现的次数大于max值的时候，重新给max值赋值，记录min最短长度为当前值的end下标 - start下标
- *  3.如果count === max值，对比已存在的min值和当前的end - start值，找出最短长度
- *  4.数组下标从0开始，return的min值+1
+ *  1.用哈希表去记录每个元素出现的次数,用元素的值做key, value存储[值第一次出现的下标start,值最后出现的下标end, 出现的次数count]
+ *  2.遍历这个哈希表的值,出现的次数大于max值的时候,重新给max值赋值,记录min最短长度为当前值的end下标 - start下标
+ *  3.如果count === max值,对比已存在的min值和当前的end - start值,找出最短长度
+ *  4.数组下标从0开始,return的min值+1
  */
 function findSubArray(nums) {
     let obj = {}
@@ -224,7 +224,7 @@ function findSubArray(nums) {
     return min + 1
 }
 
-// 一次遍历，
+// 一次遍历,
 function findSubArray(nums) {
     let obj = {}
     let max = 0
@@ -283,7 +283,7 @@ function createTree(list: any) {
                     children: [],
                 }
             }
-            mapper[item.parentId].children.push(item) // 找到mapper存在key为parentId的元素，在children里push当前的元素
+            mapper[item.parentId].children.push(item) // 找到mapper存在key为parentId的元素,在children里push当前的元素
         }
     }
 }

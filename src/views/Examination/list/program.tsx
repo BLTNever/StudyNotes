@@ -32,7 +32,7 @@ const Program = () => {
                 <Collapse ghost>
                     <Panel header="观察者模式" key="1">
                         <Space direction="vertical">
-                            <Text mark>被观察者对象(subject)维护一组观察者(observer)，subject状态发生变化时，通过observer的某些方法把变化通知到observer</Text>
+                            <Text mark>被观察者对象(subject)维护一组观察者(observer),subject状态发生变化时,通过observer的某些方法把变化通知到observer</Text>
                             <Highlight language="javascript">{eg.observer}</Highlight>
                             <Highlight language="javascript">{eg.eventEmitter}</Highlight>
                         </Space>
@@ -59,7 +59,7 @@ const Program = () => {
                 <Title level={3}>深拷贝</Title>
                 <Space direction="vertical">
                     <Text>基本类型的变量不存在深拷贝浅拷贝</Text>
-                    <Text>引用类型的浅拷贝复制的是在栈中的地址，而非在堆中存的数据(例如直接赋值、Array的slice和concat等)</Text>
+                    <Text>引用类型的浅拷贝复制的是在栈中的地址,而非在堆中存的数据(例如直接赋值、Array的slice和concat等)</Text>
                     <Text>使用JSON.parse(JSON.stringify(obj))做深拷贝赋值会忽略掉undefined和函数表达式</Text>
                 </Space>
                 <Collapse ghost>
@@ -74,7 +74,7 @@ const Program = () => {
                 <Title level={3}>节流和防抖</Title>
                 <Collapse ghost>
                     <Panel header="防抖-基础版/immediate版" key="1">
-                        <Title level={3}>触发高频事件后，在N秒内函数只会执行一次，N秒内再次触发高频事件，则重新计算时间</Title>
+                        <Title level={3}>触发高频事件后,在N秒内函数只会执行一次,N秒内再次触发高频事件,则重新计算时间</Title>
                         <Text mark>每次触发事件时都取消之前的延时调用方法</Text>
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.debounce}</Highlight>
@@ -91,7 +91,7 @@ const Program = () => {
                         </Space>
                     </Panel>
                     <Panel header="节流-基础版" key="4">
-                        <Title level={3}>高频事件触发，N秒内只执行一次，稀释函数的执行频率</Title>
+                        <Title level={3}>高频事件触发,N秒内只执行一次,稀释函数的执行频率</Title>
                         <Text mark>每次触发事件都会判断是否有在等待执行的延时函数</Text>
                         <Row gutter={24}>
                             <Col span={8}><Card title="计时器: 最后一次会延时执行"><Highlight language="javascript">{eg.throttle12}</Highlight></Card></Col>
@@ -116,7 +116,7 @@ const Program = () => {
                     <Panel header="curry(1,2)(3,4)(5)() 需要调用一次执行" key="1">
                         <Highlight language="javascript">{eg.infinityCurry1}</Highlight>
                     </Panel>
-                    <Panel header="curry(1,2)(3,4)(5) 直接执行(利用toString隐式转换特性，最后执行时隐式转换，只有alert情况下可以)" key="2">
+                    <Panel header="curry(1,2)(3,4)(5) 直接执行(利用toString隐式转换特性,最后执行时隐式转换,只有alert情况下可以)" key="2">
                         <Highlight language="javascript">{eg.infinityCurry2}</Highlight>
                     </Panel>
                 </Collapse>
@@ -137,7 +137,7 @@ const Program = () => {
             <Wrap id="throttlePromises">
                 <Title level={3}>节流API请求</Title>
                 <Collapse ghost>
-                    <Panel header="for..of循环执行， Array(max).fill(Array.from(tasks).entries()).map(run)" key="1">
+                    <Panel header="for..of循环执行, Array(max).fill(Array.from(tasks).entries()).map(run)" key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.throttlePromises}</Highlight>
                         </Space>
@@ -175,7 +175,7 @@ const Program = () => {
             <Wrap id="findParent">
                 <Title level={3}>找出数据链路中的所有父级</Title>
                 <Collapse ghost>
-                    <Panel header="已知数据格式，实现一个函数 fn 找出链条中所有的父级 id" key="1">
+                    <Panel header="已知数据格式,实现一个函数 fn 找出链条中所有的父级 id" key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.findParent}</Highlight>
                         </Space>
@@ -184,9 +184,9 @@ const Program = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>输入 int 型，返回整数逆序后的字符串</Title>
+                <Title level={3}>输入 int 型,返回整数逆序后的字符串</Title>
                 <Collapse ghost>
-                    <Panel header="必须使用递归函数调用，不能用全局变量， 输入函数必须只有一个参数传入，必须返回字符串" key="1">
+                    <Panel header="必须使用递归函数调用,不能用全局变量, 输入函数必须只有一个参数传入,必须返回字符串" key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.reverseNum}</Highlight>
                         </Space>
@@ -197,7 +197,7 @@ const Program = () => {
             <Wrap>
                 <Title level={3}>红绿灯问题</Title>
                 <Collapse ghost>
-                    <Panel header="红灯三秒亮一次，绿灯一秒亮一次，黄灯2秒亮一次；如何让三个灯不断交替重复亮灯？(用 Promse 实现)" key="1">
+                    <Panel header="红灯三秒亮一次,绿灯一秒亮一次,黄灯2秒亮一次；如何让三个灯不断交替重复亮灯？(用 Promse 实现)" key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.light}</Highlight>
                         </Space>

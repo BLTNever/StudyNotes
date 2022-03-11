@@ -17,7 +17,7 @@ const ReactNative = () => {
                         <Space direction="vertical">
                             <ul>
                                 <li>JSX和 StyleSheet 对象都会被统统被转化为ReactElement 对象</li>
-                                <li>在之后的Render部分，RN跟ReactDom的区别就出来了</li>
+                                <li>在之后的Render部分,RN跟ReactDom的区别就出来了</li>
                                 <li>render 函数里使用的View不同</li>
                                 <li>RN 使用的AppRegistry.registryComponents</li>
                             </ul>
@@ -96,23 +96,23 @@ const ReactNative = () => {
                 <Collapse ghost>
                     <Panel header="RN架构: JS域、Native域、C++Bridge" key="1">
                         <ul>
-                            <li>JS域: JS域为单线程，使用的编程语言是JavaScript，JS代码运行在JavaScriptCore上。JS域主要负责实现APP的业务逻辑、并指定需要渲染的组件以及组件的布局</li>
-                            <li>Native域: Native域是一个多线程的环境，它有负责UI渲染的主UI线程，以及其他后台任务线程(包括运行JS代码的线程)，native域的主要作用是提供宿主环境，并负责UI渲染与交互。Android主要是Java和Kotlin，iOS主要是OC和Swift</li>
-                            <li>C++Bridge: 主要负责JS域与Native域的通信，而通信则是指JS与Java、OC等语言之间的相互调用</li>
+                            <li>JS域: JS域为单线程,使用的编程语言是JavaScript,JS代码运行在JavaScriptCore上。JS域主要负责实现APP的业务逻辑、并指定需要渲染的组件以及组件的布局</li>
+                            <li>Native域: Native域是一个多线程的环境,它有负责UI渲染的主UI线程,以及其他后台任务线程(包括运行JS代码的线程),native域的主要作用是提供宿主环境,并负责UI渲染与交互。Android主要是Java和Kotlin,iOS主要是OC和Swift</li>
+                            <li>C++Bridge: 主要负责JS域与Native域的通信,而通信则是指JS与Java、OC等语言之间的相互调用</li>
                         </ul>
                     </Panel>
                     <Panel header="RN性能" key="2">
                         <ul>
                             <li>RN的性能瓶颈往往会出现在C++ Bridge上</li>
                             <li>所有跨语言的通信都需要通过C++ Bridge来完成, 数据必须序列化后才能通过。而数据的序列化与反序列化是非常耗时的</li>
-                            <li>为了构建一个高性能的RN APP，我们必须将C++桥上传递的数据量保持在最低限度</li>
+                            <li>为了构建一个高性能的RN APP,我们必须将C++桥上传递的数据量保持在最低限度</li>
                         </ul>
                     </Panel>
                     <Panel header="UI的异步更新" key="3">
-                        <Text>通过VirtualDOM的概念，结合diff算法，将JS侧对组件的更改批量、异步地发送到native侧</Text>
+                        <Text>通过VirtualDOM的概念,结合diff算法,将JS侧对组件的更改批量、异步地发送到native侧</Text>
                     </Panel>
                     <Panel header="UI的异步更新" key="3">
-                        <Text>通过VirtualDOM的概念，结合diff算法，将JS侧对组件的更改批量、异步地发送到native侧</Text>
+                        <Text>通过VirtualDOM的概念,结合diff算法,将JS侧对组件的更改批量、异步地发送到native侧</Text>
                     </Panel>
                 </Collapse>
             </Wrap>

@@ -18,7 +18,7 @@ function Promise(executor) {
         /** 为什么resolve加setTimeout?
          * 2.2.4规范 onFulfilled 和 onRejected 只允许在 execution context 栈仅包含平台代码时运行。
          * 这里的平台代码指的是引擎、环境以及 promise 的实施代码。
-         * 实践中要确保 onFulfilled 和 onRejected 方法异步执行，且应该在 then 方法被调用的那一轮事件循环之后的新执行栈中执行。
+         * 实践中要确保 onFulfilled 和 onRejected 方法异步执行,且应该在 then 方法被调用的那一轮事件循环之后的新执行栈中执行。
          */
         setTimeout(() => {
             // 由pending状态 => fulfilled状态 (避免调用多次resolve reject)
@@ -70,7 +70,7 @@ function Promise(executor) {
                 }, reason => {
                     reject(reason)
                 })
-            } else { // 如果x已经处于执行态/拒绝态(值已经被解析为普通值)，用相同的值执行传递下去 promise
+            } else { // 如果x已经处于执行态/拒绝态(值已经被解析为普通值),用相同的值执行传递下去 promise
                 x.then(resolve, reject)
             }
             // 如果x为对象或者函数

@@ -20,9 +20,9 @@ const Interview6 = () => {
                     <Panel header="基础" key="1">
                         <Space direction="vertical">
                             <Title level={4}>type和interface相同与不同</Title>
-                            <Text>interface表示funciton、object、class，type除了这么写类型，还可以表示其他类型</Text>
-                            <Text>interface可以合并同名接口，type不支持</Text>
-                            <Text>interface可以继承interface和type，使用extends关键字。type也可以继承interface和type，使用&符号</Text>
+                            <Text>interface表示funciton、object、class,type除了这么写类型,还可以表示其他类型</Text>
+                            <Text>interface可以合并同名接口,type不支持</Text>
+                            <Text>interface可以继承interface和type,使用extends关键字。type也可以继承interface和type,使用&符号</Text>
 
                             <Title level={4}>TS的优势</Title>
                             <Text mark>静态类型的优势: </Text>
@@ -44,7 +44,7 @@ const Interview6 = () => {
                     <Panel header="范性" key="2">
                         <Space direction="vertical">
                             <ul>
-                                <li><Text>范型不同于string,number等具体的类型，是一种抽象的类型</Text></li>
+                                <li><Text>范型不同于string,number等具体的类型,是一种抽象的类型</Text></li>
                                 <li><Text>范型就是对类型进行编程</Text></li>
                                 <li><Text> </Text></li>
                                 <li><Text></Text></li>

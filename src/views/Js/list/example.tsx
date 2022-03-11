@@ -194,7 +194,7 @@ var point = {
         this.y = this.y + this.y;
     }
 }
-point.moveTo(1, 2) // this绑定到当前对象，point上
+point.moveTo(1, 2) // this绑定到当前对象,point上
 `
 
 export const objectThis2 = `
@@ -218,9 +218,9 @@ a.fn(3,2);
 console.log(a.aa); // 3, this指向对象本身
 console.log(b.fn()); // 0, this指向对象本身
 
-(function(aa){ // 传入的是函数，而不是函数执行的结果
+(function(aa){ // 传入的是函数,而不是函数执行的结果
     var c = aa();
-    console.log(c); // 1, 由于fn在该处执行，导致this不再指向对象本身，而是指向window
+    console.log(c); // 1, 由于fn在该处执行,导致this不再指向对象本身,而是指向window
 })(b.fn);
 `
 
@@ -423,7 +423,7 @@ hello.say();
 `
 
 export const example2 = `
-(1) 把对象封装到模块中，文件名为:  Say.js
+(1) 把对象封装到模块中,文件名为:  Say.js
 //私有变量
 var test = 110;
  
@@ -464,7 +464,7 @@ import {area,circumference} from './compute';
 console.log('圆面积: ' + area(10));
 console.log('圆周长: ' + circumference(11));
 
-// 也可以使用 * 制定一个对象， 实现模块整体加载
+// 也可以使用 * 制定一个对象, 实现模块整体加载
 import * as circle from './compute';
 console.log('圆面积: ' + circle.area(10));
 console.log('圆周长: ' + circle.circumference(11));
@@ -482,7 +482,7 @@ export function circumference(radius) {
   return 2 * Math.PI * radius;
 }4
 
-(2) 在其他文件中引入这个模块并调用。注意: 对于 export default 指定模块的默认输出，import 语句不需要使用大括号。
+(2) 在其他文件中引入这个模块并调用。注意: 对于 export default 指定模块的默认输出,import 语句不需要使用大括号。
 import area, { circumference } from './compute';
 console.log('圆面积: ' + area(10));
 console.log('圆周长: ' + circumference(11));
@@ -614,7 +614,7 @@ export const UMD = `
 export const bitNot = `~0000000000000000 => 0000000000001001
 -------取反
 ~1111111111111111 => 1111111111110110
--------符号位不变，其余取反
+-------符号位不变,其余取反
 ~1000000000000000 => 0000000000001001
 -------加1
 ~1000000000000000 => 0000000000001010`;

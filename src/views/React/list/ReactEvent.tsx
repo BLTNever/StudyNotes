@@ -20,9 +20,9 @@ const ReactEvent = () => (
             <Collapse ghost>
                 <Panel header="表象理解" key="1">
                     <Space direction="vertical">
-                        <Text>react自身实现了一套自己的事件机制，包括事件注册、事件合成、事件冒泡、事件派发，基于浏览器的事件机制下完成</Text>
-                        <Text>react事件没有绑定到具体的dom节点上，而是绑定在document上，基于浏览器的冒泡事件机制统一在document上触发</Text>
-                        <Text>原生事件由于合成事件执行， 在合成事件内阻止冒泡只是阻止合成事件</Text>
+                        <Text>react自身实现了一套自己的事件机制,包括事件注册、事件合成、事件冒泡、事件派发,基于浏览器的事件机制下完成</Text>
+                        <Text>react事件没有绑定到具体的dom节点上,而是绑定在document上,基于浏览器的冒泡事件机制统一在document上触发</Text>
+                        <Text>原生事件由于合成事件执行, 在合成事件内阻止冒泡只是阻止合成事件</Text>
                         <ul>
                             <li>原生事件(阻止冒泡)会阻止合成事件的执行</li>
                             <li>合成事件(阻止冒泡)不会阻止原生事件执行</li>
@@ -30,8 +30,8 @@ const ReactEvent = () => (
 
                         <Card title="意义">
                             <ul>
-                                <li>1. 减少内存消耗，提升性能，不需要注册那么多事件，每种注事件类型只在document上注册一次</li>
-                                <li>2. 统一规范，解决ie兼容性问题，简化事件逻辑</li>
+                                <li>1. 减少内存消耗,提升性能,不需要注册那么多事件,每种注事件类型只在document上注册一次</li>
+                                <li>2. 统一规范,解决ie兼容性问题,简化事件逻辑</li>
                                 <li>3. 对开发者友好</li>
                             </ul>
                         </Card>
@@ -47,8 +47,8 @@ const ReactEvent = () => (
                         </ul>
 
                         <Card title="原生事件封装">
-                            <Text>SyntheticEvent是react合成事件的基类，定义了合成事件的基础公共方法</Text>
-                            <Text>根据事件类型不同使用不同的合成事件对象。例如鼠标单击事件-SyntheticMouseEvent，焦点事件-SyntheticFocusEvent等，这些都继承于SyntheticEvent</Text>
+                            <Text>SyntheticEvent是react合成事件的基类,定义了合成事件的基础公共方法</Text>
+                            <Text>根据事件类型不同使用不同的合成事件对象。例如鼠标单击事件-SyntheticMouseEvent,焦点事件-SyntheticFocusEvent等,这些都继承于SyntheticEvent</Text>
                         </Card>
 
                         <Card title="原生事件的升级和改造">
@@ -69,8 +69,8 @@ const ReactEvent = () => (
                 <Panel header="流程" key="1">
                     <Space direction="vertical">
                         <ul>
-                            <li>事件注册 - 组件挂载阶段，根据组件内声明的事件类型 onChange、onClick、等，给document上添加事件 addEventListener，并指定统一的事件处理程序dispatchEvent</li>
-                            <li>事件储存 - 把react组件内的所有事件统一存放到一个对象里，缓存起来，在触发事件的时候查找对应的方法去执行</li>
+                            <li>事件注册 - 组件挂载阶段,根据组件内声明的事件类型 onChange、onClick、等,给document上添加事件 addEventListener,并指定统一的事件处理程序dispatchEvent</li>
+                            <li>事件储存 - 把react组件内的所有事件统一存放到一个对象里,缓存起来,在触发事件的时候查找对应的方法去执行</li>
                         </ul>
                         <Card>
                             <PreviewImg src={ReactEventImg} />
@@ -80,12 +80,12 @@ const ReactEvent = () => (
                 </Panel>
                 <Panel header="关键步骤" key="2">
                     <Space direction="vertical">
-                        <Text>react拿到将要挂载组件的虚拟dom(react element对象)，然后处理react dom的props，判断属性内是否有声明为事件的属性</Text>
-                        <Text>例如onClick、onChange，拿到事件类型click、change和对应的事件处理程序fn。执行下面第三部</Text>
+                        <Text>react拿到将要挂载组件的虚拟dom(react element对象),然后处理react dom的props,判断属性内是否有声明为事件的属性</Text>
+                        <Text>例如onClick、onChange,拿到事件类型click、change和对应的事件处理程序fn。执行下面第三部</Text>
                         <ul>
                             <li>1. 完成事件注册</li>
-                            <li>2. 将react dom，事件类型，处理函数fn放到数组储存</li>
-                            <li>3. 组件挂载完成后，处理第2步生成的数组，便利该数组把事件处理函数存储到listenerBrank对象中</li>
+                            <li>2. 将react dom,事件类型,处理函数fn放到数组储存</li>
+                            <li>3. 组件挂载完成后,处理第2步生成的数组,便利该数组把事件处理函数存储到listenerBrank对象中</li>
                         </ul>
                         <Card>
                             <PreviewImg src={ReactEventImg2} />

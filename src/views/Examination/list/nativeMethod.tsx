@@ -41,16 +41,16 @@ const NativeMethod = () => {
                     <Panel header="new函数" key="6">
                         <Space direction="vertical">
                             <Text>创建一个全新的对象</Text>
-                            <Text>对象执行[[prototype]]链接，将这个新对象的[[prototype]]链接到这个构造函数.prototype所指的对象</Text>
+                            <Text>对象执行[[prototype]]链接,将这个新对象的[[prototype]]链接到这个构造函数.prototype所指的对象</Text>
                             <Text>这个新对象会绑定到函数调用的this</Text>
-                            <Text>函数如果没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象</Text>
+                            <Text>函数如果没有返回其他对象,那么new表达式中的函数调用会自动返回这个新对象</Text>
                             <Highlight language="javascript">{eg.createNew}</Highlight>
                         </Space>
                     </Panel>
                     <Panel header="instanceof(测构造函数的 prototype 属性是否出现在某个实例对象的原型链上)" key="8">
                         <Space direction="vertical">
-                            <Text>instanceof 用于判断左侧值是否是右侧值的实例，所以左侧必须是一个对象，而右侧是一个类</Text>
-                            <Text>instanceof 会查找原型链，知道 null 之前如果还不是这个对象的实例则会返回 false，否则返回 true</Text>
+                            <Text>instanceof 用于判断左侧值是否是右侧值的实例,所以左侧必须是一个对象,而右侧是一个类</Text>
+                            <Text>instanceof 会查找原型链,知道 null 之前如果还不是这个对象的实例则会返回 false,否则返回 true</Text>
                             <Highlight language="javascript">{eg._instanceof}</Highlight>
                         </Space>
                     </Panel>

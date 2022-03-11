@@ -45,7 +45,7 @@ function createTree(list: any) {
                     children: [],
                 }
             }
-            mapper[item.parentId].children.push(item) // 找到mapper存在key为parentId的元素，在children里push当前的元素
+            mapper[item.parentId].children.push(item) // 找到mapper存在key为parentId的元素,在children里push当前的元素
         }
     }
     return ans
@@ -88,10 +88,10 @@ function listToTree(list: any[], pId?: number): any {
 
 export const findShortSubArray = `
 /**
- *  1.用哈希表去记录每个元素出现的次数，用元素的值做key, value存储[值第一次出现的下标start，值最后出现的下标end， 出现的次数count]
- *  2.遍历这个哈希表的值，出现的次数大于max值的时候，重新给max值赋值，记录min最短长度为当前值的end下标 - start下标
- *  3.如果count === max值，对比已存在的min值和当前的end - start值，找出最短长度
- *  4.数组下标从0开始，return的min值+1
+ *  1.用哈希表去记录每个元素出现的次数,用元素的值做key, value存储[值第一次出现的下标start,值最后出现的下标end, 出现的次数count]
+ *  2.遍历这个哈希表的值,出现的次数大于max值的时候,重新给max值赋值,记录min最短长度为当前值的end下标 - start下标
+ *  3.如果count === max值,对比已存在的min值和当前的end - start值,找出最短长度
+ *  4.数组下标从0开始,return的min值+1
  * @param nums 
  * @returns 
  */
@@ -117,7 +117,7 @@ function findSubArray(nums: number[]) {
     }
     return minLen + 1
 }
-// 一次遍历，
+// 一次遍历,
 function findSubArray(nums) {
     let map = {}
     let max = 0
@@ -142,9 +142,9 @@ function findSubArray(nums) {
 
 export const MyHashSet = `
 /**
- * 不能使用 Obeject、Map、Set的前提下，使用Array模拟
- * 也不能使用indexOf, inCludes 前提下，遍历模拟
- * 为了尽可能避免冲突，应当将 BASE 取为一个质数
+ * 不能使用 Obeject、Map、Set的前提下,使用Array模拟
+ * 也不能使用indexOf, inCludes 前提下,遍历模拟
+ * 为了尽可能避免冲突,应当将 BASE 取为一个质数
  */
 class MyHashSet {
     private BASE = 769
@@ -357,5 +357,23 @@ class LRUCache {
         this.hashMap.set(key, value)
         return value
     }
+}`
 
+export const findJudge = `
+/**
+ * 1. 小镇的法官不相信任何人。             => 法官不会出现在 trust[i][0]
+ * 2. 每个人（除了小镇法官外）             => n - 1个人相信法官
+ * 3. 只有一个人同时满足条件 1 和条件 2     => 这个人是法官
+ */
+function findJudge(n: number, trust: number[][]) {
+    let A = Array(n).fill(0)           // 信任他人的人。 小镇居民，不包含法官
+    let B = Array(n).fill(0)           // 被信任的人。 包含法官或小镇居民
+    for (let [a, b] of trust) {
+        A[a - 1]++
+        B[b - 1]++
+    }
+    for (let i = 0; i < n; i++) {     // 法官不会出现在 A 队列， 同时信任他的人为 n - 1个，满足着2个条件
+        if (A[i] === 0 && B[i] === n - 1) return i + 1
+    }
+    return -1
 }`

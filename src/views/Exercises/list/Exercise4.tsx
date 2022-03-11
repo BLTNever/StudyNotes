@@ -18,7 +18,7 @@ const Exercise4 = () => (
                         <h4>new操作符的原理</h4>
                         <p>1. 创建了一个临时对象: obj = new Object()</p>
                         <p>2. 设置原型链: obj.__proto__ = Fn.prototype</p>
-                        <p>3. 将构造函数中的 this指向临时对象，并传入参数: Fn.call(obj, arguments)</p>
+                        <p>3. 将构造函数中的 this指向临时对象,并传入参数: Fn.call(obj, arguments)</p>
                         <p>4. 返回临时对象: return obj</p>
                         <Highlight>{createNew}</Highlight>
                         <Highlight>{createNew2}</Highlight>

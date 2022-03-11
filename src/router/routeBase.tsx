@@ -16,6 +16,7 @@ export const Async = lazy(() => import(/* webpackChunkName: "Async" */'@views/Js
 export const Prototype = lazy(() => import(/* webpackChunkName: "Prototype" */'@views/Js/list/Prototype'))
 export const Modules = lazy(() => import(/* webpackChunkName: "Modules" */'@views/Js/list/Modules'))
 export const Reg = lazy(() => import(/* webpackChunkName: "Reg" */'@views/Js/list/Reg'))
+export const Reference = lazy(() => import(/* webpackChunkName: "Reference" */'@views/Js/list/Reference'))
 
 
 // React 

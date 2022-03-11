@@ -13,7 +13,7 @@ function stepOne(filename) {
     const content = fs.readFileSync(filename, 'utf-8')
     // 将文件内容通过parse转成 AST 语法树
     const ast = parser.parse(content, {
-        source: 'module' // babel官方规定必须加这个参数，不然无法识别ES Module
+        source: 'module' // babel官方规定必须加这个参数,不然无法识别ES Module
     })
     let dependencies = {}
     // 遍历 AST 语法树
@@ -41,12 +41,12 @@ export const relyGraph = `
 // entry为入口文件
 function stepTwo(entry) {
     const entryModule = stepOne(entry)
-    // 这个数组是核心，虽然现在只有一个元素，往后看你就会明白
+    // 这个数组是核心,虽然现在只有一个元素,往后看你就会明白
     const graphArray = [entryModule]
     for (let item of graphArray) {
         const { dependencies } = item; // 拿到文件所依赖的模块集合(键值对存储)
         for (let j in dependencies) {
-            graphArray.push(stepOne(dependencies[j]))// 敲黑板！关键代码，目的是将入口模块及其所有相关的模块放入数组
+            graphArray.push(stepOne(dependencies[j]))// 敲黑板！关键代码,目的是将入口模块及其所有相关的模块放入数组
         }
     }
     // 接下来生成图谱
@@ -61,13 +61,13 @@ function stepTwo(entry) {
 }
 `
 export const parseCode = `
-// 下面是生成代码字符串的操作，仔细看，不要眨眼睛哦！
+// 下面是生成代码字符串的操作,仔细看,不要眨眼睛哦！
 function step3(entry) {
-    // 要先把对象转换为字符串，不然在下面的模板字符串中会默认调取对象的toString方法，参数变成[Object object],显然不行
+    // 要先把对象转换为字符串,不然在下面的模板字符串中会默认调取对象的toString方法,参数变成[Object object],显然不行
     const graph = JSON.stringify(stepTwo(entry))
     return \`
         (function(graph) {
-            // require函数的本质是执行一个模块的代码，然后将相应变量挂载到exports对象上
+            // require函数的本质是执行一个模块的代码,然后将相应变量挂载到exports对象上
             function require(module) {
                 // localRequire的本质是拿到依赖包的exports变量
                 function localRequire(relativePath) {
@@ -77,7 +77,7 @@ function step3(entry) {
                 (function(require, exports, code) {
                     eval(code);
                 })(localRequire, exports, graph[module].code);
-                return exports;// 函数返回指向局部变量，形成闭包，exports变量在函数执行后不会被摧毁
+                return exports;// 函数返回指向局部变量,形成闭包,exports变量在函数执行后不会被摧毁
             }
             require('\${entry}')
         })($\{graph})\`

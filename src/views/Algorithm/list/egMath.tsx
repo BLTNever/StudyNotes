@@ -15,7 +15,7 @@ function reverse(x) {
 export const isPalindrome = `
 function isPalindrome(x) {
     if (x < 0) return false
-    // 字符串解法， 数学解法暂缓
+    // 字符串解法, 数学解法暂缓
     return String(x) === String(x).split('').reverse().join('')
 }
 `
@@ -55,11 +55,11 @@ function plusOne(digits: number[]) {
     const len = digits.length
     for (let i = len - 1; i >= 0; i--) {
         digits[i]++         // 从末位开始 + 1
-        digits[i] %= 10     // digits[i]取余， 看是否为0，如果为0 往左一位继续 +1 直到 +1位不为0 无进位为止
+        digits[i] %= 10     // digits[i]取余, 看是否为0,如果为0 往左一位继续 +1 直到 +1位不为0 无进位为止
         if (digits[i] !== 0) return digits // +1后 无进位 返回
     }
     // return  Array(len + 1).fill(1).fill(0, 1)
-    return [1, ...Array(len).fill(0)]  // 如果digits都为0 有进位，len + 1 第一位为0
+    return [1, ...Array(len).fill(0)]  // 如果digits都为0 有进位,len + 1 第一位为0
 }
 `
 export const mySqrt = `
@@ -71,20 +71,20 @@ function mySqrt(x: number) {
     let r = x                           // 整数x的平方根一定是在1到x的范围内
     while (l <= r) {                    // 循环条件为left <= right,终止为left > right
         let mid = l + (r - l >> 1)      // 取这个范围内的中间数字 mid 去判断  
-        if (mid * mid <= x) {           // 如果 mid 的平方小于x, 说明 x 的平方根比 mid 大， 从mid + 1 ～ r范围查找
+        if (mid * mid <= x) {           // 如果 mid 的平方小于x, 说明 x 的平方根比 mid 大, 从mid + 1 ～ r范围查找
             l = mid + 1
         } else {
-            r = mid - 1                 // 如果 mid 的平方大于x, 说明 x 的平方根比 mid 小， 从l ~ min - 1范围查找
+            r = mid - 1                 // 如果 mid 的平方大于x, 说明 x 的平方根比 mid 小, 从l ~ min - 1范围查找
         }
     }
-    return r                            // 由于left可能越界，优先返回right
+    return r                            // 由于left可能越界,优先返回right
 }
 `
 
 export const isThree = `
 /**
  * 除了自身和1 只有一个能被整除的整数只能是开平方为整数
- * 循环判断取余，除数 大于3就返回false
+ * 循环判断取余,除数 大于3就返回false
  * @param n 
  * @returns 
  */
@@ -117,10 +117,10 @@ export const divide = `
 function divide(a: number, b: number) {
     const min = -Math.pow(2, 31)            // 定义边界值
     const max = Math.pow(2, 31) - 1
-    if (a <= min && b === -1) return max    // a为最小值， b 为 -1 的时候 a / b 为最大值
-    if (a <= min && b === 1) return min     // a为最小值， b 为 1 的时候 a / b 为最小值
+    if (a <= min && b === -1) return max    // a为最小值, b 为 -1 的时候 a / b 为最大值
+    if (a <= min && b === 1) return min     // a为最小值, b 为 1 的时候 a / b 为最小值
 
-    // 判断符号， 同号为正，异号为负
+    // 判断符号, 同号为正,异号为负
     const sign = (a > 0 && b < 0) || (a < 0 && b > 0) ? -1 : 1
     // 取正
     a = Math.abs(a)
@@ -133,8 +133,8 @@ function divide(a: number, b: number) {
     //     ans++
     // }
     for (let i = 31; i >= 0; i--) {
-        // 使用a >>> i代替a >> i，是为了防止a是最小值的情况
-        // a >>> i >= b 由 a >= b << i 转化而来，为了防止 b << i 容易超出范围
+        // 使用a >>> i代替a >> i,是为了防止a是最小值的情况
+        // a >>> i >= b 由 a >= b << i 转化而来,为了防止 b << i 容易超出范围
         if ((a >>> i) >= b) {
             a -= (b << i)
             ans += (1 << i)
@@ -188,7 +188,7 @@ function nSum(nums: number[], target: number) {
                 helper(i + 1, N - 1, [nums[i], ...temp])
                 continue
             }
-            // 当走到这里的时候，相当于在求「三数之和」了
+            // 当走到这里的时候,相当于在求「三数之和」了
             // temp 数组在这里只是把前面递归加入的数组算进来
             let left = i + 1
             let right = len - 1
@@ -229,7 +229,7 @@ function maxSubArray(nums: number[]) {
     let ans = nums[0]
     let pre = 0
     for (let n of nums) {
-        pre = Math.max(pre + n, n) // 若之前的和加上当前数，比当前数还小，那么舍弃之前的和，从当前数开始，重新计算和
+        pre = Math.max(pre + n, n) // 若之前的和加上当前数,比当前数还小,那么舍弃之前的和,从当前数开始,重新计算和
         ans = Math.max(ans, pre)
     }
     return ans

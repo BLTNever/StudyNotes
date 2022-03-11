@@ -98,7 +98,7 @@ export const reverseList = `
  */
 function reverseList (head) {
     if(!head || !head.next) return head
-    // 定义2个指针，pre在前cur在后
+    // 定义2个指针,pre在前cur在后
     // pre指向null cur 指向 head
     let cur = head
     let pre = null
@@ -118,9 +118,9 @@ function reverseList (head) {
  */
  function reverseList (head) {
     if(!head || !head.next) return head
-    let next = reverseList(head.next) // 递，最终拿到 next 是 5, 注意 此时 head 是 4 
-    head.next.next = head             // 归，4.next是5，4.next.next === 5.next，5.next指向了 4, 形成一个环 4 → 5， 5 → 4
-    head.next = null                  // head的next已经改变了指向，如果不断开之前的会造成死循环, 最后一个刚好指向null 
+    let next = reverseList(head.next) // 递,最终拿到 next 是 5, 注意 此时 head 是 4 
+    head.next.next = head             // 归,4.next是5,4.next.next === 5.next,5.next指向了 4, 形成一个环 4 → 5, 5 → 4
+    head.next = null                  // head的next已经改变了指向,如果不断开之前的会造成死循环, 最后一个刚好指向null 
 
     return next                       // 返回最后一个节点(一直被递归传递)
 }
@@ -149,8 +149,8 @@ function getIntersectionNode(headA: any, headB: any) {
     let A = headA
     let B = headB
     while (A !== B) {
-        A = A !== null ? A.next : headB;    // A 是否为null, 是-指针移动到下一个节点，否-指针指向 headB, 继续遍历
-        B = B !== null ? B.next : headA;    // B 是否为null, 是-指针移动到下一个节点，否-指针指向 headA, 继续遍历
+        A = A !== null ? A.next : headB;    // A 是否为null, 是-指针移动到下一个节点,否-指针指向 headB, 继续遍历
+        B = B !== null ? B.next : headA;    // B 是否为null, 是-指针移动到下一个节点,否-指针指向 headA, 继续遍历
     }
     return A
 }
@@ -183,7 +183,7 @@ export const deleteDuplicates = `
  */
  function deleteDuplicates(head: any) {
     if (!head) return head
-    let cur = head                      // 最后要返回头节点，所以要先保存head，后面的循环会改变head的位置
+    let cur = head                      // 最后要返回头节点,所以要先保存head,后面的循环会改变head的位置
     while (cur && cur.next) {           // 判断是否为cur跟cur.next是否为null就结束
         if (cur.val === cur.next.val) { // 如果cur.val等于下一个节点的val
             cur.next = cur.next.next    // 修改next指针的位置为next.next
@@ -196,10 +196,10 @@ export const deleteDuplicates = `
 `
 export const reverseKGroup = `
 function reverseList(start, end) {
-    let pre = start                 // start 目前指向 dummy 节点，dummy.next指向 head 头节点
+    let pre = start                 // start 目前指向 dummy 节点,dummy.next指向 head 头节点
     let cur = start.next            // cur 指向 head 头节点
     const first = cur               // ？？？ 先保存一下 cur 指针？指向 head?
-    // k === 3的情况下，反转 1 → 2 → 3的区间
+    // k === 3的情况下,反转 1 → 2 → 3的区间
     // end 传进来 end.next(3 → 4) 记下反转区块 后面的那个节点
     // 反转前 0(dummy、pre、start) → 1(cur、first、head) → 2 → 3 → 4(end)
     // 反转后 0 ← 1 ← 2 ← 3(pre、cur) ← 4(end)
@@ -236,15 +236,15 @@ function reverseKGroup(head, k) {
 
 export const reverseKGroup2 = `
 /**
- * 1. 创建一个新的 node 节点  hair， hair.next 指向 head
+ * 1. 创建一个新的 node 节点  hair, hair.next 指向 head
  * 2. 定义指针 pre 指向 hair
  * 3. 开始遍历 nodelist,  head指向null 中止
  * 4. 定义指针 tail 指向pre
- * 5. tail 从 head 开始移动到链表 k 长度的地方，如果移动中遇到 tail 为null, 证明已经结束 直接返回 hair.next
+ * 5. tail 从 head 开始移动到链表 k 长度的地方,如果移动中遇到 tail 为null, 证明已经结束 直接返回 hair.next
  * 6. 使用变量 next 记录当前 tail 指向在链表 k 长度的 .next 的指针
- * 7. 当前 head 指向 k 长度链表的 头部，tail指向 尾部
- * 8. 反转 k 长度的链表后，pre.next 重新指向 head, tail.next 指向暂存的变量next
- * 9. 移动 pre 指针到 tail，head 移动到 next 位置
+ * 7. 当前 head 指向 k 长度链表的 头部,tail指向 尾部
+ * 8. 反转 k 长度的链表后,pre.next 重新指向 head, tail.next 指向暂存的变量next
+ * 9. 移动 pre 指针到 tail,head 移动到 next 位置
  * 10. 移动 tail, 循环。。。
  * @param head 
  * @param k 
@@ -268,10 +268,10 @@ function reverseKGroup(head, k) {
     let pre = hair                             // 子链表链接回原链表的“首部”
 
     while (head) {
-        let tail = pre                         // tail 初始化在 hair 上，遍历移动到 k子链表 的尾部
+        let tail = pre                         // tail 初始化在 hair 上,遍历移动到 k子链表 的尾部
         for (let i = 0; i < k; ++i) {
             tail = tail.next
-            if (!tail) return hair.next        // tail移动为空说明 nodeList.lengt % k 不为0，不用翻转了 直接返回
+            if (!tail) return hair.next        // tail移动为空说明 nodeList.lengt % k 不为0,不用翻转了 直接返回
         }
         const next = tail.next;                //  暂存需要翻转的 子链表 的下一个节点(子链表链接回原链表的“尾部”)
         // !!!const next = tail.next; 记得加分号。不然 [head, tail] 就变成右值了
@@ -290,7 +290,7 @@ function reverseKGroup(head, k) {
 export const isPalindrome = `
 function isPalindrome(head: ListNode) {
     if (!head) return true
-    // 转数组，双指针判断， 时间复杂度 O(n) 空间复杂度 O(n)
+    // 转数组,双指针判断, 时间复杂度 O(n) 空间复杂度 O(n)
     let arr = []
     while (head) {
         if (head.val !== null) arr.push(head.val)
@@ -304,11 +304,11 @@ function isPalindrome(head: ListNode) {
     // 快慢指针 时间复杂度O(n),空间复杂度O(1)
     let slow = head
     let fast = head
-    while (fast && fast.next) {         // slow 走一步，fast走两步，slow 指向中间节点 or 中间节点后面一位
+    while (fast && fast.next) {         // slow 走一步,fast走两步,slow 指向中间节点 or 中间节点后面一位
         slow = slow.next
         fast = fast.next.next
     }
-    if (fast !== null) slow = slow.next // 如果是fast是奇数情况下，保证slow指向的是后半段起始节点，slow需再单独往后走一个
+    if (fast !== null) slow = slow.next // 如果是fast是奇数情况下,保证slow指向的是后半段起始节点,slow需再单独往后走一个
     let head2 = null
     while (slow) {                      // 翻转后半段链表 
         const next = slow.next
@@ -328,10 +328,10 @@ function isPalindrome(head: ListNode) {
 export const deleteNode = `
 function deleteNode(head: ListNode, val: any) {
     let dummy = new ListNode(0)         // 定义一个假节点
-    dummy.next = head                   // dummy.next 指向head,  从dummy的 下一个节点值开始对比， 刚好是从head 开始
+    dummy.next = head                   // dummy.next 指向head,  从dummy的 下一个节点值开始对比, 刚好是从head 开始
     let cur = dummy                     // 定义指针
     while (cur && cur.next) {           
-        if (cur.next.val === val) {     // 从头开始对比每个节点的值跟 val 是否相等，相等的话 把 next 指向 next.next
+        if (cur.next.val === val) {     // 从头开始对比每个节点的值跟 val 是否相等,相等的话 把 next 指向 next.next
             cur.next = cur.next.next
         }
         cur = cur.next
@@ -344,17 +344,17 @@ export const deleteDuplicates2 = `
 function deleteDuplicates(head: any) {
     if (!head) return head
     // 解法1
-    let dummy = new ListNode(0)                 // 头节点可能会被修改，创建一个哑节点保存链表
+    let dummy = new ListNode(0)                 // 头节点可能会被修改,创建一个哑节点保存链表
     dummy.next = head                           // 哑节点 next 指向 head
     let A = dummy                               // 当前指针
-    while (A.next && A.next.next) {             // next 节点存在， 同时 当 删除 next 后 要链接的 next.next的节点也存在
+    while (A.next && A.next.next) {             // next 节点存在, 同时 当 删除 next 后 要链接的 next.next的节点也存在
         if (A.next.val === A.next.next.val) {   // 值相等的情况下 
             let nextVal = A.next.val            // 把相同的值保存起来
             while (A.next && A.next.val === nextVal) {  // 直接删除后面链接中值等于这个值的节点
                 A.next = A.next.next
             }
         } else {
-            A = A.next                           // 相邻结点的值不相等，指针移动到next
+            A = A.next                           // 相邻结点的值不相等,指针移动到next
         }
     }
     return dummy.next
@@ -457,20 +457,20 @@ export const detectCycle = `
  * 环形入口节点到 fast指针与slow指针相遇节点 节点数为y
  * 从相遇节点 再到环形入口节点节点数为 z
  * 相遇时：slow指针走过的节点数为: x + y, fast指针走过的节点数为: x + y + n (y + z)
- * fast指针是一步走两个节点，slow指针一步走一个节点: (x + y) * 2 = x + y + n (y + z)
+ * fast指针是一步走两个节点,slow指针一步走一个节点: (x + y) * 2 = x + y + n (y + z)
  * 两边消掉一个(x+y): x + y = n (y + z)
  * 我们要求x : 那么公式就是 x = n (y + z) - y
  */
 function detectCycle(head: ListNode) {
     if (!head) return null
     // 快慢指针 时间复杂度O(n) 空间复杂度 O(1)
-    // 先判断是否是环形链表，是的话，把任意指针指回  head， 然后跟另外的指针同步前进，相遇的点就是 环形点
+    // 先判断是否是环形链表,是的话,把任意指针指回  head, 然后跟另外的指针同步前进,相遇的点就是 环形点
     let fast = head
     let slow = head
     while (fast && fast.next) {
         fast = fast.next.next
         slow = slow.next
-        if (fast === slow) {        // 快慢指针相遇，说明有环
+        if (fast === slow) {        // 快慢指针相遇,说明有环
             fast = head             // 任意指针指向头部
             while (fast !== slow) { // fast 和 slow 相遇
                 fast = fast.next
@@ -494,7 +494,7 @@ function detectCycle(head: ListNode) {
 
 export const partition = `
 function partition(head: ListNode, x: number) {
-    // 设定2个哨兵节点，后面挂载 大于等于或小于 x 的 node 节点
+    // 设定2个哨兵节点,后面挂载 大于等于或小于 x 的 node 节点
     // 然后把 A、B 两个链表拼接一起
     let A = new ListNode(0)
     const a = A
@@ -516,8 +516,8 @@ function partition(head: ListNode, x: number) {
 
     // Fiber链表解法
     // React Fiber: >= 目标值节点放入tag链表并从原链表删除。拼接原链表最后节点和tag
-    // Reconcile阶段: 找到所有 >= 目标值的节点，放入tag链表。记忆指针，可随时中断或继续迭代
-    // Commit阶段: 对tag链表中节点作影响性能的操作，如DOM。操作时机，先操作谁，可自定策略
+    // Reconcile阶段: 找到所有 >= 目标值的节点,放入tag链表。记忆指针,可随时中断或继续迭代
+    // Commit阶段: 对tag链表中节点作影响性能的操作,如DOM。操作时机,先操作谁,可自定策略
     // 好处: 长期占用主线程的分散的影响性能操作 → 可中断地收集tag集中到一起 → 自定优先级操作
     let dummy = new ListNode(0)
     let p = dummy
@@ -557,13 +557,13 @@ function reverseBetween1(head: ListNode, left: number, right: number) {
     // dummy(pre) → 1 → 2 → 3 → 4 → 5
     let pre = dummy
     // dummy → 1(pre) → 2 → 3 → 4 → 5 
-    for (let i = 0; i < left - 1; i++) {            // 走 left - 1 步，找到 left 位置节点前面一位的节点
+    for (let i = 0; i < left - 1; i++) {            // 走 left - 1 步,找到 left 位置节点前面一位的节点
         pre = pre.next
     }
     // dummy → 1(pre、rightNode) → 2 → 3 → 4 → 5 
     let rightNode = pre
     // dummy → 1(pre) → 2 → 3 → 4(rightNode) → 5 
-    for (let i = 0; i < right - left + 1; i++) {   // 走 right - left + 1 步，找到 right 节点
+    for (let i = 0; i < right - left + 1; i++) {   // 走 right - left + 1 步,找到 right 节点
         rightNode = rightNode.next
     }
     // 截取链表
@@ -624,13 +624,13 @@ export const copyRandomList = `
 function copyRandomList(head: ListNode) {
     let map = new Map()
     let cur = head
-    // 第一次遍历，复制各节点值，生成一个具有val属性的链表
+    // 第一次遍历,复制各节点值,生成一个具有val属性的链表
     while (cur) {
         map.set(cur, new Node(cur.val))
         cur = cur.next
     }
     cur = head
-    // 第二次遍历，复制连接关系，根据map映射关系，将random和next指针指向对应的节点或者null
+    // 第二次遍历,复制连接关系,根据map映射关系,将random和next指针指向对应的节点或者null
     while (cur) {
         map.get(cur).next = cur.next ? map.get(cur.next) : null
         map.get(cur).random = cur.random ? map.get(cur.random) : null
@@ -647,10 +647,10 @@ function copyRandomList(head: ListNode) {
  */
 function _copyRandomList(head: ListNode, map = new Map()) {
     if (!head) return null
-    if (!map.get(head)) {   // 如果当前map没有要找的head，新建一份
+    if (!map.get(head)) {   // 如果当前map没有要找的head,新建一份
         map.set(head, { val: head.val })
         Object.assign(      // 第二个作为第一个的新增参数
-            map.get(head),  // map.get(head)得到的其实就是新的head，所以下面的next和random属性就是为新的head增加的属性
+            map.get(head),  // map.get(head)得到的其实就是新的head,所以下面的next和random属性就是为新的head增加的属性
             {
                 next: _copyRandomList(head.next, map),
                 random: _copyRandomList(head.random, map)
@@ -667,7 +667,7 @@ function sortList(head: ListNode): ListNode {
     if (!head || !head.next) return head
     let slow = head                             // 定义快慢指针 找到中间的节点
     let fast = head
-    while (fast && fast.next) {                // 快指针一次2步，慢指针一次1步
+    while (fast && fast.next) {                // 快指针一次2步,慢指针一次1步
         slow = slow.next
         fast = fast.next
         if(fast.next) fast = fast.next
@@ -726,7 +726,7 @@ function merge(head1: ListNode, head2: ListNode) {
         }
         cur = cur.next
     }
-    if (A !== null) {              // 两条链表还有节点没合并完，直接合并过来
+    if (A !== null) {              // 两条链表还有节点没合并完,直接合并过来
         cur.next = A
     } else if (B !== null) {
         cur.next = B

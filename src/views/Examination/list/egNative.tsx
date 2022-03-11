@@ -61,7 +61,7 @@ function Son(name) {
 }
 var son1 = new Son('111')
 var son2 = new Son('222')
-// 所有基本属性独立，子实例拷贝了父类的内容，没办法通过修改父类来达到所有子实例同时更新
+// 所有基本属性独立,子实例拷贝了父类的内容,没办法通过修改父类来达到所有子实例同时更新
 `
 export const extend4 = `
 // 原型链继承
@@ -80,7 +80,7 @@ Son.prototype.constructor = Son
 
 var son1 = new Son()
 
-// 实现了方法共享，但是只要某一个实例进行了修改，所有属性都会变化
+// 实现了方法共享,但是只要某一个实例进行了修改,所有属性都会变化
 `
 
 export const extend5 = `
@@ -102,7 +102,7 @@ Son.prototype.constructor = Son
 var son1 = new Son()
 
 // 通过调用Parent.call和new Parent单独拷贝了一份父类构造函数里定义的属性和方法
-// 通过把父类的实例赋值给子类prototype，子类的实例对象就可以共享父类原型上定义的属性和方法
+// 通过把父类的实例赋值给子类prototype,子类的实例对象就可以共享父类原型上定义的属性和方法
 `
 
 export const extend6 = `
@@ -119,7 +119,7 @@ var son1 = Object.create(Obj)
 var son2 = Object.create(Obj)
 
 
-// 通过Object.create(Obj),以Obj为原型构造对象，寄生式继承不需要构造函数，通过原型链继承共享了属性跟方法
+// 通过Object.create(Obj),以Obj为原型构造对象,寄生式继承不需要构造函数,通过原型链继承共享了属性跟方法
 `
 
 
@@ -146,7 +146,7 @@ var son2 = new Son('2222')
 
 
 // 使用Son.prototype = Object.create(Parent.prototype)代替 new Parent()
-// 通过创建一个新对象，然后赋值给Son.prototype，所以Son的原型最终指向就是父类的原型对象
+// 通过创建一个新对象,然后赋值给Son.prototype,所以Son的原型最终指向就是父类的原型对象
 `
 
 export const _extend = `
@@ -172,7 +172,7 @@ function createNew(constructor, ...args) {
 
     const ret = constructor.call(obj, ..args) // 将构造函数的作用域指向这个新对象
 
-    return ret instanceof Object ? ret : obj // 无返回值或者非对象值，将obj作为新对象返回
+    return ret instanceof Object ? ret : obj // 无返回值或者非对象值,将obj作为新对象返回
 }
 
 function createNew2() {
@@ -209,7 +209,7 @@ function _instanceof(left: any, right: any): any {
     while (true) {
         if (!proto) return false;
         if (proto === prototype) return true;
-        // 如果没有找到，就继续从其原型上找，Object.getPrototypeOf方法用来获取指定对象的原型
+        // 如果没有找到,就继续从其原型上找,Object.getPrototypeOf方法用来获取指定对象的原型
         proto = Object.getPrototypeOf(proto);
     }
     // 实现2:
@@ -253,7 +253,7 @@ const ajax = {
     },
     post: function(url, data, fn) {
         let xhr = new XMLHttpRequest()
-        // opent(method, url, async) merhod:请求方法， url: 地址， async: 请求是异步还是同步处理
+        // opent(method, url, async) merhod:请求方法, url: 地址, async: 请求是异步还是同步处理
         xhr.open('POST', url, true)
         // Content-Type: text/* 开头(html、text、plain), application/*开头(json、x-www-form-form-urlencoded), multipart/form-data文件上传
         xhr.setRequestHeader('Content-Type', 'application/json')
@@ -437,7 +437,7 @@ function PromiseAll(arr: any[]) {
         if (!Array.isArray(arr)) reject(new Error('not array'))
         let res: any[] = []
         let count = 0
-        for (let i = 0; i < arr.length; i++) {      // 使用 for 循环，根据下标去存返回值，保证返回值顺序和执行顺序保持一致
+        for (let i = 0; i < arr.length; i++) {      // 使用 for 循环,根据下标去存返回值,保证返回值顺序和执行顺序保持一致
             // Promise.resolve() 会把里面的返回值包裹成 Promise对象 
             Promise.resolve(arr[i]).then(value => {
                 count++
@@ -544,7 +544,7 @@ function _objectAssign(target: any, ...sources: any) {
         console.log('target>>>', target)
         console.log('source>>>', target)
         console.log('symbol>>>', Object.getOwnPropertySymbols(source))
-        // Object.defineProperties在一个对象上定义一个或多个新的属性或修改现有属性，并返回该对象
+        // Object.defineProperties在一个对象上定义一个或多个新的属性或修改现有属性,并返回该对象
         // Object.getOwnPropertyDescriptors所指定对象的所有自身属性的描述符|| {}
         Object.defineProperties(target, Object.getOwnPropertyDescriptors(source))
         // Object.getOwnPropertySymbols 方法返回一个给定对象自身的所有 Symbol 属性的数组
@@ -580,7 +580,7 @@ String.prototype._trim = function(s:string) {
 `
 export const gen = `
 /**
- * 生成器函数根据yield语句将代码分割为switch-case块，后续通过切换_context.prev和_context.next来分别执行各个case
+ * 生成器函数根据yield语句将代码分割为switch-case块,后续通过切换_context.prev和_context.next来分别执行各个case
  * @param _context 
  * @returns 
  */
@@ -671,7 +671,7 @@ function flat(arr, depth = 1) {
     let stock = arr.map(item => ([item, depth]))
 
     while(stock.length) {
-        // shift比pop慢，因为一旦删除第一个元素，它还需要将所有元素向左移。
+        // shift比pop慢,因为一旦删除第一个元素,它还需要将所有元素向左移。
         const [top, dep] = stock.pop()
 
         if(Array.isArray(top) && dep) {

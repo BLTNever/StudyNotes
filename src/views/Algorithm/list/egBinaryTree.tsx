@@ -23,9 +23,9 @@ function preorderTraversal(root: any) {
  * 前序遍历:  根 左 右
  * 压栈顺序: 初始化将 root 压入stack栈
  * → 从stack栈顶取出 root
- * → 将root的val压入result栈，node的 right、left 压入stack栈 (这样保证取出的顺序是 left、right)
+ * → 将root的val压入result栈,node的 right、left 压入stack栈 (这样保证取出的顺序是 left、right)
  * → 压入result栈的顺序是根 左 右
- * → 下一轮从 stack 栈顶取出的是 left ，val压入result栈 ...循环执行。 
+ * → 下一轮从 stack 栈顶取出的是 left ,val压入result栈 ...循环执行。 
  * @param root 
  */
 function _preorderTraversal(root: any) {
@@ -34,9 +34,9 @@ function _preorderTraversal(root: any) {
     let stack = []
     stack.push(root) // 将跟元素压入栈中
     while (stack?.length) {
-        const node = stack.pop()             // 当 stack 栈中有数据时，从栈顶部取出数据
-        result.push(node.val)                // 将从 stack 栈中取出的数据，压入 result 栈
-        node.right && stack.push(node.right) // 因为栈时先进后出，所以先压入右子树
+        const node = stack.pop()             // 当 stack 栈中有数据时,从栈顶部取出数据
+        result.push(node.val)                // 将从 stack 栈中取出的数据,压入 result 栈
+        node.right && stack.push(node.right) // 因为栈时先进后出,所以先压入右子树
         node.left && stack.push(node.left)
     }
     return result
@@ -45,11 +45,11 @@ function _preorderTraversal(root: any) {
 
 export const inorderTraversal = `
 /**
- * 二叉树中序遍历(深度优先遍历)， 递归
+ * 二叉树中序遍历(深度优先遍历), 递归
  * 1. 左子树
  * 2. 中根节点
  * 3. 右子树
- * 4. 无论是前、中、后序遍历，都是先访问根节点，再访问它的左子树，再访问它的右子树
+ * 4. 无论是前、中、后序遍历,都是先访问根节点,再访问它的左子树,再访问它的右子树
  * @param root 
  */
 function inorderTraversal(root: any) {
@@ -64,14 +64,14 @@ function inorderTraversal(root: any) {
     return result
 }
 /**
- * 二叉树中序遍历(深度优先遍历)， 循环
+ * 二叉树中序遍历(深度优先遍历), 循环
  * 1. 先处理左子树 压入栈中
  * 2. 中根节点
  * 3. 右子树
  * 中序遍历:  左 根 右
- * 压栈顺序:  → root存在。将root跟最底层left压入stack栈， 
- *           → 从stack栈顶取出left push到result栈，取出left的root push到result栈
- *           → 压入root的right到stack栈，取出 压入到result栈
+ * 压栈顺序:  → root存在。将root跟最底层left压入stack栈, 
+ *           → 从stack栈顶取出left push到result栈,取出left的root push到result栈
+ *           → 压入root的right到stack栈,取出 压入到result栈
  * @param root 
  */
 function _inorderTraversal(root: any) {
@@ -79,13 +79,13 @@ function _inorderTraversal(root: any) {
     let result = []
     let stack = []
     while (root || stack?.length) {
-        while (root) {              // 只要节点有左子节点，就一路向左走到底并压入栈
+        while (root) {              // 只要节点有左子节点,就一路向左走到底并压入栈
             stack.push(root)        // 将访问的节点依次压进栈
             root = root.left        // 指针指向左子树
         }
         const node = stack.pop()    // 从栈顶取出来要处理的数据
         result.push(node.val)       // push到result
-        root = node.right           // 每一个加入到result的元素都要看一下它是否有右结果，如果有右结点，还是要入栈
+        root = node.right           // 每一个加入到result的元素都要看一下它是否有右结果,如果有右结点,还是要入栈
     }
     return result
 }
@@ -99,9 +99,9 @@ function _inorderTraversal(root: TreeNode) {
     }
     while (stack.length) {
         const node = stack.pop() // 栈顶的节点出栈
-        res.push(node.val)       // 在压入右子树之前，处理它的数值部分
+        res.push(node.val)       // 在压入右子树之前,处理它的数值部分
         node = node?.right       // 获取它的右子树
-        while (node) {           // 右子树存在，执行while循环
+        while (node) {           // 右子树存在,执行while循环
             stack.push(node)     // 压入当前root
             node = node.left     // 不断压入左子节点
         }
@@ -138,10 +138,10 @@ function postorderTraversal(root: any) {
  * 2. 右子树
  * 3. 根节点
  * 压栈顺序A:  → 根 压入stack栈 
- *           → stack栈顶取出 root根 ，root根的left、right 压入 stack栈顶，root根值 插入 result栈底
+ *           → stack栈顶取出 root根 ,root根的left、right 压入 stack栈顶,root根值 插入 result栈底
  *           → stack栈顶部取出 right, right根的left、right 压入 stack栈顶。 right根值 插入 result栈底 
  *           → stack栈顶部取出 left, left根的left、left 压入 stack栈顶。 left根值 插入 result栈底 ...(循环执行)
- *              从 result 栈底插入，所以此时栈中的顺序是左 右 根 ，符合后续遍历 左 右 根 的顺序
+ *              从 result 栈底插入,所以此时栈中的顺序是左 右 根 ,符合后续遍历 左 右 根 的顺序
  * 压栈顺序B:  → 根 压入stack栈 
  *           → stack栈顶取出 root根, root根值 压入 result栈顶, root根的left、right 压入 stack 栈顶
  *           → stack栈顶部取出 right, right根值 压入 result栈顶, right根的left、right 压入 stack 栈顶 
@@ -172,8 +172,8 @@ export const maxDepth = `
 /**
  * 二叉树最大深度
  * 定义一个ans 默认值0
- * 递归left跟right节点，每次递归 传进去depth + 1
- * 递归函数中 比较depth和ans，
+ * 递归left跟right节点,每次递归 传进去depth + 1
+ * 递归函数中 比较depth和ans,
  * @param root 
  */
 function maxDepth(root: any) {
@@ -226,7 +226,7 @@ function hasPathSum(root: any, sum: number): number | boolean | null {
     if (!root.left && !root.right) { // 是否递归到了叶子节点
         return sum === root.val     // sum -  叶子节点的值是否和最后传进来的sum相同
     }
-    // 未是叶子节点 就遍历 left right子树。直到叶子节点， 有一个树的叶子节点  被sum减到值为0
+    // 未是叶子节点 就遍历 left right子树。直到叶子节点, 有一个树的叶子节点  被sum减到值为0
     return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val)
 }
 `
@@ -234,7 +234,7 @@ function hasPathSum(root: any, sum: number): number | boolean | null {
 
 export const levelOrder = `
 /**
- * BFS，时间复杂度O(n),空间复杂度O(n)
+ * BFS,时间复杂度O(n),空间复杂度O(n)
  * 遍历每一层
  */
 function levelOrder(root: any) {
@@ -256,7 +256,7 @@ function levelOrder(root: any) {
     return res
 }
 /**
- * 递归，时间复杂度O(n),空间复杂度O(n)
+ * 递归,时间复杂度O(n),空间复杂度O(n)
  */
 function helper(node: any, result: any, depth: number) {
     if (!node) return
@@ -274,7 +274,7 @@ function levelOrder(root: any) {
 `
 export const isValidBST = `
 /**
- * 中序遍历遍历: 时间复杂度 : O(n)，空间复杂度 : O(n)
+ * 中序遍历遍历: 时间复杂度 : O(n),空间复杂度 : O(n)
  * 「中序遍历」得到的值构成的序列一定是升序的
  * 在中序遍历的时候检查当前节点的值是否大于前一个中序遍历到的节点的值即可
  */
@@ -295,7 +295,7 @@ function isValidBST(root: any) {
     }
 }
 /**
- * 递归: 时间复杂度 : O(n)，空间复杂度 : O(n)
+ * 递归: 时间复杂度 : O(n),空间复杂度 : O(n)
  * 递归比较 left right跟root值的大小
  */
 function helper(root: any, min: number, max: number): boolean {
@@ -309,14 +309,14 @@ function isValidBST(root: any) {
 
 export const sortedArrayToBST = `
 function sortedArrayToBST(nums: number[]): TreeNode | null {
-    // 解法1-时间复杂度: O(N), 空间复杂度: 每次递归都 copy 了 N 的 空间，因此空间复杂度为 O(N ^ 2)    
+    // 解法1-时间复杂度: O(N), 空间复杂度: 每次递归都 copy 了 N 的 空间,因此空间复杂度为 O(N ^ 2)    
     if (!nums.length) return null
     let mid = nums.length >> 1
     let root = new TreeNode(nums[mid])
     root.left = sortedArrayToBST(nums.slice(0, mid))
     root.right = sortedArrayToBST(nums.slice(mid + 1))
     return root
-    // 解法2-时间复杂度: O(N) ，空间复杂度: 由于是平衡二叉树，因此隐式调用栈的开销为 O(logN)
+    // 解法2-时间复杂度: O(N) ,空间复杂度: 由于是平衡二叉树,因此隐式调用栈的开销为 O(logN)
     const dfs = (nums: number[], left: any, right: any): TreeNode | null => {
         if (left > right) return null               // left > right证明没有可选的元素了
         const mid = left + ((right - left) >> 1)    // 取中间值
@@ -374,7 +374,7 @@ function isSameTree(p: any, q: any): boolean {
 
 export const preorder = `
 /**
- * 遍历、递归 - 时间复杂度O(n)，空间复杂度O(n)
+ * 遍历、递归 - 时间复杂度O(n),空间复杂度O(n)
  * @param root 
  * @returns 
  */

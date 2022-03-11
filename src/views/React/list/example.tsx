@@ -108,13 +108,13 @@ function memo(OldComponent) {
 export const _createStore = `
 /**
  * 
- * @param reducer:Fucntion 通过传入当前state、action，计算出下一个state， 返回出来
+ * @param reducer:Fucntion 通过传入当前state、action,计算出下一个state, 返回出来
  * @param preloadedState:any 默认state initial state
- * @param enhancer:Function  增加Store的功能，例如applyMiddleware()
+ * @param enhancer:Function  增加Store的功能,例如applyMiddleware()
  * @returns 
  */
 function createStore(reducer, preloadedState, enhancer) {
-    // 当第二个参数没有传preloadedState，而直接传function的话，就会直接把这个function当成enhancer
+    // 当第二个参数没有传preloadedState,而直接传function的话,就会直接把这个function当成enhancer
     if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
         enhancer = preloadedState
         preloadedState = undefined
@@ -125,7 +125,7 @@ function createStore(reducer, preloadedState, enhancer) {
         if (typeof enhancer !== 'function') {
             // ... throw new Error()
         }
-        // 如果第三个参数是(enhancer)函数也是我们的applyMiddleware，那就会直接返回这个
+        // 如果第三个参数是(enhancer)函数也是我们的applyMiddleware,那就会直接返回这个
         // 实际就是把createStore这件事在applyMiddleware里面做
         return enhancer(createStore)(reducer, preloadedState)
     }
@@ -136,7 +136,7 @@ function createStore(reducer, preloadedState, enhancer) {
 
     let currentReducer = reducer
     let currentState = preloadedState // 默认State
-    let currentListeners = [] // 储存订阅的回调函数， dispatch
+    let currentListeners = [] // 储存订阅的回调函数, dispatch
     let nextListeners = currentListeners
     let isDispatching = false
 
@@ -144,7 +144,7 @@ function createStore(reducer, preloadedState, enhancer) {
         return currentState
     }
 
-    // *这个函数的作用就是，如果发现nextListeners，nextListeners指向同一个堆栈的话，就浅复制一份，这样改nextListeners就不会改到currentListeners
+    // *这个函数的作用就是,如果发现nextListeners,nextListeners指向同一个堆栈的话,就浅复制一份,这样改nextListeners就不会改到currentListeners
     function ensureCanMutateNextListeners() {
         if (nextListeners === nextListeners) {
             nextListeners = currentListeners.slice()
@@ -170,7 +170,7 @@ function createStore(reducer, preloadedState, enhancer) {
             isSubscribed = false
 
             ensureCanMutateNextListeners()
-            // 没有移除的话，先找到位置，通过splice移除
+            // 没有移除的话,先找到位置,通过splice移除
             const index = nextListeners.indexOf(listener)
             nextListeners.splice(index, 1)
         }
@@ -183,7 +183,7 @@ function createStore(reducer, preloadedState, enhancer) {
         if (typeof action.type === 'undefined') {
             // ... throw new Error()
         }
-        // 防止多次dispatch请求同时改状态，一定是前面的dispatch结束之后，才dispatch下一个
+        // 防止多次dispatch请求同时改状态,一定是前面的dispatch结束之后,才dispatch下一个
         if (isDispatching) {
             // ... throw new Error()
         }
@@ -194,7 +194,7 @@ function createStore(reducer, preloadedState, enhancer) {
         } finally {
             isDispatching = false
         }
-        // 在dispatch的时候，又将nextListeners 赋值回currentListeners，
+        // 在dispatch的时候,又将nextListeners 赋值回currentListeners,
         const listeners = currentListeners = nextListeners
         for (let i = 0; i < listeners.length; i++) {
             const listener = listeners[i]
@@ -219,7 +219,7 @@ function compose(...fn) {
 
     const last = fn[fn.length - 1]
     const rest = fn.slice(0, -1)
-    // 用到了 reduceRight，因此执行顺序是从右到左
+    // 用到了 reduceRight,因此执行顺序是从右到左
     return (...args) => rest.reduceRight((composed, f) => f(composed), last(...args))
     // return fn.reduce((a, b) => (...args) => a(b(...args)))
 }
@@ -238,8 +238,8 @@ function applyMiddleware(...middlewares) {
             dispatch: (...args) => dispatch(...args)
         }
 
-        // 这边返回chain的一个数组，里面装的是wrapDispatchToAddLogging那一层，相当于先给
-        // middle剥了一层皮，也就是说
+        // 这边返回chain的一个数组,里面装的是wrapDispatchToAddLogging那一层,相当于先给
+        // middle剥了一层皮,也就是说
         // 接下来只需要开始传入dispatch就行
         // 相当于reducer
         chain = middlewares.map(middleware => middleware(middlewareAPI))
@@ -265,20 +265,20 @@ function _combineReducers(reducers) {
             finalReducers[key] = reducers[key]
         }
     }
-    // 根据key调用每个reducer，将他们的值合并在一起
+    // 根据key调用每个reducer,将他们的值合并在一起
     let hasChange = false
     const nextState = {}
     return function (state = [], action) {
         for (let key in finalReducers) {
-            // 第一步先获取目前的state[key]，所以说传入reducer的key === store的key
+            // 第一步先获取目前的state[key],所以说传入reducer的key === store的key
             const previousValue = state[key]
-            // 就用reducer[key]来处理，得到下一个状态
+            // 就用reducer[key]来处理,得到下一个状态
             const nextValue = reducers[key](previousValue, action)
             // 根据key更新store的值
             nextState[key] = nextValue;
             hasChange = hasChange || previousValue !== nextValue
         }
-        // 如果整个循环都没有被更新过，返回state
+        // 如果整个循环都没有被更新过,返回state
         return hasChange ? nextState : state
     }
 }
@@ -313,7 +313,7 @@ class Element {
             (!isNotEmptyObj(this.props) &&
                 ((isString(props) && [props]) || (isArray(props) && props))) ||
             [];
-        // 无论void后的表达式是什么，void操作符都会返回undefined
+        // 无论void后的表达式是什么,void操作符都会返回undefined
         this.key = props ? props.key : NOKEY;
 
         // 计算节点数
@@ -345,8 +345,8 @@ class Element {
         aryForEach(this.children, (child: any) => {
             const childDom =
                 child instanceof Element
-                    ? child.render() // 如果子节点也是虚拟DOM，递归构建DOM节点
-                    : document.createTextNode(child); // 如果字符串，只构建文本节点
+                    ? child.render() // 如果子节点也是虚拟DOM,递归构建DOM节点
+                    : document.createTextNode(child); // 如果字符串,只构建文本节点
             dom.appendChild(childDom);
         });
         return dom;

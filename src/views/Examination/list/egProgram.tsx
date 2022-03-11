@@ -164,7 +164,7 @@ class EventEmit {
         if (!(eventName in events)) {
             events[eventName] = new Map()
         }
-        // 已存在， callback当作key, 记录一下数量count
+        // 已存在, callback当作key, 记录一下数量count
         events[eventName].set(callback, (events[eventName].get(callback) || 0) + 1)
 
         return {
@@ -174,7 +174,7 @@ class EventEmit {
                     // count === 0 删掉callback
                     events[eventName].delate(callback)
                     if (!events[eventName].size) {
-                        // 如果删掉callback后，当前eventName为空，删掉这个元素
+                        // 如果删掉callback后,当前eventName为空,删掉这个元素
                         delete events[eventName]
                     }
                 } else {
@@ -200,11 +200,11 @@ class EventEmit {
 }
 `
 export const debounce = `
-// 函数防抖 —— 持续触发，只有在最后一次触发事件后延时执行
+// 函数防抖 —— 持续触发,只有在最后一次触发事件后延时执行
 function debounce(fn, delay) {
     let timer = null                    // 创建标记存放定时器的返回值
     return (...args) => {
-        if(timer) clearTimeout(timer)   // 用户操作后，再次操作，清掉定时器
+        if(timer) clearTimeout(timer)   // 用户操作后,再次操作,清掉定时器
         timer = setTimeout(() => {      // 创建一个新的定时器
             fn.apply(this, [...args])
         }, delay)
@@ -241,7 +241,7 @@ function debounce(fn, wait, option = { leading: false, trailing: true }) {
     return (...args) => {
         if (!timer && leading) fn.apply(this, args)     // 第一次执行 同时是立即执行的话
         else lastArgs = args                              // 否-记录一下参数
-        if(timer) clearTimeout(timer)                     // 延时执行并且有记录的参数数据，通过setTimeout执行
+        if(timer) clearTimeout(timer)                     // 延时执行并且有记录的参数数据,通过setTimeout执行
         timer = setTimeout(() => {
             if(trailing && lastArgs){
                 fn.apply(this, lastArgs)
@@ -295,12 +295,12 @@ function throttle(fn, interval) {
     let waiting = false                 // 通过闭包保存一个标记
     let lastArgs = null
     return (...args) =>{
-        if(!waiting) {                  // 进入后判断是否false，为true 就去记录一下输入的参数
-            waiting = true              // 标记改成 true，这样当持续操作的话，会阻止掉
+        if(!waiting) {                  // 进入后判断是否false,为true 就去记录一下输入的参数
+            waiting = true              // 标记改成 true,这样当持续操作的话,会阻止掉
             fn.apply(this, args)        // 需要刚开始操作就执行一次的话 需要调用fn一次
             setTimeout(() => {
                 if(lastArgs) fn.apply(this, lastArgs)
-                waiting = false         // setTimeou执行完，标记改成false， 意思可以进行一下轮的循环了
+                waiting = false         // setTimeou执行完,标记改成false, 意思可以进行一下轮的循环了
             }, interval)
         }else {
             lastArgs = args
@@ -473,7 +473,7 @@ function Promise(executor) {
         /** 为什么resolve加setTimeout?
          * 2.2.4规范 onFulfilled 和 onRejected 只允许在 execution context 栈仅包含平台代码时运行。
          * 这里的平台代码指的是引擎、环境以及 promise 的实施代码。
-         * 实践中要确保 onFulfilled 和 onRejected 方法异步执行，且应该在 then 方法被调用的那一轮事件循环之后的新执行栈中执行。
+         * 实践中要确保 onFulfilled 和 onRejected 方法异步执行,且应该在 then 方法被调用的那一轮事件循环之后的新执行栈中执行。
          */
         setTimeout(() => {
             // 由pending状态 => fulfilled状态 (避免调用多次resolve reject)
@@ -525,7 +525,7 @@ function Promise(executor) {
                 }, reason => {
                     reject(reason)
                 })
-            } else { // 如果x已经处于执行态/拒绝态(值已经被解析为普通值)，用相同的值执行传递下去 promise
+            } else { // 如果x已经处于执行态/拒绝态(值已经被解析为普通值),用相同的值执行传递下去 promise
                 x.then(resolve, reject)
             }
             // 如果x为对象或者函数
@@ -657,7 +657,7 @@ function curry(ans = 1) {
 curry(2, 3)(3, 5)(4)()
 `
 export const infinityCurry2 = `
-// 使用隐式调用的toString方法，但是注意 只有alert可以
+// 使用隐式调用的toString方法,但是注意 只有alert可以
 function curry(...rest) {
     let _args = [...rest]
     const add = (...args) => {
@@ -752,7 +752,7 @@ function flat(arr, depth = 1) {
     let stock = arr.map(item => ([item, depth]))
 
     while(stock.length) {
-        // shift比pop慢，因为一旦删除第一个元素，它还需要将所有元素向左移。
+        // shift比pop慢,因为一旦删除第一个元素,它还需要将所有元素向左移。
         const [top, dep] = stock.pop()
 
         if(Array.isArray(top) && dep) {
@@ -848,7 +848,7 @@ try {
 
 export const renderTemplate = ` 
 function render(template: string, data: any) {
-    // 字符串内声明 str 变量，拼接并用 str 拼接模板template，并 return str，使用with传入data
+    // 字符串内声明 str 变量,拼接并用 str 拼接模板template,并 return str,使用with传入data
     template = \`
       with(data){
         let str = '';
@@ -861,7 +861,7 @@ function render(template: string, data: any) {
         console.log(args)
         return '\${' + args[1] + '}'
     })
-    // 让js 语句可执行，删掉<% %> ，并在语句内部去拼接 str
+    // 让js 语句可执行,删掉<% %> ,并在语句内部去拼接 str
     template = template.replace(/<%(.+?)%>/g, (...args) => {
         console.log(args)
         return \`;\${args[1]}; str+=\`

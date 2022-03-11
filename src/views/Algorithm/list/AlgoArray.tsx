@@ -54,34 +54,6 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>26.删除有序数组中的重复项I{T.EASY}{T.DOUBLE_POINTER}</Title>
-                <Collapse ghost>
-                    <Panel header="有序数组 nums , 请你 原地 删除重复出现的元素, 使每个元素 只出现一次 , 返回删除后数组的新长度(不要使用额外的数组空间、O(1)空间)" key="1">
-                        <Highlight language="javascript">{eg.removeDuplicates}</Highlight>
-
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
-            <Wrap>
-                <Title level={3}>27.移除元素{T.EASY}{T.DOUBLE_POINTER}</Title>
-                <Collapse ghost>
-                    <Panel header="给你一个数组 nums 和一个值 val, 你需要 原地 移除所有数值等于 val 的元素, 并返回移除后数组的新长度(不要使用额外的数组空间、O(1)空间)" key="1">
-                        <Highlight language="javascript">{eg.removeElement}</Highlight>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
-            <Wrap>
-                <Title level={3}>35.搜索插入位置{T.EASY}{T.DOUBLE_POINTER}</Title>
-                <Collapse ghost>
-                    <Panel header="给定一个排序数组和一个目标值, 在数组中找到目标值, 并返回其索引。如果目标值不存在于数组中, 返回它将会被按顺序插入的位置。" key="1">
-                        <Highlight language="javascript">{eg.searchInsert}</Highlight>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
-            <Wrap>
                 <Title level={3}>1984.学生分数的最小差值{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
@@ -163,7 +135,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2032.至少在两个数组中出现的值{T.EASY}{T.ARRAY}</Title>
+                <Title level={3}>2032.至少在两个数组中出现的值{T.EASY}</Title>
                 <Collapse ghost>
                     <Panel header="给你三个整数数组 nums1、nums2 和 nums3 , 请你构造并返回一个 与这三个数组都不同的 数组, 且由 至少 在 两个 数组中出现的所有值组成。数组中的元素可以按 任意 顺序排列。" key="1">
                         <Highlight language="javascript">{eg.twoOutOfThree}</Highlight>
@@ -196,7 +168,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2057.值相等的最小索引{T.EASY}{T.ARRAY}</Title>
+                <Title level={3}>2057.值相等的最小索引{T.EASY}{}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个下标从 0 开始的整数数组 nums , 返回 nums 中满足 i mod 10 == nums[i] 的最小下标 i ；如果不存在这样的下标, 返回 -1 。
                             x mod y 表示 x 除以 y 的 余数 。" key="1">
@@ -206,7 +178,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2073.买票需要的时间{T.EASY}{T.ARRAY}</Title>
+                <Title level={3}>2073.买票需要的时间{T.EASY}{}</Title>
                 <Collapse ghost>
                     <Panel header="有 n 个人前来排队买票, 其中第 0 人站在队伍 最前方 , 第 (n - 1) 人站在队伍 最后方 。
                         给你一个下标从 0 开始的整数数组 tickets , 数组长度为 n , 其中第 i 人想要购买的票数为 tickets[i] 。
@@ -241,7 +213,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2089.找出数组排序后的目标下标{T.EASY}{T.MATH}{T.DICHOTOMY}</Title>
+                <Title level={3}>2089.找出数组排序后的目标下标{T.EASY}{T.BF}{T.COUNT}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个下标从 0 开始的整数数组 nums 以及一个目标元素 target 。
                         目标下标 是一个满足 nums[i] == target 的下标 i 。
@@ -271,7 +243,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>LCP 01.猜数字{T.EASY}{T.ARRAY}</Title>
+                <Title level={3}>LCP 01.猜数字{T.EASY}{}</Title>
                 <Collapse ghost>
                     <Panel header="小A 和 小B 在玩猜数字。小B 每次从 1, 2, 3 中随机选择一个, 小A 每次也从 1, 2, 3 中选择一个猜。
                         他们一共进行三次这个游戏, 请返回 小A 猜对了几次？
@@ -303,19 +275,7 @@ const AlgoArray = () => {
                 </Collapse>
             </Wrap>
 
-            <Wrap>
-                <Title level={3}>剑指 Offer 11.旋转数组的最小数字{T.EASY}{T.BF}{T.DICHOTOMY}</Title>
-                <Collapse ghost>
-                    <Panel header="把一个数组最开始的若干个元素搬到数组的末尾, 我们称之为数组的旋转。
-                        给你一个可能存在 重复 元素值的数组 numbers , 它原来是一个升序排列的数组, 并按上述情形进行了一次旋转。
-                        请返回旋转数组的最小元素。例如, 数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一次旋转, 该数组的最小值为1。 " key="1">
-                        <Space direction="vertical">
-                            <Highlight language="javascript">{eg.minArray}</Highlight>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
+          
             <Wrap>
                 <Title level={3}>414.第三大的数{T.EASY}{T.SORT}</Title>
                 <Collapse ghost>
@@ -327,16 +287,7 @@ const AlgoArray = () => {
                 </Collapse>
             </Wrap>
 
-            <Wrap>
-                <Title level={3}>剑指 Offer 53 - II.0～n-1中缺失的数字{T.EASY}{T.DICHOTOMY}</Title>
-                <Collapse ghost>
-                    <Panel header="一个长度为n-1的递增排序数组中的所有数字都是唯一的, 并且每个数字都在范围0～n-1之内。在范围0～n-1内的n个数字中有且只有一个数字不在该数组中, 请找出这个数字。" key="1">
-                        <Space direction="vertical">
-                            <Highlight language="javascript">{eg.missingNumber}</Highlight>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
+          
 
             <Wrap>
                 <Title level={3}>1122.数组的相对排序{T.EASY}{T.HASH}</Title>
@@ -385,29 +336,7 @@ const AlgoArray = () => {
                 </Collapse>
             </Wrap>
 
-            <Wrap>
-                <Title level={3}>209.长度最小的子数组(滑动窗口){T.MEDIUM}{T.DOUBLE_POINTER}</Title>
-                <Collapse ghost>
-                    <Panel header={`给定一个含有 n 个正整数的数组和一个正整数 target 。
-                            找出该数组中满足其和 ≥ target 的长度最小的 连续子数组 [numsl, numsl+1, ..., numsr-1, numsr] , 
-                            并返回其长度。如果不存在符合条件的子数组, 返回 0 。`} key="1">
-                        <Space direction="vertical">
-                            <Highlight language="javascript">{eg.minSubArrayLen}</Highlight>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
-            <Wrap id="pairSums">
-                <Title level={3}>面试题 16.24.数对和{T.MEDIUM}{T.DOUBLE_POINTER}{T.HASH}</Title>
-                <Collapse ghost>
-                    <Panel header="设计一个算法, 找出数组中两数之和为指定值的所有整数对。一个数只能属于一个数对。" key="1">
-                        <Space direction="vertical">
-                            <Highlight language="javascript">{eg.pairSums}</Highlight>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
+           
 
             <Wrap id="findKthLargest">
                 <Title level={3}>215. 数组中的第K个最大元素{T.MEDIUM}</Title>
@@ -420,20 +349,7 @@ const AlgoArray = () => {
                 </Collapse>
             </Wrap>
 
-            <Wrap id="findDuplicate">
-                <Title level={3}>287. 寻找重复数{T.MEDIUM}{T.DOUBLE_POINTER}</Title>
-                <Collapse ghost>
-                    <Panel header={<ul>
-                        <li>给定一个包含 n + 1 个整数的数组 nums , 其数字都在 1 到 n 之间(包括 1 和 n), 可知至少存在一个重复的整数</li>
-                        <li>假设 nums 只有 一个重复的整数 , 找出 这个重复的数 </li>
-                        <li>你设计的解决方案必须不修改数组 nums 且只用常量级 O(1) 的额外空间</li>
-                    </ul>} key="1">
-                        <Space direction="vertical">
-                            <Highlight language="javascript">{eg.findDuplicate}</Highlight>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
+           
 
             <Wrap>
                 <Title level={3}>4. 寻找两个正序数组的中位数{T.HARD}{T.DICHOTOMY}</Title>
@@ -444,11 +360,12 @@ const AlgoArray = () => {
                     </ul>} key="1">
                         <Space direction="vertical">
                             <a href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/" target="_blank">题</a>
-                            <Highlight language="javascript">{eg.findMedianSortedArrays}</Highlight>
+                            <Highlight language="javascript">{eg.findMiddleArray}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
             </Wrap>
+
         </>
     )
 }

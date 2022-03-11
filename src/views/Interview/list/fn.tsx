@@ -89,7 +89,7 @@ export const BSTree = {
         while (node || stack?.length) {
             if (node) {
                 stack.push(node)
-                node = node.left // 找到最左端的节点，路径上的节点全部入栈，包括叶子节点
+                node = node.left // 找到最左端的节点,路径上的节点全部入栈,包括叶子节点
             } else {
                 node = stack[stack.length - 1] // 获取栈顶节点
                 if (node.right && node.right !== ret) { // 如果node有有节点且从未访问过

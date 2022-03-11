@@ -52,9 +52,13 @@ export const list = [
                 path: '/js/Modules',
                 component: RouteBase.Modules,
             },
+            // {
+            //     path: '/js/Reg',
+            //     component: RouteBase.Reg,
+            // },
             {
-                path: '/js/Reg',
-                component: RouteBase.Reg,
+                path: '/js/Reference',
+                component: RouteBase.Reference,
             },
             {
                 path: '/js',

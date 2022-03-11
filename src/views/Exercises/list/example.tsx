@@ -256,7 +256,7 @@ fn = function () {
     // 将构造函数的作用域指向这个新对象
     var result = Fn.call(obj);
 
-    // 考察第3步返回的返回值，如果无返回值或者返回一个非对象值，则将obj返回作为新对象；否则会将返回值作为新对象返回。
+    // 考察第3步返回的返回值,如果无返回值或者返回一个非对象值,则将obj返回作为新对象；否则会将返回值作为新对象返回。
     return typeof result === 'object'? result : obj; 
 }();
 `;
@@ -460,7 +460,7 @@ export const eventPublish = `
 class EventPublish {
     constructor () {
         // 储存事件的数据结构
-        // 为查找迅速， 使用对象(字典)
+        // 为查找迅速, 使用对象(字典)
         this._cache = {}
     }
 
@@ -468,7 +468,7 @@ class EventPublish {
     on(type, callback) {
         // 为了按类查找方便和节省空间
         // 将同一类型事件放到一个数组中
-        // 这里的数组是队列， 遵循先进先出
+        // 这里的数组是队列, 遵循先进先出
         // 即新绑定的事件先触发
         let fns = (this._cache[type] = this._cache[type] || [])
         if(fns.indexOf(callback) === -1) {

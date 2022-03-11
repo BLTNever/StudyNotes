@@ -20,8 +20,8 @@ const AlgoNote = () => {
             <Wrap>
                 <Title level={3}>数组的度</Title>
                 <Collapse ghost>
-                    <Panel header="定一个非空且只包含非负数的整数数组nums，数组的度的定义是指数组里任一元素出现频数的最大值
-                    在nums中找到与nums拥有相同大小的度的最短连续子数组，返回其长度" key="1">
+                    <Panel header="定一个非空且只包含非负数的整数数组nums,数组的度的定义是指数组里任一元素出现频数的最大值
+                    在nums中找到与nums拥有相同大小的度的最短连续子数组,返回其长度" key="1">
                         <Space direction="vertical">
                             <Highlight>{findShortSubArray}</Highlight>
                         </Space>
@@ -132,7 +132,7 @@ const AlgoNote = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>树的遍历有几种方式，实现层次遍历</Title>
+                <Title level={3}>树的遍历有几种方式,实现层次遍历</Title>
                 <Collapse ghost>
                     <Panel header="遍历方式: 1.前序遍历、2.中序遍历、3.后序遍历、4.层次遍历" key="1">
                         <Space direction="vertical">

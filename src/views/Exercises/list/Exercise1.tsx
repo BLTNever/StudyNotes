@@ -31,7 +31,7 @@ const Exercise1 = () => (
                 <Col span={12}>
                     <Card title="indexOf去重" >
                         <Highlight language="javascript">{arrFn3}</Highlight>
-                        <p>新建一个空白数组，判断是否有存在存在当前元素，有的就跳过，没有就push进数组</p>
+                        <p>新建一个空白数组,判断是否有存在存在当前元素,有的就跳过,没有就push进数组</p>
                     </Card>
                 </Col>
                 <Col span={12}>
@@ -74,9 +74,9 @@ const Exercise1 = () => (
                 <Col span={8}>
                     <Card title="flat">
                         <Highlight language="javascript">{flat3}</Highlight>
-                        <p>flat() 方法会按照一个可指定的深度递归遍历数组，并将所有元素与遍历到的子数组中的元素合并为一个新数组返回。</p>
-                        <p>var newArray = arr.flat(depth); //depth 可选 指定要提取嵌套数组的结构深度，默认值为 1。</p>
-                        <p>使用 Infinity 作为深度，展开任意深度的嵌套数组</p>
+                        <p>flat() 方法会按照一个可指定的深度递归遍历数组,并将所有元素与遍历到的子数组中的元素合并为一个新数组返回。</p>
+                        <p>var newArray = arr.flat(depth); //depth 可选 指定要提取嵌套数组的结构深度,默认值为 1。</p>
+                        <p>使用 Infinity 作为深度,展开任意深度的嵌套数组</p>
                     </Card>
                 </Col>
             </Row>

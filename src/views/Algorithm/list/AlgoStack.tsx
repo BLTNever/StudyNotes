@@ -131,15 +131,17 @@ const AlgoStack = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
-
+            
             <Wrap>
-                <Title level={3}>42.接雨水{T.HARD}</Title>
+                <Title level={3}>42.接雨水{T.HARD}{T.DOUBLE_POINTER}{T.DP}{T.MONOTONE_STACK}{T.BF}</Title>
                 <Collapse ghost>
-                    <Panel header={<div>
-                        <p>定 n 个非负整数表示每个宽度为 1 的柱子的高度图, 计算按此排列的柱子, 下雨之后能接多少雨水</p>
-                        <p>输入: height = [0,1,0,2,1,0,1,3,2,1,2,1]</p>
-                        <p>输出: 6</p>
-                        <p>解释: 上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图, 在这种情况下, 可以接 6 个单位的雨水(蓝色部分表示雨水)</p></div>} key="1">
+                    <Panel header={<ul>
+                        <li>定 n 个非负整数表示每个宽度为 1 的柱子的高度图, 计算按此排列的柱子, 下雨之后能接多少雨水</li>
+                        <li>输入: height = [0,1,0,2,1,0,1,3,2,1,2,1]</li>
+                        <li>输出: 6</li>
+                        <li>解释: 上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图, 在这种情况下, 可以接 6 个单位的雨水(蓝色部分表示雨水)</li>
+                        <li><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/22/rainwatertrap.png" /></li>
+                    </ul>} key="1">
                         <Space direction="vertical">
                             <a href="https://leetcode-cn.com/problems/trapping-rain-water/" target="_blank">题</a>
                             <Highlight language="javascript">{eg.trap}</Highlight>

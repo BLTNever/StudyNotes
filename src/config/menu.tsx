@@ -36,7 +36,8 @@ const menu = [
             // { id: '21100', name: '网络', route: '/js/Network' },
             { id: '21200', name: '原型', route: '/js/Prototype' },
             { id: '21400', name: '模块化', route: '/js/Modules' },
-            { id: '21500', name: '正则', route: '/js/Reg' },
+            // { id: '21500', name: '正则', route: '/js/Reg' },
+            { id: '21600', name: '参考手册', route: '/js/Reference' },
         ]
     },
     {

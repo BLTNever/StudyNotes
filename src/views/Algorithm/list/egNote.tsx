@@ -97,7 +97,7 @@ function postOrderRec(node) {
     while (node || stack?.length) {
         if (node) {
             stack.push(node)
-            node = node.left // 找到最左端的节点，路径上的节点全部入栈，包括叶子节点
+            node = node.left // 找到最左端的节点,路径上的节点全部入栈,包括叶子节点
         } else {
             node = stack[stack.length - 1] // 获取栈顶节点
             if (node.right && node.right !== ret) { // 如果node有有节点且从未访问过
@@ -228,18 +228,18 @@ curry(2, 3)(3, 5)(4)()
 
 export const destructuring = `
 function fn(targetArray: any, formater: any) {
-    // formater第一次传入的是字符串，转为数组，之后递归，传入的则都是数组
-    // [a-z] 匹配a到z的字母 [0-9]匹配数字， \w匹配字母数字 下划线
+    // formater第一次传入的是字符串,转为数组,之后递归,传入的则都是数组
+    // [a-z] 匹配a到z的字母 [0-9]匹配数字, \w匹配字母数字 下划线
     let arr = Array.isArray(formater) ? formater : JSON.parse(formater.replace(/(\w+)/g, '"$1"'))
     console.log(arr)
     let obj = {}
     arr.forEach((value: any, index: number) => {
         // 缓存该键对应的值
         let res = targetArray[index]
-        if (Array.isArray(value)) {// 值为数组时，需要递归
-            // 将递归的值拷贝至最初的对象，思路类似深拷贝
+        if (Array.isArray(value)) {// 值为数组时,需要递归
+            // 将递归的值拷贝至最初的对象,思路类似深拷贝
             Object.assign(obj, fn(res, value))
-        } else {// 值为数值时，直接赋值
+        } else {// 值为数值时,直接赋值
             obj[value] = res
         }
     })

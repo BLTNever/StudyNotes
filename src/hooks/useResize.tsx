@@ -1,4 +1,4 @@
-// import { ResizeObserver } from '@juggle/resize-observer' // 兼容问题用这个，暂时不考虑
+// import { ResizeObserver } from '@juggle/resize-observer' // 兼容问题用这个,暂时不考虑
 import { useEffect, useState } from 'react'
 
 function useResize(dom: Element | null) {

@@ -362,7 +362,7 @@ class LRUCache {
 export const findJudge = `
 /**
  * 1. 小镇的法官不相信任何人。             => 法官不会出现在 trust[i][0]
- * 2. 每个人（除了小镇法官外）             => n - 1个人相信法官
+ * 2. 每个人(除了小镇法官外)             => n - 1个人相信法官
  * 3. 只有一个人同时满足条件 1 和条件 2     => 这个人是法官
  */
 function findJudge(n: number, trust: number[][]) {

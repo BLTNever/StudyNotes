@@ -113,7 +113,7 @@ const AlgoDoublePointer = () => {
                 <Collapse ghost>
                     <Panel header={<ul>
                         <li>整数数组 nums 按升序排列, 数组中的值 <i>互不相同</i></li>
-                        <li>{`在传递给函数之前, nums 在预先未知的某个下标 k（0 <= k < nums.length）上进行了 旋转, 使数组变为 [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]（下标 从 0 开始 计数）。例如,  [0,1,2,4,5,6,7] 在下标 3 处经旋转后可能变为 [4,5,6,7,0,1,2]`}</li>
+                        <li>{`在传递给函数之前, nums 在预先未知的某个下标 k(0 <= k < nums.length)上进行了 旋转, 使数组变为 [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]](下标 从 0 开始 计数)。例如,  [0,1,2,4,5,6,7] 在下标 3 处经旋转后可能变为 [4,5,6,7,0,1,2]`}</li>
                         <li>给你 旋转后 的数组 nums 和一个整数 target , 如果 nums 中存在这个目标值 target , 则返回它的下标, 否则返回 -1 </li>
                     </ul>} key="1">
                         <Space direction="vertical">
@@ -122,7 +122,22 @@ const AlgoDoublePointer = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
-            
+
+            <Wrap>
+                <Title level={3}>81. 搜索旋转排序数组 II{T.MEDIUM}{T.DOUBLE_POINTER}{T.BF}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>已知存在一个按非降序排列的整数数组 nums <i>不必互不相同</i></li>
+                        <li>{`在传递给函数之前, nums 在预先未知的某个下标 k(0 <= k < nums.length)上进行了 旋转, 使数组变为 [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]](下标 从 0 开始 计数)。例如,  [0,1,2,4,5,6,7] 在下标 3 处经旋转后可能变为 [4,5,6,7,0,1,2]`}</li>
+                        <li>给你 旋转后 的数组 nums 和一个整数 target , 如果 nums 中存在这个目标值 target , 则返回true, 否则返回 false</li>
+                    </ul>} key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.search1}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
             <Wrap>
                 <Title level={3}>16.最接近的三数之和{T.MEDIUM}{T.DOUBLE_POINTER}</Title>
                 <Collapse ghost>
@@ -242,9 +257,23 @@ const AlgoDoublePointer = () => {
 export default AlgoDoublePointer
 
 try {
-    let nums = [3, 1]
-    let k = 1
+    let nums = [2, 5, 6, 0, 0, 1, 2]
+    let k = 0
     // console.log(search(nums, k))
 } catch (error) { }
 
+
+// function search(nums: number[], target: number) {
+//     let n = nums.length
+//     let [l, r] = [0, n - 1]
+//     while (l <= r) {
+//         const mid = l + ((r - l) >> 1)
+//         if (nums[mid] === target) return true
+//         if (nums[mid] >= nums[l]) {
+
+//         }else {
+
+//         }
+//     }
+// }
 

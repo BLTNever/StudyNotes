@@ -16,7 +16,7 @@ const Vite = () => {
     return (
         <>
             <Wrap>
-                <Text>webpack core 是一个纯打包工具（对标 Rollup）,而 Vite 其实是一个更上层的工具链方案,对标的是 （webpack + 针对 web 的常用配置 + webpack-dev-server）</Text>
+                <Text>webpack core 是一个纯打包工具(对标 Rollup),而 Vite 其实是一个更上层的工具链方案,对标的是 (webpack + 针对 web 的常用配置 + webpack-dev-server)</Text>
                 <ul>
                     <li>webpack core 因为只针对打包不预设场景,所以设计得极其灵活,不局限于针对 web 打包,几乎所有可配置的环节都做成了可配置的</li>
                     <li>缺点就是配置项极度复杂,插件机制和内部逻辑晦涩难懂,针对常见的 web 也需要大量的配置</li>

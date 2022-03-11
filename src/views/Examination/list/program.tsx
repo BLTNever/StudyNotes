@@ -32,9 +32,31 @@ const Program = () => {
                 <Collapse ghost>
                     <Panel header="观察者模式" key="1">
                         <Space direction="vertical">
-                            <Text mark>被观察者对象(subject)维护一组观察者(observer),subject状态发生变化时,通过observer的某些方法把变化通知到observer</Text>
+                            <Text mark>被观察者对象(subject)维护一组观察者(observer)</Text>
+                            <Text mark>subject状态发生变化时,通过observer的某些方法把变化通知到observer</Text>
+                            <p>观察者(Observer)直接订阅(Subscribe)主题(Subject)，而当主题被激活的时候，会触发(Fire Event)观察者里的事件</p>
                             <Highlight language="javascript">{eg.observer}</Highlight>
                             <Highlight language="javascript">{eg.eventEmitter}</Highlight>
+                        </Space>
+                    </Panel>
+
+                    <Panel header="发布订阅" key="2">
+                        <Space direction="vertical">
+                            <ul>
+                                <li>1. publisher (发布者) 2. subscriber (订阅者)3. broker</li>
+                                <li>订阅者(Subscriber)把自己想订阅的事件注册(Subscribe)到调度中心(Event Channel)，当发布者(Publisher)发布该事件(Publish Event)到调度中心，也就是该事件触发时，由调度中心统一调度(Fire Event)订阅者注册到调度中心的处理代码</li>
+                            </ul>
+                            <Highlight language="javascript">{eg.events}</Highlight>
+                        </Space>
+                    </Panel>
+                    <Panel header="单例模式" key="3">
+                        <Space direction="vertical">
+                            <ul>
+                                <li>全局只有一个实例</li>
+                                <li>全局可访问该实例</li>
+                                <li>通过定义一个 getInstance() 方法来管控单例, 并创建返回类实例对象, 而不是通过传统的 new 操作符来创建类实例对象</li>
+                            </ul>
+                            <Highlight language="javascript">{eg.singleton}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -231,3 +253,4 @@ export default Program
 try {
     //
 } catch (error) { }
+

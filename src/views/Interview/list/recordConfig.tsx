@@ -634,7 +634,7 @@ export const dataWebpack = [
     {
         Q: 'babel和polyfill的区别', K: <><Tag color="volcano">babel</Tag><Tag color="blue">webpack</Tag></>,
         ans: <ul>
-            <li>Babel 默认只转换新的 JavaScript 句法（syntax）,而不转换新的 API</li>
+            <li>Babel 默认只转换新的 JavaScript 句法(syntax),而不转换新的 API</li>
             <li>polyfill(垫片) 编译浏览器不支持的API和</li>
         </ul>
     },

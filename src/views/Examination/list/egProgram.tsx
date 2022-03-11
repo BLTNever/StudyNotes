@@ -154,6 +154,31 @@ subject.unsubscribe(observer2)
 subject.run()
 `
 
+export const singleton = `
+let Singleton = function(name) {
+    this.name = name;
+    this.instance = null;
+}
+
+Singleton.prototype.getName = function() {
+    console.log(this.name);
+}
+
+Singleton.getInstance = function(name) {
+    if (this.instance) {
+        return this.instance;
+    }
+    return this.instance = new Singleton(name);
+}
+
+let Winner = Singleton.getInstance('Winner');
+let Looser = Singleton.getInstance('Looser');
+
+console.log(Winner === Looser); // true
+console.log(Winner.getName());  // 'Winner'
+console.log(Looser.getName());  // 'Winner'
+`
+
 export const eventEmitter = `
 class EventEmit {
     events: any = {}
@@ -199,6 +224,32 @@ class EventEmit {
     }
 }
 `
+
+export const events = `
+class events {
+    private alleventsLists: Map<any, any>
+    private constructor() {
+        this.alleventsLists = new Map()
+    }
+    // 注册消息
+    public registMessage(eventname: string, people: any) {
+        if (this.alleventsLists.has(eventname)) {
+            this.alleventsLists.get(eventname).push(people)
+        } else {
+            this.alleventsLists.set(eventname, []);
+            this.alleventsLists.get(eventname).push(people)
+        }
+    }
+    // 发送消息
+    public sendMessage(eventname: string) {
+        if (!this.alleventsLists.has(eventname)) {
+            return;
+        }
+        for (let event of this.alleventsLists.get(eventname)) {
+            console.log(event + "收到" + eventname + "消息")
+        }
+    }
+}`
 export const debounce = `
 // 函数防抖 —— 持续触发,只有在最后一次触发事件后延时执行
 function debounce(fn, delay) {
@@ -943,7 +994,7 @@ function lazyMan(name: string) {
 lazyMan('Tony').sleepFirst(3).eat('lunch').sleep(10).eat('dinner');`
 
 
-export const findParent =`
+export const findParent = `
 function findParent(data: any[], value: number) {
     const dfs = (list: any[], temp = []) => {
         for (let node of list) {

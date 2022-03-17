@@ -36,6 +36,78 @@ for 快指针 in 可迭代集合
     更新答案
 返回 ans
 `
+export const temp4 = `
+let [l, r] = [0, nums.lenght - 1] // ⚠️注意 闭合区间是 [0, length - 1]
+while (l <= r) {                  // ⚠️注意 while的终止条件是 l === r + 1, 闭合区间是[r + 1, r]
+    const mid = l + ((r - l ) >> 1)
+    if(nums[mid] === target) {
+        return mid
+    }else if(nums[mid] < target) {
+        l = mid + 1               // ⚠️注意 mid 已经搜索过, 所以需要 + 1
+    }else if(nums[mid] > target) {
+        r = mid - 1               // ⚠️注意 mid 已经搜索过, 所以需要 - 1 
+    }
+}
+return -1`
+
+export const temp5 = `
+// 左闭右开写法 r = length;  while l < r
+let [l, r] = [0, nums.lenght]       // ⚠️注意 闭合区间是 [0, length]
+while (l < r) {                     // ⚠️注意 while 的终止条件是 l === r
+    const mid = l + ((r - l ) >> 1)
+    if(nums[mid] === target) {
+        r = mid                     // ⚠️注意 找到 target 时缩小「搜索区间」right, 在区间 [left, mid) 中继续搜索, 即不断向左收缩, 达到锁定左侧边界的目的
+    }else if(nums[mid] < target) {
+        l = mid + 1
+    }else if(nums[mid] > target) {  // 因为「搜索区间」是 [left, right) 左闭右开
+        r = mid                     // ⚠️注意 当 nums[mid] 被检测之后, 下一步的搜索区间应该去掉 mid 分割成两个区间, 即 [left, mid) 或 [mid + 1, right)
+    }
+}
+return l
+
+// 两端都闭合写法 r = length - 1; while l <= r 
+let [l, r] = [0, nums.lenght - 1] // ⚠️注意 l r 的初始化区间
+while (l < r) {                   // ⚠️注意 while 的终止条件 
+    const mid = l + ((r - l ) >> 1)
+    if(nums[mid] === target) {
+        r = mid - 1               // ⚠️注意 收缩右边界
+    }else if(nums[mid] < target) {
+        l = mid + 1               // 搜索区间变为 [mid + 1, right]
+    }else if(nums[mid] > target) {
+        r = mid - 1               // ⚠️注意 搜索区间变为 [left, mid - 1]
+    }
+}
+return nums[l] !== target ? -1 : l // ⚠️注意 当 target 比 nums 中所有元素都大时, 会存在索引越界
+`
+
+export const temp6 = `
+// 左开右闭
+let [l, r] = [0, nums.length]     // ⚠️注意 闭合区间是 [0, length]
+while (l < r) {                   // ⚠️注意 while 的终止条件
+    const mid = l + ((r - l ) >> 1)
+    if(nums[mid] === target) {
+        l = mid + 1               // ⚠️注意 收缩右边界
+    }else if(nums[mid] < target) {
+        l = mid + 1               // 搜索区间变为 [mid + 1, right]
+    }else if(nums[mid] > target) {
+        r = mid                   // ⚠️注意 搜索区间变为 [left, mid - 1]
+    }
+}
+return l - 1                      // ⚠️注意 
+
+// 左闭右闭
+let [l, r] = [0, nums.length - 1]  // ⚠️注意 闭合区间是 [0, length - 1]
+while (l <= r) {                   // ⚠️注意 while 的终止条件
+    const mid = l + ((r - l ) >> 1)
+    if(nums[mid] === target) {
+        l = mid + 1               // ⚠️注意 收缩右边界
+    }else if(nums[mid] < target) {
+        l = mid + 1               // 搜索区间变为 [mid + 1, right]
+    }else if(nums[mid] > target) {
+        r = mid - 1              // ⚠️注意 搜索区间变为 [left, mid - 1]
+    }
+}
+`       
 
 export const twoSum = `
 /**
@@ -463,10 +535,10 @@ function search(nums: number[], target: number) {
     // 双指针
     let n = nums.length
     let [l, r] = [0, n - 1]
-    while (l <= r) {                  // l <= r, 在l === r的时候 l、r、mid 的值相等？
+    while (l <= r) {                  // l <= r, 在l === r的时候 l、r、mid 的值相等???
         let mid = l + ((r - l) >> 1)
         if (nums[mid] === target) return mid
-        // 根据 mid 判断，mid是在有序的部分还是无序的部分
+        // 根据 mid 判断, mid是在有序的部分还是无序的部分
         if (nums[mid] >= nums[l]) {   // middle 在左侧升序 ⚠️ 注意 等号,  会出现middle === left or right 的情况
             // 判断 target 在 left - middle之间 还是 在 middle 右侧
             if (target >= nums[l] && target < nums[mid]) { // left ... target ... middle
@@ -483,11 +555,95 @@ function search(nums: number[], target: number) {
             }
         }
     }
-    // 如果终止条件是 while(l < r)的时候，就需要 
+    // 如果终止条件是 while(l < r)的时候, 就需要 
     // return nums[l] === target ? l : -1
     return -1
 
     // 暴力
     return nums.indexOf(target)  === -1 ? -1 : nums.indexOf(target)
+}
+`
+
+export const search2 = `
+function search(nums: number[], target: number) {
+    // 双指针
+    let n = nums.length
+    let [l, r] = [0, n - 1]
+    while (l <= r) {
+        const mid = l + ((r - l) >> 1)
+        if (nums[mid] === target) return true
+        // 若 mid element === left element:
+        //      此时说明具有重复值，移动left向右移动，用以去除重复干扰
+        if (nums[mid] === nums[l]) {
+            l++
+            continue
+        }
+        // 判断 mid 左 右侧 哪个是升序区
+        if (nums[mid] > nums[l]) {     // middle > left  升序区在左半区
+            if (target >= nums[l] && target < nums[mid]) {  // 判断目标值 target 是处在 left ... middle 区间内，还是 middle 右侧
+                r = mid - 1
+            } else {
+                l = mid + 1
+            }
+        } else {                        // middle < left 升序区在右半区
+            if (target <= nums[r] && target > nums[mid]) { // 判断目标值 target 是处在 middle ... right 区间内，还是 middle 左侧
+                l = mid + 1
+            } else {
+                r = mid - 1
+            }
+        }
+    }
+    return false
+
+    // 暴力
+    return nums.indexOf(target)  === -1 ? -1 : nums.indexOf(target)
+}`
+
+export const minEatingSpeed = `
+/**
+ * 每堆香蕉的数量 / 每个小时能吃的个数，向上取整，找到吃完每堆香蕉的 最少时间
+ * sum 拿到吃完总数 piles 所需要的 最少总时间
+ * 判断 最少总时间 sum 是否能在 限制时间 h 内吃完
+ * @param piles 总数量
+ * @param h 总时长
+ * @param k 每小时能吃 k 个
+ * @returns 
+ */
+function isPossible(piles: number[], h: number, k: number): boolean {
+    let sum = 0
+    for (let p of piles) {
+        sum += Math.ceil(p / k)
+    }
+    return sum <= h
+}
+function minEatingSpeed(piles: number[], h: number) {
+    // 左闭右闭区间 写法
+    let l = 0
+    let r = Math.max(...piles)
+    let ans = 0
+    while (l <= r) {
+        const mid = l + ((r - l) >> 1)
+        // 判断当前是否足够吃完香蕉
+        if (isPossible(piles, h, mid)) {  // 速度够吃完  
+            ans = mid                     // 记录当前速度
+            r = mid - 1                   // 右指针向左移动, 缩小右边界范围, 查找是否有更短的时间
+        } else {                          // 不够吃完
+            l = mid + 1                   // 左指针向右移动, 缩小左边界范围, 查找到够吃的时间
+        }
+    }
+    return ans
+
+    // 左闭右开区间 写法
+    let l = 1
+    let r = Math.max(...piles)
+    while (l < r) {
+        const mid = l + ((r - l) >> 1)
+        if (isPossibel(piles, h, mid)) {
+            r = mid
+        } else {
+            l = mid + 1
+        }
+    }
+    return l
 }
 `

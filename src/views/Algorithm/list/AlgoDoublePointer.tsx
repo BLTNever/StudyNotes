@@ -36,6 +36,88 @@ const AlgoDoublePointer = () => {
                     <Panel header="固定间距指针(滑动窗口)" key="3">
                         <Highlight language="javascript">{eg.temp3}</Highlight>
                     </Panel>
+
+                    <Panel header="寻找一个数(基本的二分搜索)" key="4">
+                        <Highlight>{eg.temp4}</Highlight>
+                        <a href="https://leetcode-cn.com/problems/binary-search/solution/er-fen-cha-zhao-xiang-jie-by-labuladong/" target="_blank">详解</a>
+                        <ul>
+                            <li>{`为什么 while 循环的条件中是 <=, 而不是 <`}
+                                <ul>
+                                    <li>因为初始化 right 的赋值是 nums.length - 1, 即最后一个元素的索引, 而不是 nums.length</li>
+                                    <li>这二者可能出现在不同功能的二分查找中, 区别是: 前者(小于等于)相当于两端都闭区间 [left, right], 后者(小于)相当于左闭右开区间 [left, right), 因为索引大小为 nums.length 是越界的</li>
+                                    <li>我们这个算法中使用的是前者 [left, right] 两端都闭的区间。这个区间其实就是每次进行搜索的区间</li>
+                                    <li>找到了目标值的时候可以终止, 如果没找到, 就需要 while 循环终止, 然后返回 -1。那 while 循环什么时候应该终止？搜索区间为空的时候应该终止, 意味着你没得找了, 就等于没找到</li>
+                                    <li>{`while(left <= right) 的终止条件是 left == right + 1, 写成区间的形式就是 [right + 1, right], 或者带个具体的数字进去 [3, 2], 可见这时候区间为空, 因为没有数字既大于等于 3 又小于等于 2 的吧。所以这时候 while 循环终止是正确的, 直接返回 -1 即可`}</li>
+                                    <li>{`while(left < right) 的终止条件是 left == right, 写成区间的形式就是 [left, right], 或者带个具体的数字进去 [2, 2], 这时候区间非空, 还有一个数 2, 但此时 while 循环终止了。也就是说这区间 [2, 2] 被漏掉了, 索引 2 没有被搜索, 如果这时候直接返回 -1 就是错误的`}</li>
+                                    <li>{`如果你非要用 while(left < right) 也可以, 知道了出错的原因, 就打个补丁: return nums[left] == target ? left : -1;`}</li>
+                                </ul>
+                            </li>
+                            <li>为什么 left = mid + 1, right = mid - 1, 有的代码是 right = mid 或者 left = mid, 没有这些加加减减, 怎么判断
+                                <ul>
+                                    <li>刚才明确了「搜索区间」这个概念, 而且本算法的搜索区间是两端都闭的, 即 [left, right]。那么当我们发现索引 mid 不是要找的 target 时</li>
+                                    <li>下一步就要去搜索 [left, mid-1] 或者 [mid+1, right], 因为 mid 已经搜索过, 应该从搜索区间中去除</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </Panel>
+
+                    <Panel header="寻找左侧边界的二分搜索" key="5">
+                        <Highlight>{eg.temp5}</Highlight>
+                        <ul>
+                            <li>{`为什么 while 中是 < 而不是 <=`}
+                                <ul>
+                                    <li>因为 right = nums.length 而不是 nums.length - 1。因此每次循环的「搜索区间」是 [left, right) 左闭右开</li>
+                                    <li>{`while(left < right) 终止的条件是 left == right, 此时搜索区间 [left, left] 为空, 所以可以正确终止`}</li>
+                                    <li>为啥这里非要写成 nums.length 使得「搜索区间」变成左闭右开呢:因为对于搜索左右侧边界的二分查找, 这种写法比较普遍</li>
+                                </ul>
+                            </li>
+                            <li>为什么没有返回 -1 的操作？如果 nums 中不存在 target 这个值, 怎么办？
+                                <ul>
+                                    <li>函数的返回值(即 left 变量的值)取值区间是闭区间 [0, nums.length]</li>
+                                    <li>如果不存在: nums[left] == target ? left : -1;加一行判断的语句</li>
+                                </ul>
+                            </li>
+                            <li>为什么 left = mid + 1, right = mid
+                                <ul>
+                                    <li>因为的「搜索区间」是 [left, right) 左闭右开, 所以当 nums[mid] 被检测之后</li>
+                                    <li>下一步的搜索区间应该去掉 mid 分割成两个区间, 即 [left, mid) 或 [mid + 1, right)</li>
+                                </ul>
+                            </li>
+                            <li>为什么该算法能够搜索左侧边界
+                                <ul>
+                                    <li>关键在于对于 nums[mid] == target 这种情况的处理</li>
+                                    <li>if (nums[mid] == target) right = mid;</li>
+                                    <li>找到 target 时不要立即返回, 而是缩小「搜索区间」的上界 right, 在区间 [left, mid) 中继续搜索, 即不断向左收缩, 达到锁定左侧边界的目的</li>
+                                </ul>
+                            </li>
+                            <li>为什么返回 left 而不是 right: 一样, 因为 while 终止的条件是 left == right</li>
+                            <li>当搜索区间两端都闭, [left, right]范围是[0, length - 1]时, while的终止条件是left == right + 1</li>
+                        </ul>
+                    </Panel>
+
+                    <Panel header="寻找右侧边界的二分查找" key="6">
+                        <Highlight>{eg.temp6}</Highlight>
+                        <ul>
+                            <li>类似寻找左侧边界的算法，提供两种写法，常见的左闭右开的写法，只有两处和搜索左侧边界不同</li>
+                            <li>为什么这个算法能够找到右侧边界
+                                <ul>
+                                    <li>当 nums[mid] == target 时，不要立即返回，而是增大「搜索区间」的下界 left，使得区间不断向右收缩，达到锁定右侧边界的目的</li>
+                                </ul>
+                            </li>
+                            <li>为什么最后返回 left - 1 而不像左侧边界的函数，返回 left？而且我觉得这里既然是搜索右侧边界，应该返回 right 才对
+                                <ul>
+                                    <li>while 循环的终止条件是 left == right，所以 left 和 right 是一样的，你非要体现右侧的特点，返回 right - 1 也可以</li>
+                                    <li>至于为什么要减一，这是搜索右侧边界的一个特殊点，关键在 if(nums[mid] === target) l = mid + 1</li>
+                                    <li>因为我们对 left 的更新必须是 left = mid + 1，就是说 while 循环结束时，nums[left] 一定不等于 target 了，而 nums[left-1] 可能是 target</li>
+                                </ul>
+                            </li>
+                            <li>为什么没有返回 -1 的操作？如果 nums 中不存在 target 这个值，怎么办
+                                <ul>
+                                    <li>类似之前的左侧边界搜索，因为 while 的终止条件是 left == right，就是说 left 的取值范围是 [0, nums.length]，所以可以添加两行代码，正确地返回 -1 if(left === 0) return -1;</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </Panel>
                 </Collapse>
             </Wrap>
 
@@ -132,7 +214,7 @@ const AlgoDoublePointer = () => {
                         <li>给你 旋转后 的数组 nums 和一个整数 target , 如果 nums 中存在这个目标值 target , 则返回true, 否则返回 false</li>
                     </ul>} key="1">
                         <Space direction="vertical">
-                            <Highlight language="javascript">{eg.search1}</Highlight>
+                            <Highlight language="javascript">{eg.search2}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -157,6 +239,37 @@ const AlgoDoublePointer = () => {
                     <Panel header="设计一个算法, 找出数组中两数之和为指定值的所有整数对。一个数只能属于一个数对。" key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.pairSums}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap id="minEatingSpeed">
+                <Title level={3}>875. 爱吃香蕉的珂珂{T.DOUBLE_POINTER}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>珂珂喜欢吃香蕉。这里有 N 堆香蕉, 第 i 堆中有 piles[i] 根香蕉。警卫已经离开了, 将在 H 小时后回来</li>
+                        <li>珂珂可以决定她吃香蕉的速度 K (单位: 根/小时)。每个小时, 她将会选择一堆香蕉, 从中吃掉 K 根。如果这堆香蕉少于 K 根, 她将吃掉这堆的所有香蕉, 然后这一小时内不会再吃更多的香蕉</li>
+                        <li>珂珂喜欢慢慢吃, 但仍然想在警卫回来前吃掉所有的香蕉</li>
+                        <li>返回她可以在 H 小时内吃掉所有香蕉的最小速度 K (K为整数)</li>
+                    </ul>} key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.minEatingSpeed}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap id="pairSums">
+                <Title level={3}>881. 救生艇{T.DOUBLE_POINTER}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>给定数组 people 。people[i]表示第 i 个人的体重 ，船的数量不限，每艘船可以承载的最大重量为 limit</li>
+                        <li>每艘船最多可同时载两人，但条件是这些人的重量之和最多为 limit</li>
+                        <li>返回 承载所有人所需的最小船数</li>
+                    </ul>} key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.minEatingSpeed}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -223,9 +336,11 @@ const AlgoDoublePointer = () => {
             <Wrap>
                 <Title level={3}>209.长度最小的子数组(滑动窗口){T.MEDIUM}{T.SLIGDING_WINDOW}</Title>
                 <Collapse ghost>
-                    <Panel header={`给定一个含有 n 个正整数的数组和一个正整数 target 。
-                            找出该数组中满足其和 ≥ target 的长度最小的 连续子数组 [numsl, numsl+1, ..., numsr-1, numsr] , 
-                            并返回其长度。如果不存在符合条件的子数组, 返回 0 。`} key="1">
+                    <Panel header={<ul>
+                        <li>给定一个含有 n 个正整数的数组和一个正整数 target</li>
+                        <li>找出该数组中满足其和 ≥ target 的长度最小的 连续子数组 [numsl, numsl+1, ..., numsr-1, numsr]</li>
+                        <li>并返回其长度。如果不存在符合条件的子数组, 返回 0</li>
+                    </ul>} key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.minSubArrayLen}</Highlight>
                         </Space>
@@ -257,38 +372,41 @@ const AlgoDoublePointer = () => {
 export default AlgoDoublePointer
 
 try {
-    let nums = [2, 5, 6, 0, 0, 1, 2]
-    let k = 0
-    // console.log(search(nums, k))
+    let piles = [3, 5, 3, 4]; let H = 5 // 4
+    // let piles = [30, 11, 23, 4, 20]; let H = 5 // 30
+    // let piles = [30, 11, 23, 4, 20]; let H = 6 // 23
+    console.log(numRescueBoats(piles, H))
 } catch (error) { }
 
 
-function search(nums: number[], target: number) {
-    let n = nums.length
-    let [l, r] = [0, n - 1]
-    while (l <= r) {
-        const mid = l + ((r - l) >> 1)
-        if (nums[mid] === target) return true
-        // 若 mid element === left element:
-        //      此时说明具有重复值，移动left向右移动，用以去除重复干扰
-        if (nums[mid] === nums[l]) {
-            l++
-            continue
-        }
-        if (nums[mid] >= nums[l]) {
-            if (target >= nums[l] && target < nums[mid]) {
-                r = mid - 1
-            } else {
-                l = mid + 1
-            }
+function isPossible(people: number[], k: number, limit: number) {
+    let sum = 0
+    let count = 0
+    for (let p of people) {
+        if (sum + p > limit) {
+            count++
+            sum = p
         } else {
-            if (target <= nums[r] && target > nums[mid]) {
-                l = mid + 1
-            } else {
-                r = mid - 1
-            }
+            sum += p
         }
     }
-    return false
+    count += Math.ceil(sum / limit)
+    console.log(count)
+    return count <= k
 }
-
+function numRescueBoats(people: number[], limit: number) {
+    let n = people.length
+    let [l, r] = [1, n]
+    let ans = 0
+    while (l <= r) {
+        let mid = l + ((r - l) >> 1)
+        // 判断当前的船只数量够不够坐的下
+        if (isPossible(people, mid, limit)) {  // 如果坐的下
+            ans = mid                          // 保存当前数量
+            r = mid - 1                        // 缩小右边界， 查找是否有个优解
+        } else {                               // 坐不下
+            l = mid + 1                        // 扩大左边届， 查找能坐下的船只数量
+        }
+    }
+    return ans
+}

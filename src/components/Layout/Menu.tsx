@@ -12,7 +12,7 @@ const MyMenu = (props: any) => {
     const [openKeys, setOpenKeys] = useState<Array<string>>([])
     const { mode, theme, pathname } = props
     const setTitle = useCallback((route: string, path: string) => {
-        if (!route.length || !path.length) return
+        if (!route?.length || !path?.length) return
         const list = menuList.filter(i => i.route === route)[0]?.children || []
         if (!list.length) return
         const { name } = list.filter(i => i.route === pathname)[0] || {}

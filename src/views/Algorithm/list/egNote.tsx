@@ -344,3 +344,6 @@ function compose(...fns) {
 const fn = compose(plus, multiply, plusOne)
 console.log(fn(1, 2))
 `
+export const tree2list = `
+return [].concat(...list.map((item: any) => [].concat(item, ..._flat(item.children))))
+`

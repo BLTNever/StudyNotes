@@ -1,12 +1,9 @@
 
 import React, { useState, useMemo, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Card, Col, Row, Divider, Collapse, Typography, Tag, Tabs, Table } from 'antd'
+import { Tabs, Table } from 'antd'
 
-import { Wrap } from '@components/Base'
 import * as C from './referenceConfig'
-const { Panel } = Collapse
-// const { Paragraph, Title, Text, Link } = Typography
 const { TabPane } = Tabs
 
 const Reference = () => {
@@ -27,7 +24,8 @@ const Reference = () => {
     const tabs = [
         { tab: 'Array', key: 'Array', data: C.arrayData },
         { tab: 'String', key: 'String', data: C.stringData },
-        { tab: '正则', key: 'dataJs', data: C.regData },
+        { tab: '正则', key: 'Reg', data: C.regData },
+        // { tab: '运算符', key: 'Operation', data: C.operationData },
     ]
     const _props: any = {
         pagination: false,

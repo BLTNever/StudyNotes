@@ -143,7 +143,70 @@ function flat(arr) {
 }
 const result5 = Array.from(new Set(flat(arr))).sort((a, b) => a - b)
 `
+export const prefix1 = `
+function prefix (A:number[]){
+    let B = [A[0]]
+    for(let i = 1; i < A.length; i++){
+        B[i] = B[i - 1] + A[i]
+    }
+    return B
+}`
 
+export const countSubArray1 = `
+function countSubArray(nums:number[]) {
+    let pre = 0
+    let ans = 0
+    for(let _ of nums) {
+        pre += 1
+        ans += pre
+    }
+    return ans
+}
+// 也可以用 等差数列求和公式
+const n = nums.length
+// 由于以索引为 i 结尾的子数组个数就是 i + 1
+return (1 + n) * n / 2
+`
 
+export const countSubArray2 = `
+function countSubArray(nums:number[]) {
+    let pre = 0
+    let ans = 0
+    for(let i = 1; i < nums.length;i++){
+        if(nums[i] - nums[i - 1] === 1) {
+            pre += 1
+        }else {
+            pre = 0
+        }
+        ans += pre
+    }
+    return ans
+}
+`
 
+export const countSubArray3 = `
+function countSubArray(nums:number[], k:number) {
+    let pre = 0
+    let ans = 0
+    for(let n of nums) {
+        if(n <= k) {
+            pre += 1
+        }else {
+            pre = 0
+        }
+        ans += pre
+    }
+    return ans
+}
+`
 
+export const prefixSum = `
+// 0 ~ i 项的和
+prefixSum[i] = nums[0] + ... + nums[i]
+
+// nums的某项 ===  两个相邻前缀和的差值
+nums[i] === prefixSum[i] - prefixSum[i - 1]
+
+// i ~ j 项的和
+prefixSum[j] - prefixSum[i - 1] === nums[i] + ... + nums[j]
+`

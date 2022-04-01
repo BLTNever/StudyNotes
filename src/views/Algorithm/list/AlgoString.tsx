@@ -76,7 +76,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>20.有效的括号{T.EASY}</Title>
+                <Title level={3}>20.有效的括号{T.EASY}{T.STACK}{T.HASH}</Title>
                 <Collapse ghost>
                     <Panel header="给定一个只包括 '(', ')', '{', '}', '[', ']' 的字符串 s , 判断字符串是否有效" key="1">
                         <Space direction="vertical">
@@ -141,7 +141,7 @@ const AlgoString = () => {
                 </Collapse>
             </Wrap>
 
-          
+
 
             <Wrap>
                 <Title level={3}>1974.作为子字符串出现在单词中的字符串数目{T.EASY}</Title>
@@ -166,7 +166,7 @@ const AlgoString = () => {
                 </Collapse>
             </Wrap>
 
-            
+
 
             <Wrap>
                 <Title level={3}>2027.转换字符串的最少操作次数{T.EASY}</Title>
@@ -289,17 +289,6 @@ const AlgoString = () => {
                 </Collapse>
             </Wrap>
 
-            <Wrap>
-                <Title level={3}>3.无重复字符的最长子串(滑动窗口){T.MEDIUM}</Title>
-                <Collapse ghost>
-                    <Panel header="给定一个字符串 s , 请你找出其中不含有重复字符的 最长子串 的长度。" key="1">
-                        <Space direction="vertical">
-                            <Highlight language="javascript">{eg.lengthOfLongestSubstring}</Highlight>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
             <Wrap id="getSmallestString">
                 <Title level={3}>663.具有给定数值的最小字符串{T.MEDIUM}{T.GREEDY}</Title>
                 <Collapse ghost>
@@ -370,3 +359,18 @@ function isValid() {
 try {
     // console.log(getSmallestString(6, 73))
 } catch (error) { }
+
+function test(s: string) {
+
+}
+
+function test1(s: string[]) {
+    let pre = s[0]
+    for (let i = 1; i < s.length; i++) {
+        let j = 0
+        for (; j < s[i].length && j < pre.length; j++) {
+            if (s[i][j] !== pre[j]) break
+        }
+        pre = s[i].slice(0, j)
+    }
+}

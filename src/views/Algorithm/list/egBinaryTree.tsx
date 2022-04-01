@@ -42,6 +42,17 @@ function _preorderTraversal(root: any) {
     return result
 }
 `
+export const invertTree = `
+/**
+ * 反转二叉树
+ */
+function invertTree(root?: any) {
+    if (!root) return null
+    root.left = invertTree(root?.right)
+    root.right = invertTree(root?.left)
+    return root
+}
+`
 
 export const inorderTraversal = `
 /**

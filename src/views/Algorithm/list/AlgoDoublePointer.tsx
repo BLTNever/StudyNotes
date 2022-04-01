@@ -98,22 +98,22 @@ const AlgoDoublePointer = () => {
                     <Panel header="寻找右侧边界的二分查找" key="6">
                         <Highlight>{eg.temp6}</Highlight>
                         <ul>
-                            <li>类似寻找左侧边界的算法，提供两种写法，常见的左闭右开的写法，只有两处和搜索左侧边界不同</li>
+                            <li>类似寻找左侧边界的算法, 提供两种写法, 常见的左闭右开的写法, 只有两处和搜索左侧边界不同</li>
                             <li>为什么这个算法能够找到右侧边界
                                 <ul>
-                                    <li>当 nums[mid] == target 时，不要立即返回，而是增大「搜索区间」的下界 left，使得区间不断向右收缩，达到锁定右侧边界的目的</li>
+                                    <li>当 nums[mid] == target 时, 不要立即返回, 而是增大「搜索区间」的下界 left, 使得区间不断向右收缩, 达到锁定右侧边界的目的</li>
                                 </ul>
                             </li>
-                            <li>为什么最后返回 left - 1 而不像左侧边界的函数，返回 left？而且我觉得这里既然是搜索右侧边界，应该返回 right 才对
+                            <li>为什么最后返回 left - 1 而不像左侧边界的函数, 返回 left？而且我觉得这里既然是搜索右侧边界, 应该返回 right 才对
                                 <ul>
-                                    <li>while 循环的终止条件是 left == right，所以 left 和 right 是一样的，你非要体现右侧的特点，返回 right - 1 也可以</li>
-                                    <li>至于为什么要减一，这是搜索右侧边界的一个特殊点，关键在 if(nums[mid] === target) l = mid + 1</li>
-                                    <li>因为我们对 left 的更新必须是 left = mid + 1，就是说 while 循环结束时，nums[left] 一定不等于 target 了，而 nums[left-1] 可能是 target</li>
+                                    <li>while 循环的终止条件是 left == right, 所以 left 和 right 是一样的, 你非要体现右侧的特点, 返回 right - 1 也可以</li>
+                                    <li>至于为什么要减一, 这是搜索右侧边界的一个特殊点, 关键在 if(nums[mid] === target) l = mid + 1</li>
+                                    <li>因为我们对 left 的更新必须是 left = mid + 1, 就是说 while 循环结束时, nums[left] 一定不等于 target 了, 而 nums[left-1] 可能是 target</li>
                                 </ul>
                             </li>
-                            <li>为什么没有返回 -1 的操作？如果 nums 中不存在 target 这个值，怎么办
+                            <li>为什么没有返回 -1 的操作？如果 nums 中不存在 target 这个值, 怎么办
                                 <ul>
-                                    <li>类似之前的左侧边界搜索，因为 while 的终止条件是 left == right，就是说 left 的取值范围是 [0, nums.length]，所以可以添加两行代码，正确地返回 -1 if(left === 0) return -1;</li>
+                                    <li>类似之前的左侧边界搜索, 因为 while 的终止条件是 left == right, 就是说 left 的取值范围是 [0, nums.length], 所以可以添加两行代码, 正确地返回 -1 if(left === 0) return -1;</li>
                                 </ul>
                             </li>
                         </ul>
@@ -144,21 +144,6 @@ const AlgoDoublePointer = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>剑指 Offer 11.旋转数组的最小数字{T.EASY}{T.DOUBLE_POINTER}{T.BF}</Title>
-                <Collapse ghost>
-                    <Panel header={<ul>
-                        <li>把一个数组最开始的若干个元素搬到数组的末尾, 我们称之为数组的旋转</li>
-                        <li>给你一个可能存在 <i>重复</i> 元素值的数组 numbers , 它原来是一个升序排列的数组, 并按上述情形进行了一次旋转</li>
-                        <li>请返回旋转数组的最小元素。例如, 数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一次旋转, 该数组的最小值为1</li>
-                    </ul>} key="1">
-                        <Space direction="vertical">
-                            <Highlight language="javascript">{eg.minArray}</Highlight>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
-            <Wrap>
                 <Title level={3}>35.搜索插入位置{T.EASY}{T.DOUBLE_POINTER}</Title>
                 <Collapse ghost>
                     <Panel header="给定一个排序数组和一个目标值, 在数组中找到目标值, 并返回其索引。如果目标值不存在于数组中, 返回它将会被按顺序插入的位置。" key="1">
@@ -175,6 +160,23 @@ const AlgoDoublePointer = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
+
+
+            <Wrap>
+                <Title level={3}>剑指 Offer 11.旋转数组的最小数字{T.EASY}{T.DOUBLE_POINTER}{T.BF}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>把一个数组最开始的若干个元素搬到数组的末尾, 我们称之为数组的旋转</li>
+                        <li>给你一个可能存在 <i>重复</i> 元素值的数组 numbers , 它原来是一个升序排列的数组, 并按上述情形进行了一次旋转</li>
+                        <li>请返回旋转数组的最小元素。例如, 数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一次旋转, 该数组的最小值为1</li>
+                    </ul>} key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.minArray}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
 
             <Wrap>
                 <Title level={3}>153.寻找旋转排序数组中的最小值{T.MEDIUM}{T.DOUBLE_POINTER}{T.BF}</Title>
@@ -264,13 +266,31 @@ const AlgoDoublePointer = () => {
                 <Title level={3}>881. 救生艇{T.DOUBLE_POINTER}</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
-                        <li>给定数组 people 。people[i]表示第 i 个人的体重 ，船的数量不限，每艘船可以承载的最大重量为 limit</li>
-                        <li>每艘船最多可同时载两人，但条件是这些人的重量之和最多为 limit</li>
+                        <li>给定数组 people 。people[i]表示第 i 个人的体重 , 船的数量不限, 每艘船可以承载的最大重量为 limit</li>
+                        <li>每艘船最多可同时载两人, 但条件是这些人的重量之和最多为 limit</li>
                         <li>返回 承载所有人所需的最小船数</li>
                     </ul>} key="1">
                         <Space direction="vertical">
-                            <Highlight language="javascript">{eg.minEatingSpeed}</Highlight>
+                            <Highlight language="javascript">{eg.numRescueBoats}</Highlight>
                         </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+
+            <Wrap>
+                <Title level={3}>202. 快乐数{T.EASY}{T.SLOW_FAST_POINTER}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>编写一个算法来判断一个数 n 是不是快乐数</li>
+                        <li>快乐数」 定义为：<ul>
+                            <li>对于一个正整数, 每一次将该数替换为它每个位置上的数字的平方和</li>
+                            <li>然后重复这个过程直到这个数变为 1, 也可能是 无限循环 但始终变不到 1</li>
+                            <li>如果这个过程 结果为 1, 那么这个数就是快乐数</li>
+                        </ul></li>
+                        <li>如果 n 是 快乐数 就返回 true ；不是, 则返回 false</li>
+                    </ul>} key="1">
+                        <Highlight language="javascript">{eg.isHappy}</Highlight>
                     </Panel>
                 </Collapse>
             </Wrap>
@@ -320,15 +340,13 @@ const AlgoDoublePointer = () => {
                 </Collapse>
             </Wrap>
 
-
             <Wrap>
-                <Title level={3}>713. 乘积小于K的子数组{T.MEDIUM}{T.SLIGDING_WINDOW}</Title>
+                <Title level={3}>3.无重复字符的最长子串(滑动窗口){T.MEDIUM}{T.SLIGDING_WINDOW}</Title>
                 <Collapse ghost>
-                    <Panel header={<ul>
-                        <li>给定一个正整数数组 nums和整数 k </li>
-                        <li>请找出该数组内乘积小于 k 的连续的子数组的个数</li>
-                    </ul>} key="1">
-                        <Highlight language="javascript">{eg.numSubarrayProductLessThanK}</Highlight>
+                    <Panel header="给定一个字符串 s , 请你找出其中不含有重复字符的 最长子串 的长度。" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.lengthOfLongestSubstring}</Highlight>
+                        </Space>
                     </Panel>
                 </Collapse>
             </Wrap>
@@ -344,6 +362,79 @@ const AlgoDoublePointer = () => {
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.minSubArrayLen}</Highlight>
                         </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>438. 找到字符串中所有字母异位词{T.MEDIUM}{T.SLIGDING_WINDOW}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>给定两个字符串 s 和 p，找到 s 中所有 p 的 异位词 的子串，返回这些子串的起始索引。不考虑答案输出的顺序</li>
+                        <li>位词 指由相同字母重排列形成的字符串（包括相同的字符串）</li>
+                    </ul>} key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.findAnagrams}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>904. 水果成篮{T.MEDIUM}{T.SLIGDING_WINDOW}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>农场从左到右种植了一排果树。这些树用一个整数数组 fruits 表示，其中 fruits[i] 是第 i 棵树上的水果 种类</li>
+                        <li>你想要尽可能多地收集水果。然而，农场的主人设定了一些严格的规矩，你必须按照要求采摘水果：
+                            <ul>
+                                <li>你只有 两个 篮子，并且每个篮子只能装 单一类型 的水果。每个篮子能够装的水果总量没有限制</li>
+                                <li>你可以选择任意一棵树开始采摘，你必须从 每棵 树（包括开始采摘的树）上 恰好摘一个水果 。采摘的水果应当符合篮子中的水果类型。每采摘一次，你将会向右移动到下一棵树，并继续采摘</li>
+                                <li>一旦你走到某棵树前，但水果不符合篮子的水果类型，那么就必须停止采摘</li>
+                            </ul>
+                        </li>
+                        <li>给你一个整数数组 fruits ，返回你可以收集的水果的 最大 数目</li>
+                    </ul>} key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.totalFruit}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>930. 和相同的二元子数组{T.MEDIUM}{T.SLIGDING_WINDOW}{T.HASH}{T.PREFIX}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>给你一个二元数组 nums ，和一个整数 goal ，请你统计并返回有多少个和为 goal 的 非空 子数组</li>
+                        <li>子数组 是数组的一段连续部分</li>
+                        <li>nums[i] 不是 0 就是 1</li>
+                    </ul>} key="1">
+                        <Highlight language="javascript">{eg.numSubarraysWithSum}</Highlight>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>713. 乘积小于K的子数组{T.MEDIUM}{T.SLIGDING_WINDOW}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>给定一个正整数数组 nums和整数 k </li>
+                        <li>请找出该数组内乘积小于 k 的连续的子数组的个数</li>
+                    </ul>} key="1">
+                        <Highlight language="javascript">{eg.numSubarrayProductLessThanK}</Highlight>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>1456. 定长子串中元音的最大数目{T.MEDIUM}{T.SLIGDING_WINDOW}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>给你字符串 s 和整数 k </li>
+                        <li>请返回字符串 s 中长度为 k 的单个子字符串中可能包含的最大元音字母数</li>
+                        <li>英文中的 元音字母 为（a, e, i, o, u）</li>
+                    </ul>} key="1">
+                        <Highlight language="javascript">{eg.maxVowels}</Highlight>
                     </Panel>
                 </Collapse>
             </Wrap>
@@ -372,40 +463,20 @@ const AlgoDoublePointer = () => {
 export default AlgoDoublePointer
 
 try {
-    let piles = [3, 5, 3, 4]; let H = 5 // 4
-    // let piles = [30, 11, 23, 4, 20]; let H = 5 // 30
-    // let piles = [30, 11, 23, 4, 20]; let H = 6 // 23
-    console.log(numRescueBoats(piles, H))
+    // console.log(numSubarraysWithSum([0, 1, 1, 0, 0], 1))
 } catch (error) { }
 
 
-function isPossible(people: number[], k: number, limit: number) {
-    let sum = 0
-    let count = 0
-    for (let p of people) {
-        if (sum + p > limit) {
-            count++
-            sum = p
-        } else {
-            sum += p
-        }
-    }
-    count += Math.ceil(sum / limit)
-    console.log(count)
-    return count <= k
-}
-function numRescueBoats(people: number[], limit: number) {
-    let n = people.length
-    let [l, r] = [1, n]
-    let ans = 0
+function minArray(nums: number[], target: number) {
+    let [l, r] = [0, nums.length - 1]
+    let ans = nums.length
     while (l <= r) {
         let mid = l + ((r - l) >> 1)
-        // 判断当前的船只数量够不够坐的下
-        if (isPossible(people, mid, limit)) {  // 如果坐的下
-            ans = mid                          // 保存当前数量
-            r = mid - 1                        // 缩小右边界， 查找是否有个优解
-        } else {                               // 坐不下
-            l = mid + 1                        // 扩大左边届， 查找能坐下的船只数量
+        if (target > nums[mid]) {
+            l = mid + 1
+        } else {
+            ans = mid
+            r = mid - 1
         }
     }
     return ans

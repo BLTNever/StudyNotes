@@ -104,17 +104,7 @@ function maxSubArray(nums: number[]) {
 console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
 `
 
-export const findRepeatNumber = `
-function findRepeatNumber(nums: number[]) {
-    if (nums.length < 2) return nums[0]
 
-    let map = {}
-    for (let i of nums) {
-        if (map[i]) return i
-        map[i] = 1
-    }
-}
-`
 
 export const minimumDifference = `
 function minimumDifference(nums: number[], k: number) {
@@ -205,30 +195,7 @@ function countKDifference(nums: number[], k: number) {
 `
 
 
-export const finalValueAfterOperations = `
-function finalValueAfterOperations(operations: string[]) {
-    // 哈希表
-    let ans = 0
-    const map = {
-        'X++': 1,
-        '++X': 1,
-        'X--': -1,
-        '--X': -1,
-    }
-    for (let i of operations) {
-        ans += map[i]
-    }
-    return ans
-    
-    // reduce 相加
-    return operations.reduce((ans, cur) => {
-        return cur === 'X++' || cur === '++X' ? ans + 1 : ans - 1
-    }, 0)
-}
 
-console.log(finalValueAfterOperations(["++X", "++X", "X++"]))
-
-`
 
 export const maximumDifference = `
 function maximumDifference(nums: number[]) {
@@ -318,30 +285,7 @@ function minMovesToSeat(seats: number[], students: number[]) {
 console.log(minMovesToSeat([4, 1, 5, 9], [1, 3, 2, 6]))
 `
 
-export const kthDistinct = `
-function kthDistinct(arr: string[], k: number) {
-    // 哈希
-    let map = {}
-    for (let s of arr) {
-        if (map[s]) map[s]++  // 已存在的值 value += 1
-        else map[s] = 1       // 未存在的值已 arr 的元素作为 key, value = 1
-    }
-    let res = []
-    for (let [key, val] of Object.entries(map)) {
-        if (val === 1) res.push(key)  //  过滤value 为 1 的 key
-    }
-    return k > res.length ? '' : res[k - 1] // 如果过滤后 key 的 value 为 1 的数组长度小于 k 则证明没有, 反之返回 k - 1 的下标
 
-    // 通过对比arr中元素的 indexOf 和 lastIndexOf 判断是否是同一个。找出唯一的
-    let res = []
-    for (let s of arr) {
-        if (arr.indexOf(s) === arr.lastIndexOf(s)) res.push(s)
-    }
-    return k > res.length ? '' : res[k - 1]
-}
-
-console.log(kthDistinct(["d", "b", "c", "b", "c", "a"], 2))
-`
 
 export const smallestEqual = `
 function smallestEqual(nums: number[]) {
@@ -418,28 +362,7 @@ function maxDistance(colors: number[]) {
 console.log(maxDistance([1, 8, 3, 8, 3]))
 `
 
-export const countWords = `
-function countWords(words1: string[], words2: string[]) {
-    // 遍历数组1 放入map1中
-    let map1 = {}
-    for (let s of words1) {
-        map1[s] = map1[s] || 0
-        map1[s]++
-    }
-    // 遍历数组2 放入map2中
-    let map2 = {}
-    for (let s of words2) {
-        map2[s] = map2[s] || 0
-        map2[s]++
-    }
-    // 遍历 map1 中出现过1次的 key ,在map2中找 这个 key 对应的 count 同样为1的 ++
-    let ans = 0
-    for (let [key, count] of Object.entries(map1)) {
-        if (count === 1 && map2[key] === 1) ans++
-    }
-    return ans
-}
-`
+
 
 export const targetIndices = `
 function targetIndices(nums: number[], target: number) {

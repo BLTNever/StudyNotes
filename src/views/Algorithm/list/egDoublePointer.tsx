@@ -107,7 +107,7 @@ while (l <= r) {                   // ⚠️注意 while 的终止条件
         r = mid - 1              // ⚠️注意 搜索区间变为 [left, mid - 1]
     }
 }
-`       
+`
 
 export const twoSum = `
 /**
@@ -139,14 +139,14 @@ export const removeElement = `
 function removeElement(nums: number[], val: number) {
     const len = nums.length
     if (!len) return 0
-    let ans = 0
-    for (let i = 0; i < len; i++) {
-        if (nums[i] !== val) {
-            nums[ans] = nums[i] // 先覆盖值
-            ans++               // 写指针前进一步
+    let slow = 0
+    for (let fast = 0; fast < len; i++) {
+        if (nums[fast] !== val) {
+            nums[slow] = nums[fast] // 先覆盖值
+            slow++               // 写指针前进一步
         }
     }
-    return ans
+    return slow
 }
 console.log(removeElement([3, 2, 3, 2], 3))
 `
@@ -203,14 +203,14 @@ function removeDuplicates(nums: number[]) {
     if (!len) return 0
 
     // 解1 读写指针
-    let ans = 0                      // 写指针
-    for (let i = 1; i < len; i++) {  // 读指针
-        if (nums[ans] !== nums[i]) {
-            ans++                    // 写指针前进一步
-            nums[ans] = nums[i]      // 读指针的内容写入到写指针的位置
+    let slow = 0                      // 写指针
+    for (let fast = 1; fast < len; fast++) {  // 读指针
+        if (nums[slow] !== nums[fast]) {
+            slow++                    // 写指针前进一步
+            nums[slow] = nums[fast]      // 读指针的内容写入到写指针的位置
         }
     }
-    return ans + 1
+    return slow + 1
    
     // 解2
     let fast = 1
@@ -294,7 +294,19 @@ function removeDuplicates(nums: number[]) {
     let n = nums.length
     if (!n) return
     if (n < 3) return n
-    // 解一: 通过k可以控制允许每个元素最多出现的次数
+    // 解： 读写指针
+    let fast = 2                             // 读指针
+    let slow = 2                             // 写指针
+    while (fast < n) {
+        if (nums[slow - 2] !== nums[fast]) { //
+            nums[slow] = nums[fast]
+            slow++
+        }
+        fast++
+    }
+    return slow
+
+    // 解: 通过k可以控制允许每个元素最多出现的次数
     let k = 2                                  // 每个元素允许最多出现的次数 
     let i = 0                                  // 写指针
     for (let n of nums) {                      // 读指针
@@ -306,17 +318,7 @@ function removeDuplicates(nums: number[]) {
         }
     }
     return i
-    // 解二 读写指针
-    let fast = 2                             // 读指针
-    let slow = 2                             // 写指针
-    while (fast < n) {
-        if (nums[slow - 2] !== nums[fast]) { //
-            nums[slow] = nums[fast]
-            slow++
-        }
-        fast++
-    }
-    return slow
+    
 }`
 
 export const sortedSquares = `
@@ -325,11 +327,12 @@ function sortedSquares(nums: number[]) {
     // 数组平方的最大值在数组的两端
     // 对比左右两端数据的绝对值
     let res = []
-    for (let l = 0, r = nums.length - 1; l <= r;) {  // l 指向 0, r 指向 length - 1
-        let left = Math.abs(nums[l])                 // 取绝对值
+    let [l, r] = [0, nums.length - 1]
+    while (l <= r) {                           // l 指向 0, r 指向 尾端
+        let left = Math.abs(nums[l])           // 取绝对值
         let right = Math.abs(nums[r])
-        if (left > right) {                         // 比较两端大小, 大的值 塞到 res 头部
-            res.unshift(left * left)                // 指针向中间移动
+        if (left > right) {                    // 比较两端大小, 大的值 塞到 res 头部
+            res.unshift(left * left)           // 指针向中间移动
             l++
         } else {
             res.unshift(right * right)
@@ -423,19 +426,19 @@ function numSubarrayProductLessThanK(nums: number[], k: number) {
 
 export const minSubArrayLen = `
 function minSubArrayLen(target: number, nums: number[]) {
-    let left = 0                                    // 滑动窗口 左值
-    let right = 0                                   // 滑动窗口 右值
+    let l = 0                                       // 滑动窗口 左值
+    let r = 0                                       // 滑动窗口 右值
     let sum = nums[0]                               // 元素之和 - 默认第一个
     let ans = Number.MAX_SAFE_INTEGER               // 最小长度的子数组长度
-    while (right < nums.length) {
+    while (r < nums.length) {
         if (sum >= target) {                        // sum 和 大于 target
-            ans = Math.min(ans, right - left + 1)   // 先 存一下 right 跟 left 区间的长度
+            ans = Math.min(ans, r - l + 1)          // 先 存一下 r 跟 l 区间的长度
             if (ans === 1) return ans               // 如果遇到 ans 为1的情况直接返回, 没有比1更小的长度
-            sum -= nums[left]                       // 如果sum >= target的时候, 减去 移动过的值
-            left++                                  // 指针 left 向右移动
-        } else {                                    // left 移动前,先减去 left 值。right 移动后 加上移动后的值
-            right++                                 // sum 小于 target, 指针 right 向右移动
-            sum += nums[right]                      // 累计 移动过的值
+            sum -= nums[l]                          // 如果sum >= target的时候, 减去 移动过的值
+            l++                                     // 指针 l 向右移动
+        } else {                                    // l 移动前,先减去 l 值。r 移动后 加上移动后的值
+            r++                                     // sum 小于 target, 指针 r 向右移动
+            sum += nums[r]                          // 累计 移动过的值
         }
     }
     return ans === Number.MAX_SAFE_INTEGER ? 0 : ans
@@ -647,3 +650,251 @@ function minEatingSpeed(piles: number[], h: number) {
     return l
 }
 `
+
+export const numRescueBoats = `
+/**
+ * 更充分地利用资源, 先排序, 重量升序排列
+ * 最轻的如果跟最重的如果一起上船, 资源利用更充分
+ */
+function numRescueBoats(people: number[], limit: number) {
+    let ans = 0
+    people = people.sort((a, b) => a - b)
+    let n = people.length
+    let [l, r] = [0, n - 1]
+    while (l <= r) {
+        // 判断当前的船只数量够不够坐的下
+        if (people[l] + people[r] <= limit) {  // 如果坐的下, 左指针向右移动
+            l++
+        }
+        r--                                    // 坐不下, 右指针向左移动缩小范围
+        ans++                                  // 记录船只数量
+    }
+    return ans
+}
+`
+export const isHappy = `
+function getNum(n: number) {
+    if (n === 1 || n === 0) return n
+    // return String(n).split('').map(i => Number(i) ** 2).reduce((a, c) => a + c)
+    let sum = 0
+    while (n > 0) {
+        sum += (n % 10) ** 2
+        n = Math.floor(n / 10)
+    }
+    return sum
+}
+/**
+ * 1.找到快乐数
+ * 2.没有快乐数，形成环路，容易造成死循环
+ * 3.关键点在于怎么停止，防止死循环
+ */
+function isHappy(n: number) {
+    // 快慢指针：找到相同的数就停止
+    let slow = n
+    let fast = getNum(n)
+    while (fast !== 1 && fast !== slow) {
+        slow = getNum(slow)
+        fast = getNum(getNum(fast))
+    }
+    return fast === 1
+    // hash：计算的数存起来，哈希表里找到相同的数证明没有相同的
+    let set = new Set()
+    while (n !== 1 || !set.has(n)) {
+        set.add(n)
+        n = getNum(n)
+    }
+    return n === 1
+}`
+
+export const maxVowels = `
+/**
+ * 滑动窗口 - 时间复杂度 O(n) 空间复杂度 O(1)
+ * 定义 k 长度的区间，记录 k 区间元音的数量
+ * 移动窗口的时候对比 每个窗口内的数量大小 
+ */
+function maxVowels(s: string, k: number) {
+    const set = new Set(['a', 'e', 'i', 'o', 'u'])
+    let l = 0
+    let r = 0
+    // 两次遍历，先确定窗口区间， 再移动窗口
+    let count = 0
+    while (r < k) {         // 确定窗口的范围，找到当前窗口的元音数量
+        if (set.has(s[r])) count++
+        r++
+    }
+    let ans = count         // 初始化 ans 为第一次记录的 count 数量
+    while (r < s.length) {
+        if (set.has(s[r])) count++  // 窗口右边界有元音 数量++
+        if (set.has(s[l])) count--  // 窗口左边界有元音 数量--
+        l++                         // 窗口移动
+        r++
+        ans = Math.max(ans, count)  // 记录窗口移动时候记录的最大值
+    }
+    // 一次遍历
+    let count = 0
+    let ans = 0
+    while (r < s.length) {
+        if (set.has(s[r])) count++
+        if ((r - l) >= k) {
+            if (set.has(s[l])) count--
+            l++
+        }
+        ans = Math.max(ans, count)
+        if (ans === k) break          // 统计的元音数量与 k 相等，可以直接终止循环
+        r++
+    }
+    
+    return ans
+}`
+
+export const lengthOfLongestSubstring = `
+/**
+ * 滑动窗口
+ */
+function lengthOfLongestSubstring(s: string) {
+    let ans = Number.MIN_SAFE_INTEGER
+    let l = 0
+    let r = 0
+    let set = new Set()
+    while (r < s.length) {
+        if (!set.has(s[r])) {
+            // 遇到不重复的元素,添加元素,窗口右指针向右移动, 记录比较一下大小
+            set.add(s[r])
+            r++
+            ans = Math.max(ans, set.size)
+        } else {
+            // 遇到重复的元素,删除之前出现的元素,窗口左指针向右移动
+            set.delete(s[l])
+            l++
+        }
+    }
+    return ans === Number.MIN_SAFE_INTEGER ? 0 : ans
+}
+/**
+ * 数组解法
+ * 判断 res 数组中是否包含了元素, 包含了删除该元素及之前的
+ * 如果 res 数组中包含元素,不能使用 continue ,因为是连续元素, 所以要把之前的都删掉
+ */
+function lengthOfLongestSubstring(s: string) {
+    let ans = Number.MIN_SAFE_INTEGER
+    let res = []
+    for (let char of s) {
+        if (res.indexOf(char) !== -1) {
+            res.splice(0, res.indexOf(char) + 1)
+        }
+        res.push(char)
+        ans = Math.max(res.length, ans)
+    }
+    return ans === Number.MIN_SAFE_INTEGER ? 0 : ans
+}
+/**
+ * 双指针 
+ * 空间复杂度O(1)
+ */
+function lengthOfLongestSubstring(s: string) {
+    let minIndex = 0
+    let ans = 0
+    for (let i = 0; i < s.length; i++) {
+        if (s.indexOf(s[i], minIndex) < i) {            // 判断是否存在重复的
+            minIndex = s.indexOf(s[i], minIndex) + 1    // 遇到重复的 改变 minIndex指针
+        } else {
+            ans = Math.max(ans, i - minIndex + 1)       // 不重复的增加ans值
+        }
+    }
+    return ans
+}
+`
+
+export const findAnagrams = `
+function findAnagrams(s: string, p: string) {
+    let need = new Map()     // 储存 p 字符串的 字符和数量
+    let window = new Map()   // 储存 滑动窗口 中出现符合 p 的字符以及数量
+    for (let char of p) {
+        need.set(char, (need.get(char) || 0) + 1)
+    }
+    let l = 0
+    let r = 0
+    let len = p.length
+    let count = 0
+    let ans = []
+    while (r < s.length) {
+        let right = s[r++]          // 获取窗口右边界值，右指针右移
+        if (need.get(right)) {      // 如果 need 表中存在该值
+            // 在 window 表中储存
+            window.set(right, (window.get(right) || 0) + 1)
+            // 如果两个表中储存的数量相同，满足字符的数量 count++
+            if (need.get(right) === window.get(right)) count++
+        }
+        while ((r - l) >= len) {    // 窗口的长度 >= p.lenght的时候开始移动左边界
+            // 记录的count值等于 need.size 证明每个字符都满足了 need 的需求
+            if (count === need.size) ans.push(l)
+            let left = s[l++]       // 记录出窗口的值，左指针右移
+            if (need.get(left)) {   // 出 窗口的值 如果存在 need 表中
+                // 那么满足条件字符的数量 count--, 同时 window 表中的数据 - 1
+                if (need.get(left) === window.get(left)) count-- 
+                window.set(left, window.get(left) - 1)
+            }
+        }
+    }
+    return ans
+}`
+
+export const totalFruit = `
+/**
+ * 题目意思是采摘两种 不相等 连续的 果树的果子的最大值
+ * [3,3,3,1,2,2,1,2,3,3,3], 本质就是 两种 数字 元素的最大长度
+ * 使用滑动窗口，窗口内最多存在 2 个不同的数字
+ * 如果遇到第三种数字，更新左边界，记录窗口长度
+ * 没遇到第三种数字，右边界扩张，记录窗口长度
+ */
+function totalFruit(fruits: number[]) {
+    let l = 0
+    let r = 0
+    let arr: number[] = [fruits[0]] // 篮子
+    let prev = 0   // 遇到第三种水果，上一种水果的位置
+    let ans = 0     
+    while (r < fruits.length) {
+        // 1. arr 空, 2. arr 有 1 种水果, 3. arr 中有 2 种水果
+        // length < 2: [undefined, r]
+        // length = 2: [r - 1, r]
+        if (!arr.includes(fruits[r])) {   // 篮子中不包含当前水果
+            if (arr.length < 2) {
+                arr[1] = fruits[r]
+            } else {                      // 篮子中超过 2 种水果
+                arr[0] = fruits[r - 1]
+                arr[1] = fruits[r]
+                l = prev                  // 窗口左边界移动
+            }
+        }
+
+        if (fruits[r] !== fruits[prev]) { // 篮子中进入新水果
+            prev = r                      // 使用prev 记录新水果的 初始位置
+        }
+        ans = Math.max(ans, r - l + 1)    // 更新滑动窗口的最大值
+        r++
+    }
+    return ans
+}`
+
+export const numSubarraysWithSum = `
+/**
+ * 前缀和 + hash
+ * 元素的前缀和为sum[i]，[i, j] 区间的前缀和为goal，那么goal = sum[j] - sum[i]
+ * sum[i] = sum[j] - goal
+ * map中存储每个位置的前缀和
+ * 最后查找map中，sum - goal的数量累加到 ans 上
+ */
+function numSubarraysWithSum(nums: number[], goal: number) {
+    let map = new Map()
+    map.set(0, 1)
+    let [ans, sum] = [0, 0]
+    for (let n of nums) {
+        sum += n
+        if (map.has(sum - goal)) {
+            ans += map.get(sum - goal)
+        }
+        map.set(sum, (map.get(sum) || 0) + 1)
+    }
+    return ans
+}
+// 滑动窗口暂缓`

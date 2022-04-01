@@ -296,22 +296,99 @@ const AlgoListNode = () => {
     )
 }
 
+export default AlgoListNode
+
+
+function deleteNode(node: ListNode) {
+    node.val = node.next.val
+    node.next = node.next.enxt
+}
 function test(head: ListNode) {
-    let slow = head
-    let fast = head
-    while (fast && fast.next) {
-        slow = slow.next
-        fast = fast.next.next
-        if (slow === fast) {
-            fast = head
-            while (fast !== slow) {
-                fast = fast.next
-                slow = slow.next
-            }
-            return fast
+    let pre = null
+    let cur = head
+    while (cur.next) {
+        const next = cur.next
+        cur.next = pre
+        pre = cur
+        cur = next
+    }
+    return pre
+}
+
+function reverse(head: ListNode, left: number, right: number) {
+    let dummy = new ListNode(0)
+    dummy.next = head
+    let pre = dummy
+    for (let i = 0; i < left - 1; i++) {
+        pre = pre.next
+    }
+    let rightNode = pre
+    for (let i = 0; i < right - left + 1; i++) {
+        rightNode = rightNode.next
+    }
+    let leftNode = pre.next
+    let cur = rightNode.next
+
+    pre.next = null
+    rightNode.next = null
+
+    test(leftNode)
+    pre.next = rightNode
+    leftNode.next = cur
+}
+
+
+function merge(A: ListNode, B: ListNode) {
+    if (!A) return B
+    if (!B) return A
+
+    if (A.val < B.val) {
+        A.next = merge(A.next, B)
+        return A
+    } else {
+        B.next = merge(A, B.next)
+        return B
+    }
+}
+
+function hasSame(headA: ListNode, headB: ListNode) {
+    if (!headA || !headB) return null
+    let A = headA
+    let B = headB
+    while (A !== B) {
+        A = A.next !== null ? A.next : headB
+        B = B.next !== null ? B.next : headA
+    }
+    return A
+}
+
+function _delete(head: ListNode) {
+    if (!head) return null
+    let cur = head
+    while (cur && cur.next) {
+        if (cur.val === cur.next.val) {
+            cur.next = cur.next.next
+        } else {
+            cur = cur.next
         }
     }
-
-    return null
+    return head
 }
-export default AlgoListNode
+
+function _delete2(head: ListNode) {
+    let dummy = new ListNode(0)
+    dummy.next = head
+    let cur = dummy
+
+    while (cur.next && cur.next.next) {
+        if (cur.next.val === cur.next.next.val) {
+            let val = cur.next.val
+            while (val === cur.next.val && cur.next) {
+                cur.next = cur.next.next
+            }
+        } else {
+            cur = cur.next
+        }
+    }
+    return dummy.next
+}

@@ -31,7 +31,6 @@ const AlgoBinaryTree = () => {
                     <li>3. 搜索二叉树: 左子树不为空, 则左子树上所有结点的值均小于它的根结点值。右子树不为空,则由子手上所有节点的值均大于它的根节点值</li>
                     <li>4. 平衡二叉搜索树(AVL(Adelson-Velsky and Landi)树): 一棵空树或它的左右两个子树的高度差的绝对值不超过1, 并且左右两个子树都是一棵平衡二叉树</li>
                 </ul>
-                
             </Wrap>
             <Wrap>
                 <Title level={3}>144.二叉树的前序遍历{T.EASY}</Title>
@@ -106,6 +105,17 @@ const AlgoBinaryTree = () => {
                     <Panel header="给定一个二叉树,找出其最小深度。最小深度是从根节点到最近叶子节点的最短路径上的节点数量。" key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.minDepth}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>反转二叉树{T.EASY}</Title>
+                <Collapse ghost>
+                    <Panel header="反转二叉树" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.invertTree}</Highlight>
                         </Space>
                     </Panel>
                 </Collapse>
@@ -204,13 +214,20 @@ try {
     // console.log(sortedArrayToBST([-10, -3, 0, 5, 9]))
 } catch (error) { }
 
-/**
- * 反转二叉树
- * @param root 
- */
-function invertTree(root?: any) {
-    if (!root) return null
-    root.left = invertTree(root?.right)
-    root.right = invertTree(root?.left)
-    return root
+function maxDepth(root: TreeNode | null): number {
+    if (!root) return 0
+
+    const left: number = maxDepth(root?.left)
+    const right: number = maxDepth(root?.right)
+    return Math.max(left, right) + 1
+}
+
+function minDepth(root: TreeNode) {
+    if (!root) return 0
+    if (!root.left && !root.right) return 1
+    let min = 0
+    if (root.left) min = Math.min(min, minDepth(root.left))
+    if (root.right) min = Math.min(min, minDepth(root.right))
+
+    return min + 1
 }

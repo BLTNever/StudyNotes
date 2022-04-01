@@ -92,7 +92,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2006.差的绝对值为 K 的数对数目{T.EASY}</Title>
+                <Title level={3}>2006.差的绝对值为 K 的数对数目{T.EASY}{T.BF}{T.SLOW_FAST_POINTER}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个整数数组 nums 和一个整数 k , 请你返回数对 (i, j) 的数目, 满足 i < j 且 |nums[i] - nums[j]| == k 。" key="1">
                         <Highlight language="javascript">{eg.countKDifference}</Highlight>
@@ -100,18 +100,7 @@ const AlgoArray = () => {
                 </Collapse>
             </Wrap>
 
-            <Wrap>
-                <Title level={3}>2011.执行操作后的变量值{T.EASY}</Title>
-                <Collapse ghost>
-                    <Panel header="存在一种仅支持 4 种操作和 1 个变量 X 的编程语言: 
-                        ++X 和 X++ 使变量 X 的值 加 1
-                        --X 和 X-- 使变量 X 的值 减 1
-                        最初, X 的值是 0
-                        给你一个字符串数组 operations , 这是由操作组成的一个列表, 返回执行所有操作后,  X 的 最终值 。" key="1">
-                        <Highlight language="javascript">{eg.finalValueAfterOperations}</Highlight>
-                    </Panel>
-                </Collapse>
-            </Wrap>
+
 
             <Wrap>
                 <Title level={3}>2016.增量元素之间的最大差值{T.EASY}</Title>
@@ -146,29 +135,23 @@ const AlgoArray = () => {
             <Wrap>
                 <Title level={3}>2037.使每位学生都有座位的最少移动次数{T.EASY}{T.SORT}</Title>
                 <Collapse ghost>
-                    <Panel header="一个房间里有 n 个座位和 n 名学生, 房间用一个数轴表示。给你一个长度为 n 的数组 seats , 其中 seats[i] 是第 i 个座位的位置。同时给你一个长度为 n 的数组 students , 其中 students[j] 是第 j 位学生的位置。
-                            你可以执行以下操作任意次: 
-                            增加或者减少第 i 位学生的位置, 每次变化量为 1 (也就是将第 i 位学生从位置 x 移动到 x + 1 或者 x - 1)
-                            请你返回使所有学生都有座位坐的 最少移动次数 , 并确保没有两位学生的座位相同。
-                            请注意, 初始时有可能有多个座位或者多位学生在 同一 位置。" key="1">
+                    <Panel header={<ul>
+                        <li>一个房间里有 n 个座位和 n 名学生, 房间用一个数轴表示。给你一个长度为 n 的数组 seats</li>
+                        <li>其中 seats[i] 是第 i 个座位的位置。同时给你一个长度为 n 的数组 students , 其中 students[j] 是第 j 位学生的位置</li>
+                        <li>你可以执行以下操作任意次:</li>
+                        <li>增加或者减少第 i 位学生的位置, 每次变化量为 1 (也就是将第 i 位学生从位置 x 移动到 x + 1 或者 x - 1)</li>
+                        <li>请你返回使所有学生都有座位坐的 最少移动次数 , 并确保没有两位学生的座位相同</li>
+                        <li>请注意, 初始时有可能有多个座位或者多位学生在 同一 位置</li>
+                    </ul>} key="1">
                         <Highlight language="javascript">{eg.minMovesToSeat}</Highlight>
                     </Panel>
                 </Collapse>
             </Wrap>
 
-            <Wrap>
-                <Title level={3}>2053.数组中第 K 个独一无二的字符串{T.EASY}{T.HASH}</Title>
-                <Collapse ghost>
-                    <Panel header={`独一无二的字符串 指的是在一个数组中只出现过 一次 的字符串。
-                            给你一个字符串数组 arr 和一个整数 k , 请你返回 arr 中第 k 个 独一无二的字符串 。如果 少于 k 个独一无二的字符串, 那么返回 空字符串 "" 。
-                            注意, 按照字符串在原数组中的 顺序 找到第 k 个独一无二字符串。`} key="1">
-                        <Highlight language="javascript">{eg.kthDistinct}</Highlight>
-                    </Panel>
-                </Collapse>
-            </Wrap>
+
 
             <Wrap>
-                <Title level={3}>2057.值相等的最小索引{T.EASY}{}</Title>
+                <Title level={3}>2057.值相等的最小索引{T.EASY}{ }</Title>
                 <Collapse ghost>
                     <Panel header="给你一个下标从 0 开始的整数数组 nums , 返回 nums 中满足 i mod 10 == nums[i] 的最小下标 i ；如果不存在这样的下标, 返回 -1 。
                             x mod y 表示 x 除以 y 的 余数 。" key="1">
@@ -178,12 +161,14 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2073.买票需要的时间{T.EASY}{}</Title>
+                <Title level={3}>2073.买票需要的时间{T.EASY}{ }</Title>
                 <Collapse ghost>
-                    <Panel header="有 n 个人前来排队买票, 其中第 0 人站在队伍 最前方 , 第 (n - 1) 人站在队伍 最后方 。
-                        给你一个下标从 0 开始的整数数组 tickets , 数组长度为 n , 其中第 i 人想要购买的票数为 tickets[i] 。
-                        每个人买票都需要用掉 恰好 1 秒 。一个人 一次只能买一张票 , 如果需要购买更多票, 他必须走到  队尾 重新排队(瞬间 发生, 不计时间)。如果一个人没有剩下需要买的票, 那他将会 离开 队伍。
-                        返回位于位置 k(下标从 0 开始)的人完成买票需要的时间(以秒为单位)。" key="1">
+                    <Panel header={<ul>
+                        <li>有 n 个人前来排队买票, 其中第 0 人站在队伍 最前方 , 第 (n - 1) 人站在队伍 最后方</li>
+                        <li>给你一个下标从 0 开始的整数数组 tickets , 数组长度为 n , 其中第 i 人想要购买的票数为 tickets[i]</li>
+                        <li>每个人买票都需要用掉 恰好 1 秒 。一个人 一次只能买一张票 , 如果需要购买更多票, 他必须走到  队尾 重新排队(瞬间 发生, 不计时间)。如果一个人没有剩下需要买的票, 那他将会 离开 队伍</li>
+                        <li>返回位于位置 k(下标从 0 开始)的人完成买票需要的时间(以秒为单位)</li>
+                    </ul>} key="1">
                         <Highlight language="javascript">{eg.timeRequiredToBuy}</Highlight>
                     </Panel>
                 </Collapse>
@@ -192,25 +177,18 @@ const AlgoArray = () => {
             <Wrap>
                 <Title level={3}>2078.两栋颜色不同且距离最远的房子{T.EASY}{T.GREEDY}{T.BF}</Title>
                 <Collapse ghost>
-                    <Panel header="街上有 n 栋房子整齐地排成一列, 每栋房子都粉刷上了漂亮的颜色。给你一个下标从 0 开始且长度为 n 的整数数组 colors , 
-                            其中 colors[i] 表示第  i 栋房子的颜色。
-                            返回 两栋 颜色 不同 房子之间的 最大 距离。
-                            第 i 栋房子和第 j 栋房子之间的距离是 abs(i - j) , 其中 abs(x) 是 x 的绝对值。" key="1">
+                    <Panel header={<ul>
+                        <li>街上有 n 栋房子整齐地排成一列, 每栋房子都粉刷上了漂亮的颜色。给你一个下标从 0 开始且长度为 n 的整数数组 colors</li>
+                        <li>其中 colors[i] 表示第  i 栋房子的颜色</li>
+                        <li>返回 两栋 颜色 不同 房子之间的 最大 距离</li>
+                        <li>第 i 栋房子和第 j 栋房子之间的距离是 abs(i - j) , 其中 abs(x) 是 x 的绝对值</li>
+                    </ul>} key="1">
                         <Highlight language="javascript">{eg.maxDistance}</Highlight>
                     </Panel>
                 </Collapse>
             </Wrap>
 
-            <Wrap>
-                <Title level={3}>2085.统计出现过一次的公共字符串{T.EASY}{T.HASH}</Title>
-                <Collapse ghost>
-                    <Panel header="给你两个字符串数组 words1 和 words2 , 请你返回在两个字符串数组中 都恰好出现一次 的字符串的数目。" key="1">
-                        <Space direction="vertical">
-                            <Highlight language="javascript">{eg.countWords}</Highlight>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
+           
 
             <Wrap>
                 <Title level={3}>2089.找出数组排序后的目标下标{T.EASY}{T.BF}{T.COUNT}</Title>
@@ -243,7 +221,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>LCP 01.猜数字{T.EASY}{}</Title>
+                <Title level={3}>LCP 01.猜数字{T.EASY}{ }</Title>
                 <Collapse ghost>
                     <Panel header="小A 和 小B 在玩猜数字。小B 每次从 1, 2, 3 中随机选择一个, 小A 每次也从 1, 2, 3 中选择一个猜。
                         他们一共进行三次这个游戏, 请返回 小A 猜对了几次？
@@ -266,16 +244,7 @@ const AlgoArray = () => {
                 </Collapse>
             </Wrap>
 
-            <Wrap>
-                <Title level={3}>剑指 Offer 03.数组中重复的数字{T.EASY}{T.HASH}</Title>
-                <Collapse ghost>
-                    <Panel header="在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的, 但不知道有几个数字重复了, 也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。" key="1">
-                        <Highlight language="javascript">{eg.findRepeatNumber}</Highlight>
-                    </Panel>
-                </Collapse>
-            </Wrap>
 
-          
             <Wrap>
                 <Title level={3}>414.第三大的数{T.EASY}{T.SORT}</Title>
                 <Collapse ghost>
@@ -287,14 +256,16 @@ const AlgoArray = () => {
                 </Collapse>
             </Wrap>
 
-          
+
 
             <Wrap>
                 <Title level={3}>1122.数组的相对排序{T.EASY}{T.HASH}</Title>
                 <Collapse ghost>
-                    <Panel header="给你两个数组, arr1 和 arr2,  arr2中的元素各不相同;arr2中的每个元素都出现在 arr1 中;
-                            对 arr1 中的元素进行排序, 使 arr1 中项的相对顺序和 arr2 中的相对顺序相同。未在 arr2 中出现过的元素需要按照升序放在 arr1 的末尾。" key="1"
-                    >
+                    <Panel header={<ul>
+                        <li>给你两个数组, arr1 和 arr2,  arr2中的元素各不相同;arr2中的每个元素都出现在 arr1 中</li>
+                        <li>对 arr1 中的元素进行排序, 使 arr1 中项的相对顺序和 arr2 中的相对顺序相同。未在 arr2 中出现过的元素需要按照升序放在 arr1 的末尾</li>
+                    </ul>}
+                        key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.relativeSortArray}</Highlight>
                         </Space>
@@ -305,9 +276,8 @@ const AlgoArray = () => {
             <Wrap id="mergeSort">
                 <Title level={3}>合并二维有序数组成一维有序数组{T.MERGE_SORT}</Title>
                 <Collapse ghost>
-                    <Panel header="给你两个数组, arr1 和 arr2,  arr2中的元素各不相同;arr2中的每个元素都出现在 arr1 中;
-                            对 arr1 中的元素进行排序, 使 arr1 中项的相对顺序和 arr2 中的相对顺序相同。未在 arr2 中出现过的元素需要按照升序放在 arr1 的末尾。" key="1"
-                    >
+                    <Panel header="将一个二维有序数组转换成一维有序数组"
+                        key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.mergeSort}</Highlight>
                         </Space>
@@ -336,7 +306,7 @@ const AlgoArray = () => {
                 </Collapse>
             </Wrap>
 
-           
+
 
             <Wrap id="findKthLargest">
                 <Title level={3}>215. 数组中的第K个最大元素{T.MEDIUM}</Title>
@@ -349,7 +319,7 @@ const AlgoArray = () => {
                 </Collapse>
             </Wrap>
 
-           
+
 
             <Wrap>
                 <Title level={3}>4. 寻找两个正序数组的中位数{T.HARD}{T.DICHOTOMY}</Title>
@@ -374,9 +344,22 @@ export default AlgoArray
 
 
 try {
-    // console.log(findMiddleArray([1, 2, 3], [4, 5, 6, 7]))
+    // console.log(rotate('abcdefg', 3))
 } catch (error) {
     console.log(error)
 }
 
 
+
+
+function test(nums: number[], k: number) {
+    const n = nums.length
+    let ans = 0
+    for (let i = 0; i < n; i++) {
+        if (i > k) {
+            ans += Math.min(nums[i], nums[k] - 1)
+        } else {
+            ans += Math.min(nums[i], nums[k])
+        }
+    }
+}

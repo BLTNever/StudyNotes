@@ -37,6 +37,11 @@ const AlgoNote = () => {
                             <Highlight>{createTree}</Highlight>
                         </Space>
                     </Panel>
+                    <Panel header="树的结构转成一维数组" key="2">
+                        <Space direction="vertical">
+                            <Highlight>{eg.tree2list}</Highlight>
+                        </Space>
+                    </Panel>
                 </Collapse>
             </Wrap>
 
@@ -165,3 +170,9 @@ const AlgoNote = () => {
     )
 }
 export default AlgoNote
+
+
+// entry:['html','html','html','span','span','div','div','div','html','p'],output: [{html: 4}, {div:3},{span:2},{p:1}],排序输出
+try {
+    // console.log(statistics(['html', 'html', 'html', 'span', 'span', 'div', 'div', 'div', 'html', 'p']))
+} catch (error) { console.log(error) }

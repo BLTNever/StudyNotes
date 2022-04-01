@@ -110,3 +110,6 @@ export const regData = [
     { K: '[\\s\\S]', describe: '匹配所有。\\s 是匹配所有空白符,包括换行,\\S 非空白符,不包括换行' },
     { K: '\\w', describe: '匹配所有。\\s 是匹配所有空白符,包括换行,\\S 非空白符,不包括换行' },
 ]
+
+export const operationData = [
+]

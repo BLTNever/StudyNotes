@@ -123,18 +123,21 @@ export const getLucky = `
  * @returns 
  */
 function getLucky(s: string, k: number) {
+    // 解1:
     let str = ''
-    // for (let i of s) {
-    //     str += String(i.charCodeAt(0) - 96)
-    // }
-    // for (let i = 0; i < k; i++) {
-    //     str = str.split('').reduce((a: string, b: string) => String(Number(a) + Number(b)))
-    // }
+    for (let i of s) {
+        str += String(i.charCodeAt(0) - 96)
+    }
+    for (let i = 0; i < k; i++) {
+        str = str.split('').reduce((a: string, b: string) => String(Number(a) + Number(b)))
+    }
+    // 解2:
     str = s.split('').map((i: string) => i.charCodeAt(0) - 96).join('')
     while (--k + 1) {
         str = str.split('').reduce((a: string, b: string) => String(Number(a) + Number(b)))
         // k--
     }
+
     return str
 }
 console.log(getLucky('abcdef', 1))
@@ -143,15 +146,15 @@ console.log(getLucky('abcdef', 1))
 export const makeFancyString = `
 function makeFancyString(s: string) {
     if (s.length < 3) return s
-    let num = 0
+    let count = 0
     let prev = ''
     let ans = ''
     for (let i of s) {
         if (prev === i) {
-            num++
-            num < 2 && (ans += i)
+            count++
+            count < 2 && (ans += i)
         } else {
-            num = 0
+            count = 0
             prev = i
             ans += i
         }
@@ -175,13 +178,15 @@ console.log(isPrefixString('a', ['aa', 'aaa', 'bbb']))
 
 export const numOfStrings = `
 function numOfStrings(patterns: string[], word: string) {
-    // let ans = 0
-    // for (let p of patterns) {
-    //     if (word.indexOf(p) > -1) {
-    //         ans++
-    //     }
-    // }
-    // return ans
+    // 解1:
+    let ans = 0
+    for (let p of patterns) {
+        if (word.indexOf(p) > -1) {
+            ans++
+        }
+    }
+    return ans
+    // 解2:
     return patterns.reduce((count, p) => {
         if (word.indexOf(p) > -1) count++
         return count
@@ -397,67 +402,7 @@ function buddyStrings(s: string, goal: string) {
 console.log(buddyStrings('aa', 'aa'))
 `
 
-export const lengthOfLongestSubstring = `
-/**
- * 滑动窗口
- * @param s 
- * @returns 
- */
-function lengthOfLongestSubstring(s: string) {
-    let ans = Number.MIN_SAFE_INTEGER
-    let left = 0
-    let right = 0
-    let set = new Set()
-    while (right < s.length) {
-        if (!set.has(s[right])) {
-            // 遇到不重复的元素,添加元素,窗口右指针向右移动, 记录比较一下大小
-            set.add(s[right])
-            right++
-            ans = Math.max(ans, set.size)
-        } else {
-            // 遇到重复的元素,删除之前出现的元素,窗口左指针向右移动
-            set.delete(s[left])
-            left++
-        }
-    }
-    return ans === Number.MIN_SAFE_INTEGER ? 0 : ans
-}
-/**
- * 数组解法
- * 判断 res 数组中是否包含了元素, 包含了删除该元素及之前的
- * 如果 res 数组中包含元素,不能使用 continue ,因为是连续元素, 所以要把之前的都删掉
- * @param s 
- * @returns 
- */
-function lengthOfLongestSubstring(s: string) {
-    let ans = Number.MIN_SAFE_INTEGER
-    let res = []
-    for (let char of s) {
-        if (res.indexOf(char) !== -1) {
-            res.splice(0, res.indexOf(char) + 1)
-        }
-        res.push(char)
-        ans = Math.max(res.length, ans)
-    }
-    return ans === Number.MIN_SAFE_INTEGER ? 0 : ans
-}
-/**
- * 双指针 
- * 空间复杂度O(1)
- */
-function lengthOfLongestSubstring(s: string) {
-    let minIndex = 0
-    let ans = 0
-    for (let i = 0; i < s.length; i++) {
-        if (s.indexOf(s[i], minIndex) < i) {            // 判断是否存在重复的
-            minIndex = s.indexOf(s[i], minIndex) + 1    // 遇到重复的 改变 minIndex指针
-        } else {
-            ans = Math.max(ans, i - minIndex + 1)       // 不重复的增加ans值
-        }
-    }
-    return ans
-}
-`
+
 
 export const isPathCrossing = `
 function isPathCrossing(path: string) {

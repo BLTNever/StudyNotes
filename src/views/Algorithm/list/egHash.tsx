@@ -377,3 +377,318 @@ function findJudge(n: number, trust: number[][]) {
     }
     return -1
 }`
+
+export const subarraySum = `
+/**
+ * nums[j] + ... + nums[i] === prefix[i] − prefix[j − 1]
+ * 题意：有几种 j、i 的组合，使得从第 j 到 i 的子数组和等于 k， nums[j] = prefix[j] - prefix[j - 1]
+ * 有几种 j、i 的组合，满足 nums[j] + ... + nums[i] === prefix[i] − prefix[j - 1]
+ * 如果 pre[i] - pre[j - 1] === k 证明 j ... i 区间肯定存在和为k的值
+ * prefix[j - 1] = prefix[i] - k 「当前前缀和 - 该前缀和 == k」
+ * 只需要统计0 ~ i 中有多少 prefix[i] - k 的数量
+ */
+function subarraySum(nums: number[], k: number) {
+    // 解法1:
+    let map = new Map()
+    let ans = 0
+    let sum = 0                 // 记录 prefix[j - 1]的值
+    map.set(0, 1)
+    for (let n of nums) {
+        sum += n
+        if (map.get(sum - k)) {     // nums数组中只有一个元素 需要判断一下
+            ans += map.get(sum - k)
+        }
+        map.set(sum, (map.get(sum) || 0) + 1)
+
+    }
+    return ans
+    // 解法2:
+    let map = {}                            // 累加值 sum 为 key, 出现的次数为 value
+    let ans = 0
+    let sum = 0
+    for (let n of nums) {
+        sum += n
+        if (sum === k) ans++                // sum 存在 ans++
+        if (map[sum - k] !== 0) {           // sum - k 也存在 ans += sum对应的value 
+            ans += map[sum - k]
+        }
+        map[sum] = (map[sum] || 0) + 1
+    }
+    return ans
+}`
+
+export const longestConsecutive = `
+function longestConsecutive(nums: number[]) {
+    let set = new Set(nums)              // 数组存入 hash 表中，去重，方便查找
+    let ans = 0
+    for (let n of nums) {
+        if (!set.has(n - 1)) {           // 找 连续数组的 第一个数，
+            let cur = n
+            let count = 1                // 如果是第一个数，count 初始值为 1
+            while (set.has(cur + 1)) {   // 在 hash 表中找第一个数的下一个连续数
+                count++
+                cur++
+            }
+            ans = Math.max(ans, count)   // 对比 最长子串
+        }
+    }
+    return ans
+}`
+
+export const findDuplicates = `
+/**
+ * 原地哈希 时间O(n) 空间O(1)
+ * 由条件1 ≤ num ≤ n, 可以使用 num作为索引， 去查找其他值
+ * 如果以 nums[num - 1]查找到的值为 负值，证明已经出现过一次
+ * 如果找到的值不为 负，就把它变成 负值
+ */
+function findDuplicates(nums: number[]) {
+    let res = []
+    for (let n of nums) {
+        let absN = Math.abs(n)
+        if (nums[absN - 1] < 0) {
+            res.push(absN)
+        } else {
+            nums[absN - 1] *= -1
+        }
+    }
+    return res
+}
+/**
+ * 时间 O(n) 空间O(n) 
+ */
+function findDuplicates(nums: number[]) {
+    let set = new Set()
+    let res = []
+    for (let n of nums) {
+        if (set.has(n)) {
+            res.push(n)
+        } else {
+            set.add(n)
+        }
+    }
+    return res
+}`
+
+export const findRepeatNumber = `
+function findRepeatNumber(nums: number[]) {
+    if (nums.length < 2) return nums[0]
+
+    let set = new Set()
+    for (let n of nums) {
+        if (set.has(n)) return n
+        set.add(n)
+    }
+}
+`
+export const finalValueAfterOperations = `
+function finalValueAfterOperations(operations: string[]) {
+    // 哈希表
+    let ans = 0
+    const map = {
+        'X++': 1,
+        '++X': 1,
+        'X--': -1,
+        '--X': -1,
+    }
+    for (let i of operations) {
+        ans += map[i]
+    }
+    return ans
+    
+    // reduce 相加
+    return operations.reduce((ans, cur) => {
+        return cur === 'X++' || cur === '++X' ? ans + 1 : ans - 1
+    }, 0)
+}
+
+console.log(finalValueAfterOperations(["++X", "++X", "X++"]))
+`
+
+export const kthDistinct = `
+function kthDistinct(arr: string[], k: number) {
+    // 哈希
+    let map = {}
+    for (let s of arr) {
+        if (map[s]) map[s]++  // 已存在的值 value += 1
+        else map[s] = 1       // 未存在的值已 arr 的元素作为 key, value = 1
+    }
+    let res = []
+    for (let [key, val] of Object.entries(map)) {
+        if (val === 1) res.push(key)  //  过滤value 为 1 的 key
+    }
+    return k > res.length ? '' : res[k - 1] // 如果过滤后 key 的 value 为 1 的数组长度小于 k 则证明没有, 反之返回 k - 1 的下标
+
+    // 通过对比arr中元素的 indexOf 和 lastIndexOf 判断是否是同一个。找出唯一的
+    let res = []
+    for (let s of arr) {
+        if (arr.indexOf(s) === arr.lastIndexOf(s)) res.push(s)
+    }
+    return k > res.length ? '' : res[k - 1]
+}
+
+console.log(kthDistinct(["d", "b", "c", "b", "c", "a"], 2))
+`
+export const countWords = `
+function countWords(words1: string[], words2: string[]) {
+    // 遍历数组1 放入map1中
+    let map1 = {}
+    for (let s of words1) {
+        map1[s] = map1[s] || 0
+        map1[s]++
+    }
+    // 遍历数组2 放入map2中
+    let map2 = {}
+    for (let s of words2) {
+        map2[s] = map2[s] || 0
+        map2[s]++
+    }
+    // 遍历 map1 中出现过1次的 key ,在map2中找 这个 key 对应的 count 同样为1的 ++
+    let ans = 0
+    for (let [key, count] of Object.entries(map1)) {
+        if (count === 1 && map2[key] === 1) ans++
+    }
+    return ans
+}
+`
+export const canIWin = `
+/**
+ * 
+ * @param maxChoosableInteger 整数池中可选择的最大数
+ * @param desiredTotal 累计和
+ */
+function canIWin(maxChoosableInteger: number, desiredTotal: number) {
+    // 累积和 小于 最大数,直接拿就可以赢
+    if (desiredTotal <= maxChoosableInteger) return true
+    // [1, maxChoosableInteger]区间的和
+    let sum = (1 + maxChoosableInteger) * maxChoosableInteger / 2
+    // 整数池中的和加起来也小于累计和, 肯定输
+    if (sum < desiredTotal) return false
+
+    // let dp = {}
+    // function dfs(total: number, state: number) {
+    //     if (dp[state] !== undefined) return dp[state]
+    //     for (let i = 1; i <= maxChoosableInteger; i++) {
+    //         let cur = 1 << i
+    //         if (state && cur) continue                       // 已经抽过这个数
+    //         if (i >= total) return (dp[state] = true)        // 直接获胜
+    //         if (!dfs(total - i, state || cur)) return (dp[state] = true) // 可以让对方输
+
+    //     }
+    //     return (dp[state] = false)                      // 没有任何让对方输的方法
+    // }
+    // return dfs(desiredTotal, 0)
+    let map = new Map()
+    function dfs(total: number, state: number) {
+        if (total <= 0) return false
+        console.log('map>>>', map)
+        console.log('state>>>', state)
+        if (map.has(state)) return map.get(state) === 1
+        for (let i = 1; i <= maxChoosableInteger; i++) {
+            let cur = 1 << i
+            console.log('cur>>>', cur)
+            if (state && cur) continue
+            console.log(total, i)
+            // if (i >= total) return true
+            if (!dfs(total - i, state || cur)) {
+                map.set(state, 1)
+                return true
+            }
+        }
+        map.set(state, -1)
+        return false
+    }
+    return dfs(desiredTotal, 0)
+}
+`
+
+export const threeSum = `
+/**
+ * 排序双指针 时间复杂度：O(n^2) 空间复杂度 O(1)
+ */
+function threeSum(nums: number[]) {
+    const n = nums.length
+    if (n <= 3) return []
+    let res = []
+    nums = nums.sort((a, b) => a - b)
+    for (let i = 0; i < n; i++) {
+        if (nums[i] > 0) break               // 第一个数 > 0,三数之和必然无法等于 0，结束循环
+        if (i > 0 && nums[i - 1] !== nums[i]) continue  // 去重
+        let [l, r] = [i + 1, n - 1]          // 定义 b c 两端指针
+        while (l < r) {
+            const sum = nums[i] + nums[l] + nums[r]
+            if (sum === 0) {
+                res.push([nums[i], nums[l], nums[r]])
+                while (l < r && nums[l] === nums[l + 1]) {  // 去重
+                    l++
+                }
+                while (l < r && nums[r] === nums[r - 1]) { // 去重
+                    r--
+                }
+                l++
+                r--
+            } else if (sum < 0) {
+                l++
+            } else if (sum > 0) {
+                r--
+            }
+        }
+    }
+    return res
+}`
+
+export const fourSum = `
+/**
+ */
+function nSum(nums: number[], target: number) {
+    let res: any[] = []
+    let len = nums.length
+    nums.sort((a, b) => a - b)
+
+    const helper = (index: number, N: number, temp: number[]) => {
+        // 如果下标越界了或者 N < 3 就没有必要在接着走下去了
+        if (index === len || N < 3) return
+
+        for (let i = index; i < len; i++) {
+            // 剔除重复的元素
+            if (i > index && nums[i] === nums[i - 1]) {
+                continue
+            }
+            // 如果 N > 3 的话就接着递归
+            // 并且在递归结束之后也不走下边的逻辑
+            // 注意这里不能用 return
+            // 否则循环便不能跑完整
+            if (N > 3) {
+                helper(i + 1, N - 1, [nums[i], ...temp])
+                continue
+            }
+            // 当走到这里的时候,相当于在求「三数之和」了
+            // temp 数组在这里只是把前面递归加入的数组算进来
+            let left = i + 1
+            let right = len - 1
+            while (left < right) {
+                let sum = nums[i] + nums[left] + nums[right] + temp.reduce((prev, curr) => prev + curr)
+                if (sum === target) {
+                    res.push([...temp, nums[i], nums[left], nums[right]])
+                    while (left < right && nums[left] === nums[left + 1]) {
+                        left++
+                    }
+                    while (left < right && nums[right] === nums[right - 1]) {
+                        right--
+                    }
+                    left++
+                    right--
+                } else if (sum < target) {
+                    left++
+                } else {
+                    right--
+                }
+            }
+        }
+    }
+
+    helper(0, 4, [])
+    return res
+};
+console.log(nSum([1, 0, -1, 0, -2, 2], 0))
+`

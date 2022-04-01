@@ -162,9 +162,6 @@ console.log(findGCD([6, 7, 9]))
 
 export const fourSum = `
 /**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[][]}
  */
 function nSum(nums: number[], target: number) {
     let res: any[] = []

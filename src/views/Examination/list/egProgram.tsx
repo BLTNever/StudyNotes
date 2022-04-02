@@ -1084,7 +1084,7 @@ function initElement() {
     indicator_wrap = slider?.getElementsByClassName("indicator-wrap")[0] // 小圆点容器
 
     const firstItem = slider_items[0].cloneNode(true);
-    slider_wrap.appendChild(firstItem)  // 克隆第一个item放在slider容器后面， 做到无缝轮播
+    slider_wrap.appendChild(firstItem)  // 克隆第一个item放在slider容器后面,  做到无缝轮播
 
     item_width = slider_items[0]?.offsetWidth  // 每个轮播图的宽度
 }
@@ -1153,7 +1153,7 @@ function animate(element: HTMLElement, target: number) {
                 clearInterval(intervalId);
                 intervalId = -1;
                 element.style.left = target + "px";
-                // 移动到目标位置，继续自动播放
+                // 移动到目标位置, 继续自动播放
                 if (autoplay) {
                     startAnimation()
                 }

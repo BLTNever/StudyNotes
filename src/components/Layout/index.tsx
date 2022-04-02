@@ -5,7 +5,7 @@ import moment from 'moment'
 import 'moment/locale/zh-cn'
 import './index.less'
 import Top from './Top'
-import avatar from '../../assets/images/avatar.jpeg'
+import avatar from '@images/avatar.jpeg'
 import Menu from './Menu'
 import { ContentBody } from '../Base'
 moment.locale('en')

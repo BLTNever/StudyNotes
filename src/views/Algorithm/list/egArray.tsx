@@ -692,6 +692,92 @@ function sortArray(nums: number[]) {
 `
 
 export const findKthLargest = `
+/**
+ * 堆排序， 时间 O(nlogn) 空间O(1)
+ * 例：[4, 6, 8, 5, 9], 大顶堆的 结构类似于: 
+ *      4 
+ *   6     8
+ * 5   9
+ */
+function findKthLargest(nums: number[], k: number) {
+    let n = nums.length
+    buildHeap(nums, n) // 1. 构建一个大顶堆
+    console.log(nums)
+    // 2. 将堆顶元素与末尾元素进行交换
+    for (let i = nums.length - 1; i >= nums.length - k + 1; i--) {
+        swap(nums, 0, i)        // 进行下沉, 大顶堆顶部最大元素下沉到末尾
+        --n                     // 交换后， 最大的元素不进行 大顶堆的调整
+        maxHeapify(nums, 0, n)  // 3. 重新调整大顶堆
+    }
+    console.log(nums)
+    return nums[0]
+}
+/**
+ * 1.1 自下而上构建 大顶堆
+ */
+function buildHeap(nums: number[], n: number) {
+    // nums.length / 2 - 1，拿到最后一个 非叶子节点 的下标
+    for (let i = Math.floor(n / 2 - 1); i >= 0; i--) {
+        maxHeapify(nums, i, n)         // 调整最大的元素 放到顶堆
+    }
+}
+/**
+ * 1.2 从左向右， 自上而下 调整节点
+ */
+function maxHeapify(nums: number[], i: number, n: number) {
+    let l = i * 2 + 1       // 第 n 个元素的 左子节点 为 2 * n + 1
+    let r = i * 2 + 2       // 第 n 个元素的 右子节点 为 2 * n + 2
+    let largest = i
+    // 对比 非叶子节点下 左 右 子节点 l r 跟 父节点 i 的大小
+    if (l < n && nums[l] > nums[largest]) {
+        largest = l
+    }
+    if (r < n && nums[r] > nums[largest]) {
+        largest = r
+    }
+    // 最大值 不是 非叶子节点 i，调整他们的位置
+    // 当最大值已经是 非叶子节点时， buildHeap 继续找倒数 第二个非叶子节点
+    if (largest !== i) {
+        // [nums[i], nums[largest]] = [nums[largest], nums[i]]
+        swap(nums, i, largest)
+        // 调整 非叶子节点 跟它的 左右节点 找到最大的放到 叶子节点
+        maxHeapify(nums, largest, n)
+    }
+}
+function swap(nums: number[], i: number, j: number) {
+    // const temp = nums[i]
+    // nums[i] = nums[j]
+    // nums[j] = temp
+    // or 
+    [nums[i], nums[j]] = [nums[j], nums[i]]
+}
+
+// 快排解法1: 
+function quickSort(q, l, r, k) {
+    if (l === r) return q[l];
+
+    let i = l - 1;
+    let j = r + 1;
+    let x = q[l];
+
+    while(i < j) {
+        do { i++ } while(q[i] > x);
+        do { j-- } while(q[j] < x);
+        if (i < j) {
+            [q[i], q[j]] = [q[j], q[i]];
+        }
+    }
+
+    let sl = j - l + 1;
+    if (k <= sl) return quickSort(q, l, j, k);
+    return quickSort(q, j+1, r, k - sl);
+}
+function findKthLargest (nums, k) {
+    const n = nums.length;
+    return quickSort(nums, 0 ,n - 1, k);
+}
+
+// 快排解法2: 
 function quickSort(nums: number[]): number[] {
     if (nums.length <= 1) return nums
     let left = []
@@ -704,10 +790,6 @@ function quickSort(nums: number[]): number[] {
     }
     return quickSort(left).concat([pivot], quickSort(right))
 }
-/**
- * 快排降序,取第k个数,
- * 堆排序暂缓
- */
 function findKthLargest(nums: number[], k: number) {
     return quickSort(nums)[k - 1]
 }

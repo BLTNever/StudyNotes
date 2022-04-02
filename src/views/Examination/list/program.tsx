@@ -34,7 +34,7 @@ const Program = () => {
                         <Space direction="vertical">
                             <Text mark>被观察者对象(subject)维护一组观察者(observer)</Text>
                             <Text mark>subject状态发生变化时,通过observer的某些方法把变化通知到observer</Text>
-                            <p>观察者(Observer)直接订阅(Subscribe)主题(Subject)，而当主题被激活的时候，会触发(Fire Event)观察者里的事件</p>
+                            <p>观察者(Observer)直接订阅(Subscribe)主题(Subject), 而当主题被激活的时候, 会触发(Fire Event)观察者里的事件</p>
                             <Highlight language="javascript">{eg.observer}</Highlight>
                             <Highlight language="javascript">{eg.eventEmitter}</Highlight>
                         </Space>
@@ -44,7 +44,7 @@ const Program = () => {
                         <Space direction="vertical">
                             <ul>
                                 <li>1. publisher (发布者) 2. subscriber (订阅者)3. broker</li>
-                                <li>订阅者(Subscriber)把自己想订阅的事件注册(Subscribe)到调度中心(Event Channel)，当发布者(Publisher)发布该事件(Publish Event)到调度中心，也就是该事件触发时，由调度中心统一调度(Fire Event)订阅者注册到调度中心的处理代码</li>
+                                <li>订阅者(Subscriber)把自己想订阅的事件注册(Subscribe)到调度中心(Event Channel), 当发布者(Publisher)发布该事件(Publish Event)到调度中心, 也就是该事件触发时, 由调度中心统一调度(Fire Event)订阅者注册到调度中心的处理代码</li>
                             </ul>
                             <Highlight language="javascript">{eg.events}</Highlight>
                         </Space>
@@ -289,7 +289,7 @@ function initElement() {
     indicator_wrap = slider?.getElementsByClassName("indicator-wrap")[0] // 小圆点容器
 
     const firstItem = slider_items[0].cloneNode(true);
-    slider_wrap.appendChild(firstItem)  // 克隆第一个item放在slider容器后面， 做到无缝轮播
+    slider_wrap.appendChild(firstItem)  // 克隆第一个item放在slider容器后面,  做到无缝轮播
 
     item_width = slider_items[0]?.offsetWidth  // 每个轮播图的宽度
 }
@@ -358,7 +358,7 @@ function animate(element: HTMLElement, target: number) {
                 clearInterval(intervalId);
                 intervalId = -1;
                 element.style.left = target + "px";
-                // 移动到目标位置，继续自动播放
+                // 移动到目标位置, 继续自动播放
                 if (autoplay) {
                     startAnimation()
                 }

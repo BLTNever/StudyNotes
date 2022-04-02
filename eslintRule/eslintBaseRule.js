@@ -7,7 +7,7 @@ module.exports = {
     'default-case-last': 'off',
     'no-loss-of-precision': 'off',
     /**
-     * setter 必须有对应的 getter，getter 可以没有对应的 setter
+     * setter 必须有对应的 getter, getter 可以没有对应的 setter
      */
     'accessor-pairs': [
         'error',
@@ -17,11 +17,11 @@ module.exports = {
         }
     ],
     /**
-     * 数组的方法除了 forEach 之外，回调函数必须有返回值
+     * 数组的方法除了 forEach 之外, 回调函数必须有返回值
      */
     'array-callback-return': 'error',
     /**
-     * 将 var 定义的变量视为块作用域，禁止在块外使用
+     * 将 var 定义的变量视为块作用域, 禁止在块外使用
      * @reason 已经禁止使用 var 了
      */
     'block-scoped-var': 'off',
@@ -39,7 +39,7 @@ module.exports = {
      */
     'capitalized-comments': 'off',
     /**
-     * 在类的非静态方法中，必须存在对 this 的引用
+     * 在类的非静态方法中, 必须存在对 this 的引用
      */
     'class-methods-use-this': 'off',
     /**
@@ -54,7 +54,7 @@ module.exports = {
     ],
     /**
      * 禁止函数在不同分支返回不同类型的值
-     * @reason 缺少 TypeScript 的支持，类型判断是不准确的
+     * @reason 缺少 TypeScript 的支持, 类型判断是不准确的
      */
     'consistent-return': 'off',
     /**
@@ -74,12 +74,12 @@ module.exports = {
      */
     'default-param-last': 'off',
     /**
-     * 禁止使用 foo['bar']，必须写成 foo.bar
-     * @reason 当需要写一系列属性的时候，可以更统一
+     * 禁止使用 foo['bar'], 必须写成 foo.bar
+     * @reason 当需要写一系列属性的时候, 可以更统一
      */
     'dot-notation': 'off',
     /**
-     * 必须使用 === 或 !==，禁止使用 == 或 !=
+     * 必须使用 === 或 !==, 禁止使用 == 或 !=
      */
     eqeqeq: ['error', 'always'],
     /**
@@ -87,7 +87,7 @@ module.exports = {
      */
     'for-direction': 'error',
     /**
-     * 函数赋值给变量的时候，函数名必须与变量名一致
+     * 函数赋值给变量的时候, 函数名必须与变量名一致
      */
     'func-name-matching': [
         'error',
@@ -105,7 +105,7 @@ module.exports = {
      */
     'func-style': 'off',
     /**
-     * getter 必须有返回值，并且禁止返回空
+     * getter 必须有返回值, 并且禁止返回空
      */
     'getter-return': 'error',
     /**
@@ -122,7 +122,7 @@ module.exports = {
     'guard-for-in': 'off',
     /**
      * callback 中的 err 必须被处理
-     * @reason 它是通过字符串匹配来判断函数参数 err 的，不准确
+     * @reason 它是通过字符串匹配来判断函数参数 err 的, 不准确
      */
     'handle-callback-err': 'off',
     /**
@@ -147,7 +147,7 @@ module.exports = {
     'line-comment-position': 'off',
     /**
      * 类的成员之间是否需要空行
-     * @reason 有时为了紧凑需要挨在一起，有时为了可读性需要空一行
+     * @reason 有时为了紧凑需要挨在一起, 有时为了可读性需要空一行
      */
     'lines-between-class-members': 'off',
     /**
@@ -167,7 +167,7 @@ module.exports = {
      */
     'max-lines-per-function': 'off',
     /**
-     * 回调函数嵌套禁止超过 3 层，多了请用 async await 替代
+     * 回调函数嵌套禁止超过 3 层, 多了请用 async await 替代
      */
     'max-nested-callbacks': ['error', 3],
     /**
@@ -184,7 +184,7 @@ module.exports = {
     'max-statements-per-line': 'off',
     /**
      * 约束多行注释的格式
-     * @reason 能写注释已经不容易了，不需要限制太多
+     * @reason 能写注释已经不容易了, 不需要限制太多
      */
     'multiline-comment-style': 'off',
     /**
@@ -204,18 +204,18 @@ module.exports = {
     'no-alert': 'off',
     /**
      * 禁止使用 Array 构造函数时传入的参数超过一个
-     * @reason 参数为一个时表示创建一个指定长度的数组，比较常用
-     * 参数为多个时表示创建一个指定内容的数组，此时可以用数组字面量实现，不必使用构造函数
+     * @reason 参数为一个时表示创建一个指定长度的数组, 比较常用
+     * 参数为多个时表示创建一个指定内容的数组, 此时可以用数组字面量实现, 不必使用构造函数
      */
     'no-array-constructor': 'error',
     /**
      * 禁止将 async 函数做为 new Promise 的回调函数
-     * @reason 出现这种情况时，一般不需要使用 new Promise 实现异步了
+     * @reason 出现这种情况时, 一般不需要使用 new Promise 实现异步了
      */
     'no-async-promise-executor': 'error',
     /**
-     * 禁止将 await 写在循环里，因为这样就无法同时发送多个异步请求了
-     * @reason 要求太严格了，有时需要在循环中写 await
+     * 禁止将 await 写在循环里, 因为这样就无法同时发送多个异步请求了
+     * @reason 要求太严格了, 有时需要在循环中写 await
      */
     'no-await-in-loop': 'off',
     /**
@@ -233,7 +233,7 @@ module.exports = {
      */
     'no-caller': 'error',
     /**
-     * switch 的 case 内有变量定义的时候，必须使用大括号将 case 内变成一个代码块
+     * switch 的 case 内有变量定义的时候, 必须使用大括号将 case 内变成一个代码块
      */
     'no-case-declarations': 'error',
     /**
@@ -245,7 +245,7 @@ module.exports = {
      */
     'no-compare-neg-zero': 'error',
     /**
-     * 禁止在测试表达式中使用赋值语句，除非这个赋值语句被括号包起来了
+     * 禁止在测试表达式中使用赋值语句, 除非这个赋值语句被括号包起来了
      */
     'no-cond-assign': ['error', 'except-parens'],
     /**
@@ -257,7 +257,7 @@ module.exports = {
      */
     'no-const-assign': 'error',
     /**
-     * 禁止将常量作为分支条件判断中的测试表达式，但允许作为循环条件判断中的测试表达式
+     * 禁止将常量作为分支条件判断中的测试表达式, 但允许作为循环条件判断中的测试表达式
      */
     'no-constant-condition': [
         'error',
@@ -274,7 +274,7 @@ module.exports = {
      */
     'no-continue': 'off',
     /**
-     * 禁止在正则表达式中出现 Ctrl 键的 ASCII 表示，即禁止使用 /\x1f/
+     * 禁止在正则表达式中出现 Ctrl 键的 ASCII 表示, 即禁止使用 /\x1f/
      * @reason 几乎不会遇到这种场景
      */
     'no-control-regex': 'off',
@@ -288,8 +288,8 @@ module.exports = {
      */
     'no-delete-var': 'off',
     /**
-     * 禁止在正则表达式中出现形似除法操作符的开头，如 let a = /=foo/
-     * @reason 有代码高亮的话，在阅读这种代码时，也完全不会产生歧义或理解上的困难
+     * 禁止在正则表达式中出现形似除法操作符的开头, 如 let a = /=foo/
+     * @reason 有代码高亮的话, 在阅读这种代码时, 也完全不会产生歧义或理解上的困难
      */
     'no-div-regex': 'off',
     /**
@@ -318,12 +318,12 @@ module.exports = {
      */
     'no-duplicate-imports': 'error',
     /**
-     * 禁止在 else 内使用 return，必须改为提前结束
+     * 禁止在 else 内使用 return, 必须改为提前结束
      * @reason else 中使用 return 可以使代码结构更清晰
      */
     'no-else-return': 'off',
     /**
-     * 禁止出现空代码块，允许 catch 为空代码块
+     * 禁止出现空代码块, 允许 catch 为空代码块
      */
     'no-empty': [
         'error',
@@ -345,7 +345,7 @@ module.exports = {
      */
     'no-empty-pattern': 'error',
     /**
-     * 禁止使用 foo == null，必须使用 foo === null
+     * 禁止使用 foo == null, 必须使用 foo === null
      */
     'no-eq-null': 'error',
     /**
@@ -375,7 +375,7 @@ module.exports = {
      */
     'no-extra-label': 'off',
     /**
-     * switch 的 case 内必须有 break, return 或 throw，空的 case 除外
+     * switch 的 case 内必须有 break, return 或 throw, 空的 case 除外
      */
     'no-fallthrough': 'error',
     /**
@@ -387,7 +387,7 @@ module.exports = {
      */
     'no-global-assign': 'error',
     /**
-     * 禁止使用 ~+ 等难以理解的类型转换，仅允许使用 !!
+     * 禁止使用 ~+ 等难以理解的类型转换, 仅允许使用 !!
      */
     'no-implicit-coercion': [
         'error',
@@ -397,7 +397,7 @@ module.exports = {
     ],
     /**
      * 禁止在全局作用域下定义变量或申明函数
-     * @reason 模块化之后，不会出现这种在全局作用域下定义变量的情况
+     * @reason 模块化之后, 不会出现这种在全局作用域下定义变量的情况
      */
     'no-implicit-globals': 'off',
     /**
@@ -426,7 +426,7 @@ module.exports = {
      */
     'no-invalid-this': 'error',
     /**
-     * 禁止使用特殊空白符(比如全角空格)，除非是出现在字符串、正则表达式或模版字符串中
+     * 禁止使用特殊空白符(比如全角空格), 除非是出现在字符串、正则表达式或模版字符串中
      */
     'no-irregular-whitespace': [
         'error',
@@ -472,7 +472,7 @@ module.exports = {
     'no-magic-numbers': 'off',
     /**
      * 禁止正则表达式中使用肉眼无法区分的特殊字符
-     * @reason 某些特殊字符很难看出差异，最好不要在正则中使用
+     * @reason 某些特殊字符很难看出差异, 最好不要在正则中使用
      */
     'no-misleading-character-class': 'error',
     /**
@@ -480,7 +480,7 @@ module.exports = {
      */
     'no-mixed-requires': 'off',
     /**
-     * 禁止连续赋值，比如 foo = bar = 1
+     * 禁止连续赋值, 比如 foo = bar = 1
      */
     'no-multi-assign': 'off',
     /**
@@ -493,12 +493,12 @@ module.exports = {
      */
     'no-negated-condition': 'off',
     /**
-     * 禁止使用嵌套的三元表达式，比如 a ? b : c ? d : e
+     * 禁止使用嵌套的三元表达式, 比如 a ? b : c ? d : e
      */
     'no-nested-ternary': 'off',
     /**
      * 禁止直接 new 一个类而不赋值
-     * @reason new 应该作为创建一个类的实例的方法，所以不能不赋值
+     * @reason new 应该作为创建一个类的实例的方法, 所以不能不赋值
      */
     'no-new': 'error',
     /**
@@ -542,7 +542,7 @@ module.exports = {
     'no-param-reassign': 'off',
     /**
      * 禁止对 __dirname 或 __filename 使用字符串连接
-     * @reason 不同平台下的路径符号不一致，建议使用 path 处理平台差异性
+     * @reason 不同平台下的路径符号不一致, 建议使用 path 处理平台差异性
      */
     'no-path-concat': 'error',
     /**
@@ -569,7 +569,7 @@ module.exports = {
     'no-prototype-builtins': 'off',
     /**
      * 禁止重复定义变量
-     * @reason 禁用 var 之后，编译阶段就会报错了
+     * @reason 禁用 var 之后, 编译阶段就会报错了
      */
     'no-redeclare': 'off',
     /**
@@ -639,7 +639,7 @@ module.exports = {
      */
     'no-sparse-arrays': 'error',
     /**
-     * 禁止使用 node 中的同步的方法，比如 fs.readFileSync
+     * 禁止使用 node 中的同步的方法, 比如 fs.readFileSync
      */
     'no-sync': 'off',
     /**
@@ -655,7 +655,7 @@ module.exports = {
      */
     'no-this-before-super': 'error',
     /**
-     * 禁止 throw 字面量，必须 throw 一个 Error 对象
+     * 禁止 throw 字面量, 必须 throw 一个 Error 对象
      */
     'no-throw-literal': 'error',
     /**
@@ -743,7 +743,7 @@ module.exports = {
     'no-useless-call': 'error',
     /**
      * 禁止在 catch 中仅仅只是把错误 throw 出去
-     * @reason 这样的 catch 是没有意义的，等价于直接执行 try 里的代码
+     * @reason 这样的 catch 是没有意义的, 等价于直接执行 try 里的代码
      */
     'no-useless-catch': 'error',
     /**
@@ -764,7 +764,7 @@ module.exports = {
      */
     'no-useless-escape': 'off',
     /**
-     * 禁止解构赋值时出现同样名字的的重命名，比如 let { foo: foo } = bar;
+     * 禁止解构赋值时出现同样名字的的重命名, 比如 let { foo: foo } = bar;
      */
     'no-useless-rename': 'error',
     /**
@@ -802,7 +802,7 @@ module.exports = {
      */
     'operator-assignment': 'off',
     /**
-     * 限制语句之间的空行规则，比如变量定义完之后必须要空行
+     * 限制语句之间的空行规则, 比如变量定义完之后必须要空行
      */
     'padding-line-between-statements': 'off',
     /**
@@ -819,7 +819,7 @@ module.exports = {
     'prefer-exponentiation-operator': 'off',
     /**
      * 使用 ES2018 中的正则表达式命名组
-     * @reason 正则表达式已经较难理解了，没必要强制加上命名组
+     * @reason 正则表达式已经较难理解了, 没必要强制加上命名组
      */
     'prefer-named-capture-group': 'off',
     /**
@@ -827,15 +827,15 @@ module.exports = {
      */
     'prefer-numeric-literals': 'off',
     /**
-     * 必须使用 ... 而不是 Object.assign，除非 Object.assign 的第一个参数是一个变量
+     * 必须使用 ... 而不是 Object.assign, 除非 Object.assign 的第一个参数是一个变量
      */
     'prefer-object-spread': 'error',
     /**
-     * Promise 的 reject 中必须传入 Error 对象，而不是字面量
+     * Promise 的 reject 中必须传入 Error 对象, 而不是字面量
      */
     'prefer-promise-reject-errors': 'error',
     /**
-     * 优先使用正则表达式字面量，而不是 RegExp 构造函数
+     * 优先使用正则表达式字面量, 而不是 RegExp 构造函数
      */
     'prefer-regex-literals': 'off',
     /**
@@ -843,7 +843,7 @@ module.exports = {
      */
     'prefer-rest-params': 'off',
     /**
-     * 必须使用 ... 而不是 apply，比如 foo(...args)
+     * 必须使用 ... 而不是 apply, 比如 foo(...args)
      */
     'prefer-spread': 'off',
     /**
@@ -858,7 +858,7 @@ module.exports = {
      * 禁止将 await 或 yield 的结果做为运算符的后面项
      * @reason 这样会导致不符合预期的结果
      * https://github.com/eslint/eslint/issues/11899
-     * 在上面 issue 修复之前，关闭此规则
+     * 在上面 issue 修复之前, 关闭此规则
      */
     'require-atomic-updates': 'off',
     /**

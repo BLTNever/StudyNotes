@@ -576,20 +576,20 @@ function search(nums: number[], target: number) {
         const mid = l + ((r - l) >> 1)
         if (nums[mid] === target) return true
         // 若 mid element === left element:
-        //      此时说明具有重复值，移动left向右移动，用以去除重复干扰
+        //      此时说明具有重复值, 移动left向右移动, 用以去除重复干扰
         if (nums[mid] === nums[l]) {
             l++
             continue
         }
         // 判断 mid 左 右侧 哪个是升序区
         if (nums[mid] > nums[l]) {     // middle > left  升序区在左半区
-            if (target >= nums[l] && target < nums[mid]) {  // 判断目标值 target 是处在 left ... middle 区间内，还是 middle 右侧
+            if (target >= nums[l] && target < nums[mid]) {  // 判断目标值 target 是处在 left ... middle 区间内, 还是 middle 右侧
                 r = mid - 1
             } else {
                 l = mid + 1
             }
         } else {                        // middle < left 升序区在右半区
-            if (target <= nums[r] && target > nums[mid]) { // 判断目标值 target 是处在 middle ... right 区间内，还是 middle 左侧
+            if (target <= nums[r] && target > nums[mid]) { // 判断目标值 target 是处在 middle ... right 区间内, 还是 middle 左侧
                 l = mid + 1
             } else {
                 r = mid - 1
@@ -604,7 +604,7 @@ function search(nums: number[], target: number) {
 
 export const minEatingSpeed = `
 /**
- * 每堆香蕉的数量 / 每个小时能吃的个数，向上取整，找到吃完每堆香蕉的 最少时间
+ * 每堆香蕉的数量 / 每个小时能吃的个数, 向上取整, 找到吃完每堆香蕉的 最少时间
  * sum 拿到吃完总数 piles 所需要的 最少总时间
  * 判断 最少总时间 sum 是否能在 限制时间 h 内吃完
  * @param piles 总数量
@@ -685,8 +685,8 @@ function getNum(n: number) {
 }
 /**
  * 1.找到快乐数
- * 2.没有快乐数，形成环路，容易造成死循环
- * 3.关键点在于怎么停止，防止死循环
+ * 2.没有快乐数, 形成环路, 容易造成死循环
+ * 3.关键点在于怎么停止, 防止死循环
  */
 function isHappy(n: number) {
     // 快慢指针：找到相同的数就停止
@@ -697,7 +697,7 @@ function isHappy(n: number) {
         fast = getNum(getNum(fast))
     }
     return fast === 1
-    // hash：计算的数存起来，哈希表里找到相同的数证明没有相同的
+    // hash：计算的数存起来, 哈希表里找到相同的数证明没有相同的
     let set = new Set()
     while (n !== 1 || !set.has(n)) {
         set.add(n)
@@ -709,16 +709,16 @@ function isHappy(n: number) {
 export const maxVowels = `
 /**
  * 滑动窗口 - 时间复杂度 O(n) 空间复杂度 O(1)
- * 定义 k 长度的区间，记录 k 区间元音的数量
+ * 定义 k 长度的区间, 记录 k 区间元音的数量
  * 移动窗口的时候对比 每个窗口内的数量大小 
  */
 function maxVowels(s: string, k: number) {
     const set = new Set(['a', 'e', 'i', 'o', 'u'])
     let l = 0
     let r = 0
-    // 两次遍历，先确定窗口区间， 再移动窗口
+    // 两次遍历, 先确定窗口区间,  再移动窗口
     let count = 0
-    while (r < k) {         // 确定窗口的范围，找到当前窗口的元音数量
+    while (r < k) {         // 确定窗口的范围, 找到当前窗口的元音数量
         if (set.has(s[r])) count++
         r++
     }
@@ -740,7 +740,7 @@ function maxVowels(s: string, k: number) {
             l++
         }
         ans = Math.max(ans, count)
-        if (ans === k) break          // 统计的元音数量与 k 相等，可以直接终止循环
+        if (ans === k) break          // 统计的元音数量与 k 相等, 可以直接终止循环
         r++
     }
     
@@ -818,17 +818,17 @@ function findAnagrams(s: string, p: string) {
     let count = 0
     let ans = []
     while (r < s.length) {
-        let right = s[r++]          // 获取窗口右边界值，右指针右移
+        let right = s[r++]          // 获取窗口右边界值, 右指针右移
         if (need.get(right)) {      // 如果 need 表中存在该值
             // 在 window 表中储存
             window.set(right, (window.get(right) || 0) + 1)
-            // 如果两个表中储存的数量相同，满足字符的数量 count++
+            // 如果两个表中储存的数量相同, 满足字符的数量 count++
             if (need.get(right) === window.get(right)) count++
         }
         while ((r - l) >= len) {    // 窗口的长度 >= p.lenght的时候开始移动左边界
             // 记录的count值等于 need.size 证明每个字符都满足了 need 的需求
             if (count === need.size) ans.push(l)
-            let left = s[l++]       // 记录出窗口的值，左指针右移
+            let left = s[l++]       // 记录出窗口的值, 左指针右移
             if (need.get(left)) {   // 出 窗口的值 如果存在 need 表中
                 // 那么满足条件字符的数量 count--, 同时 window 表中的数据 - 1
                 if (need.get(left) === window.get(left)) count-- 
@@ -843,15 +843,15 @@ export const totalFruit = `
 /**
  * 题目意思是采摘两种 不相等 连续的 果树的果子的最大值
  * [3,3,3,1,2,2,1,2,3,3,3], 本质就是 两种 数字 元素的最大长度
- * 使用滑动窗口，窗口内最多存在 2 个不同的数字
- * 如果遇到第三种数字，更新左边界，记录窗口长度
- * 没遇到第三种数字，右边界扩张，记录窗口长度
+ * 使用滑动窗口, 窗口内最多存在 2 个不同的数字
+ * 如果遇到第三种数字, 更新左边界, 记录窗口长度
+ * 没遇到第三种数字, 右边界扩张, 记录窗口长度
  */
 function totalFruit(fruits: number[]) {
     let l = 0
     let r = 0
     let arr: number[] = [fruits[0]] // 篮子
-    let prev = 0   // 遇到第三种水果，上一种水果的位置
+    let prev = 0   // 遇到第三种水果, 上一种水果的位置
     let ans = 0     
     while (r < fruits.length) {
         // 1. arr 空, 2. arr 有 1 种水果, 3. arr 中有 2 种水果
@@ -879,10 +879,10 @@ function totalFruit(fruits: number[]) {
 export const numSubarraysWithSum = `
 /**
  * 前缀和 + hash
- * 元素的前缀和为sum[i]，[i, j] 区间的前缀和为goal，那么goal = sum[j] - sum[i]
+ * 元素的前缀和为sum[i], [i, j] 区间的前缀和为goal, 那么goal = sum[j] - sum[i]
  * sum[i] = sum[j] - goal
  * map中存储每个位置的前缀和
- * 最后查找map中，sum - goal的数量累加到 ans 上
+ * 最后查找map中, sum - goal的数量累加到 ans 上
  */
 function numSubarraysWithSum(nums: number[], goal: number) {
     let map = new Map()

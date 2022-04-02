@@ -46,7 +46,7 @@ module.exports = {
     'react/forbid-prop-types': 'off',
     /**
      * 限制函数式组件的函数形式(函数声明、函数表达式或箭头函数)
-     * @reason 一些场景还不能覆盖，如 export default function，自动修复功能在 ts 中有些问题
+     * @reason 一些场景还不能覆盖, 如 export default function, 自动修复功能在 ts 中有些问题
      */
     'react/function-component-definition': 'off',
     /**
@@ -101,7 +101,7 @@ module.exports = {
     'react/jsx-no-literals': 'off',
     /**
      * 禁止出现 href="javascript:void(0)"
-     * @reason React 已经有 warning 了，并且会在将来禁止此类属性值
+     * @reason React 已经有 warning 了, 并且会在将来禁止此类属性值
      */
     'react/jsx-no-script-url': 'error',
     /**
@@ -145,8 +145,8 @@ module.exports = {
      */
     'react/no-access-state-in-setstate': 'off',
     /**
-     * 两个 inline 元素之间必须有空格，否则视觉上它们就贴在一起了
-     * @reason 这是样式的问题，不应该由空格约束
+     * 两个 inline 元素之间必须有空格, 否则视觉上它们就贴在一起了
+     * @reason 这是样式的问题, 不应该由空格约束
      */
     'react/no-adjacent-inline-elements': 'off',
     /**
@@ -225,7 +225,7 @@ module.exports = {
      */
     'react/no-unescaped-entities': 'error',
     /**
-     * 禁止出现 HTML 中的属性，如 class
+     * 禁止出现 HTML 中的属性, 如 class
      */
     'react/no-unknown-property': 'error',
     /**
@@ -244,7 +244,7 @@ module.exports = {
     'react/no-unused-prop-types': 'off',
     /**
      * 已定义的 state 必须使用
-     * @reason 没有官方文档，并且存在很多 bug：https://github.com/yannickcr/eslint-plugin-react/search?q=no-unused-state&type=Issues&utf8=%E2%9C%93
+     * @reason 没有官方文档, 并且存在很多 bug：https://github.com/yannickcr/eslint-plugin-react/search?q=no-unused-state&type=Issues&utf8=%E2%9C%93
      */
     'react/no-unused-state': 'off',
     /**
@@ -257,7 +257,7 @@ module.exports = {
      */
     'react/prefer-es6-class': ['error', 'always'],
     /**
-     * 使用 Flow 时，props 必须设置为只读的
+     * 使用 Flow 时, props 必须设置为只读的
      */
     'react/prefer-read-only-props': 'off',
     /**
@@ -288,7 +288,7 @@ module.exports = {
      */
     'react/require-render-return': 'error',
     /**
-     * 组件内没有 children 时，必须使用自闭和写法
+     * 组件内没有 children 时, 必须使用自闭和写法
      */
     'react/self-closing-comp': 'off',
     /**

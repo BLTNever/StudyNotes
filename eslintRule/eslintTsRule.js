@@ -32,7 +32,7 @@ module.exports = {
      */
     '@typescript-eslint/ban-types': 'off',
     /**
-     * 类型断言必须使用 as Type，禁止使用 <Type>，禁止对对象字面量进行类型断言(断言成 any 是允许的)
+     * 类型断言必须使用 as Type, 禁止使用 <Type>, 禁止对对象字面量进行类型断言(断言成 any 是允许的)
      * @reason <Type> 容易被理解为 jsx
      */
     '@typescript-eslint/consistent-type-assertions': [
@@ -58,7 +58,7 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     /**
      * 必须设置类的成员的可访问性
-     * @reason 将不需要公开的成员设为私有的，可以增强代码的可理解性，对文档输出也很友好
+     * @reason 将不需要公开的成员设为私有的, 可以增强代码的可理解性, 对文档输出也很友好
      */
     // '@typescript-eslint/explicit-member-accessibility': 'off',
     /**
@@ -140,7 +140,7 @@ module.exports = {
      */
     '@typescript-eslint/no-extra-non-null-assertion': 'off',
     /**
-     * 禁止定义没必要的类，比如只有静态方法的类
+     * 禁止定义没必要的类, 比如只有静态方法的类
      */
     '@typescript-eslint/no-extraneous-class': 'off',
     /**
@@ -167,7 +167,7 @@ module.exports = {
      */
     '@typescript-eslint/no-magic-numbers': 'off',
     /**
-     * 禁止在接口中定义 constructor，或在类中定义 new
+     * 禁止在接口中定义 constructor, 或在类中定义 new
      */
     '@typescript-eslint/no-misused-new': 'off',
     /**
@@ -177,7 +177,7 @@ module.exports = {
     '@typescript-eslint/no-misused-promises': 'off',
     /**
      * 禁止使用 namespace 来定义命名空间
-     * @reason 使用 es6 引入模块，才是更标准的方式。
+     * @reason 使用 es6 引入模块, 才是更标准的方式。
      * 但是允许使用 declare namespace ... {} 来定义外部命名空间
      */
     '@typescript-eslint/no-namespace': [
@@ -203,11 +203,11 @@ module.exports = {
     '@typescript-eslint/no-parameter-properties': 'error',
     /**
      * 禁止使用 require
-     * @reason 统一使用 import 来引入模块，特殊情况使用单行注释允许 require 引入
+     * @reason 统一使用 import 来引入模块, 特殊情况使用单行注释允许 require 引入
      */
     '@typescript-eslint/no-require-imports': 'off',
     /**
-     * 禁止将 this 赋值给其他变量，除非是解构赋值
+     * 禁止将 this 赋值给其他变量, 除非是解构赋值
      */
     '@typescript-eslint/no-this-alias': [
         'error',
@@ -216,7 +216,7 @@ module.exports = {
         }
     ],
     /**
-     * 禁止 throw 字面量，必须 throw 一个 Error 对象
+     * 禁止 throw 字面量, 必须 throw 一个 Error 对象
      * @reason 统一关闭 requires type information 的规则
      */
     '@typescript-eslint/no-throw-literal': 'off',
@@ -235,12 +235,12 @@ module.exports = {
      */
     '@typescript-eslint/no-unnecessary-condition': 'off',
     /**
-     * 在命名空间中，可以直接使用内部变量，不需要添加命名空间前缀
+     * 在命名空间中, 可以直接使用内部变量, 不需要添加命名空间前缀
      * @reason 统一关闭 requires type information 的规则
      */
     '@typescript-eslint/no-unnecessary-qualifier': 'off',
     /**
-     * 禁止范型的类型有默认值时，将范型设置为该默认值
+     * 禁止范型的类型有默认值时, 将范型设置为该默认值
      */
     '@typescript-eslint/no-unnecessary-type-arguments': 'off',
     /**
@@ -285,11 +285,11 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     /**
      * 使用 as const 替代 as 'bar'
-     * @reason as const 是新语法，不是很常见
+     * @reason as const 是新语法, 不是很常见
      */
     '@typescript-eslint/prefer-as-const': 'off',
     /**
-     * 使用 for 循环遍历数组时，如果索引仅用于获取成员，则必须使用 for of 循环替代 for 循环
+     * 使用 for 循环遍历数组时, 如果索引仅用于获取成员, 则必须使用 for of 循环替代 for 循环
      * @reason for of 循环更加易读
      */
     '@typescript-eslint/prefer-for-of': 'error',
@@ -317,7 +317,7 @@ module.exports = {
      */
     '@typescript-eslint/prefer-optional-chain': 'off',
     /**
-     * 私有变量如果没有在构造函数外被赋值，则必须设为 readonly
+     * 私有变量如果没有在构造函数外被赋值, 则必须设为 readonly
      * @reason 统一关闭 requires type information 的规则
      */
     '@typescript-eslint/prefer-readonly': 'off',
@@ -346,7 +346,7 @@ module.exports = {
      */
     '@typescript-eslint/require-await': 'off',
     /**
-     * 使用加号时，两者必须同为数字或同为字符串
+     * 使用加号时, 两者必须同为数字或同为字符串
      * @reason 统一关闭 requires type information 的规则
      */
     '@typescript-eslint/restrict-plus-operands': 'off',
@@ -366,13 +366,13 @@ module.exports = {
      */
     '@typescript-eslint/strict-boolean-expressions': 'off',
     /**
-     * 使用联合类型作为 switch 的对象时，必须包含每一个类型的 case
+     * 使用联合类型作为 switch 的对象时, 必须包含每一个类型的 case
      * @reason 统一关闭 requires type information 的规则
      */
     '@typescript-eslint/switch-exhaustiveness-check': 'off',
     /**
      * 禁止使用三斜杠导入文件
-     * @reason 三斜杠是已废弃的语法，但在类型声明文件中还是可以使用的
+     * @reason 三斜杠是已废弃的语法, 但在类型声明文件中还是可以使用的
      */
     '@typescript-eslint/triple-slash-reference': [
         'error',
@@ -403,7 +403,7 @@ module.exports = {
      */
     '@typescript-eslint/unbound-method': 'off',
     /**
-     * 函数重载时，若能通过联合类型将两个函数的类型声明合为一个，则使用联合类型而不是两个函数声明
+     * 函数重载时, 若能通过联合类型将两个函数的类型声明合为一个, 则使用联合类型而不是两个函数声明
      */
     '@typescript-eslint/unified-signatures': 'error'
 }

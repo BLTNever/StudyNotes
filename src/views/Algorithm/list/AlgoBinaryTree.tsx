@@ -33,7 +33,7 @@ const AlgoBinaryTree = () => {
                 </ul>
             </Wrap>
             <Wrap>
-                <Title level={3}>144.二叉树的前序遍历{T.EASY}</Title>
+                <Title level={3}>144.二叉树的前序遍历{T.EASY}🔥🔥</Title>
                 <Collapse ghost>
                     <Panel header="给定一个二叉树的根节点 root ,返回它的 前序 遍历。" key="1">
                         <Space direction="vertical">
@@ -43,7 +43,7 @@ const AlgoBinaryTree = () => {
                 </Collapse>
             </Wrap>
             <Wrap>
-                <Title level={3}>94.二叉树的中序遍历{T.EASY}</Title>
+                <Title level={3}>94.二叉树的中序遍历{T.EASY}🔥🔥</Title>
                 <Collapse ghost>
                     <Panel header="给定一个二叉树的根节点 root ,返回它的 中序 遍历。" key="1">
                         <Space direction="vertical">
@@ -53,7 +53,7 @@ const AlgoBinaryTree = () => {
                 </Collapse>
             </Wrap>
             <Wrap>
-                <Title level={3}>145.二叉树的后序遍历{T.EASY}</Title>
+                <Title level={3}>145.二叉树的后序遍历{T.EASY}🔥🔥</Title>
                 <Collapse ghost>
                     <Panel header="给定一个二叉树的根节点 root ,返回它的 后序 遍历。" key="1">
                         <Space direction="vertical">
@@ -64,7 +64,7 @@ const AlgoBinaryTree = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>102. 二叉树的层序遍历{T.MEDIUM}{T.STACK}{T.RECURSION}</Title>
+                <Title level={3}>102. 二叉树的层序遍历{T.MEDIUM}{T.STACK}{T.RECURSION}🔥🔥</Title>
                 <Collapse ghost>
                     <Panel header="给你二叉树的根节点 root ,返回其节点值的 层序遍历 。 (即逐层地,从左到右访问所有节点)" key="1">
                         <Space direction="vertical">
@@ -89,7 +89,7 @@ const AlgoBinaryTree = () => {
             </Wrap>
 
             <Wrap id="maxDepth">
-                <Title level={3}>104.二叉树的最大深度{T.EASY}</Title>
+                <Title level={3}>104.二叉树的最大深度{T.EASY}🔥</Title>
                 <Collapse ghost>
                     <Panel header="给定一个二叉树,找出其最大深度。二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。" key="1">
                         <Space direction="vertical">
@@ -100,7 +100,7 @@ const AlgoBinaryTree = () => {
             </Wrap>
 
             <Wrap id="minDepth">
-                <Title level={3}>111.二叉树的最小深度{T.EASY}</Title>
+                <Title level={3}>111.二叉树的最小深度{T.EASY}🔥</Title>
                 <Collapse ghost>
                     <Panel header="给定一个二叉树,找出其最小深度。最小深度是从根节点到最近叶子节点的最短路径上的节点数量。" key="1">
                         <Space direction="vertical">

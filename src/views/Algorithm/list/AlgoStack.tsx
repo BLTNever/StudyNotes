@@ -90,7 +90,7 @@ const AlgoStack = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>946.验证栈序列{T.MEDIUM}</Title>
+                <Title level={3}>946.验证栈序列{T.MEDIUM}🔥🔥🔥</Title>
                 <Collapse ghost>
                     <Panel header="给定 pushed 和 popped 两个序列, 每个序列中的 值都不重复, 只有当它们可能是在最初空栈上进行的推入 push 和弹出 pop 操作序列的结果时, 返回 true；否则, 返回 false 。" key="1">
                         <Space direction="vertical">
@@ -114,7 +114,7 @@ const AlgoStack = () => {
             </Wrap>
 
             <Wrap id="checkValidString">
-                <Title level={3}>678.有效的括号字符串{T.MEDIUM}{T.STACK}{T.GREEDY}</Title>
+                <Title level={3}>678.有效的括号字符串{T.MEDIUM}{T.STACK}{T.GREEDY}🔥🔥</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
                         <p>给定一个只包含三种字符的字符串: ( , ) 和 *, 写一个函数来检验这个字符串是否为有效字符串。有效字符串具有如下规则: </p>

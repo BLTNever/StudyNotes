@@ -366,13 +366,13 @@ export const findJudge = `
  * 3. 只有一个人同时满足条件 1 和条件 2     => 这个人是法官
  */
 function findJudge(n: number, trust: number[][]) {
-    let A = Array(n).fill(0)           // 信任他人的人。 小镇居民，不包含法官
+    let A = Array(n).fill(0)           // 信任他人的人。 小镇居民, 不包含法官
     let B = Array(n).fill(0)           // 被信任的人。 包含法官或小镇居民
     for (let [a, b] of trust) {
         A[a - 1]++
         B[b - 1]++
     }
-    for (let i = 0; i < n; i++) {     // 法官不会出现在 A 队列， 同时信任他的人为 n - 1个，满足着2个条件
+    for (let i = 0; i < n; i++) {     // 法官不会出现在 A 队列,  同时信任他的人为 n - 1个, 满足着2个条件
         if (A[i] === 0 && B[i] === n - 1) return i + 1
     }
     return -1
@@ -381,8 +381,8 @@ function findJudge(n: number, trust: number[][]) {
 export const subarraySum = `
 /**
  * nums[j] + ... + nums[i] === prefix[i] − prefix[j − 1]
- * 题意：有几种 j、i 的组合，使得从第 j 到 i 的子数组和等于 k， nums[j] = prefix[j] - prefix[j - 1]
- * 有几种 j、i 的组合，满足 nums[j] + ... + nums[i] === prefix[i] − prefix[j - 1]
+ * 题意：有几种 j、i 的组合, 使得从第 j 到 i 的子数组和等于 k,  nums[j] = prefix[j] - prefix[j - 1]
+ * 有几种 j、i 的组合, 满足 nums[j] + ... + nums[i] === prefix[i] − prefix[j - 1]
  * 如果 pre[i] - pre[j - 1] === k 证明 j ... i 区间肯定存在和为k的值
  * prefix[j - 1] = prefix[i] - k 「当前前缀和 - 该前缀和 == k」
  * 只需要统计0 ~ i 中有多少 prefix[i] - k 的数量
@@ -419,12 +419,12 @@ function subarraySum(nums: number[], k: number) {
 
 export const longestConsecutive = `
 function longestConsecutive(nums: number[]) {
-    let set = new Set(nums)              // 数组存入 hash 表中，去重，方便查找
+    let set = new Set(nums)              // 数组存入 hash 表中, 去重, 方便查找
     let ans = 0
     for (let n of nums) {
-        if (!set.has(n - 1)) {           // 找 连续数组的 第一个数，
+        if (!set.has(n - 1)) {           // 找 连续数组的 第一个数, 
             let cur = n
-            let count = 1                // 如果是第一个数，count 初始值为 1
+            let count = 1                // 如果是第一个数, count 初始值为 1
             while (set.has(cur + 1)) {   // 在 hash 表中找第一个数的下一个连续数
                 count++
                 cur++
@@ -438,9 +438,9 @@ function longestConsecutive(nums: number[]) {
 export const findDuplicates = `
 /**
  * 原地哈希 时间O(n) 空间O(1)
- * 由条件1 ≤ num ≤ n, 可以使用 num作为索引， 去查找其他值
- * 如果以 nums[num - 1]查找到的值为 负值，证明已经出现过一次
- * 如果找到的值不为 负，就把它变成 负值
+ * 由条件1 ≤ num ≤ n, 可以使用 num作为索引,  去查找其他值
+ * 如果以 nums[num - 1]查找到的值为 负值, 证明已经出现过一次
+ * 如果找到的值不为 负, 就把它变成 负值
  */
 function findDuplicates(nums: number[]) {
     let res = []
@@ -612,7 +612,7 @@ function threeSum(nums: number[]) {
     let res = []
     nums = nums.sort((a, b) => a - b)
     for (let i = 0; i < n; i++) {
-        if (nums[i] > 0) break               // 第一个数 > 0,三数之和必然无法等于 0，结束循环
+        if (nums[i] > 0) break               // 第一个数 > 0,三数之和必然无法等于 0, 结束循环
         if (i > 0 && nums[i - 1] !== nums[i]) continue  // 去重
         let [l, r] = [i + 1, n - 1]          // 定义 b c 两端指针
         while (l < r) {

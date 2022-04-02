@@ -179,7 +179,7 @@ const AlgoDoublePointer = () => {
 
 
             <Wrap>
-                <Title level={3}>153.寻找旋转排序数组中的最小值{T.MEDIUM}{T.DOUBLE_POINTER}{T.BF}</Title>
+                <Title level={3}>153.寻找旋转排序数组中的最小值{T.MEDIUM}{T.DOUBLE_POINTER}{T.BF}🔥</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
                         <li>已知一个长度为 n 的数组, 预先按照升序排列, 经由 1 到 n 次 旋转 后, 得到输入数组</li>
@@ -193,7 +193,7 @@ const AlgoDoublePointer = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>33. 搜索旋转排序数组{T.MEDIUM}{T.DOUBLE_POINTER}{T.BF}</Title>
+                <Title level={3}>33. 搜索旋转排序数组{T.MEDIUM}{T.DOUBLE_POINTER}{T.BF}🔥</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
                         <li>整数数组 nums 按升序排列, 数组中的值 <i>互不相同</i></li>
@@ -208,7 +208,7 @@ const AlgoDoublePointer = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>81. 搜索旋转排序数组 II{T.MEDIUM}{T.DOUBLE_POINTER}{T.BF}</Title>
+                <Title level={3}>81. 搜索旋转排序数组 II{T.MEDIUM}{T.DOUBLE_POINTER}{T.BF}🔥</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
                         <li>已知存在一个按非降序排列的整数数组 nums <i>不必互不相同</i></li>
@@ -296,7 +296,7 @@ const AlgoDoublePointer = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>27.移除元素{T.EASY}{T.SLOW_FAST_POINTER}</Title>
+                <Title level={3}>27.移除元素{T.EASY}{T.SLOW_FAST_POINTER}🔥</Title>
                 <Collapse ghost>
                     <Panel header="给你一个数组 nums 和一个值 val, 你需要 原地 移除所有数值等于 val 的元素, 并返回移除后数组的新长度(不要使用额外的数组空间、O(1)空间)" key="1">
                         <Highlight language="javascript">{eg.removeElement}</Highlight>
@@ -305,7 +305,7 @@ const AlgoDoublePointer = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>26.删除有序数组中的重复项I{T.EASY}{T.SLOW_FAST_POINTER}</Title>
+                <Title level={3}>26.删除有序数组中的重复项I{T.EASY}{T.SLOW_FAST_POINTER}🔥</Title>
                 <Collapse ghost>
                     <Panel header="有序数组 nums , 请你 原地 删除重复出现的元素, 使每个元素 只出现一次 , 返回删除后数组的新长度(不要使用额外的数组空间、O(1)空间)" key="1">
                         <Highlight language="javascript">{eg.removeDuplicates}</Highlight>
@@ -314,7 +314,7 @@ const AlgoDoublePointer = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>80.删除有序数组中的重复项 II{T.MEDIUM}{T.SLOW_FAST_POINTER}</Title>
+                <Title level={3}>80.删除有序数组中的重复项 II{T.MEDIUM}{T.SLOW_FAST_POINTER}🔥</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
                         <li>你一个有序数组 nums ,请你 原地 删除重复出现的元素,使每个元素 最多出现两次 ,返回删除后数组的新长度</li>
@@ -326,7 +326,7 @@ const AlgoDoublePointer = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>287.寻找重复数{T.MEDIUM}{T.SLOW_FAST_POINTER}{T.BF}</Title>
+                <Title level={3}>287.寻找重复数{T.MEDIUM}{T.SLOW_FAST_POINTER}{T.BF}🔥</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
                         <li>给定一个包含 n + 1 个整数的数组 nums ,其数字都在 [1, n] 范围内(包括 1 和 n),可知至少存在一个重复的整数</li>
@@ -370,7 +370,7 @@ const AlgoDoublePointer = () => {
                 <Title level={3}>438. 找到字符串中所有字母异位词{T.MEDIUM}{T.SLIGDING_WINDOW}</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
-                        <li>给定两个字符串 s 和 p，找到 s 中所有 p 的 异位词 的子串，返回这些子串的起始索引。不考虑答案输出的顺序</li>
+                        <li>给定两个字符串 s 和 p, 找到 s 中所有 p 的 异位词 的子串, 返回这些子串的起始索引。不考虑答案输出的顺序</li>
                         <li>位词 指由相同字母重排列形成的字符串（包括相同的字符串）</li>
                     </ul>} key="1">
                         <Space direction="vertical">
@@ -384,15 +384,15 @@ const AlgoDoublePointer = () => {
                 <Title level={3}>904. 水果成篮{T.MEDIUM}{T.SLIGDING_WINDOW}</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
-                        <li>农场从左到右种植了一排果树。这些树用一个整数数组 fruits 表示，其中 fruits[i] 是第 i 棵树上的水果 种类</li>
-                        <li>你想要尽可能多地收集水果。然而，农场的主人设定了一些严格的规矩，你必须按照要求采摘水果：
+                        <li>农场从左到右种植了一排果树。这些树用一个整数数组 fruits 表示, 其中 fruits[i] 是第 i 棵树上的水果 种类</li>
+                        <li>你想要尽可能多地收集水果。然而, 农场的主人设定了一些严格的规矩, 你必须按照要求采摘水果：
                             <ul>
-                                <li>你只有 两个 篮子，并且每个篮子只能装 单一类型 的水果。每个篮子能够装的水果总量没有限制</li>
-                                <li>你可以选择任意一棵树开始采摘，你必须从 每棵 树（包括开始采摘的树）上 恰好摘一个水果 。采摘的水果应当符合篮子中的水果类型。每采摘一次，你将会向右移动到下一棵树，并继续采摘</li>
-                                <li>一旦你走到某棵树前，但水果不符合篮子的水果类型，那么就必须停止采摘</li>
+                                <li>你只有 两个 篮子, 并且每个篮子只能装 单一类型 的水果。每个篮子能够装的水果总量没有限制</li>
+                                <li>你可以选择任意一棵树开始采摘, 你必须从 每棵 树（包括开始采摘的树）上 恰好摘一个水果 。采摘的水果应当符合篮子中的水果类型。每采摘一次, 你将会向右移动到下一棵树, 并继续采摘</li>
+                                <li>一旦你走到某棵树前, 但水果不符合篮子的水果类型, 那么就必须停止采摘</li>
                             </ul>
                         </li>
-                        <li>给你一个整数数组 fruits ，返回你可以收集的水果的 最大 数目</li>
+                        <li>给你一个整数数组 fruits , 返回你可以收集的水果的 最大 数目</li>
                     </ul>} key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.totalFruit}</Highlight>
@@ -405,7 +405,7 @@ const AlgoDoublePointer = () => {
                 <Title level={3}>930. 和相同的二元子数组{T.MEDIUM}{T.SLIGDING_WINDOW}{T.HASH}{T.PREFIX}</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
-                        <li>给你一个二元数组 nums ，和一个整数 goal ，请你统计并返回有多少个和为 goal 的 非空 子数组</li>
+                        <li>给你一个二元数组 nums , 和一个整数 goal , 请你统计并返回有多少个和为 goal 的 非空 子数组</li>
                         <li>子数组 是数组的一段连续部分</li>
                         <li>nums[i] 不是 0 就是 1</li>
                     </ul>} key="1">

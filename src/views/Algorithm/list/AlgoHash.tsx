@@ -36,7 +36,7 @@ const AlgoHash = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>1. 两数之和{T.EASY}{T.HASH}</Title>
+                <Title level={3}>1. 两数之和{T.EASY}{T.HASH}🔥</Title>
                 <Collapse ghost>
                     <Panel header="给一个整数数组nums和一个整数目标值target,在数组中找出两数之和为target的那两个数,返回他们在数组中下标" key="1">
                         <Space direction="vertical">
@@ -47,7 +47,7 @@ const AlgoHash = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>15. 三数之和{T.MEDIUM}{T.DOUBLE_POINTER}</Title>
+                <Title level={3}>15. 三数之和{T.MEDIUM}{T.DOUBLE_POINTER}🔥</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
                         <li>给你一个包含 n 个整数的数组 nums, 判断 nums 中是否存在三个元素 a, b, c , 使得 a + b + c = 0 ？请你找出所有和为 0 且不重复的三元组</li>
@@ -62,7 +62,7 @@ const AlgoHash = () => {
 
 
             <Wrap>
-                <Title level={3}>18.四数之和{T.MEDIUM}</Title>
+                <Title level={3}>18.四数之和{T.MEDIUM}🔥</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
                         <li>给你一个由 n 个整数组成的数组 nums ,和一个目标值 target 。请你找出并返回满足下述全部条件且不重复的四元组 [nums[a], nums[b], nums[c], nums[d]] (若两个四元组元素一一对应,则认为两个四元组重复): </li>
@@ -70,7 +70,7 @@ const AlgoHash = () => {
                         <li>a、b、c 和 d 互不相同</li>
                         <li>nums[a] + nums[b] + nums[c] + nums[d] == target</li>
                         <li>你可以按 任意顺序 返回答案 </li>
-                        </ul>} key="1">
+                    </ul>} key="1">
                         <a href="https://leetcode-cn.com/problems/4sum/"></a>
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.fourSum}</Highlight>
@@ -80,7 +80,7 @@ const AlgoHash = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>697.数组的度{T.EASY}{T.HASH}</Title>
+                <Title level={3}>697.数组的度{T.EASY}{T.HASH}🔥</Title>
                 <Collapse ghost>
                     <Panel header="数组的度的定义是指数组里任一元素出现频数的最大值,在nums中找到与nums拥有相同大小的度的最短连续子数组,返回其长度" key="1">
                         <Space direction="vertical">
@@ -135,7 +135,10 @@ const AlgoHash = () => {
             <Wrap>
                 <Title level={3}>剑指 Offer 03.数组中重复的数字{T.EASY}{T.HASH}</Title>
                 <Collapse ghost>
-                    <Panel header="在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的, 但不知道有几个数字重复了, 也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。" key="1">
+                    <Panel header={<ul>
+                        <li>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的, 但不知道有几个数字重复了, 也不知道每个数字重复了几次</li>
+                        <li>请找出数组中任意一个重复的数字</li>
+                    </ul>} key="1">
                         <Highlight language="javascript">{eg.findRepeatNumber}</Highlight>
                     </Panel>
                 </Collapse>
@@ -157,7 +160,7 @@ const AlgoHash = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>2053.数组中第 K 个独一无二的字符串{T.EASY}{T.HASH}</Title>
+                <Title level={3}>2053.数组中第 K 个独一无二的字符串{T.EASY}{T.HASH}🔥</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
                         <li>独一无二的字符串 指的是在一个数组中只出现过 一次 的字符串</li>
@@ -223,10 +226,10 @@ const AlgoHash = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>560. 和为 K 的子数组{T.MEDIUM}{T.HASH}{T.PREFIX}</Title>
+                <Title level={3}>560. 和为 K 的子数组{T.MEDIUM}{T.HASH}{T.PREFIX}🔥</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
-                        <li>给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数</li>
+                        <li>给你一个整数数组 nums 和一个整数 k , 请你统计并返回 该数组中和为 k 的子数组的个数</li>
                     </ul>} key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.subarraySum}</Highlight>
@@ -236,17 +239,17 @@ const AlgoHash = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>523. 连续的子数组和{T.MEDIUM}{T.HASH}{T.PREFIX}</Title>
+                <Title level={3}>523. 连续的子数组和{T.MEDIUM}{T.HASH}{T.PREFIX}🔥</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
-                        <li>给你一个整数数组 nums 和一个整数 k ，编写一个函数来判断该数组是否含有同时满足下述条件的连续子数组：
+                        <li>给你一个整数数组 nums 和一个整数 k , 编写一个函数来判断该数组是否含有同时满足下述条件的连续子数组：
                             <ul>
                                 <li>子数组大小 至少为 2</li>
                                 <li>子数组元素总和为 k 的倍数</li>
                             </ul>
                         </li>
-                        <li>如果存在，返回 true ；否则，返回 false </li>
-                        <li>如果存在一个整数 n ，令整数 x 符合 x = n * k ，则称 x 是 k 的一个倍数。0 始终视为 k 的一个倍数</li>
+                        <li>如果存在, 返回 true ；否则, 返回 false </li>
+                        <li>如果存在一个整数 n , 令整数 x 符合 x = n * k , 则称 x 是 k 的一个倍数。0 始终视为 k 的一个倍数</li>
                     </ul>} key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.subarraySum}</Highlight>
@@ -259,7 +262,7 @@ const AlgoHash = () => {
                 <Title level={3}>128. 最长连续序列{T.MEDIUM}{T.HASH}</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
-                        <li>给定一个未排序的整数数组 nums ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度</li>
+                        <li>给定一个未排序的整数数组 nums , 找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度</li>
                         <li>请你设计并实现时间复杂度为 O(n) 的算法解决此问题</li>
                     </ul>} key="1">
                         <Space direction="vertical">
@@ -273,7 +276,7 @@ const AlgoHash = () => {
                 <Title level={3}>442. 数组中重复的数据{T.MEDIUM}{T.HASH}</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
-                        <li>给你一个长度为 n 的整数数组 nums ，其中 nums 的所有整数都在范围 [1, n] 内，且每个整数出现 一次 或 两次 。请你找出所有出现 两次 的整数，并以数组形式返回</li>
+                        <li>给你一个长度为 n 的整数数组 nums , 其中 nums 的所有整数都在范围 [1, n] 内, 且每个整数出现 一次 或 两次 。请你找出所有出现 两次 的整数, 并以数组形式返回</li>
                         <li>你必须设计并实现一个时间复杂度为 O(n) 且仅使用常量额外空间的算法解决此问题</li>
                     </ul>} key="1">
                         <Space direction="vertical">

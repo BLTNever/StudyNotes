@@ -76,7 +76,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>20.有效的括号{T.EASY}{T.STACK}{T.HASH}</Title>
+                <Title level={3}>20.有效的括号{T.EASY}{T.STACK}{T.HASH}🔥</Title>
                 <Collapse ghost>
                     <Panel header="给定一个只包括 '(', ')', '{', '}', '[', ']' 的字符串 s , 判断字符串是否有效" key="1">
                         <Space direction="vertical">
@@ -109,7 +109,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>125.验证回文串{T.EASY}</Title>
+                <Title level={3}>125.验证回文串{T.EASY}🔥</Title>
                 <Collapse ghost>
                     <Panel header="给定一个字符串, 验证它是否是回文串, 只考虑字母和数字字符, 可以忽略字母的大小写" key="1">
                         <Space direction="vertical">
@@ -275,7 +275,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>859.亲密字符串{T.EASY}</Title>
+                <Title level={3}>859.亲密字符串{T.EASY}🔥</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
                         <li>给你两个字符串 s 和 goal , 只要我们可以通过交换 s 中的两个字母得到与 goal 相等的结果, 就返回 true ;否则返回 false </li>
@@ -306,7 +306,7 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap id="checkValidString">
-                <Title level={3}>678.有效的括号字符串{T.MEDIUM}{T.STACK}{T.GREEDY}</Title>
+                <Title level={3}>678.有效的括号字符串{T.MEDIUM}{T.STACK}{T.GREEDY}🔥</Title>
                 <Collapse ghost>
                     <Panel header={<ul>
                         <p>给定一个只包含三种字符的字符串: ( ,) 和 *,写一个函数来检验这个字符串是否为有效字符串。有效字符串具有如下规则: </p>

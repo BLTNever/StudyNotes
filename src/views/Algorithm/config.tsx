@@ -25,6 +25,7 @@ export const DOUBLY_NODE = (<Tag color='#ff9100'>双链表</Tag>)
 export const SLOW_FAST_POINTER = (<Tag color='volcano'>快慢指针</Tag>)
 export const REG = (<Tag color='tomato'>正则</Tag>)
 export const PREFIX = (<Tag color='tomato'>前缀和</Tag>)
+export const HEAP = (<Tag color='red'>堆</Tag>)
 
 
 export const EASY = (<Tag color='rgb(0, 175, 155)'>easy</Tag>)

@@ -42,7 +42,7 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>88.合并两个有序数组{T.EASY}</Title>
+                <Title level={3}>88.合并两个有序数组{T.EASY}🔥</Title>
                 <Collapse ghost>
                     <Panel header="给你两个有序整数数组 nums1 和 nums2, 请你将 nums2 合并到 nums1 中, 使 nums1 成为一个有序数组" key="1">
                         <Row gutter={24}>
@@ -188,8 +188,6 @@ const AlgoArray = () => {
                 </Collapse>
             </Wrap>
 
-           
-
             <Wrap>
                 <Title level={3}>2089.找出数组排序后的目标下标{T.EASY}{T.BF}{T.COUNT}</Title>
                 <Collapse ghost>
@@ -246,7 +244,7 @@ const AlgoArray = () => {
 
 
             <Wrap>
-                <Title level={3}>414.第三大的数{T.EASY}{T.SORT}</Title>
+                <Title level={3}>414.第三大的数{T.EASY}{T.SORT}🔥</Title>
                 <Collapse ghost>
                     <Panel header="给你一个非空数组, 返回此数组中 第三大的数 。如果不存在, 则返回数组中最大的数。" key="1">
                         <Space direction="vertical">
@@ -296,20 +294,33 @@ const AlgoArray = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>59.螺旋矩阵 II{T.MEDIUM}{T.MATRIX}</Title>
+                <Title level={3}>54. 螺旋矩阵{T.MEDIUM}{T.MATRIX}❌</Title>
                 <Collapse ghost>
-                    <Panel header="给你一个正整数 n , 生成一个包含 1 到 n2 所有元素, 且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。" key="1">
+                    <Panel header={<ul>
+                        <li>给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素</li>
+                    </ul>} key="1">
                         <Space direction="vertical">
-                            <Highlight language="javascript">{eg.randomizedSet}</Highlight>
+                            {/* <Highlight language="javascript">{eg.generateMatrix}</Highlight> */}
                         </Space>
                     </Panel>
                 </Collapse>
             </Wrap>
 
-
+            <Wrap>
+                <Title level={3}>59.螺旋矩阵 II{T.MEDIUM}{T.MATRIX}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>给你一个正整数 n , 生成一个包含 1 到 n2 所有元素, 且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix</li>
+                    </ul>} key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.generateMatrix}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
 
             <Wrap id="findKthLargest">
-                <Title level={3}>215. 数组中的第K个最大元素{T.MEDIUM}</Title>
+                <Title level={3}>215. 数组中的第K个最大元素{T.MEDIUM}{T.HEAP}{T.SORT}🔥🔥🔥</Title>
                 <Collapse ghost>
                     <Panel header="设计一个算法, 找出数组中两数之和为指定值的所有整数对。一个数只能属于一个数对。" key="1">
                         <Space direction="vertical">
@@ -318,8 +329,6 @@ const AlgoArray = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
-
-
 
             <Wrap>
                 <Title level={3}>4. 寻找两个正序数组的中位数{T.HARD}{T.DICHOTOMY}</Title>
@@ -344,22 +353,9 @@ export default AlgoArray
 
 
 try {
-    // console.log(rotate('abcdefg', 3))
+    // console.log(findKthLargest([3, 2, 1, 5, 6, 4], 2))
 } catch (error) {
     console.log(error)
 }
 
 
-
-
-function test(nums: number[], k: number) {
-    const n = nums.length
-    let ans = 0
-    for (let i = 0; i < n; i++) {
-        if (i > k) {
-            ans += Math.min(nums[i], nums[k] - 1)
-        } else {
-            ans += Math.min(nums[i], nums[k])
-        }
-    }
-}

@@ -347,3 +347,26 @@ console.log(fn(1, 2))
 export const tree2list = `
 return [].concat(...list.map((item: any) => [].concat(item, ..._flat(item.children))))
 `
+
+export const _this = `
+`
+window.name = '1111'
+
+function A(name) {
+    this.name = name
+    return this.name
+}
+A.prototype.getName = function () {
+    console.log(this.name)
+}
+console.log(A('2222').call({}).getName())
+
+const fn = () => {
+    this.name = '3333'
+    return this.name
+}
+console.log(fn.call({ name: '4444' }))
+
+
+const obj = { name: '5555' }
+console.log(A('6666').call(obj).getName())

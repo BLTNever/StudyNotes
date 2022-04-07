@@ -243,7 +243,7 @@ const AlgoArray = () => {
             </Wrap>
 
 
-            <Wrap>
+            <Wrap id="thirdMax">
                 <Title level={3}>414.第三大的数{T.EASY}{T.SORT}🔥</Title>
                 <Collapse ghost>
                     <Panel header="给你一个非空数组, 返回此数组中 第三大的数 。如果不存在, 则返回数组中最大的数。" key="1">

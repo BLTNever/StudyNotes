@@ -137,6 +137,46 @@ const AlgoNote = () => {
             </Wrap>
 
             <Wrap>
+                <Title level={3}>topK</Title>
+                <Collapse ghost>
+                    <Panel header="最优堆排序或者快选，没思路就用快排" key="1">
+                        <Link to="/algorithm/array#findKthLargest">code</Link>
+                        <ul>
+                            <li>堆排序:
+                                <ul>
+                                    <li>1. 建立大顶堆<code>{`for(let i = ~~(n / 2 -1);i >= 0; i--)`}</code></li>
+                                    <li>2. 调整节点<code>l = i * 2 + 1; r = i * 2 + 2; largest = i; largest = Math.max(l,r,largest); swap(i, largest);maxHeapify(nums, largest, n)</code></li>
+                                    <li>3. 顶堆元素与尾元素交换<code>{` for (let i = nums.length - 1; i >= nums.length - k + 1; i--) {swap(nums, 0, i); --n; maxHeapify(nums, 0, n) }`}</code></li>
+                                </ul>
+                            </li>
+                            <li>快排:
+                                {/* <code>{``}</code> */}
+                            </li>
+                        </ul>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>返回数组中前三大的数字</Title>
+                <Collapse ghost>
+                    <Panel header="类似于找第三大的数逻辑" key="1">
+                        <Link to="/algorithm/array#thirdMax">code</Link>
+                        <ul>
+                        </ul>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+            <Wrap>
+                <Title level={3}>this指向</Title>
+                <Collapse ghost>
+                    <Panel header="全局作用域、call修改指向、箭头函数修改指向情况下" key="1">
+                       
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
                 <Title level={3}>树的遍历有几种方式,实现层次遍历</Title>
                 <Collapse ghost>
                     <Panel header="遍历方式: 1.前序遍历、2.中序遍历、3.后序遍历、4.层次遍历" key="1">

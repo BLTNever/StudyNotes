@@ -349,17 +349,15 @@ return [].concat(...list.map((item: any) => [].concat(item, ..._flat(item.childr
 `
 
 export const _this = `
-`
 window.name = '1111'
 
 function A(name) {
     this.name = name
-    return this.name
 }
 A.prototype.getName = function () {
     console.log(this.name)
 }
-console.log(A('2222').call({}).getName())
+console.log(A.call({}).getName())
 
 const fn = () => {
     this.name = '3333'
@@ -369,4 +367,6 @@ console.log(fn.call({ name: '4444' }))
 
 
 const obj = { name: '5555' }
-console.log(A('6666').call(obj).getName())
+console.log(A('6666').call(obj).getName())`
+
+

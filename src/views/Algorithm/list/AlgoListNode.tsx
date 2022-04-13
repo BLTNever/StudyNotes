@@ -202,6 +202,35 @@ const AlgoListNode = () => {
                 </Collapse>
             </Wrap>
 
+            <Wrap>
+                <Title level={3}>2. 两数相加{T.MEDIUM}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>给你两个 非空 的链表，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储 一位 数字</li>
+                        <li>请你将两个数相加，并以相同形式返回一个表示和的链表</li>
+                        <li>你可以假设除了数字 0 之外，这两个数都不会以 0 开头</li>
+                    </ul>} key="1">
+                        <a target="_blank" href="https://leetcode-cn.com/problems/add-two-numbers/">题</a>
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.addTwoNumbers}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
+                <Title level={3}>19. 删除链表的倒数第 N 个结点{T.MEDIUM}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点</li>
+                    </ul>} key="1">
+                        <a target="_blank" href="https://leetcode-cn.com/problems/add-two-numbers/">题</a>
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.addTwoNumbers}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
 
             <Wrap>
                 <Title level={3}>86. 分隔链表{T.MEDIUM}</Title>
@@ -215,8 +244,6 @@ const AlgoListNode = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
-
-
 
             <Wrap>
                 <Title level={3}>148. 排序链表{T.MEDIUM}❌</Title>
@@ -298,97 +325,3 @@ const AlgoListNode = () => {
 
 export default AlgoListNode
 
-
-function deleteNode(node: ListNode) {
-    node.val = node.next.val
-    node.next = node.next.enxt
-}
-function test(head: ListNode) {
-    let pre = null
-    let cur = head
-    while (cur.next) {
-        const next = cur.next
-        cur.next = pre
-        pre = cur
-        cur = next
-    }
-    return pre
-}
-
-function reverse(head: ListNode, left: number, right: number) {
-    let dummy = new ListNode(0)
-    dummy.next = head
-    let pre = dummy
-    for (let i = 0; i < left - 1; i++) {
-        pre = pre.next
-    }
-    let rightNode = pre
-    for (let i = 0; i < right - left + 1; i++) {
-        rightNode = rightNode.next
-    }
-    let leftNode = pre.next
-    let cur = rightNode.next
-
-    pre.next = null
-    rightNode.next = null
-
-    test(leftNode)
-    pre.next = rightNode
-    leftNode.next = cur
-}
-
-
-function merge(A: ListNode, B: ListNode) {
-    if (!A) return B
-    if (!B) return A
-
-    if (A.val < B.val) {
-        A.next = merge(A.next, B)
-        return A
-    } else {
-        B.next = merge(A, B.next)
-        return B
-    }
-}
-
-function hasSame(headA: ListNode, headB: ListNode) {
-    if (!headA || !headB) return null
-    let A = headA
-    let B = headB
-    while (A !== B) {
-        A = A.next !== null ? A.next : headB
-        B = B.next !== null ? B.next : headA
-    }
-    return A
-}
-
-function _delete(head: ListNode) {
-    if (!head) return null
-    let cur = head
-    while (cur && cur.next) {
-        if (cur.val === cur.next.val) {
-            cur.next = cur.next.next
-        } else {
-            cur = cur.next
-        }
-    }
-    return head
-}
-
-function _delete2(head: ListNode) {
-    let dummy = new ListNode(0)
-    dummy.next = head
-    let cur = dummy
-
-    while (cur.next && cur.next.next) {
-        if (cur.next.val === cur.next.next.val) {
-            let val = cur.next.val
-            while (val === cur.next.val && cur.next) {
-                cur.next = cur.next.next
-            }
-        } else {
-            cur = cur.next
-        }
-    }
-    return dummy.next
-}

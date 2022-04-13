@@ -794,3 +794,28 @@ function reorderList(head: ListNode) {
 
     return head
 }`
+
+export const addTwoNumbers = `
+/**
+ * 1. 因为是l1、l2是逆序, 所以相加完的顺序刚好是正确输出，如果不是逆序 需要翻转结果
+ * 2. 注意进位
+ */ 
+function addTwoNumbers(l1: ListNode, l2: ListNode) {
+    let dummy = new ListNode(0)
+    let cur = dummy
+    let sum = 0
+    while (l1 || l2 || sum) {
+        if (l1) {
+            sum += l1.val
+            l1 = l1.next
+        }
+        if (l2) {
+            sum += l2.val
+            l2 = l2.next
+        }
+        cur.next = new ListNode(sum % 10)
+        cur = cur.next
+        sum /= 10
+    }
+    return dummy.next
+}`

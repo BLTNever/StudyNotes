@@ -495,3 +495,45 @@ function getSmallestString(n: number, k: number) {
     return res
 }
 `
+export const thousandSeparator = `
+function thousandSeparator(n: number) {
+    if (typeof n !== 'number') throw Error('Invalid Params')
+    if (n >= Number.MAX_SAFE_INTEGER || n <= Number.MIN_SAFE_INTEGER) return n
+    let count = 0
+    let ans = ''
+    const sign = n < 0 ? '-' : ''
+    // 带小数位
+    n = Math.abs(n)
+    let [a, b = ''] = String(n).split('.')
+    console.log(a, b)
+    let num = Number(a)
+    while (num) {
+        let cur = num % 10
+        num = Math.floor(num / 10)
+        ans += String(cur)
+        count++
+        if (count % 3 === 0 && num) {
+            ans += ','
+        }
+    }
+    ans = ans.split('').reverse().join('')
+    ans = sign + ans
+    return b.length ? ans + '.' + b : ans
+
+    // 整数
+    n = Math.abs(n)
+    while (n) {
+        let cur = n % 10
+        n = Math.floor(n / 10)
+        ans += String(cur)
+        count++
+        if (count % 3 === 0 && n) {
+            ans += ','
+        }
+    }
+    return sign + ans.split('').reverse().join('')
+
+    // 原生API
+    return (n).toLocaleString().replace(/\,/g, '.')
+}`
+

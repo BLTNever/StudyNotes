@@ -120,9 +120,27 @@ const AlgoString = () => {
             </Wrap>
 
             <Wrap>
+                <Title level={3}>1556. 千位分隔数{T.EASY}🔥🔥🔥</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>给你一个整数 n，请你每隔三位添加点（即 . 符号）作为千位分隔符，并将结果以字符串格式返回</li>
+                        <li>PS: 非整数情况</li>
+                    </ul>} key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.thousandSeparator}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
+            <Wrap>
                 <Title level={3}>1945.字符串转化后的各位数字之和{T.EASY}</Title>
                 <Collapse ghost>
-                    <Panel header="给你一个由小写字母组成的字符串 s , 以及一个整数 k 。首先, 用字母在字母表中的位置替换该字母, 将 s 转化 为一个整数(也就是, 'a' 用 1 替换, 'b' 用 2 替换, ...'z' 用 26 替换)。接着, 将整数 转换 为其 各位数字之和 。共重复 转换 操作 k 次 。" key="1">
+                    <Panel header={<ul>
+                        <li>给你一个由小写字母组成的字符串 s , 以及一个整数 k</li>
+                        <li>首先, 用字母在字母表中的位置替换该字母, 将 s 转化 为一个整数(也就是, a 用 1 替换, b 用 2 替换, ...z 用 26 替换)</li>
+                        <li>接着, 将整数 转换 为其 各位数字之和 。共重复 转换 操作 k 次</li>
+                    </ul>} key="1">
                         <Space direction="vertical">
                             <Highlight language="javascript">{eg.getLucky}</Highlight>
                         </Space>
@@ -352,13 +370,11 @@ const AlgoString = () => {
 
 export default AlgoString
 
-function isValid() {
 
-}
 
 try {
-    // console.log(getSmallestString(6, 73))
-} catch (error) { }
+    // console.log(thousandSeparator('12345678'))
+} catch (error) { console.log(error) }
 
 function test(s: string) {
 

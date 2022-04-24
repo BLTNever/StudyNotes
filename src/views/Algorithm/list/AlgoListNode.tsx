@@ -79,6 +79,21 @@ const AlgoListNode = () => {
                 </Collapse>
             </Wrap>
 
+
+            <Wrap>
+                <Title level={3}>19. 删除链表的倒数第 N 个结点{T.MEDIUM}{T.SLOW_FAST_POINTER}</Title>
+                <Collapse ghost>
+                    <Panel header={<ul>
+                        <li>给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点</li>
+                    </ul>} key="1">
+                        <a target="_blank" href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/">题</a>
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.removeNthFromEnd}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
+
             <Wrap id="reverseList">
                 <Title level={3}>206. 反转链表{T.EASY}🔥🔥🔥</Title>
                 <Collapse ghost>
@@ -219,20 +234,6 @@ const AlgoListNode = () => {
             </Wrap>
 
             <Wrap>
-                <Title level={3}>19. 删除链表的倒数第 N 个结点{T.MEDIUM}</Title>
-                <Collapse ghost>
-                    <Panel header={<ul>
-                        <li>给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点</li>
-                    </ul>} key="1">
-                        <a target="_blank" href="https://leetcode-cn.com/problems/add-two-numbers/">题</a>
-                        <Space direction="vertical">
-                            <Highlight language="javascript">{eg.addTwoNumbers}</Highlight>
-                        </Space>
-                    </Panel>
-                </Collapse>
-            </Wrap>
-
-            <Wrap>
                 <Title level={3}>86. 分隔链表{T.MEDIUM}</Title>
                 <Collapse ghost>
                     <Panel header="给你一个链表的头节点 head 和一个特定值 x ,请你对链表进行分隔,使得所有 小于 x 的节点都出现在 大于或等于 x 的节点之前。
@@ -324,4 +325,3 @@ const AlgoListNode = () => {
 }
 
 export default AlgoListNode
-

@@ -1059,8 +1059,7 @@ function step() {
 }`
 
 export const carousel = `
-
-const autoplay_Delay = 2000; // 轮播时间
+const delay = 2000         // 轮播时间
 let autoplay = true        // 是否自动轮播
 let autoplayId: any = null
 let curIndex = 0             // 当前轮播图
@@ -1071,11 +1070,11 @@ let indicator_wrap: any = null // 小圆点容器
 let item_width = 0  // 每个轮播图的宽度
 
 window.onload = function () {
-    initElement();
-    initEvent();
-    if (autoplay) {
-        startAnimation()
-    }
+    // initElement();
+    // initEvent();
+    // if (autoplay) {
+    //     startAnimation()
+    // }
 }
 function initElement() {
     slider = document.getElementById("slider")
@@ -1122,10 +1121,10 @@ function startAnimation() {
     if (autoplayId) clearTimeout(autoplayId)
     autoplayId = setTimeout(() => {
         next()
-    }, autoplay_Delay)
+    }, delay)
 }
 /**
- * 动画
+ * 轮播图移动
  * @param element 外层容器元素
  * @param target 
  */
@@ -1210,3 +1209,101 @@ function setCurrentActiveIndicator(index: number) {
         }
     }
 }`
+
+export const arrange  = `
+// 实现一个 arrange 函数，可以进行时间和工作调度
+// [ > … ] 表示调用函数后的打印内容
+
+// arrange('William').execute();
+// > William is notified
+
+// arrange('William').do('commit').execute();
+// > William is notified
+// > Start to commit
+
+// arrange('William').wait(5).do('commit').execute();
+// > William is notified
+// 等待 5 秒
+// > Start to commit
+
+// arrange('William').waitFirst(5).do('push').execute();
+// 等待 5 秒
+// > William is notified
+// > Start to push 
+function arrange(name) {
+    return new Loop(name)
+}
+function Loop(name) {
+    this.name = name;
+    this.task = [];
+    let _this = this;
+    let fn = (function () {
+        return function () {
+            _this.next()
+        }
+    })()
+    this.task.push(fn)
+    setTimeout(() => {
+        _this.next()
+    }, 0)
+}
+Loop.prototype = {
+    next: function () {
+        var fn = this.task.shift()
+        fn && fn()
+    },
+    
+    wait: function (time) {
+        let _this = this;
+        let fn = (function (time) {
+            return function () {
+                setTimeout(() => {
+                    console.log('等待' + time + '秒')
+                    _this.next()
+                }, time * 1000)
+            }
+        })(time)
+        this.task.push(fn)
+        return this;
+    },
+    do: function (msg) {
+        let _this = this;
+        let fn = (function (msg) {
+            return function () {
+                console.log('Start to ' + msg);
+                _this.next()
+            }
+        })(msg)
+        this.task.push(fn)
+        return this;
+    },
+    execute: function () {
+        let _this = this;
+        let fn = (function () {
+            return function () {
+                console.log('William is notified');
+                _this.next()
+            }
+        })()
+        this.task.unshift(fn)
+        return this;
+    },
+    waitFirst: function (time) {
+        let _this = this;
+        let fn = (function (time) {
+            return function () {
+                setTimeout(() => {
+                    console.log('等待' + time + '秒')
+                    _this.next()
+                }, time * 1000)
+            }
+        })(time)
+        this.task.unshift(fn)
+        return this;
+    },
+}
+// arrange('William').do('push')
+// arrange('William').execute()
+// arrange('William').do('commit').execute()
+// arrange('William').wait(5).do('commit').execute()
+arrange('William').waitFirst(5).do('push').execute()`

@@ -819,3 +819,28 @@ function addTwoNumbers(l1: ListNode, l2: ListNode) {
     }
     return dummy.next
 }`
+
+export const removeNthFromEnd = `
+/**
+ * 链表长度 len , fast 走 n 步, fast处在 len - n 位置
+ * slow 跟随 fast 走 len - n 步，就刚好处在 需要删除的位置 n 上
+ * 防止 n 是头或者尾节点
+ * 当 fast 走完 n 步，判断fast 如果为 null,  说明fast已经走到 外面
+ */
+function removeNthFromEnd(head: ListNode, n: number) {
+    let slow = head
+    let fast = head
+    while (n) {
+        fast = fast.next
+        n--
+    }
+    // 如果 n 和 链表中总结点个数相同，即要删除的是链表头结点时，fast 经过上一步已经到外面了
+    if (!fast) return head.next
+
+    while (fast.next) {
+        fast = fast.next
+        slow = slow.next
+    }
+    slow.next = slow.next.next
+    return head
+}`

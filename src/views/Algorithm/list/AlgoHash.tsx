@@ -252,7 +252,7 @@ const AlgoHash = () => {
                         <li>如果存在一个整数 n , 令整数 x 符合 x = n * k , 则称 x 是 k 的一个倍数。0 始终视为 k 的一个倍数</li>
                     </ul>} key="1">
                         <Space direction="vertical">
-                            <Highlight language="javascript">{eg.subarraySum}</Highlight>
+                            {/* <Highlight language="javascript">{eg.checkSubarraySum}</Highlight> */}
                         </Space>
                     </Panel>
                 </Collapse>
@@ -295,4 +295,13 @@ try {
     // console.log(findDuplicates([4, 3, 2, 7, 8, 2, 3, 1]))
 } catch (error) { console.log(error) }
 
+/**
+ * 前缀和 + hash
+ * 满足条件的子数组是(prefix[j] - prefix[i]) % k === 0
+ * 使用同余定理：如果对于一个数 m，(a + b) 满足能被 m 整除，那么 a % m 等于 b % m
+ * 过记录余数的方法找到 i 和 j
+ * 用哈希表来记录余数，当遇到相等的余数，再判断 j - i 是否大于等于2
+ */
+function checkSubarraySum(nums: number[], k: number) {
 
+}   

@@ -237,6 +237,17 @@ const Program = () => {
                     </Panel>
                 </Collapse>
             </Wrap>
+
+            <Wrap>
+                <Title level={3}>实现一个 arrange 函数</Title>
+                <Collapse ghost>
+                    <Panel header="可以进行时间和工作调度" key="1">
+                        <Space direction="vertical">
+                            <Highlight language="javascript">{eg.arrange}</Highlight>
+                        </Space>
+                    </Panel>
+                </Collapse>
+            </Wrap>
         </>
     )
 }
@@ -264,154 +275,3 @@ export default Program
 try {
     //
 } catch (error) { }
-
-const delay = 2000         // 轮播时间
-let autoplay = true        // 是否自动轮播
-let autoplayId: any = null
-let curIndex = 0             // 当前轮播图
-let slider: any = null            // 轮播图容器
-let slider_items: HTMLElement[] | any = [] // 轮播图 list 
-let slider_wrap: any = null // 轮播图外层容器
-let indicator_wrap: any = null // 小圆点容器
-let item_width = 0  // 每个轮播图的宽度
-
-window.onload = function () {
-    // initElement();
-    // initEvent();
-    // if (autoplay) {
-    //     startAnimation()
-    // }
-}
-function initElement() {
-    slider = document.getElementById("slider")
-    slider_items = slider?.getElementsByTagName("li") || [] // 轮播图 list 
-    slider_wrap = slider?.getElementsByClassName("slieder-wrap")[0] // 轮播图外层容器
-    indicator_wrap = slider?.getElementsByClassName("indicator-wrap")[0] // 小圆点容器
-
-    const firstItem = slider_items[0].cloneNode(true);
-    slider_wrap.appendChild(firstItem)  // 克隆第一个item放在slider容器后面,  做到无缝轮播
-
-    item_width = slider_items[0]?.offsetWidth  // 每个轮播图的宽度
-}
-
-function initEvent() {
-    if (!slider) return
-    slider.addEventListener("mouseover", function () {
-        clearTimeout(autoplayId);
-        autoplay = false
-    })
-    slider.addEventListener("mouseout", function () {
-        autoplay = true
-        startAnimation()
-    })
-
-    const indicators = indicator_wrap.children;
-    for (let i = 0; i < indicators.length; i++) {
-        indicators[i].setAttribute("index", i)
-        indicators[i].addEventListener("click", () => {
-            // let index = parseInt(this.getAttribute("index"))
-            next(i)
-        })
-    }
-
-    let left_arrow = slider.getElementsByClassName("left-arrow")[0]
-    let right_arrow = slider.getElementsByClassName("right-arrow")[0]
-    left_arrow.addEventListener("click", function () {
-        prev()
-    });
-    right_arrow.addEventListener("click", function () {
-        next()
-    });
-}
-function startAnimation() {
-    if (autoplayId) clearTimeout(autoplayId)
-    autoplayId = setTimeout(() => {
-        next()
-    }, delay)
-}
-/**
- * 轮播图移动
- * @param element 外层容器元素
- * @param target 
- */
-function animate(element: HTMLElement, target: number) {
-    const { offsetLeft } = element
-    let intervalId: any = null
-    let step = 10;
-    let time = 10;
-    let gap = (Math.abs(target - offsetLeft) / item_width)
-    if (gap > 1) {
-        step = step * gap;
-        time = time / gap;
-    }
-    if (!element) return
-    step = (offsetLeft > target) ? -step : step;
-    clearInterval(intervalId)
-    setCurrentActiveIndicator(curIndex)
-    intervalId = setInterval(function () {
-        if (Math.abs(offsetLeft + step) < Math.abs(target)) {
-            element.style.left = offsetLeft + step + "px";
-        } else {
-            if (Math.abs(target - offsetLeft) > Math.abs(step)) {
-                element.style.left = offsetLeft + step + "px";
-            } else {
-                clearInterval(intervalId);
-                intervalId = -1;
-                element.style.left = target + "px";
-                // 移动到目标位置, 继续自动播放
-                if (autoplay) {
-                    startAnimation()
-                }
-            }
-        }
-    }, time)
-}
-/**
- * 上一张
- */
-function prev() {
-    let element: HTMLElement | undefined = slider_wrap;
-    if (!element) return
-    let li = element.children;
-    curIndex = curIndex - 1;
-    if (curIndex < 0) {
-        element.style.left = -((li.length - 1) * item_width) + "px";
-        curIndex = li.length - 2;
-    }
-    animate(element, -(curIndex * item_width));
-}
-/**
- * 下一张
- */
-function next(nextIndex?: number) {
-    let element: HTMLElement | undefined = slider_wrap;
-    if (!element) return
-    let li = element.children;
-    if ((nextIndex !== null) && (typeof (nextIndex) !== "undefined")) {
-        curIndex = nextIndex;
-    } else {
-        curIndex = curIndex + 1;
-        if (curIndex > (li.length - 1)) {
-            element.style.left = 0 + "px";
-            curIndex = 1;
-        }
-    }
-    animate(element, -(curIndex * item_width));
-}
-/**
- * 设置当前 轮播图的 小圆点
- */
-function setCurrentActiveIndicator(index: number) {
-    const indicators: HTMLCollection | undefined = indicator_wrap?.children;
-    if (!indicators) return
-    if (index === indicators?.length) {
-        index = 0;
-    }
-    for (let i = 0; i < indicators?.length; i++) {
-        if (i === index) {
-            indicators[i].className = "indicator active";
-        } else {
-            indicators[i].className = "indicator";
-        }
-    }
-}

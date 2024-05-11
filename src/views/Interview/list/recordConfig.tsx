@@ -988,6 +988,3 @@ export const dataProgram = [
         </ul>
     },
 ]
-
-
-

@@ -991,7 +991,8 @@ class LazyMan {
 function lazyMan(name: string) {
     return new LazyMan(name)
 }
-lazyMan('Tony').sleepFirst(3).eat('lunch').sleep(10).eat('dinner');`
+lazyMan('Tony').sleepFirst(3).eat('lunch').sleep(10).eat('dinner');
+`
 
 
 export const findParent = `

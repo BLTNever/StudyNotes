@@ -2,7 +2,7 @@
 import React, { useEffect, useLayoutEffect } from 'react'
 import Highlight from '@components/HighLight'
 import { Collapse, Typography, Tag, Space } from 'antd'
-import { useHistory } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import { Wrap } from '@components/Base'
 
@@ -13,13 +13,14 @@ const { Paragraph, Title, Text, Link } = Typography
 import * as eg from './egStack'
 import * as T from '../config'
 const AlgoStack = () => {
-    const history = useHistory()
+    const navigate = useNavigate()
+    const location = useLocation()
     const scrollToAnchor = (anchorName: string) => {
         let anchorElement = document.querySelector(anchorName)
         if (anchorElement) { anchorElement.scrollIntoView() }
     }
     useEffect(() => {
-        const { location: { hash } } = history
+        const { hash } = location
         if (hash.length) scrollToAnchor(hash)
     }, [])
     return (

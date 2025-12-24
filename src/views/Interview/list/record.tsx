@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Table, Tabs } from 'antd'
 
 import {
@@ -12,7 +12,8 @@ import {
 const { TabPane } = Tabs
 
 const Record = () => {
-    const history = useHistory()
+    const navigate = useNavigate()
+    const location = useLocation()
     const [key, setKey] = useState<string>('dataReact')
     const tabs = [
         { tab: 'React', key: 'dataReact', data: dataReact },
@@ -41,7 +42,7 @@ const Record = () => {
     // }
     const onChange = (key: string) => {
         setKey(key)
-        history.push(`#${key}`)
+        navigate(`#${key}`)
     }
     const _props: any = {
         pagination: false,
@@ -71,7 +72,7 @@ const Record = () => {
     }, [tabs])
 
     useEffect(() => {
-        const { location: { hash } } = history
+        const { hash } = location
         if (hash.length) {
             const k = hash.slice(1)
             setKey(k)

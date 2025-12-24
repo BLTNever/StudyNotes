@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import Highlight from '@components/HighLight'
 import { Card, Col, Row, Collapse, Typography, Space, Alert } from 'antd'
@@ -16,13 +16,14 @@ const { Paragraph, Title, Text, Link } = Typography
 
 const NativeMethod = () => {
 
-    const history = useHistory()
+    const navigate = useNavigate()
+    const location = useLocation()
     const scrollToAnchor = (anchorName: string) => {
         let anchorElement = document.querySelector(anchorName)
         if (anchorElement) { anchorElement.scrollIntoView() }
     }
     useEffect(() => {
-        const { location: { hash } } = history
+        const { hash } = location
         if (hash.length) scrollToAnchor(hash)
     }, [])
     return (

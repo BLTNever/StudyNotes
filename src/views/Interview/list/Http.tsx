@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Card, Col, Row, Divider, Collapse, Typography, PageHeader, Space, Alert } from 'antd'
 
 import { Wrap } from '@components/Base'
@@ -11,13 +11,14 @@ const { Paragraph, Title, Text, Link } = Typography
 
 
 const Http = () => {
-    const history = useHistory()
+    const navigate = useNavigate()
+    const location = useLocation()
     const scrollToAnchor = (anchorName: string) => {
         let anchorElement = document.querySelector(anchorName)
         if (anchorElement) { anchorElement.scrollIntoView() }
     }
     useEffect(() => {
-        const { location: { hash } } = history
+        const { hash } = location
         if (hash.length) scrollToAnchor(hash)
     }, [])
     return (

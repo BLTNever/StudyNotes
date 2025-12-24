@@ -18,8 +18,8 @@ const Top = (props: any) => {
     }
 
     const setScreenFull = () => {
-        if (screenfull.enabled) {
-            screenfull.request()
+        if (screenfull?.enabled) {
+            screenfull?.request()
         }
     }
     return (

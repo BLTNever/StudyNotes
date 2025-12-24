@@ -2,7 +2,7 @@ import React, { memo, useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Menu } from 'antd'
-import 'moment/locale/zh-cn'
+import 'dayjs/locale/zh-cn'
 import './index.less'
 import menuList from '../../config/menu'
 const { SubMenu } = Menu

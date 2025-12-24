@@ -1,29 +1,29 @@
 import React, { memo, useState, useEffect } from 'react'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Layout, Switch } from 'antd'
-import moment from 'moment'
-import 'moment/locale/zh-cn'
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
 import './index.less'
 import Top from './Top'
 import avatar from '@images/avatar.jpeg'
 import Menu from './Menu'
 import { ContentBody } from '../Base'
-moment.locale('en')
+dayjs.locale('en')
 
 const { Sider, Content } = Layout
 
 interface IProps {
     children: any
-    location?: any
 }
 
-const Main = memo((props: IProps & RouteComponentProps) => {
-    const { location } = props
+const Main = memo((props: IProps) => {
+    const location = useLocation()
+    const navigate = useNavigate()
     const [collapsed, setCollapsed] = useState<boolean>(false)
     const [mode, setMode] = useState<string>('inline')
     const [theme, setTheme] = useState<string>('dark')
     const loginOut = () => {
-        props.history.push('/login')
+        navigate('/login')
         console.log('loginOut')
     }
 
@@ -64,4 +64,4 @@ const Main = memo((props: IProps & RouteComponentProps) => {
     )
 })
 
-export default withRouter(Main)
+export default Main

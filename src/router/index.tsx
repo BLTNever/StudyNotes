@@ -1,15 +1,15 @@
 import React, { lazy } from 'react'
-import { Route, Redirect, Switch, Router } from 'react-router-dom'
+import { Route, Navigate, Routes as RouterRoutes } from 'react-router-dom'
 import { list } from './list'
 import { Layout } from 'antd'
 const { Content } = Layout
 
 const RouteItem = (props: any) => {
-    const { redirect, path, component } = props
+    const { redirect, path, component: Component } = props
     if (redirect) {
-        return <Redirect key={path} from={path} to={redirect} />
+        return <Route key={path} path={path} element={<Navigate to={redirect} replace />} />
     }
-    return <Route key={path} component={component} path={path} />
+    return <Route key={path} path={path} element={<Component />} />
 }
 let Routes: any = []
 
@@ -53,9 +53,9 @@ list.forEach((route: any, key) => {
 
 const convertedRoutes = () => {
     return (
-        <Switch>
+        <RouterRoutes>
             {Routes}
-        </Switch>
+        </RouterRoutes>
     )
 }
 

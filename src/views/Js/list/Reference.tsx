@@ -1,6 +1,6 @@
 
 import React, { useState, useMemo, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Tabs, Table } from 'antd'
 
 import * as C from './referenceConfig'
@@ -8,14 +8,15 @@ const { TabPane } = Tabs
 
 const Reference = () => {
 
-    const history = useHistory()
+    const navigate = useNavigate()
+    const location = useLocation()
     const [key, setKey] = useState<string>('Array')
     const onChange = (key: string) => {
         setKey(key)
-        history.push(`#${key}`)
+        navigate(`#${key}`)
     }
     useEffect(() => {
-        const { location: { hash } } = history
+        const { hash } = location
         if (hash.length) {
             const k = hash.slice(1)
             setKey(k)

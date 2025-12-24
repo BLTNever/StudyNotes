@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 export default function useAhchor(anchorName: string) {
-    const history = useHistory()
+    const location = useLocation()
     const scrollToAnchor = (anchorName: string) => {
         let anchorElement = document.querySelector(anchorName)
         if (anchorElement) { anchorElement.scrollIntoView() }
     }
     useEffect(() => {
-        const { location: { hash } } = history
+        const { hash } = location
         if (hash.length) scrollToAnchor(hash)
     }, [])
 }

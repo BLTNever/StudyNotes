@@ -6,7 +6,7 @@ export const list = [
         done: false,
         color: 'magenta',
         key: 1,
-        linl: '/js'
+        link: '/js'
     },
     {
         title: '前端基础理论',
@@ -15,6 +15,7 @@ export const list = [
         done: false,
         color: '#2db7f5',
         key: 2,
+        link: '/interview/frontend'
     },
     {
         title: 'React、Redux、Hooks、fiber',
@@ -23,6 +24,7 @@ export const list = [
         done: false,
         color: 'orange',
         key: 3,
+        link: '/react/Source'
     },
     {
         title: 'webpack',
@@ -31,6 +33,7 @@ export const list = [
         done: false,
         color: 'gold',
         key: 4,
+        link: '/interview/webpack'
     },
     {
         title: '算法',
@@ -39,6 +42,7 @@ export const list = [
         done: false,
         color: 'lime',
         key: 5,
+        link: '/algorithm/note'
     },
     {
         title: '微前端',
@@ -55,6 +59,7 @@ export const list = [
         done: false,
         color: 'cyan',
         key: 7,
+        link: '/native/reactNative'
     },
     {
         title: 'Electron',
@@ -63,6 +68,7 @@ export const list = [
         done: false,
         color: '#13c2c2',
         key: 8,
+        link: '/native/electron'
     },
     {
         title: 'Node',
@@ -87,5 +93,6 @@ export const list = [
         done: false,
         color: '#f50',
         key: 11,
+        link: '/interview/http'
     },
 ]

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Highlight from '@components/HighLight'
-import { useHistory } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import { Col, Row, Collapse, Typography, Tag, Space } from 'antd'
 
@@ -20,13 +20,14 @@ class ListNode {
 }
 
 const AlgoListNode = () => {
-    const history = useHistory()
+    const navigate = useNavigate()
+    const location = useLocation()
     const scrollToAnchor = (anchorName: string) => {
         let anchorElement = document.querySelector(anchorName)
         if (anchorElement) { anchorElement.scrollIntoView() }
     }
     useEffect(() => {
-        const { location: { hash } } = history
+        const { hash } = location
         if (hash.length) scrollToAnchor(hash)
     }, [])
     return (

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Collapse, Typography, Space } from 'antd'
 
 import Highlight from '@components/HighLight'
@@ -12,13 +12,14 @@ const { Title } = Typography
 
 
 const AlgoMath = () => {
-    const history = useHistory()
+    const navigate = useNavigate()
+    const location = useLocation()
     const scrollToAnchor = (anchorName: string) => {
         let anchorElement = document.querySelector(anchorName)
         if (anchorElement) { anchorElement.scrollIntoView() }
     }
     useEffect(() => {
-        const { location: { hash } } = history
+        const { hash } = location
         if (hash.length) scrollToAnchor(hash)
     }, [])
     return (

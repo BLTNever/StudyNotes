@@ -30,9 +30,6 @@
             "@images/*": [
                 "assets/images"
             ],
-            "@redux/*": [
-                "redux/*"
-            ],
             "@common/*": [
                 "common/*"
             ],

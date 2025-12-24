@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" id="scale-view" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <style>
+      html,body{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #2f3138;
+      }
+      body{
+        display: flex;
+        flex-direction: column;
+      }
+      #root{
+        flex:1;
+        max-height: 100%;
+      }
+    </style>
+    <%=htmlWebpackPlugin.options.devUrlContent||''%>
+  </head>
+
+  <body class="cormorant-body" style="overflow: hidden;">
+    <noscript>Sorry, we need js to run correctly!</noscript>
+    <div id="root">
+      <div  class="center">
+          <div class="main-loading">
+            <div class="logo"></div>
+            <div class="txt en-img" id="logoText"></div>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script lang="javascript">
+</script>

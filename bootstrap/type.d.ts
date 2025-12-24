@@ -1,0 +1,24 @@
+declare let _SM_TK_KEY: string;
+declare let _MD5_KEY: string;
+declare let _IS_ENCRYPTED: string;
+declare let _APP_KEY: string;
+declare let _WEBAPI_SERVER: string;
+declare let _WEB_SERVER: string;
+declare let _WEB_PARTNER: string;
+declare let _ACCOUNT_CENTER_ENV: string;
+declare let _OSS_DOMAIN: string;
+declare let _WEB_DEVELOPER: string;
+declare let _PREVIEW: string;
+declare let pcName: string;
+declare let mode: 'production' | 'development';
+// declare let plugin: string[];
+declare let kernel: {
+  container: string;
+  kernel: string;
+  platform: string;
+  skeleton: string;
+  resource: string;
+  hotkey: string;
+  tools: string;
+  components: string;
+};
